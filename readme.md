@@ -31,7 +31,12 @@ Button to vote on elections
 -Submit button to submit the election
 
 Create dummy elections for each level (federal, state, local)
+/electionFederal
+/electionState
+/electionLocal
 
+
+PWA functionality?
 
 
 Do we want to have some way to aggregate the data / view results?
