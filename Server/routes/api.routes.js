@@ -3,23 +3,33 @@ const router = express.Router();
 
 const User = require("../models/User");
 
-router.post("/signup", (req, res) => {
-    Users = new User({
-        email: req.body.email
+router
+    .post("/signup", (req, res) => {
+        Users = new User({
+            username: req.body.username
+        });
+        console.log("Body: ", req.body);
+
+        User.register(Users, req.body.password, (err, user) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: "Error while registering: ", err
+                });
+            }
+            else {
+                res.json({
+                    success: true,
+                    message: "Account registered"
+                });
+            };
+        });
+    })
+
+    .get("/test", (req, res) => {
+        res.json({
+            message: "TEST SUCCESS!!!"
+        });
     });
 
-    User.register(Users, req.body.password, (err, user) => {
-        if (err) {
-            res.json({
-                success: false,
-                message: "Error while registering: ", err
-            });
-        }
-        else {
-            res.json({
-                success: true,
-                message: "Account registered"
-            });
-        };
-    });
-})
+module.exports = router;
