@@ -1,25 +1,25 @@
 const mongoose = require("mongoose");
-import { isEmail } from "validator";
+const validate = require("validator");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 //initialize mongoose schema
 const Schema = mongoose.Schema;
 
 //create mongoose Schema for user model
+//there is no password field because passport-local-mongoose will salt and hash and store those fields in the database
 const UserSchema = new Schema({
     email: {
         type: String,
+        trim: true,
         required: true,
         unique: true,
-        validate: [isEmail, "Email is invalid"]
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: [8, "Password needs to be at least 8 characters long"]
+        validate: [validate.isEmail, "Email is invalid"]
     }
 });
+
+UserSchema.plugin(passportLocalMongoose);
 
 //initialize user model
 const User = mongoose.model("User", UserSchema);
 
-module.exports = { User };
+module.exports = User;
