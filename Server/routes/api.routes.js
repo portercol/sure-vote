@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 
 router
-    .post("/signup", (req, res) => {
+    .post("/api/signup", (req, res) => {
         Users = new User({
             username: req.body.username
         });
