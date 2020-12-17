@@ -1,24 +1,26 @@
 import React from "react";
-import { Jumbotron, Form, Button, Row, Col } from "react-bootstrap";
+import { Jumbotron, Form, Button, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import "./SignUp.css";
+import Navbar from "../components/Navbar.jsx";
 
 const SignUp = () => {
   return (
     <>
+      <Navbar></Navbar>
       <Row>
         <Col xs lg={3}></Col>
         <Col xs lg={6}>
           <Jumbotron id="signup-jumbotron">
             <h1 id="pi">Personal Information</h1>
             <Form>
-            <Form.Row>
+              <Form.Row>
                 <Col>
                   <Form.Control placeholder="First name" />
                 </Col>
                 <Col>
                   <Form.Control placeholder="Last name" />
                 </Col>
-            </Form.Row>
+              </Form.Row>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label></Form.Label>
@@ -111,14 +113,47 @@ const SignUp = () => {
                 </Form.Group>
               </Form.Row>
 
-              {/* <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group> */}
-
-              <Button variant="secondary" type="submit" size="lg" id="signup-button">
+              <Button
+                variant="secondary"
+                type="submit"
+                size="lg"
+                id="signup-button"
+              >
                 Submit
               </Button>
             </Form>
+            
+            <div id="verification">
+              <h3 id="verification-header">Voting Verification</h3>
+
+              <Button variant="secondary" size="lg" block>
+                Generate Random Password
+              </Button>
+              
+              <div id="random-password">
+                <InputGroup className="mb-3">
+                  <FormControl
+                    // placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </InputGroup>
+              </div>
+              
+              <Button variant="secondary" size="lg" block>
+                Capture Image
+              </Button>
+              
+              <div id="capture-image">
+                {/* <InputGroup className="mb-3">
+                  <FormControl
+                    // placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </InputGroup> */}
+              </div>
+            </div>
           </Jumbotron>
         </Col>
         <Col xs lg={3}></Col>

@@ -13,3 +13,11 @@ body {
 #address {
     font-weight: bold;
 }
+
+#verification {
+    padding-top: 30px;
+}
+
+#verification-header {
+    padding-bottom: 10px;
+}
