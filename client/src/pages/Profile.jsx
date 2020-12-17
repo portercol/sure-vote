@@ -1,30 +1,49 @@
-import React from 'react';
-import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
+import React from "react";
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
+import Navbar from "../components/Navbar.jsx";
+import landLady from '../assets/landlady.jpg';
 
 const Profile = () => {
-    return (
-        <>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>Joe Shmoe</ListGroupItem>
-                    <ListGroupItem>DOB: 06/06/1966</ListGroupItem>
-                    <ListGroupItem>123 Windsor Ln The Moon, Earth</ListGroupItem>
-                </ListGroup>
-                <Card.Body>
-                <Button variant="primary" type="submit">Update Profile</Button>
-                    
-                </Card.Body>
-            </Card>
-        </>
-    )
+  return (
+    <>
+      <Navbar />
+
+      <Row>
+        <Col xs lg={3}></Col>
+        <Col xs lg={6}>
+          <Card style={{ width: "24rem" }}>
+            <Card.Img variant="top" src={landLady} />
+            <Card.Body>
+              <Card.Title>Landlady Lady</Card.Title>
+              <Card.Text>
+                If you're behind on your rent I'll work with you.
+              </Card.Text>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>Joe Shmoe<span></span></ListGroupItem>
+              <ListGroupItem>Password:<span id="password-span"></span></ListGroupItem>
+              <ListGroupItem>Street: <span id="street-span">123 Main St.</span></ListGroupItem>
+              <ListGroupItem>City: <span id="city-span">Anytown</span></ListGroupItem>
+              <ListGroupItem>State: <span id="state-span">Utah</span></ListGroupItem>
+            </ListGroup>
+            <Card.Body>
+              <Button variant="primary" type="submit">
+                Update Profile
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col xs lg={3}></Col>
+      </Row>
+    </>
+  );
 };
 
 export default Profile;
