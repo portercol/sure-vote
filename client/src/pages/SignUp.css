@@ -6,6 +6,10 @@ body {
     background-image: url('../assets/brushed-alum-dark.png');   
 }
 
-.mr-3 {
-    text-align: center;
+#pi {
+    padding-bottom: 5px;
+}
+
+#address {
+    font-weight: bold;
 }
