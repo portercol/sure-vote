@@ -4,6 +4,11 @@ import "./SignUp.css";
 import Navbar from "../components/Navbar.jsx";
 
 const SignUp = () => {
+
+const submitBtn = () => {
+  console.log("submitted sign up form");
+}
+
   return (
     <>
       <Navbar></Navbar>
@@ -113,14 +118,7 @@ const SignUp = () => {
                 </Form.Group>
               </Form.Row>
 
-              <Button
-                variant="secondary"
-                type="submit"
-                size="lg"
-                id="signup-button"
-              >
-                Submit
-              </Button>
+              
             </Form>
             
             <div id="verification">
@@ -143,7 +141,21 @@ const SignUp = () => {
               <Button variant="secondary" size="lg" block>
                 Capture Image
               </Button>
+
+              <br/>
+              <br/>
               
+              <Button
+                href="/profile"
+                onClick={submitBtn()}
+                variant="secondary"
+                type="submit"
+                size="lg"
+                id="signup-button"
+              >
+                Submit
+              </Button>
+
               <div id="capture-image">
                 {/* <InputGroup className="mb-3">
                   <FormControl
