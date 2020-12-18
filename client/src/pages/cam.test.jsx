@@ -1,12 +1,16 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 
 function Camera() {
     const [playing, setPlaying] = useState(false);
 
-    const HEIGHT = 500;
-    const WIDTH = 500;
+    const vest = useRef(null);
+    const videoRef = useRef(null);
+
+
+    const HEIGHT = 650;
+    const WIDTH = 490;
 
     const startVideo = () => {
         setPlaying(true);
@@ -30,10 +34,23 @@ function Camera() {
         video.srcObject.getTracks()[0].stop();
     };
 
+    const snap = () => {
+        if (playing === false) {
+            console.log("no camera found")
+        }
+        else {
+            console.log("camera found", vest)
+            var context = vest.current.getContext('2d')
+            context.drawImage(videoRef.current, 0, 0, HEIGHT, WIDTH);
+
+        }
+        console.log('snap')
+    }
+
     return (
         <div className="app">
             <div className="app__container">
-                <video
+                <video ref={videoRef}
                     height={HEIGHT}
                     width={WIDTH}
                     muted
@@ -41,12 +58,17 @@ function Camera() {
                     className="app__videoFeed"
                 ></video>
             </div>
+
+            <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
+
             <div className="app__input">
                 {playing ? (
                     <button onClick={stopVideo}>Stop</button>
                 ) : (
                         <button onClick={startVideo}>Start</button>
                     )}
+                <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
+
             </div>
         </div>
     );
