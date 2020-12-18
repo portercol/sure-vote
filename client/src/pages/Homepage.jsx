@@ -13,6 +13,15 @@ import './Homepage.css'
 
 
 const Homepage = () => {
+
+  const signUpBtn = e => {
+    console.log("hit the right path");
+  }
+
+  const signInBtn = e => {
+    console.log("hit the right path");
+  }
+
   return (
       <Row>
           <Col xs lg={3}></Col>
@@ -24,10 +33,10 @@ const Homepage = () => {
         </p>
         <br />
         <ButtonGroup size="lg" className="mr-3">
-            <Button variant="secondary" id='left-button'>Sign Up</Button>
+            <Button href="/signup" onClick={signUpBtn} variant="secondary" id='left-button'>Sign Up</Button>
         </ButtonGroup>
         <ButtonGroup size="lg" className="mr-3">
-            <Button variant="secondary" id='right-button'>Sign In</Button>
+            <Button href="/profile" onClick={signInBtn} variant="secondary" id='right-button'>Sign In</Button>
         </ButtonGroup>
         </Jumbotron>
         </Col>
