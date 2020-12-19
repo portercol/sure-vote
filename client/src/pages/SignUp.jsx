@@ -1,17 +1,18 @@
+// import Rreact, elements from React-Bootstrap, SignUp.css
 import React from "react";
-import { Jumbotron, Form, Button, Row, Col, InputGroup, FormControl } from "react-bootstrap";
+import { Jumbotron, Form, Button, ButtonGroup, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import "./SignUp.css";
-import Navbar from "../components/Navbar.jsx";
 
+// create functional component to hold sign up page data
 const SignUp = () => {
 
+// create function for submit button 'onclick'
 const submitBtn = () => {
   console.log("submitted sign up form");
 }
 
   return (
     <>
-      <Navbar></Navbar>
       <Row>
         <Col xs lg={3}></Col>
         <Col xs lg={6}>
@@ -117,44 +118,40 @@ const submitBtn = () => {
                   <Form.Control placeholder="Zip Code" />
                 </Form.Group>
               </Form.Row>
-
-              
             </Form>
             
             <div id="verification">
               <h3 id="verification-header">Voting Verification</h3>
 
-              <Button variant="secondary" size="lg" block>
+              <Button variant="dark" size="lg" block>
                 Generate Random Password
               </Button>
               
               <div id="random-password">
                 <InputGroup className="mb-3">
                   <FormControl
-                    // placeholder="Username"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                   />
                 </InputGroup>
               </div>
-              
-              <Button variant="secondary" size="lg" block>
+              <Button variant="dark" size="lg" block>
                 Capture Image
               </Button>
 
               <br/>
               <br/>
               
-              <Button
-                href="/profile"
-                onClick={submitBtn()}
-                variant="secondary"
-                type="submit"
-                size="lg"
-                id="signup-button"
-              >
-                Submit
-              </Button>
+              <ButtonGroup size="lg" className="mr-3">
+              <Button href="/" onClick={submitBtn()} variant="dark" 
+              type="submit" id='right-button'>Go Back</Button>
+              </ButtonGroup>
+              
+              <ButtonGroup size="lg" className="mr-3">
+              <Button href="/profile" onClick={submitBtn()} variant="dark"
+              type="submit" id='left-button'>Sign Up</Button>
+              </ButtonGroup>
+
 
               <div id="capture-image">
                 {/* <InputGroup className="mb-3">
@@ -174,4 +171,5 @@ const submitBtn = () => {
   );
 };
 
+// export component from SignUp.jsx
 export default SignUp;
