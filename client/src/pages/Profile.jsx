@@ -1,3 +1,4 @@
+// import React, elements from React-Bootstrap, Navbar.jsx and img from assets
 import React from "react";
 import {
   Card,
@@ -10,11 +11,11 @@ import {
 import Navbar from "../components/Navbar.jsx";
 import landLady from '../assets/landlady.jpg';
 
+// create functional component to hold profile data
 const Profile = () => {
   return (
     <>
       <Navbar />
-
       <Row>
         <Col xs lg={3}></Col>
         <Col xs lg={6}>
@@ -46,4 +47,5 @@ const Profile = () => {
   );
 };
 
+// export component from Profile.jsx
 export default Profile;
