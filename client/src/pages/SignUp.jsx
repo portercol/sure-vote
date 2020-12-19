@@ -1,6 +1,6 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React from "react";
-import { Jumbotron, Form, Button, Row, Col, InputGroup, FormControl } from "react-bootstrap";
+import { Jumbotron, Form, Button, ButtonGroup, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import "./SignUp.css";
 
 // create functional component to hold sign up page data
@@ -123,7 +123,7 @@ const submitBtn = () => {
             <div id="verification">
               <h3 id="verification-header">Voting Verification</h3>
 
-              <Button variant="secondary" size="lg" block>
+              <Button variant="dark" size="lg" block>
                 Generate Random Password
               </Button>
               
@@ -135,24 +135,22 @@ const submitBtn = () => {
                   />
                 </InputGroup>
               </div>
-              
-              <Button variant="secondary" size="lg" block>
+              <Button variant="dark" size="lg" block>
                 Capture Image
               </Button>
 
               <br/>
               <br/>
               
-              <Button
-                href="/profile"
-                onClick={submitBtn()}
-                variant="secondary"
-                type="submit"
-                size="lg"
-                id="signup-button"
-              >
-                Submit
-              </Button>
+              <ButtonGroup size="lg" className="mr-3">
+              <Button href="/profile" onClick={submitBtn()} variant="dark"
+              type="submit" id='left-button'>Sign Up</Button>
+              </ButtonGroup>
+
+              <ButtonGroup size="lg" className="mr-3">
+              <Button href="/" onClick={submitBtn()} variant="dark" 
+              type="submit" id='right-button'>Go Back</Button>
+              </ButtonGroup>
 
               <div id="capture-image">
                 {/* <InputGroup className="mb-3">
