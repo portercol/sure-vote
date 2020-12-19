@@ -9,8 +9,8 @@ const NavbarFixed = () => {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/profile">SURE VOTE</Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Election Info</Nav.Link>
-                    <Nav.Link href="#features">Vote</Nav.Link>
+                    <Nav.Link href="/election">Election Info</Nav.Link>
+                    <Nav.Link href="/vote">Vote</Nav.Link>
                     <Nav.Link href="/">Sign Out</Nav.Link>
                 </Nav>
                 <Form inline>
