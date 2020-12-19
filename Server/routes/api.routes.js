@@ -27,62 +27,29 @@ router
         });
     })
 
-    .post("/api/login", (req, res) => {
-        if (!req.body.username) {
-            res.json({
-                success: false,
-                message: "Please enter your email address"
-            })
-        }
-        else if (!req.body.password) {
-            res.json({
-                success: false,
-                message: "Please enter your password"
-            })
-        }
-        else {
-            passport.authenticate("local", (err, user, info) => {
+    .post("/api/login", (req, res, next) => {
+        passport.authenticate("local", function (err, user, info) {
+            if (err) {
+                return res.status(400).json({
+                    errors: err
+                });
+            }
+            if (!user) {
+                return res.status(400).json({
+                    errors: "Incorrect username or password"
+                });
+            }
+            req.logIn(user, function (err) {
                 if (err) {
-                    res.json({
-                        success: false,
-                        message: err
-                    })
+                    return res.status(400).json({
+                        errors: err
+                    });
                 }
-                else {
-                    if (!user) {
-                        res.json({
-                            success: false,
-                            message: "Email or password incorrect"
-                        })
-                    }
-                    else {
-                        req.login(user, (err) => {
-                            if (err) {
-                                res.json({
-                                    success: false,
-                                    message: err
-                                })
-                            }
-                            else {
-                                const token = jwt.sign(
-                                    {
-                                        userId: user._id,
-                                        username: user.username
-                                    },
-                                    secretkey,
-                                    { expiresIn: "24h" }
-                                )
-                                res.json({
-                                    success: true,
-                                    message: "Successfully logged in",
-                                    token: token
-                                });
-                            }
-                        });
-                    }
-                }
+                return res.status(200).json({
+                    success: `logged in ${user.id}`
+                });
             });
-        }
+        })(req, res, next);
     });
 
 module.exports = router;
