@@ -1,17 +1,18 @@
+// import Rreact, elements from React-Bootstrap, SignUp.css
 import React from "react";
 import { Jumbotron, Form, Button, Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import "./SignUp.css";
-import Navbar from "../components/Navbar.jsx";
 
+// create functional component to hold sign up page data
 const SignUp = () => {
 
+// create function for submit button 'onclick'
 const submitBtn = () => {
   console.log("submitted sign up form");
 }
 
   return (
     <>
-      <Navbar></Navbar>
       <Row>
         <Col xs lg={3}></Col>
         <Col xs lg={6}>
@@ -117,8 +118,6 @@ const submitBtn = () => {
                   <Form.Control placeholder="Zip Code" />
                 </Form.Group>
               </Form.Row>
-
-              
             </Form>
             
             <div id="verification">
@@ -131,7 +130,6 @@ const submitBtn = () => {
               <div id="random-password">
                 <InputGroup className="mb-3">
                   <FormControl
-                    // placeholder="Username"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                   />
@@ -174,4 +172,5 @@ const submitBtn = () => {
   );
 };
 
+// export component from SignUp.jsx
 export default SignUp;

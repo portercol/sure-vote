@@ -3,11 +3,12 @@ body {
 }
 
 #signup-jumbotron {
-    background-image: url('../assets/brushed-alum-dark.png');   
+    background-image: url('../assets/brushed-alum-dark.png');  
+    margin-top: 40px; 
 }
 
 #pi {
-    padding-bottom: 5px;
+    padding-bottom: 20px;
 }
 
 #address {
