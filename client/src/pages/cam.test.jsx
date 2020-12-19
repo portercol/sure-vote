@@ -55,6 +55,7 @@ function Camera() {
         saveButton.addEventListener('click', () => save(canvas));
     };
 
+    // save function
     function save(canvas) {
         const data = canvas.toDataURL('image/png');
         const anchor = document.createElement('a');
@@ -102,9 +103,7 @@ function Camera() {
 
             </div>
 
-            <button id="save" type="button">
-                save
-</button>
+            <button id="save" type="button">save</button>
         </div>
     );
 }
