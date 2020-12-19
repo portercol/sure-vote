@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 
 
@@ -7,6 +6,7 @@ function Camera() {
 
     const vest = useRef(null);
     const videoRef = useRef(null);
+
 
 
     const HEIGHT = 650;
@@ -47,6 +47,37 @@ function Camera() {
         console.log('snap')
     }
 
+    window.onload = () => {
+        const canvas = document.getElementById('canvas');
+
+        const saveButton = document.getElementById('save');
+        saveButton.addEventListener('click', () => save(canvas));
+    };
+
+    // save function
+    function save(canvas) {
+        const data = canvas.toDataURL('image/png');
+        const anchor = document.createElement('a');
+        anchor.href = data;
+        anchor.download = 'image.png';
+        anchor.click();
+    }
+    // const dl = () => {
+    //     let canvas = document.getElementsByClassName('saveBtn')[0];
+    //     let image = canvas.toDataURL('image/jpeg', 1.0);
+    //     // create temporary link  
+    //     var tmpLink = document.createElement('a');
+    //     tmpLink.download = 'image.png'; // set the name of the download file 
+    //     tmpLink.href = image;
+
+    //     // temporarily add link to body and initiate the download  
+    //     document.body.appendChild(tmpLink);
+    //     tmpLink.click();
+    //     document.body.removeChild(tmpLink);
+    // }
+
+
+
     return (
         <div className="app">
             <div className="app__container">
@@ -70,6 +101,8 @@ function Camera() {
                 <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
 
             </div>
+
+            <button id="save" type="button">save</button>
         </div>
     );
 }
