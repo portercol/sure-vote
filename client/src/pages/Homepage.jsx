@@ -10,6 +10,7 @@ import {
   Row
 } from "react-bootstrap";
 import './Homepage.css'
+import FingerPrint from '../assets/blkFingerPrint.png'
 
 
 const Homepage = () => {
@@ -26,11 +27,16 @@ const signInBtn = () => {
           <Col xs lg={3}></Col>
           <Col xs lg={6}>
         <Jumbotron id="main-jumbotron">
-        <h1>SURE VOTE</h1>
+        <h1>SURE V<img className="fplogo" src={ FingerPrint } alt='finger print logo'/>TE</h1>
+        <hr/>
         <p>
-            As soon as you logged on we took a picture of you and captured a fingerprint from your key strokes. Deal wit it.
+          OUR MISSION:
         </p>
-        <br />
+        <p>
+          Mobile-friendly voting made safe and secure using 2FA and Face Recognition.
+        </p>
+        <hr/>
+        <br/>
         <ButtonGroup size="lg" className="mr-3">
             <Button href="/signup" onClick={signUpBtn()} variant="secondary" id='left-button'>Sign Up</Button>
         </ButtonGroup>
