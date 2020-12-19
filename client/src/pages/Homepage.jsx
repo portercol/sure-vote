@@ -20,7 +20,7 @@ const signUpBtn = () => {
 }
 
 const signInBtn = () => {
-  console.log("hit profile path");
+  console.log("hit sign in path");
 }
   return (
       <Row>
@@ -38,10 +38,10 @@ const signInBtn = () => {
         <hr/>
         <br/>
         <ButtonGroup size="lg" className="mr-3">
-            <Button href="/signup" onClick={signUpBtn()} variant="secondary" id='left-button'>Sign Up</Button>
+            <Button href="/signup" onClick={signUpBtn()} variant="dark" id='left-button'>Sign Up</Button>
         </ButtonGroup>
         <ButtonGroup size="lg" className="mr-3">
-            <Button href="/profile" onClick={signInBtn()} variant="secondary" id='right-button'>Sign In</Button>
+            <Button href="/signin" onClick={signInBtn()} variant="dark" id='right-button'>Sign In</Button>
         </ButtonGroup>
         </Jumbotron>
         </Col>

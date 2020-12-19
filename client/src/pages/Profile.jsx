@@ -35,7 +35,7 @@ const Profile = () => {
               <ListGroupItem>State: <span id="state-span">Utah</span></ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button variant="primary" type="submit">
+              <Button variant="dark" type="submit">
                 Update Profile
               </Button>
             </Card.Body>
