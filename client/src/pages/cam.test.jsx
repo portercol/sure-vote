@@ -47,6 +47,22 @@ function Camera() {
         console.log('snap')
     }
 
+    const dl = () => {
+        let canvas = document.getElementsByClassName('saveBtn')[0];
+        let image = canvas.toDataURL();
+        // create temporary link  
+        var tmpLink = document.createElement('a');
+        tmpLink.download = 'image.png'; // set the name of the download file 
+        tmpLink.href = image;
+
+        // temporarily add link to body and initiate the download  
+        document.body.appendChild(tmpLink);
+        tmpLink.click();
+        document.body.removeChild(tmpLink);
+    }
+
+
+
     return (
         <div className="app">
             <div className="app__container">
@@ -70,6 +86,8 @@ function Camera() {
                 <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
 
             </div>
+            <button className="saveBtn" id="capture" onClick={dl}>download</button>
+
         </div>
     );
 }
