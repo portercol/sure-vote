@@ -1,7 +1,9 @@
+[
 {
   "level": "Federal",
   "office": "President of the United States",
-    {
+  "president": [
+      {
       "party": "Republican Party",
       "candidate": "Donald J. Trump",
       "candidateState": "New York",
@@ -15,12 +17,15 @@
       "candidateState": "Delaware",
       "runningMate": "Kamala Harris",
       "runningMateState": "California"
-    },
-}
+    }
+  ]
+},
+
 {
     "level": "Federal",
     "office": "US House of Representatives",
     "district": "Utah 1st District",
+    "houseRep": [
       {
         "party": "Republican Party",
         "candidate": "Blake Moore"
@@ -29,10 +34,12 @@
         "party": "Democratic Party",
         "candidate": "Darren Parry"
       }
-}
+    ]   
+},
 {
     "level": "State",
     "office": "Governor",
+    "governor": [
       {
         "party": "Republican Party",
         "candidate": "Spencer Cox",
@@ -43,11 +50,13 @@
         "candidate": "Chris Peterson",
         "runningMate": "Karina Brown"
       }
-}
+    ]
+},
 {
       "level": "State",
       "office": "State Senate",
       "district": "19th Senate District", 
+      "stateSenator": [
         {
           "party": "Republican Party",
           "candidate": "John Johnson"
@@ -56,11 +65,13 @@
           "party": "Democratic Party",
           "candidate": "Katy Owens"
         }
-}
+      ]
+},
 {
       "level": "State",
       "office": "State House of Representatives",
       "district": "7th House District", 
+      "stateHouse": [
         {
           "party": "Republican Party",
           "candidate": "Ryan Wilcox",
@@ -69,4 +80,17 @@
           "party": "Democratic Party",
           "candidate": "Grant Protzman",
         }
+      ]
+},
+{
+      "level": "State",
+      "office": "State Supreme Court",
+      "candidate": "John A. Pearce",
+      "supremeCourt": [
+        {
+          "retain1": "Yes",
+          "retain2": "No"
+        }
+      ]
 }
+]
