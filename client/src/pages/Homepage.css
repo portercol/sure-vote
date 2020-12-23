@@ -21,6 +21,7 @@ hr {
 #main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');
     margin-top: 130px;
+    opacity: .8;
 }
 
 .mr-3 {

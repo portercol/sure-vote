@@ -4,7 +4,8 @@ body {
 
 #signup-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');  
-    margin-top: 40px; 
+    margin-top: 40px;
+    opacity: .8; 
 }
 
 #pi {
