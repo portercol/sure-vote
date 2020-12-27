@@ -1,5 +1,6 @@
 const express = require('express');
 const apiRoutes = require('./routes/api.routes');
+const faceAPI = require('./routes/faceApi')
 const app = express();
 require('./config/db')();
 const passport = require("passport");
@@ -27,6 +28,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(apiRoutes);
+app.use(faceAPI);
 
 
 app.listen(PORT, () => {

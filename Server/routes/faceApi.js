@@ -1,33 +1,58 @@
-const APIkey = "7e6f2baa9aed43c9b910792a2f2f005c"
-const Subkey = "7047cf6a-5e66-42df-bbab-209db4f0ac10"
+require('dotenv').config()
+const express = require('express')
+const axios = require('axios')
+const bodyParser = require('body-parser')
+const logger = require('morgan')
+const cors = require('cors')
+const app = express()
 
-$(function () {
-    var params = {
-        // Request parameters
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "{string}",
-        "recognitionModel": "recognition_03",
-        "returnRecognitionModel": "false",
-        "detectionModel": "detection_02",
-        "faceIdTimeToLive": "86400",
-    };
+// API key from Azure
+const ApiKey = process.env.API_KEY
+// Azure endpoint URL - Face API
+const AzureEndpoint = process.env.END_POINT
 
-    $.ajax({
-        url: "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
-        beforeSend: function (xhrObj) {
-            // Request headers
-            xhrObj.setRequestHeader("Content-Type", "application/json");
-            xhrObj.setRequestHeader("https://apifaceaj.cognitiveservices.azure.com/", APIkey);
-        },
-        type: "POST",
-        // Request body
-        data: "{body}",
-    })
-        .done(function (data) {
-            alert("success");
+const baseInstanceOptions = {
+    baseURL: AzureEndpoint,
+    timeout: 2000,
+    headers: {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': ApiKey
+    }
+}
+
+// body Parser middleware
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(logger('dev'))
+app.use(cors())
+
+pp.post('/create-facelist', async (req, res) => {
+    console.log("instance")
+
+    try {
+        const instanceOptions = { ...baseInstanceOptions }
+        const instance = axios.create(instanceOptions)
+        const body = req.body
+        // console.log(body, "Body")
+
+
+
+        const response = await instance.post(
+            `/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_01&returnRecognitionModel=false&detectionModel=detection_01&returnFaceAttributes=age,gender`,
+
+            {
+                url: body.image
+            }
+        )
+
+        console.log(response.status, "responce")
+        // send the response of the fetch
+        res.send({
+            response: 'ok',
+            data: response.data
         })
-        .fail(function () {
-            alert("error");
-        });
-});
+    } catch (err) {
+        console.log("error :c : ", err)
+        res.send({ response: 'not ok' })
+    }
+})
