@@ -4,7 +4,10 @@ const axios = require('axios')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const router = express.Router();
+
 const app = express()
+
 
 // API key from Azure
 const ApiKey = process.env.API_KEY
@@ -26,7 +29,20 @@ app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(cors())
 
-pp.post('/create-facelist', async (req, res) => {
+// API key from Azure
+const ApiKey = process.env.API_KEY
+// Azure endpoint URL - Face API
+const AzureEndpoint = process.env.END_POINT
+
+const baseInstanceOptions = {
+    baseURL: AzureEndpoint,
+    timeout: 2000,
+    headers: {
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': ApiKey
+    }
+}
+app.post('/create-facelist', async (req, res) => {
     console.log("instance")
 
     try {
@@ -56,3 +72,4 @@ pp.post('/create-facelist', async (req, res) => {
         res.send({ response: 'not ok' })
     }
 })
+module.exports = router;
