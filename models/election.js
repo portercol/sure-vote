@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const electionSchema = new Schema({
-    {
+    
         level: { type: String, required: true },
         office: { type: String, required: true },
         president: [
@@ -23,7 +23,7 @@ const electionSchema = new Schema({
           }
         ]
       },
-});
+);
 
 const Election = mongoose.model("Election", electionSchema);
 
