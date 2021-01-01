@@ -47,7 +47,7 @@ const Ballot = () => {
                 problems, please click the 'Contact' button above.
               </h6>
             </Container>
-            <Container>
+            <Container id="pres-elect-card">
               <Card bg="light">
                 <Card.Body>
                   <h3>President of the United States</h3>
