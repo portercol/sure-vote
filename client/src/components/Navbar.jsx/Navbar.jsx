@@ -10,6 +10,7 @@ const NavbarFixed = () => {
                 <Navbar.Brand href="/profile">SURE VOTE</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/election">Election Info</Nav.Link>
+                    <Nav.Link href="/ballot">Ballot</Nav.Link>
                     <Nav.Link href="/vote">Vote</Nav.Link>
                     <Nav.Link href="/">Sign Out</Nav.Link>
                 </Nav>

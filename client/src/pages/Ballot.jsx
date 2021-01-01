@@ -1,16 +1,12 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Jumbotron,
   Container,
   Col,
   Row,
-  Form,
   Card,
 } from "react-bootstrap";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar.jsx";
 import "../seed.json";
 import "./Ballot.css"
@@ -31,13 +27,13 @@ const Ballot = () => {
   return (
     <>
       <Navbar />
-      {/* <h1>Ballot Page</h1> */}
       <Row>
         <Col xs lg={3}></Col>
         <Col xs lg={6}>
-          <Jumbotron fluid>
+          <Jumbotron id="main-jumbotron" fluid>
             <Container>
               <h1>Ballot</h1>
+              <hr/>
               <h6>
                 Click the radio button for the corresponding option to vote.
                 When you are done, click submit.
@@ -47,7 +43,9 @@ const Ballot = () => {
                 problems, please click the 'Contact' button above.
               </h6>
             </Container>
+
             <Container id="pres-elect-card">
+
               <Card bg="light">
                 <Card.Body>
                   <h3>President of the United States</h3>
@@ -75,7 +73,7 @@ const Ballot = () => {
                         <label>Candidate 2</label>
                   </form>
                   <Button 
-                    variant="secondary" 
+                    variant="dark" 
                     type="submit"
                     size="lg" 
                     block

@@ -79,8 +79,10 @@ function Camera() {
 
 
     return (
+
         <div className="app">
             <div className="app__container">
+
                 <video ref={videoRef}
                     height={HEIGHT}
                     width={WIDTH}
