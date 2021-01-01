@@ -71,27 +71,22 @@ const Ballot = () => {
                     />
                     <label>Candidate 2</label>
                   </form>
-<<<<<<< HEAD
-                <Button
-                  variant="secondary"
-=======
                   <Button
                     variant="dark"
->>>>>>> origin
-                  type="submit"
-                  size="lg"
-                  block
-                  onClick={submitVote}
-                >
-                  Submit
+                    type="submit"
+                    size="lg"
+                    block
+                    onClick={submitVote}
+                  >
+                    Submit
                   </Button>
                 </Card.Body>
               </Card>
             </Container>
           </Jumbotron>
         </Col>
-      <Col xs lg={3}></Col>
-    </Row>
+        <Col xs lg={3}></Col>
+      </Row>
     </>
   );
 
