@@ -15,8 +15,8 @@ const router = express.Router();
 app.use(logger("dev"));
 
 const PORT = process.env.PORT || 5000;
-// API key from Azure - will be hiding the key but the .env file is not woking right now and i would like to move on
-const ApiKey = "f65caf4de14d48bd9eef082eadeb8ee1"
+// API key from Azure - will be hiding the key but the .env file is not working right now and i would like to move on
+const ApiKey = "7181d339df244c32b23cc0858cc5d58b"
 // Azure endpoint URL - Face API
 const AzureEndpoint = "https://westus.api.cognitive.microsoft.com/face/v1.0"
 
