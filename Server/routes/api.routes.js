@@ -8,7 +8,14 @@ const User = require("../models/User");
 router
     .post("/api/signup", (req, res) => {
         Users = new User({
-            username: req.body.username
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            address1: req.body.address1,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zipCode: req.body.zipCode
         });
         console.log("Body: ", req.body);
 
