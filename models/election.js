@@ -5,23 +5,10 @@ const electionSchema = new Schema({
     
         level: { type: String, required: true },
         office: { type: String, required: true },
-        president: [
-            {
-            "party": "Republican Party",
-            "candidate": "Donald J. Trump",
-            "candidateState": "New York",
-            "runningMate": "Michael Richard Pence",
-            "runningMateState": "Indiana"
-          },
-      
-          {
-            "party": "Democratic Party",
-            "candidate": "Joseph R. Biden",
-            "candidateState": "Delaware",
-            "runningMate": "Kamala Harris",
-            "runningMateState": "California"
-          }
-        ]
+        candidate1: { type: String, required: true},
+        candidateParty1: { type: String, required: true},
+        candidate2: { type: String, required: true},
+        candidateParty2: { type: String, required: true}
       },
 );
 
