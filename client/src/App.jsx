@@ -7,10 +7,12 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
+// import Ballot from './pages/Ballot'
 import Contact from './pages/Contact'
 import Camera from './pages/cam.test'
 import face from './pages/cam.faceRe'
 
+// <Route exact path='/ballot' component={Ballot} />
 function App() {
   return (
     <Router>

@@ -1,19 +1,19 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
-import {
-  Button,
-  Jumbotron,
-  Container,
-  Col,
-  Row,
-  Form,
-  Card,
-} from "react-bootstrap";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../components/Navbar.jsx";
-import "../seed.json";
-import "./Ballot.css"
+// import React, { useEffect, useState, Component, submitBtn } from "react";
+// import {
+//   Button,
+//   Jumbotron,
+//   Container,
+//   Col,
+//   Row,
+//   Form,
+//   Card,
+// } from "react-bootstrap";
+// import ToggleButton from "react-bootstrap/ToggleButton";
+// import ButtonGroup from "react-bootstrap/ButtonGroup";
+// // import "bootstrap/dist/css/bootstrap.min.css";
+// import Navbar from "../components/Navbar.jsx";
+// import "../seed.json";
+// import "./Ballot.css"
 
 const Ballot = () => {
   const [radio, setRadio] = useState([]);
@@ -58,10 +58,10 @@ const Ballot = () => {
                       value="option1"
                       id="radio1"
                       onChange={(e) => {
-                          setRadio(e.target.value);
-                        }}
-                        />
-                        <label>Candidate 1</label>
+                        setRadio(e.target.value);
+                      }}
+                    />
+                    <label>Candidate 1</label>
                     <br />
                     <input
                       type="radio"
@@ -69,15 +69,15 @@ const Ballot = () => {
                       value="option2"
                       id="radio2"
                       onChange={(e) => {
-                          setRadio(e.target.value);
-                        }}
-                        />
-                        <label>Candidate 2</label>
+                        setRadio(e.target.value);
+                      }}
+                    />
+                    <label>Candidate 2</label>
                   </form>
-                  <Button 
-                    variant="secondary" 
+                  <Button
+                    variant="secondary"
                     type="submit"
-                    size="lg" 
+                    size="lg"
                     block
                     onClick={submitVote}
                   >
@@ -92,7 +92,7 @@ const Ballot = () => {
       </Row>
     </>
   );
-  
+
 };
 
 
