@@ -5,19 +5,21 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
-  Jumbotron
+  Row,
+  Col,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from '../assets/landlady.jpg';
-import '../pages/Profile.css'
 
 // create functional component to hold profile data
 const Profile = () => {
   return (
     <>
       <Navbar />
-      <Jumbotron className="main-jumbotron">
-          <Card >
+      <Row>
+        <Col xs lg={3}></Col>
+        <Col xs lg={6}>
+          <Card style={{ width: "24rem" }}>
             <Card.Img variant="top" src={landLady} />
             <Card.Body>
               <Card.Title>Landlady Lady</Card.Title>
@@ -38,7 +40,9 @@ const Profile = () => {
               </Button>
             </Card.Body>
           </Card>
-          </Jumbotron>
+        </Col>
+        <Col xs lg={3}></Col>
+      </Row>
     </>
   );
 };

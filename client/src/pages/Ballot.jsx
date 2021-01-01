@@ -8,7 +8,7 @@ import {
   Card,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
-// import "../seed.json";
+import "../seed.json";
 import "./Ballot.css"
 
 const Ballot = () => {
