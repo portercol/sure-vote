@@ -33,7 +33,7 @@ const Ballot = () => {
           <Jumbotron id="main-jumbotron" fluid>
             <Container>
               <h1>Ballot</h1>
-              <hr/>
+              <hr />
               <h6>
                 Click the radio button for the corresponding option to vote.
                 When you are done, click submit.
@@ -56,10 +56,10 @@ const Ballot = () => {
                       value="option1"
                       id="radio1"
                       onChange={(e) => {
-                          setRadio(e.target.value);
-                        }}
-                        />
-                        <label>Candidate 1</label>
+                        setRadio(e.target.value);
+                      }}
+                    />
+                    <label>Candidate 1</label>
                     <br />
                     <input
                       type="radio"
@@ -67,15 +67,15 @@ const Ballot = () => {
                       value="option2"
                       id="radio2"
                       onChange={(e) => {
-                          setRadio(e.target.value);
-                        }}
-                        />
-                        <label>Candidate 2</label>
+                        setRadio(e.target.value);
+                      }}
+                    />
+                    <label>Candidate 2</label>
                   </form>
-                  <Button 
-                    variant="dark" 
+                  <Button
+                    variant="dark"
                     type="submit"
-                    size="lg" 
+                    size="lg"
                     block
                     onClick={submitVote}
                   >
@@ -90,7 +90,7 @@ const Ballot = () => {
       </Row>
     </>
   );
-  
+
 };
 
 
