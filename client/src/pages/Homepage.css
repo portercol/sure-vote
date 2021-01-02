@@ -19,9 +19,8 @@ hr {
     border-color: black;
 }
 
-#main-jumbotron {
+.main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');
-    margin-top: 130px;
     opacity: .8;
 }
 
