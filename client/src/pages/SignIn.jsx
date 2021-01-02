@@ -14,31 +14,25 @@ const SignIn = () => {
   return (
     <>
       <Container id="main-container">
-        <Jumbotron id="signIn-jumbotron">
-          <h1 id="signIn">Sign In</h1>
-          <hr />
-          <p>Please Enter Your Credentials</p>
-          <hr />
-          <Form>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label></Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label></Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-                <Form.Text className="text-muted">
-                  We'll never share your password with anyone else.
-                </Form.Text>
-              </Form.Group>
-            </Form.Row>
-          </Form>
-
+        <Jumbotron id="main-jumbotron">
+                    <h1 className="header">Sign In</h1>
+                    <hr />
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                            <Form.Label></Form.Label>
+                            <Form.Control type="email" placeholder="Email"/>
+                            <Form.Text className="text-muted">
+                              We'll never share your email with anyone.
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label></Form.Label>
+                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Text className="text-muted">
+                              We'll never share your password with anyone.
+                            </Form.Text>
+                        </Form.Group>
+                    </Form>
           <div id="userSignIn">
             <ButtonGroup size="lg" className="mr-3">
               <Button href="/" onClick={submitBtn()} variant="dark"
