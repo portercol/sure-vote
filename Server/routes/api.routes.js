@@ -1,6 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const { v4: newUuid } = require("uuid");
+
 
 const User = require("../models/User");
 
@@ -14,7 +16,8 @@ router
             address2: req.body.address2,
             city: req.body.city,
             state: req.body.state,
-            zipCode: req.body.zipCode
+            zipCode: req.body.zipCode,
+            uuid: newUuid()
         });
         console.log("Body: ", req.body);
 
