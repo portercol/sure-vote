@@ -8,7 +8,6 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../components/Navbar.jsx";
 import PresElect from "../components/PresElect";
 import HouseElect from "../components/HouseElect";

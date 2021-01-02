@@ -9,6 +9,7 @@ import {
   Card,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import PresElectData from '../seed';
 
 const PresElect = () => {
   const [radio, setRadio] = useState([]);
