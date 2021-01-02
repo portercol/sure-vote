@@ -7,7 +7,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 const NavbarFixed = () => {
     return (
         <>
-            <Navbar bg="dark" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="lg">
                 <Navbar.Brand class="sure-vote" href="/profile">SURE VOTE</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -15,6 +15,7 @@ const NavbarFixed = () => {
                         <Nav.Link href="/election">Election Info</Nav.Link>
                         <Nav.Link href="/ballot">Ballot</Nav.Link>
                         <Nav.Link href="/vote">Vote</Nav.Link>
+                        <Nav.Link href="/">Sign Out</Nav.Link>
                     </Nav>
                     <Button href="/contact" variant="outline-light">Contact</Button>
                 </Navbar.Collapse>
