@@ -141,12 +141,12 @@ const SignUp = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/" onClick={submitBtn()} variant="dark"
+              <Button href="/" onClick={() => {submitBtn()}} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={submitBtn()} variant="dark"
+              <Button href="/profile" onClick={() => {submitBtn()}} variant="dark"
                 type="submit" id='left-button'>Sign Up</Button>
             </ButtonGroup>
 
