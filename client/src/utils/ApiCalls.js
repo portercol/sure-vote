@@ -1,10 +1,8 @@
-
-
 class ApiCalls {
 
     constructor() {
-        this.faceAPIBaseUrl = "https://westus.api.cognitive.microsoft.com";
-        this.faceAPISecret = '7181d339df244c32b23cc0858cc5d58b';
+        this.faceAPIBaseUrl = process.env.REACT_APP_BASE_FACEAPI_URL;
+        this.faceAPISecret = process.env.REACT_APP_BASE_FACEAPI_SECRET;
 
         // instantiate endpoints
         this._personGroupsEndPoint = "/persongroups";
@@ -24,7 +22,6 @@ class ApiCalls {
             return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}`);
         }
     }
-
     personsEndPoint(personGroupId, personId) {
         if (typeof (personId) === 'undefined') {
             return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}${this._personsEndPoint}`);

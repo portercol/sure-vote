@@ -1,9 +1,8 @@
-import ApiCalls from "../helpers/ApiCalls";
+import ApiCalls from "./ApiCalls";
 
 class IdentificationHelper {
 
-    async Detect(file) 
-    {
+    async Detect(file) {
         let api = new ApiCalls();
         let response = await api.PostImage(api.faceDetectEndPoint(), file);
         let data = await response.json();
@@ -11,8 +10,7 @@ class IdentificationHelper {
         return data;
     }
 
-    async Identify(personGroupId, facesDetected) 
-    {
+    async Identify(personGroupId, facesDetected) {
         let input = {};
         input.personGroupId = personGroupId;
         input.faceIds = [];
@@ -27,8 +25,7 @@ class IdentificationHelper {
         return data;
     }
 
-    async Authentify(personGroupId, personId, confidence)
-    {
+    async Authentify(personGroupId, personId, confidence) {
         let api = new ApiCalls();
         let response = await api.Get(api.personsEndPoint(personGroupId, personId))
         let data = await response.json();
