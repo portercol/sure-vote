@@ -2,10 +2,10 @@ body {
     background-color: rgb(199, 212, 224);
 }
 
-#signIn-jumbotron {
+#main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');  
-    margin-top: 130px;
-    opacity: .8;
+    margin-top: 40px;
+    opacity: .9;
 }
 
 #signIn {
