@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
+const { stringify } = require("uuid");
 
 //initialize mongoose schema
 const Schema = mongoose.Schema;
@@ -45,6 +46,10 @@ const UserSchema = new Schema({
     zipCode: {
         type: Number,
         trim: true,
+        required: true
+    },
+    uuid: {
+        type: String,
         required: true
     }
 });
