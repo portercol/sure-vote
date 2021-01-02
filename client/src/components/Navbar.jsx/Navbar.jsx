@@ -2,13 +2,14 @@
 import React from 'react';
 // import { Link, Navbar } from 'react-router-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
+import FingerPrint from '../../assets/fpNavbar.png'
 
 // Create functional component to hold navbar data
 const NavbarFixed = () => {
     return (
         <>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand class="sure-vote" href="/profile">SURE VOTE</Navbar.Brand>
+                <Navbar.Brand class="sure-vote" href="/profile">SURE V<img className="fpNavlogo" src={FingerPrint} alt='finger print logo' />TE</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
