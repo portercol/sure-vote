@@ -8,7 +8,7 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const PresElect = () => {
   const [radio, setRadio] = useState([]);

@@ -1,44 +1,41 @@
+// import React, components from react-bootstrap, stylesheet and Navbar
 import React from "react";
 import {
-    Card,
+    Container,
+    Jumbotron,
     Button,
-    Form,
-    Col,
-    Row
+    Form
 } from "react-bootstrap";
 import './Contact.css'
 import Navbar from '../components/Navbar.jsx'
 
+// create Contact functional component to hold data
 const Contact = () => {
 
+    // return data to the page
     return (
         <>
             <Navbar />
-            <Row>
-                <Col xs lg={3}></Col>
-                <Col xs lg={6}>
-                    <Card id="contactCard">
-                        <Card.Header className="header">Contact Us</Card.Header>
-                        <Card.Body>
-                        <Form>
-                            <Form.Group controlId="exampleForm.ControlInput1">
-                                <Form.Label className="nameLabel">Name</Form.Label>
-                                <Form.Control type="name"/>
-                            </Form.Group>
-                            <Form.Group controlId="exampleForm.ControlTextarea1">
-                                <Form.Label className="messageLabel">Message</Form.Label>
-                                <Form.Control as="textarea" rows={2} />
-                            </Form.Group>
-                        </Form>
-                            <Button variant="dark">Submit</Button>
-                        </Card.Body>
-                    </Card>
-                   
-                </Col>
-                <Col xs lg={3}></Col>
-            </Row>
+            <Container id="main-container">
+                <Jumbotron id="main-jumbotron">
+                    <h1 className="header">Contact Us</h1>
+                    <hr />
+                    <Form>
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                            <Form.Label></Form.Label>
+                            <Form.Control type="name" placeholder="Name"/>
+                        </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label></Form.Label>
+                            <Form.Control type="message" placeholder="Message" as="textarea" rows={2} />
+                        </Form.Group>
+                    </Form>
+                    <Button variant="dark">Submit</Button>
+                </Jumbotron>
+            </Container>
         </>
     );
 };
 
+// export Contact out of Contact.jsx
 export default Contact;
