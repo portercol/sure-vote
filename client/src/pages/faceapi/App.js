@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Badge from 'react-bootstrap/Badge'
+// import '../../css/App.css';
+import GroupPersons from './Groups';
+import Persons from './Persons';
+import Actions from './Actions';
+
+class App2 extends Component {
+  personsRef = React.createRef();
+  actionsRef = React.createRef();
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedGroupId: ""
+    }
+  }
+
+  onPersonGroupSelect = (personGroupId) => {
+    // Cascade that to the Persons i need to change this cascade to start with person we will not be using groups
+    this.personsRef.current.loadPersons(personGroupId);
+    this.actionsRef.current.showActions(personGroupId);
+  }
+
+  render() {
+    return (
+      <Container>
+        <Row className="app-header-title">
+          <Col sm={1}>
+
+          </Col>
+          <Col sm={11}>
+            <h1 className="app-title">
+              Agatha 1.5.8.0 <Badge variant="primary" pill></Badge>
+            </h1>
+          </Col>
+        </Row>
+        <Row className="app-header-body">
+          <Col>
+            <GroupPersons onSelect={this.onPersonGroupSelect} />
+          </Col>
+          <Col>
+            <Persons ref={this.personsRef} />
+          </Col>
+          <Col>
+            <Actions ref={this.actionsRef} />
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+}
+
+export default App2;
