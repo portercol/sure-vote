@@ -1,22 +1,25 @@
 import React, { useEffect, useState, Component, submitBtn } from "react";
 import {
   Button,
-  Jumbotron,
   Container,
-  Col,
-  Row,
-  Form,
   Card,
+  Row,
+  Col
 } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+
+import PresElectData from '../seedData/presSeed';
+
 
 const PresElect = () => {
+  
   const [radio, setRadio] = useState([]);
 
   const radios = [
     { name: "Option 1", value: "option1" },
     { name: "Option 2", value: "option2" },
   ];
+
+  console.log(PresElectData);
 
   const submitVote = (event) => {
     event.preventDefault();
@@ -28,11 +31,11 @@ const PresElect = () => {
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>President of the United States</h3>
-
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
+          <h3>{PresElectData[0].office}</h3>
+          <hr />
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
                 <input
                   type="radio"
                   checked={radio === "option1"}
@@ -42,25 +45,57 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-                <label>Donald J. Trump: Republican Party</label>
-              </div>
-            </div>
+            </Col>
+            <Col xs lg={5}>
+              <form>
+                <div className="candidate-select">
+                  <div className="radio">           
+                    <label>
+                      {PresElectData[0].president[0].party}<br />
+                      {PresElectData[0].president[0].candidate}
+                      {PresElectData[0].president[0].candidateState}<br />
+                      {PresElectData[0].president[0].runningMate}
+                      {PresElectData[0].president[0].runningMateState}
+                    </label>
+                    <br />
 
-            <div className="candidate-select">
+                  </div>
+                </div>
+                </form>
+            </Col>
+            <Col xs lg={3}></Col>
+            </Row>
+
+            <Row>
+              <Col xs lg={3}></Col>
+              <Col xs lg={1}>
+              <input
+                    type="radio"
+                    checked={radio === "option2"}
+                    value="option2"
+                    id="radio2"
+                    onChange={(e) => {
+                      setRadio(e.target.value);
+                    }}
+                  />
+              </Col>
+              <Col xs lg={5}>
+
+            <form>
+                <label>
+                  {PresElectData[0].president[1].party}<br />
+                  {PresElectData[0].president[1].candidate}
+                  {PresElectData[0].president[1].candidateState}<br />
+                  {PresElectData[0].president[1].runningMate}
+                  {PresElectData[0].president[1].runningMateState}
+                </label>
+                <div className="candidate-select">
               <div className="radio">
-                <input
-                  type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
-                  onChange={(e) => {
-                    setRadio(e.target.value);
-                  }}
-                />
-                <label>Joseph R. Biden: Democratic Party</label>
+                
               </div>
             </div>
           </form>
+              </Col>
           {/* <Button 
                 variant="secondary" 
                 type="submit"
@@ -70,6 +105,7 @@ const PresElect = () => {
                 >
                 Submit
                 </Button> */}
+                </Row>
         </Card.Body>
       </Card>
     </Container>
