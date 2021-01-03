@@ -9,7 +9,7 @@ import ApiCalls from "../../utils/ApiCalls";
 import Fetchino from 'react-fetchino';
 import { Loader } from 'react-overlay-loader';
 import 'react-overlay-loader/styles.css';
-// import '../../css/App.css';
+import { submitToAgatha } from '../../utils/submitApiImgP';
 
 class PersonActionDelete extends Component {
     constructor(props) {
@@ -45,11 +45,9 @@ class PersonActionDelete extends Component {
     render() {
         return (
             <Fragment>
-                <img width={16}
-                    height={16}
-                    className="mr-3"
-                    onClick={this.openModal}
-                    src="img/delete.png" alt="delete" />
+                <Button className="add-button" variant="primary" onClick={this.openModal}>
+                    delete
+        </Button>
 
                 <Modal show={this.state.modalOpen} onHide={this.closeModal}>
                     <Modal.Header closeButton>
@@ -73,7 +71,7 @@ class PersonActionDelete extends Component {
         )
     }
 }
-
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class PersonActionUpload extends Component {
     constructor(props) {
         super(props)
@@ -100,29 +98,22 @@ class PersonActionUpload extends Component {
 
     submit = e => {
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-            var reader = new FileReader();
-            reader.onload = () => {
-                var api = new ApiCalls();
-                api.PostImage(api.personPictureEndPoint(this.props.personGroupId, this.props.person.personId), reader.result)
-                    .then(rest => {
-                        this.setState({ showLoadingOverlay: false }, () => {
-                            this.closeModal();
-                            this.props.onChanged();
-                        });
-                    });
-            };
-            reader.readAsArrayBuffer(this.state.picture);
+            submitToAgatha(this.props, this.state.picture, () => {
+                this.setState({ showLoadingOverlay: false }, () => {
+                    this.closeModal();
+                    this.props.onChanged();
+                });
+            })
+
         });
     }
 
     render() {
         return (
             <Fragment>
-                <img width={16}
-                    height={16}
-                    className="mr-3"
-                    onClick={this.openModal}
-                    src="img/upload.png" alt="Upload" />
+                <Button className="add-button" variant="primary" onClick={this.openModal}>
+                    upload
+        </Button>
 
                 <Modal show={this.state.modalOpen} onHide={this.closeModal}>
                     <Modal.Header closeButton>
@@ -197,14 +188,10 @@ class PersonActionEdit extends Component {
     render() {
         return (
             <Fragment>
-                <img
-                    src="img/edit.png"
-                    width={16}
-                    height={16}
-                    className="mr-3"
-                    alt="Edit a person"
-                    onClick={this.openModal} />
 
+                <Button className="add-button" variant="primary" onClick={this.openModal}>
+                    edit
+                </Button>
                 <Modal show={this.state.openModal} onHide={this.closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>Edit person</Modal.Title>
@@ -245,12 +232,7 @@ class PersonsItmes extends Component {
                 <Container className="person-list">
                     <Row key={person.personId}>
                         <Col sm={10}>
-                            <img
-                                width={44}
-                                height={44}
-                                src="img/person.png"
-                                alt="Person"
-                            />
+
                             <h5>{person.name}</h5>
                             <p>
                                 {person.persistedFaceIds.length} pictures

@@ -28,12 +28,7 @@ class GroupPersonsItems extends Component {
                 <Container key={group.personGroupId} className="group-list">
                     <Row>
                         <Col sm={10} onClick={(e) => this.onSelect(e, group.personGroupId)}>
-                            <img
-                                width={44}
-                                height={44}
-                                src="img/groupPerson.png"
-                                alt="Group"
-                            />
+
                             <h5>{group.name}</h5>
                         </Col>
                         <Col sm={2} className="group-actions-button">
@@ -46,7 +41,7 @@ class GroupPersonsItems extends Component {
         )
     }
 }
-
+// this will not be
 class GroupPersons extends Component {
     constructor(props) {
         super(props)

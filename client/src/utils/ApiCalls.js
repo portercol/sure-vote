@@ -42,7 +42,6 @@ class ApiCalls {
     personGroupTrainingCheckEndPoint(personGroupId) {
         return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}${this._trainingCheck}`);
     }
-
     faceDetectEndPoint() {
         return (`${this.faceAPIBaseUrl}${this._faceDetect}`);
     }
