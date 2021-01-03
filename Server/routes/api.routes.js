@@ -9,19 +9,19 @@ const User = require("../models/User");
 router
     .post("/api/signup", (req, res) => {
         Users = new User({
-            username: req.body.username,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            address1: req.body.address1,
-            address2: req.body.address2,
-            city: req.body.city,
-            state: req.body.state,
-            zipCode: req.body.zipCode,
+            username: req.body.data.username,
+            firstName: req.body.data.firstName,
+            lastName: req.body.data.lastName,
+            address1: req.body.data.streetAddress1,
+            address2: req.body.data.streetAddress2,
+            city: req.body.data.city,
+            state: req.body.data.state,
+            zipCode: req.body.data.zipCode,
             uuid: newUuid()
         });
         console.log("Body: ", req.body);
 
-        User.register(Users, req.body.password, (err, user) => {
+        User.register(Users, req.body.data.password, (err, user) => {
             if (err) {
                 console.log(err);
                 res.json({
