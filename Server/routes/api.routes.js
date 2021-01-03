@@ -23,12 +23,14 @@ router
 
         User.register(Users, req.body.password, (err, user) => {
             if (err) {
+                console.log(err);
                 res.json({
                     success: false,
                     message: "Error while registering: ", err
                 });
             }
             else {
+                console.log("success");
                 res.json({
                     success: true,
                     message: "Account registered"
