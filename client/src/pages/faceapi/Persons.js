@@ -10,7 +10,6 @@ import Fetchino from 'react-fetchino';
 import { Loader } from 'react-overlay-loader';
 import 'react-overlay-loader/styles.css';
 import { submitToAgatha } from '../../utils/submitApiImgP';
-import { newUserApi } from '../../utils/newUserfaceApi';
 
 class PersonActionDelete extends Component {
     constructor(props) {
@@ -331,7 +330,7 @@ class AddPerson extends Component {
             let body = {
                 name: this.state.newPersonName,
                 userData: ""
-            }
+            };
 
             var api = new ApiCalls();
             api.Post(api.personsEndPoint(this.props.personGroupId), body)

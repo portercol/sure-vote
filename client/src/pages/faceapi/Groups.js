@@ -41,7 +41,7 @@ class GroupPersonsItems extends Component {
         )
     }
 }
-// this will not be needed
+// this will not be
 class GroupPersons extends Component {
     constructor(props) {
         super(props)

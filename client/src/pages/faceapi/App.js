@@ -40,7 +40,7 @@ class App2 extends Component {
         </Row>
         <Row className="app-header-body">
           <Col>
-            <Persons onSelect={this.onPersonGroupSelect} />
+            <GroupPersons onSelect={this.onPersonGroupSelect} />
           </Col>
           <Col>
             <Persons ref={this.personsRef} />
@@ -49,7 +49,6 @@ class App2 extends Component {
             <Actions ref={this.actionsRef} />
           </Col>
         </Row>
-
       </Container>
     );
   }
