@@ -8,17 +8,14 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../components/Navbar.jsx";
-// import PresElect from '../components/PresElect';
-// import HouseElect from '../components/HouseElect';
-// import "../scripts/seed";
-// import "./Ballot.css"
+
 
 const GovElect = () => {
     
     const [radio, setRadio] = useState([]);
     
+    console.log(GovElectData);
+
     const radios = [
         { name: "Option 1", value: "option1" },
         { name: "Option 2", value: "option2" },
@@ -42,6 +39,14 @@ const GovElect = () => {
 
               <div className="candidate-select">
                 <div className="radio">
+                  <label>
+                    {GovElectData[0].governor[0].party}<br />
+                    {GovElectData[0].governor[0].candidate}
+                    {GovElectData[0].governor[0].office1}<br />
+                    {GovElectData[0].governor[0].runningMate}
+                    {GovElectData[0].governor[0].office2}
+                  </label>
+                  <br />
                 <input
                   type="radio"
                   checked={radio === "option1"}
@@ -51,10 +56,16 @@ const GovElect = () => {
                       setRadio(e.target.value);
                     }}
                     />
-                    <label>Spencer Cox: Republican Party</label>
                   </div>
               </div>
 
+              <label>
+                    {GovElectData[0].governor[1].party}<br />
+                    {GovElectData[0].governor[1].candidate}
+                    {GovElectData[0].governor[1].office1}<br />
+                    {GovElectData[0].governor[1].runningMate}
+                    {GovElectData[0].governor[1].office2}
+                  </label>
               <div className="candidate-select">
                 <div className="radio">
                   <input
@@ -66,7 +77,6 @@ const GovElect = () => {
                         setRadio(e.target.value);
                       }}
                       />
-                    <label>Chris Peterson: Democratic Party</label>
                   </div>
               </div>
 
