@@ -7,13 +7,12 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
-// import Ballot from './pages/Ballot'
+import Ballot from './pages/Ballot'
 import Contact from './pages/Contact'
 import SignUp2 from './pages/Signupcamface'
 // import face from './pages/cam.faceRe'
 import App2 from './pages/faceapi/App'
 
-// <Route exact path='/ballot' component={Ballot} />
 function App() {
   return (
     <Router>
@@ -28,6 +27,7 @@ function App() {
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/face' component={App2} />
           <Route exact path='/cam2' component={SignUp2} />
+          <Route exact path='/ballot' component={Ballot} />
 
 
         </Switch>
