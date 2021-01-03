@@ -91,3 +91,4 @@ function face() {
 }
 
 export default face;
+// , Facial hair: {item.faceAttributes.blur}

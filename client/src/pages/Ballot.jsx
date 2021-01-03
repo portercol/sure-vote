@@ -3,10 +3,7 @@ import {
   Button,
   Jumbotron,
   Container,
-  Col,
-  Row,
-  Form,
-  Card,
+  Card
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import PresElect from "../components/PresElect";
@@ -38,22 +35,26 @@ const Ballot = () => {
   return (
     <>
       <Navbar />
-      {/* <h1>Ballot Page</h1> */}
-      <Row>
-        <Col xs lg={3}></Col>
-        <Col xs lg={6}>
-          <Jumbotron fluid>
-            <Container>
-              <h1>Ballot</h1>
-              <h6>
-                Click the radio button for the corresponding option to vote.
-                When you are done, click submit.
+      <Container id="main-container">
+        <Jumbotron id="main-jumbotron">
+          <h1>Ballot</h1>
+          <hr />
+          <h6>
+            Click the radio button for the corresponding option to vote.
+            When you are done, click submit.
               </h6>
-              <h6>
-                Ensure your selections are correct. If you encounter any
-                problems, please click the 'Contact' button above.
+          <h6>
+            Ensure your selections are correct. If you encounter any
+            problems, please click the 'Contact' button above.
               </h6>
-            </Container>
+          <PresElect />
+          <HouseElect />
+          <GovElect />
+          <StSenElect />
+          <ScRetain />
+          <ConstAmend1 />
+          <ConstAmend2 />
+
 
             <PresElect />
             <HouseElect />
@@ -77,14 +78,25 @@ const Ballot = () => {
                     onClick={submitVote}
                   >
                     Submit
+
+          <Card bg="light">
+            <Card.Body>
+              <h5>Please verify answers and click submit.</h5>
+              <br />
+              <Button
+                variant="dark"
+                type="submit"
+                size="lg"
+                block
+                onClick={submitVote}
+              >
+                Submit
                   </Button>
-                </Card.Body>
-              </Card>
-            </Container>
-          </Jumbotron>
-        </Col>
-        <Col xs lg={3}></Col>
-      </Row>
+            </Card.Body>
+          </Card>
+        </Jumbotron>
+      </Container>
+
     </>
   );
 };

@@ -8,7 +8,7 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-import GovElectData from '../seedData/govSeed';
+
 
 const GovElect = () => {
     

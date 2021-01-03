@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import StSenElectData from "../seedData/stsenSeed";
 
+
 const StSenElect = () => {
   const [radio, setRadio] = useState([]);
 
