@@ -20,7 +20,7 @@ class App2 extends Component {
   }
 
   onPersonGroupSelect = (personGroupId) => {
-    // Cascade that to the Persons i need to change this cascade to start with person we will not be using groups
+    // Cascade that to the Persons & actions element for loading
     this.personsRef.current.loadPersons(personGroupId);
     this.actionsRef.current.showActions(personGroupId);
   }
@@ -34,13 +34,13 @@ class App2 extends Component {
           </Col>
           <Col sm={11}>
             <h1 className="app-title">
-              Agatha 1.5.8.0 <Badge variant="primary" pill></Badge>
+              Agatha 1.5.6.7 <Badge variant="primary" pill></Badge>
             </h1>
           </Col>
         </Row>
         <Row className="app-header-body">
           <Col>
-            <GroupPersons onSelect={this.onPersonGroupSelect} />
+            <Persons onSelect={this.onPersonGroupSelect} />
           </Col>
           <Col>
             <Persons ref={this.personsRef} />
@@ -49,6 +49,7 @@ class App2 extends Component {
             <Actions ref={this.actionsRef} />
           </Col>
         </Row>
+
       </Container>
     );
   }

@@ -9,7 +9,7 @@ import Election from './pages/Election'
 import Vote from './pages/Vote'
 // import Ballot from './pages/Ballot'
 import Contact from './pages/Contact'
-// import Camera from './pages/cam.test'
+import SignUp2 from './pages/Signupcamface'
 // import face from './pages/cam.faceRe'
 import App2 from './pages/faceapi/App'
 
@@ -27,6 +27,8 @@ function App() {
           <Route exact path='/vote' component={Vote} />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/face' component={App2} />
+          <Route exact path='/cam2' component={SignUp2} />
+
 
         </Switch>
       </div>

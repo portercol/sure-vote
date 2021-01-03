@@ -12,3 +12,9 @@ export function submitToAgatha(incomingValues, image, cb) {
     };
     reader.readAsArrayBuffer(image);
 };
+
+
+
+
+
+
