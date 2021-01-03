@@ -1,14 +1,58 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
-import React from "react";
+import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import "./SignUp.css";
+const axios = require("axios");
 
 // create functional component to hold sign up page data
 const SignUp = () => {
 
+  const [firstNameValue, setFirstNameValue] = useState('');
+  const [lastNameValue, setLastNameValue] = useState('');
+  const [usernameValue, setUsernameValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [streetAddress1Value, setStreetAddress1Value] = useState('');
+  const [streetAddress2Value, setStreetAddress2Value] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [stateValue, setStateValue] = useState('');
+  const [zipCodeValue, setZipCodeValue] = useState('');
+
+
   // create function for submit button 'onclick'
-  const submitBtn = () => {
-    console.log("submitted sign up form");
+  const submitBtn = (e) => {
+    if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
+      console.log("Missing required credentials")
+    } else {
+      // console.log(firstNameValue);
+      // console.log(lastNameValue);
+      // console.log(usernameValue);
+      // console.log(passwordValue);
+      // console.log(streetAddress1Value);
+      // console.log(streetAddress2Value);
+      // console.log(cityValue);
+      // console.log(stateValue);
+      // console.log(zipCodeValue);
+
+      const userObj = {
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        username: usernameValue,
+        password: passwordValue,
+        streetAddress1: streetAddress1Value,
+        streetAddress2: streetAddress2Value,
+        city: cityValue,
+        state: stateValue,
+        zipCode: zipCodeValue
+      }
+      console.log(userObj);
+      axios.post("/api/signup", {
+        data: userObj
+      }).then(() => {
+        console.log("Successfully registered!");
+      }).catch(err => {
+        console.log(err);
+      });
+    }
   }
 
   return (
@@ -19,43 +63,69 @@ const SignUp = () => {
           <Form>
             <Form.Row>
               <Col>
-                <Form.Control placeholder="First name" />
+                <Form.Control
+                  placeholder="First name"
+                  onChange={(e) => setFirstNameValue(e.target.value)}
+                />
               </Col>
               <Col>
-                <Form.Control placeholder="Last name" />
+                <Form.Control
+                  placeholder="Last name"
+                  onChange={(e) => setLastNameValue(e.target.value)}
+                />
               </Col>
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label></Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(e) => setUsernameValue(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Label></Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPasswordValue(e.target.value)}
+                />
               </Form.Group>
             </Form.Row>
 
             <Form.Group controlId="formGridAddress1">
-              <Form.Label id="address">Address</Form.Label>
-              <Form.Control placeholder="Street Address" />
+              <Form.Label ></Form.Label>
+              <Form.Control
+                placeholder="Street Address"
+                onChange={(e) => setStreetAddress1Value(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Group controlId="formGridAddress2">
               <Form.Label></Form.Label>
-              <Form.Control placeholder="Apartment, studio, or floor" />
+              <Form.Control
+                placeholder="Apartment, studio, or floor"
+                onChange={(e) => setStreetAddress2Value(e.target.value)}
+              />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label></Form.Label>
-                <Form.Control placeholder="City" />
+                <Form.Control
+                  placeholder="City"
+                  onChange={(e) => setCityValue(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label></Form.Label>
-                <Form.Control as="select" defaultValue="State...">
+                <Form.Control
+                  // id="state"
+                  onChange={(e) => setStateValue(e.target.value)}
+                  as="select" defaultValue="State...">
                   <option>State</option>
                   <option id="AL">Alabama</option>
                   <option id="AK">Alaska</option>
@@ -113,7 +183,10 @@ const SignUp = () => {
 
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label></Form.Label>
-                <Form.Control placeholder="Zip Code" />
+                <Form.Control
+                  placeholder="Zip Code"
+                  onChange={(e) => setZipCodeValue(e.target.value)}
+                />
               </Form.Group>
             </Form.Row>
           </Form>
@@ -141,12 +214,12 @@ const SignUp = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/" onClick={() => {submitBtn()}} variant="dark"
+              <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={() => {submitBtn()}} variant="dark"
+              <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>Sign Up</Button>
             </ButtonGroup>
 
