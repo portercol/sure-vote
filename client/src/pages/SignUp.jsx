@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import "./SignUp.css";
+const axios = require("axios");
 
 // create functional component to hold sign up page data
 const SignUp = () => {
@@ -22,20 +23,36 @@ const SignUp = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")
     } else {
-      console.log(firstNameValue);
-      console.log(lastNameValue);
-      console.log(usernameValue);
-      console.log(passwordValue);
-      console.log(streetAddress1Value);
-      console.log(streetAddress2Value);
-      console.log(cityValue);
+      // console.log(firstNameValue);
+      // console.log(lastNameValue);
+      // console.log(usernameValue);
+      // console.log(passwordValue);
+      // console.log(streetAddress1Value);
+      // console.log(streetAddress2Value);
+      // console.log(cityValue);
       // console.log(stateValue);
-      console.log(zipCodeValue);
+      // console.log(zipCodeValue);
+
+      const userObj = {
+        firstName: firstNameValue,
+        lastName: lastNameValue,
+        username: usernameValue,
+        password: passwordValue,
+        streetAddress1: streetAddress1Value,
+        streetAddress2: streetAddress2Value,
+        city: cityValue,
+        state: stateValue,
+        zipCode: zipCodeValue
+      }
+      console.log(userObj);
+      axios.post("/api/signup", {
+        data: userObj
+      }).then(() => {
+        console.log("Successfully registered!");
+      }).catch(err => {
+        console.log(err);
+      });
     }
-
-
-    // const username = document.getElementById("firstName");
-    // alert("Username", username);
   }
 
   return (
