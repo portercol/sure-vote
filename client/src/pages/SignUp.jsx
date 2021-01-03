@@ -16,20 +16,23 @@ const SignUp = () => {
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
 
-  console.log(firstNameValue);
-  console.log(lastNameValue);
-  console.log(usernameValue);
-  console.log(passwordValue);
-  console.log(streetAddress1Value);
-  console.log(streetAddress2Value);
-  console.log(cityValue);
-  console.log(stateValue);
-  console.log(zipCodeValue);
 
   // create function for submit button 'onclick'
   const submitBtn = (e) => {
-    // e.preventDefault();
-    console.log(firstNameValue);
+    if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
+      console.log("Missing required credentials")
+    } else {
+      console.log(firstNameValue);
+      console.log(lastNameValue);
+      console.log(usernameValue);
+      console.log(passwordValue);
+      console.log(streetAddress1Value);
+      console.log(streetAddress2Value);
+      console.log(cityValue);
+      // console.log(stateValue);
+      console.log(zipCodeValue);
+    }
+
 
     // const username = document.getElementById("firstName");
     // alert("Username", username);
@@ -76,7 +79,7 @@ const SignUp = () => {
             </Form.Row>
 
             <Form.Group controlId="formGridAddress1">
-              <Form.Label >Address</Form.Label>
+              <Form.Label ></Form.Label>
               <Form.Control
                 placeholder="Street Address"
                 onChange={(e) => setStreetAddress1Value(e.target.value)}
@@ -103,6 +106,8 @@ const SignUp = () => {
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label></Form.Label>
                 <Form.Control
+                  // id="state"
+                  onChange={(e) => setStateValue(e.target.value)}
                   as="select" defaultValue="State...">
                   <option>State</option>
                   <option id="AL">Alabama</option>
@@ -156,7 +161,6 @@ const SignUp = () => {
                   <option id="WV">West Virginia</option>
                   <option id="WI">Wisconsin</option>
                   <option id="WY">Wyoming</option>
-                  onChange={(e) => setStateValue(e.target.value)}
                 </Form.Control>
               </Form.Group>
 
