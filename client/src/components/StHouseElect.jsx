@@ -8,10 +8,13 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
+import StRepElectData from '../seedData/strepSeed';
 
 
 const PresElect = () => {
   const [radio, setRadio] = useState([]);
+
+  console.log(StRepElectData);
 
   const radios = [
     { name: "Option 1", value: "option1" },
@@ -28,11 +31,17 @@ const PresElect = () => {
     <Container id="staterep-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>Utah State House, 7th Senate District</h3>
-
+          <h3><span>Utah </span>{StRepElectData[0].office}</h3>
+          <h5>{StRepElectData[0].district}</h5>
+          <hr />
           <form>
             <div className="candidate-select">
               <div className="radio">
+                <label>
+                  {StRepElectData[0].stateHouse[0].candidate}
+                  {StRepElectData[0].stateHouse[0].party}
+                </label>
+                <br />
                 <input
                   type="radio"
                   checked={radio === "option1"}
@@ -42,12 +51,16 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-                <label>Ryan Wilcox: Republican Party</label>
               </div>
             </div>
 
             <div className="candidate-select">
               <div className="radio">
+                <label>
+                  {StRepElectData[0].stateHouse[1].candidate}
+                  {StRepElectData[0].stateHouse[1].party}
+                </label>
+                <br />
                 <input
                   type="radio"
                   checked={radio === "option2"}
@@ -57,11 +70,10 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-                <label>Grant Protzman: Democratic Party</label>
               </div>
             </div>
           </form>
-          <Button
+          {/* <Button
             variant="secondary"
             type="submit"
             size="lg"
@@ -69,7 +81,7 @@ const PresElect = () => {
             onClick={submitVote}
           >
             Submit
-          </Button>
+          </Button> */}
         </Card.Body>
       </Card>
     </Container>

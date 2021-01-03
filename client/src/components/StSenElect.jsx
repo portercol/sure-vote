@@ -8,10 +8,13 @@ import {
   Form,
   Card,
 } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import StSenElectData from "../seedData/stsenSeed";
 
-const PresElect = () => {
+
+const StSenElect = () => {
   const [radio, setRadio] = useState([]);
+
+  console.log(StSenElectData);
 
   const radios = [
     { name: "Option 1", value: "option1" },
@@ -28,8 +31,13 @@ const PresElect = () => {
     <Container id="statesen-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>Utah State House, 19th Senate District</h3>
-
+          <h3>{StSenElectData[0].office}</h3>
+          <h5>{StSenElectData[0].district}</h5>
+          <hr />
+          <label>
+            {StSenElectData[0].stateSenator[0].candidate}
+            {StSenElectData[0].stateSenator[0].party}
+          </label>
           <form>
             <div className="candidate-select">
               <div className="radio">
@@ -42,12 +50,16 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-                <label>John Johnson: Republican Party</label>
               </div>
             </div>
 
             <div className="candidate-select">
               <div className="radio">
+                <label>
+                  {StSenElectData[0].stateSenator[1].candidate}
+                  {StSenElectData[0].stateSenator[1].party}
+                </label>
+                <br />
                 <input
                   type="radio"
                   checked={radio === "option2"}
@@ -57,7 +69,6 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-                <label>Katy Owens: Democratic Party</label>
               </div>
             </div>
           </form>
@@ -76,4 +87,4 @@ const PresElect = () => {
   );
 };
 
-export default PresElect;
+export default StSenElect;

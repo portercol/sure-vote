@@ -10,6 +10,7 @@ import PresElect from "../components/PresElect";
 import HouseElect from "../components/HouseElect";
 import GovElect from "../components/GovElect";
 import StSenElect from "../components/StSenElect";
+import StHouseElect from "../components/StHouseElect";
 import ScRetain from "../components/ScRetain";
 import ConstAmend1 from "../components/ConstAmend1";
 import ConstAmend2 from "../components/ConstAmend2";
@@ -53,6 +54,30 @@ const Ballot = () => {
           <ScRetain />
           <ConstAmend1 />
           <ConstAmend2 />
+
+
+            <PresElect />
+            <HouseElect />
+            <GovElect />
+            <StSenElect />
+            <StHouseElect />
+            <ScRetain />
+            <ConstAmend1 />
+            <ConstAmend2 />
+
+            <Container id="submit-card">
+              <Card bg="light">
+                <Card.Body>
+                  <h5>Please verify answers and click submit.</h5>
+                  <br />
+                  <Button
+                    variant="secondary"
+                    type="submit"
+                    size="lg"
+                    block
+                    onClick={submitVote}
+                  >
+                    Submit
 
           <Card bg="light">
             <Card.Body>
