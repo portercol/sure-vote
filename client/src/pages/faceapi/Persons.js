@@ -147,7 +147,7 @@ class PersonActionEdit extends Component {
         super(props)
         this.state = {
             openModal: false,
-            newPersonName: "",
+            newPersonName: "FUCKING RIGHT1!",
             showLoadingOverlay: false
         }
         this.openModal = this.openModal.bind(this)
@@ -305,7 +305,7 @@ class AddPerson extends Component {
         super(props)
         this.state = {
             openModal: false,
-            newPersonName: "",
+            newPersonName: "FUCKING RIGHT2!",
             showLoadingOverlay: false
         }
         this.openModal = this.openModal.bind(this)
@@ -353,13 +353,13 @@ class AddPerson extends Component {
                 </Button>
                 <Modal show={this.state.openModal} onHide={this.closeModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add a new person</Modal.Title>
+                        <Modal.Title>YO Add a new person</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
                             <Form.Group controlId="formPersonName">
                                 <Form.Label>Person name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter the person name" onChange={this.setNewPersonName} />
+                                <Form.Control type="text" placeholder="suck a fatty" onChange={this.setNewPersonName} />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
