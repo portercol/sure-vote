@@ -46,11 +46,11 @@ const Ballot = () => {
           <h6>
             Click the radio button for the corresponding option to vote.
             When you are done, click submit.
-              </h6>
+          </h6>
           <h6>
             Ensure your selections are correct. If you encounter any
             problems, please click the 'Contact' button above.
-              </h6>
+          </h6>
           <PresElect />
           <HouseElect />
           <GovElect />

@@ -214,7 +214,7 @@ const SignUp = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button onClick={() => { submitBtn() }} variant="dark"
+              <Button href="/" onClick={() => {submitBtn()}} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 
