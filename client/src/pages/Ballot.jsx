@@ -16,8 +16,9 @@ import ConstAmend1 from "../components/ConstAmend1";
 import ConstAmend2 from "../components/ConstAmend2";
 // import "../scripts/seed";
 import "./Ballot.css";
+import axios from 'axios';
 
-const Ballot = () => {
+const Ballot = (props) => {
   const [radio, setRadio] = useState([]);
 
   const radios = [
@@ -26,8 +27,11 @@ const Ballot = () => {
   ];
 
   const submitVote = (event) => {
-    event.preventDefault();
-    console.log("hitting the button");
+    // event.preventDefault();
+    console.log(radio);
+    axios.post('/api/vote', { key: radio })
+      .then(() => console.log("Success"))
+      .catch(err => console.log(err));
   };
 
   const votes = {};
@@ -48,40 +52,14 @@ const Ballot = () => {
             problems, please click the 'Contact' button above.
               </h6>
           <PresElect />
-          <HouseElect />
+          {/* <HouseElect />
           <GovElect />
           <StSenElect />
           <ScRetain />
           <ConstAmend1 />
-          <ConstAmend2 />
-
-
-          <PresElect />
-          <HouseElect />
-          <GovElect />
-          <StSenElect />
-          <StHouseElect />
-          <ScRetain />
-          <ConstAmend1 />
-          <ConstAmend2 />
+          <ConstAmend2 /> */}
 
           <Container id="submit-card">
-            <Card bg="light">
-              <Card.Body>
-                <h5>Please verify answers and click submit.</h5>
-                <br />
-                <Button
-                  variant="secondary"
-                  type="submit"
-                  size="lg"
-                  block
-                  onClick={submitVote}
-                >
-                  Submit
-                </Button>
-              </Card.Body>
-            </Card>
-
             <Card bg="light">
               <Card.Body>
                 <h5>Please verify answers and click submit.</h5>
@@ -91,7 +69,7 @@ const Ballot = () => {
                   type="submit"
                   size="lg"
                   block
-                  onClick={submitVote}
+                  onClick={() => {submitVote()}}
                 >
                   Submit
                   </Button>
