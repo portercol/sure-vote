@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -6,8 +6,8 @@ import {
   Row,
   Col
 } from "react-bootstrap";
-
 import PresElectData from '../seedData/presSeed';
+import axios from 'axios';
 
 
 const PresElect = (props) => {
@@ -22,8 +22,12 @@ const PresElect = (props) => {
   console.log(PresElectData);
 
   const submitVote = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     console.log("hitting the button");
+    axios.post('/api/vote')
+      .then((res) => setRadio([...radio, res.data]))
+      .catch(err => console.log (err));
+      console.log(radio);
   };
 
   return (
@@ -90,7 +94,7 @@ const PresElect = (props) => {
                   {PresElectData[0].president[1].runningMateState}
                 </label>
               </Col>
-          {/* <Button 
+          <Button 
                 variant="secondary" 
                 type="submit"
                 size="lg" 
@@ -98,7 +102,7 @@ const PresElect = (props) => {
                 onClick={submitVote}
                 >
                 Submit
-                </Button> */}
+                </Button>
                 </Row>
         </Card.Body>
       </Card>

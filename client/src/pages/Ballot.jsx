@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Jumbotron,
@@ -21,6 +21,17 @@ import axios from 'axios';
 const Ballot = () => {
   const [radio, setRadio] = useState([]);
 
+  useEffect(() => {
+    sendVote()
+  }, [])
+
+  const sendVote = () => {
+    axios.post('/api/vote' + radio)
+      .then((res) => setRadio([...radio, res.data]))
+      .catch(err => console.log (err));
+      console.log(radio);
+  }
+
   const radios = [
     { name: "Option 1", value: "option1" },
     { name: "Option 2", value: "option2" },
@@ -33,8 +44,6 @@ const Ballot = () => {
       .then(() => console.log("Success"))
       .catch(err => console.log(err));
   };
-
-  const votes = {};
 
   return (
     <>
@@ -70,7 +79,9 @@ const Ballot = () => {
                   type="submit"
                   size="lg"
                   block
-                  onClick={() => {submitVote()}}
+                  onClick={() => {submitVote()
+                  sendVote(radio);
+                  }}
                 >
                   Submit
                   </Button>

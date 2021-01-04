@@ -1,11 +1,9 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
-  Jumbotron,
   Container,
   Col,
   Row,
-  Form,
   Card,
 } from "react-bootstrap";
 
