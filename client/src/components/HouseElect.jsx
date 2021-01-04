@@ -33,15 +33,11 @@ const HouseElect = () => {
         <Card.Body>
           <h3>{RepElectData[0].office}</h3>
           <h5>{RepElectData[0].district}</h5>
+          <hr /> 
 
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
-                <label>
-                  {RepElectData[0].houseRep[0].candidate}
-                  {RepElectData[0].houseRep[0].party}
-                </label>
-                <br />
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
                 <input
                   type="radio"
                   checked={radio === "option1"}
@@ -51,15 +47,20 @@ const HouseElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-              </div>
-            </div>
+            </Col>
+            <Col xs lg={5}>
+                <label>
+                  {RepElectData[0].houseRep[0].party}<br />
+                  {RepElectData[0].houseRep[0].candidate}
+                </label>
+                <br />
+            </Col>
+            <Col xs lg={3}></Col>
+            </Row>
 
-            <label>
-              {RepElectData[0].houseRep[1].candidate}
-              {RepElectData[0].houseRep[1].party}
-            </label>
-            <div className="candidate-select">
-              <div className="radio">
+            <Row>
+              <Col xs lg={3}></Col>
+              <Col xs lg={1}>   
                 <input
                   type="radio"
                   checked={radio === "option2"}
@@ -69,9 +70,20 @@ const HouseElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-              </div>
-            </div>
-          </form>
+              </Col>
+              <Col xs lg={5}>
+              <form>
+                <div className="candidate-select">
+                  <div className="radio">
+                  <label>
+                    {RepElectData[0].houseRep[1].party}<br />
+                    {RepElectData[0].houseRep[1].candidate}
+                  </label>
+                  </div>
+                </div>
+              </form>
+              </Col>
+              </Row>
           {/* <Button 
             variant="secondary" 
             type="submit"

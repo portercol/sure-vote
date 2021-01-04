@@ -18,7 +18,7 @@ import ConstAmend2 from "../components/ConstAmend2";
 import "./Ballot.css";
 import axios from 'axios';
 
-const Ballot = (props) => {
+const Ballot = () => {
   const [radio, setRadio] = useState([]);
 
   const radios = [
@@ -52,12 +52,13 @@ const Ballot = (props) => {
             problems, please click the 'Contact' button above.
               </h6>
           <PresElect />
-          {/* <HouseElect />
+          <HouseElect />
           <GovElect />
           <StSenElect />
+          <StHouseElect />
           <ScRetain />
           <ConstAmend1 />
-          <ConstAmend2 /> */}
+          <ConstAmend2 />
 
           <Container id="submit-card">
             <Card bg="light">
