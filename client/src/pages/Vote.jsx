@@ -61,7 +61,7 @@ const Vote = () => {
     <>
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
-          <h1 id="pi">Personal Information</h1>
+          <h1 id="pi">Verify Personal Information</h1>
           <Form>
             <Form.Row>
               <Col>
