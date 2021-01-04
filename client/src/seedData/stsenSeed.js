@@ -6,11 +6,11 @@ const StSenElectData = [
       stateSenator: [
         {
           party: "Republican Party",
-          candidate: "John Johnson, ",
+          candidate: "John Johnson",
         },
         {
           party: "Democratic Party",
-          candidate: "Katy Owens, ",
+          candidate: "Katy Owens",
         },
       ],
     },

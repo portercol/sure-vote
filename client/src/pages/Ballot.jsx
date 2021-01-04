@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Jumbotron,
@@ -18,8 +18,19 @@ import ConstAmend2 from "../components/ConstAmend2";
 import "./Ballot.css";
 import axios from 'axios';
 
-const Ballot = (props) => {
+const Ballot = () => {
   const [radio, setRadio] = useState([]);
+
+  useEffect(() => {
+    sendVote()
+  }, [])
+
+  const sendVote = () => {
+    axios.post('/api/vote' + radio)
+      .then((res) => setRadio([...radio, res.data]))
+      .catch(err => console.log (err));
+      console.log(radio);
+  }
 
   const radios = [
     { name: "Option 1", value: "option1" },
@@ -34,8 +45,6 @@ const Ballot = (props) => {
       .catch(err => console.log(err));
   };
 
-  const votes = {};
-
   return (
     <>
       <Navbar />
@@ -46,18 +55,19 @@ const Ballot = (props) => {
           <h6>
             Click the radio button for the corresponding option to vote.
             When you are done, click submit.
-              </h6>
+          </h6>
           <h6>
             Ensure your selections are correct. If you encounter any
             problems, please click the 'Contact' button above.
-              </h6>
+          </h6>
           <PresElect />
-          {/* <HouseElect />
+          <HouseElect />
           <GovElect />
           <StSenElect />
+          <StHouseElect />
           <ScRetain />
           <ConstAmend1 />
-          <ConstAmend2 /> */}
+          <ConstAmend2 />
 
           <Container id="submit-card">
             <Card bg="light">
@@ -69,7 +79,9 @@ const Ballot = (props) => {
                   type="submit"
                   size="lg"
                   block
-                  onClick={() => {submitVote()}}
+                  onClick={() => {submitVote()
+                  sendVote(radio);
+                  }}
                 >
                   Submit
                   </Button>

@@ -1,11 +1,9 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
-  Jumbotron,
   Container,
   Col,
   Row,
-  Form,
   Card,
 } from "react-bootstrap";
 import StRepElectData from '../seedData/strepSeed';
@@ -34,14 +32,10 @@ const PresElect = () => {
           <h3><span>Utah </span>{StRepElectData[0].office}</h3>
           <h5>{StRepElectData[0].district}</h5>
           <hr />
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
-                <label>
-                  {StRepElectData[0].stateHouse[0].candidate}
-                  {StRepElectData[0].stateHouse[0].party}
-                </label>
-                <br />
+
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
                 <input
                   type="radio"
                   checked={radio === "option1"}
@@ -51,28 +45,39 @@ const PresElect = () => {
                     setRadio(e.target.value);
                   }}
                 />
-              </div>
-            </div>
+                </Col>
+            <Col xs lg={5}>
 
-            <div className="candidate-select">
-              <div className="radio">
                 <label>
-                  {StRepElectData[0].stateHouse[1].candidate}
-                  {StRepElectData[0].stateHouse[1].party}
+                  {StRepElectData[0].stateHouse[0].party}<br />
+                  {StRepElectData[0].stateHouse[0].candidate}
                 </label>
-                <br />
+                </Col>
+            <Col xs lg={3}></Col>
+          </Row>
+
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
+                  checked={radio === "option1"}
+                  value="option1"
+                  id="radio1"
                   onChange={(e) => {
                     setRadio(e.target.value);
                   }}
                 />
-              </div>
-            </div>
-          </form>
+                </Col>
+            <Col xs lg={5}>
+                <label>
+                  {StRepElectData[0].stateHouse[1].party}<br />
+                  {StRepElectData[0].stateHouse[1].candidate}
+                </label>
+                </Col>
+            <Col xs lg={3}></Col>
+          </Row>
+
           {/* <Button
             variant="secondary"
             type="submit"
