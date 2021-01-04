@@ -10,7 +10,7 @@ import {
 import PresElectData from '../seedData/presSeed';
 
 
-const PresElect = () => {
+const PresElect = (props) => {
   
   const [radio, setRadio] = useState([]);
 
@@ -26,7 +26,6 @@ const PresElect = () => {
     console.log("hitting the button");
   };
 
-  const votes = {};
   return (
     <Container id="pres-elect-card">
       <Card bg="light">
@@ -38,8 +37,8 @@ const PresElect = () => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
+                  checked={radio === "Donald J. Trump"}
+                  value="Donald J. Trump"
                   id="radio1"
                   onChange={(e) => {
                     setRadio(e.target.value);
@@ -71,8 +70,8 @@ const PresElect = () => {
               <Col xs lg={1}>
               <input
                     type="radio"
-                    checked={radio === "option2"}
-                    value="option2"
+                    checked={radio === "Joseph R. Biden"}
+                    value="Joseph R. Biden"
                     id="radio2"
                     onChange={(e) => {
                       setRadio(e.target.value);
