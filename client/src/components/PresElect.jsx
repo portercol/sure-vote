@@ -94,7 +94,7 @@ const PresElect = (props) => {
                   {PresElectData[0].president[1].runningMateState}
                 </label>
               </Col>
-          <Button 
+              <Button 
                 variant="secondary" 
                 type="submit"
                 size="lg" 
@@ -102,8 +102,8 @@ const PresElect = (props) => {
                 onClick={submitVote}
                 >
                 Submit
-                </Button>
-                </Row>
+              </Button>
+          </Row>
         </Card.Body>
       </Card>
     </Container>
