@@ -47,7 +47,7 @@ const GovElect = () => {
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
                   <div className="candidate-radio">
@@ -65,7 +65,7 @@ const GovElect = () => {
                 </div>
               </form>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
           <Row>
@@ -81,7 +81,7 @@ const GovElect = () => {
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <label>
                 {GovElectData[0].governor[1].party}
                 <br />
@@ -92,6 +92,7 @@ const GovElect = () => {
                 {GovElectData[0].governor[1].office2}
               </label>
             </Col>
+            <Col xs lg={4}></Col>
           </Row>
           <Button 
               variant="dark" 

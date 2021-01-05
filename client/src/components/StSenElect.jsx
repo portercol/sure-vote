@@ -46,14 +46,14 @@ const StSenElect = () => {
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <label>
                 {StSenElectData[0].stateSenator[0].party}
                 <br />
                 {StSenElectData[0].stateSenator[0].candidate}
               </label>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
           <Row>
@@ -69,25 +69,25 @@ const StSenElect = () => {
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <label>
                 {StSenElectData[0].stateSenator[1].party}
                 <br />
                 {StSenElectData[0].stateSenator[1].candidate}
               </label>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
           <Button 
-                    variant="dark" 
-                    type="submit"
-                    size="lg" 
-                    block
-                    onClick={submitVote}
-                  >
-                    Submit
-                  </Button>
+              variant="dark" 
+              type="submit"
+              size="lg" 
+              block
+              onClick={submitVote}
+            >
+              Submit
+            </Button>
         </Card.Body>
       </Card>
     </Container>

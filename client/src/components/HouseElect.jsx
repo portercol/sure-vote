@@ -45,14 +45,14 @@ const HouseElect = () => {
                   }}
                 />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
                 <label>
                   {RepElectData[0].houseRep[0].party}<br />
                   {RepElectData[0].houseRep[0].candidate}
                 </label>
                 <br />
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
             </Row>
 
             <Row>
@@ -68,7 +68,7 @@ const HouseElect = () => {
                   }}
                 />
               </Col>
-              <Col xs lg={5}>
+              <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
                   <div className="radio">
@@ -80,6 +80,7 @@ const HouseElect = () => {
                 </div>
               </form>
               </Col>
+              <Col xs lg={4}></Col>
               </Row>
           <Button 
             variant="dark" 

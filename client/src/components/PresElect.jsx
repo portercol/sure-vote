@@ -47,7 +47,7 @@ const PresElect = (props) => {
                   }}
                 />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
                   <div className="candidate-radio">           
@@ -64,7 +64,7 @@ const PresElect = (props) => {
                 </div>
                 </form>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
             </Row>
 
             <Row>
@@ -81,7 +81,7 @@ const PresElect = (props) => {
                   }}
                 />
               </Col>
-              <Col xs lg={5}>
+              <Col xs lg={4}>
                 <label>
                   {PresElectData[0].president[1].party}<br />
                   {PresElectData[0].president[1].candidate}
@@ -90,6 +90,8 @@ const PresElect = (props) => {
                   {PresElectData[0].president[1].runningMateState}
                 </label>
               </Col>
+              <Col xs lg={4}></Col>
+              </Row>
               <Button 
                 variant="dark" 
                 type="submit"
@@ -99,7 +101,6 @@ const PresElect = (props) => {
                 >
                 Submit
               </Button>
-          </Row>
         </Card.Body>
       </Card>
     </Container>

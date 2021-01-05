@@ -7,24 +7,25 @@ import {
   Card,
 } from "react-bootstrap";
 import StRepElectData from '../seedData/strepSeed';
+import axios from 'axios';
 
 
 const PresElect = () => {
-  const [radio, setRadio] = useState([]);
+
+  const [candidate, setCandidate] = useState("");
 
   console.log(StRepElectData);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
-
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(err => console.log (err));
+    };
 
-  const votes = {};
   return (
     <Container id="staterep-elect-card">
       <Card bg="light">
@@ -38,22 +39,22 @@ const PresElect = () => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={candidate === "Ryan Wilcox"}
+                  value="Ryan Wilcox"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                   }}
                 />
                 </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
 
                 <label>
                   {StRepElectData[0].stateHouse[0].party}<br />
                   {StRepElectData[0].stateHouse[0].candidate}
                 </label>
                 </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
           <Row>
@@ -61,32 +62,32 @@ const PresElect = () => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={candidate === "Grant Protzman"}
+                  value="Grant Protzman"
+                  id="candidate2"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                   }}
                 />
                 </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
                 <label>
                   {StRepElectData[0].stateHouse[1].party}<br />
                   {StRepElectData[0].stateHouse[1].candidate}
                 </label>
                 </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
-          {/* <Button
-            variant="secondary"
+          <Button
+            variant="dark"
             type="submit"
             size="lg"
             block
             onClick={submitVote}
           >
             Submit
-          </Button> */}
+          </Button>
         </Card.Body>
       </Card>
     </Container>
