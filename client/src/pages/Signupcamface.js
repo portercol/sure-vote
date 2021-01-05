@@ -3,13 +3,17 @@ import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
 import ApiCalls from "../utils/ApiCalls";
+// import GroupPersons from './faceapi/Groups';
+// import Actions from './faceapi/Actions';
+import { newUserApi } from '../utils/newUserfaceApi';
+
+
 import "./Signupcamface.css";
 
 
-// import GroupPersons from './faceapi/Groups';
-// import Persons from './faceapi/Persons';
-// import Actions from './faceapi/Actions';
+
 // create functional component to hold sign up page data
+
 
 
 const SignUp2 = () => {
@@ -65,6 +69,8 @@ const SignUp2 = () => {
         saveButton.addEventListener('click', () => save(canvas));
     };
 
+
+
     // save function 
     function save(canvas) {
         // const api = new ApiCalls();
@@ -115,11 +121,12 @@ const SignUp2 = () => {
                                     <button onClick={startVideo}>Start</button>
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
-
+                            <button className="btn btn-success" id="capture" onClick={newUserApi}>CAPTURE2</button>
                         </div>
                         <div className="app__input">
                             <button id="save" type="button">save</button>
                         </div>
+
 
 
 

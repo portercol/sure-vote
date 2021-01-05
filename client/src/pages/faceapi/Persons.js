@@ -10,7 +10,7 @@ import Fetchino from 'react-fetchino';
 import { Loader } from 'react-overlay-loader';
 import 'react-overlay-loader/styles.css';
 import { submitToAgatha } from '../../utils/submitApiImgP';
-
+import { newUserApi } from '../../utils/newUserfaceApi'
 class PersonActionDelete extends Component {
     constructor(props) {
         super(props)
@@ -72,7 +72,7 @@ class PersonActionDelete extends Component {
     }
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class PersonActionUpload extends Component {
+export class PersonActionUpload extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -99,10 +99,10 @@ class PersonActionUpload extends Component {
     submit = e => {
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
             submitToAgatha(this.props, this.state.picture, () => {
-                this.setState({ showLoadingOverlay: false }, () => {
-                    this.closeModal();
-                    this.props.onChanged();
-                });
+                // this.setState({ showLoadingOverlay: false }, () => {
+                //     this.closeModal();
+                //     this.props.onChanged();
+
             })
 
         });
@@ -325,23 +325,12 @@ class AddPerson extends Component {
     }
 
     submit = e => {
-        //this.props.personGroupId
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-            let body = {
-                name: this.state.newPersonName,
-                userData: ""
-            };
+            newUserApi(this.props.personGroupId, this.state.newPersonName, () => {
 
-            var api = new ApiCalls();
-            api.Post(api.personsEndPoint(this.props.personGroupId), body)
-                .then(rest => {
-                    // Tell the parent we've added a new item
-                    this.setState({ showLoadingOverlay: false }, () => {
-                        this.closeModal();
-                        this.props.onChanged();
-                    });
-                });
-        });
+            });
+        }
+        )
     }
 
     render() {
@@ -359,7 +348,8 @@ class AddPerson extends Component {
                         <Form>
                             <Form.Group controlId="formPersonName">
                                 <Form.Label>Person name</Form.Label>
-                                <Form.Control type="text" placeholder="suck a fatty" onChange={this.setNewPersonName} />
+                                {/* this has made any imput a hard coded valus from add person even if i do enter text in the box aka the text box is usless */}
+                                <Form.Control type="text" placeholder="suck a fatty" onChange="suck it bitch" />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
