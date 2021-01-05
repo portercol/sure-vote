@@ -12,20 +12,19 @@ import axios from 'axios';
 
 const PresElect = (props) => {
   
-  const [radio, setRadio] = useState("");
+  const [candidate, setCandidate] = useState("");
 
   console.log(PresElectData);
 
   const submitVote = (event) => {
     event.preventDefault();
     console.log("hitting the button");
-    axios.post('/api/vote', { candidate: radio })
+    axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
       })
       .catch(err => console.log (err));
     };
-    console.log(radio);
 
   return (
     <Container id="pres-elect-card">
@@ -39,11 +38,11 @@ const PresElect = (props) => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "Donald J. Trump"}
+                  checked={candidate === "Donald J. Trump"}
                   value="Donald J. Trump"
-                  id="radio1"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                     console.log(e.target.value)
                   }}
                 />
@@ -51,7 +50,7 @@ const PresElect = (props) => {
             <Col xs lg={5}>
               <form>
                 <div className="candidate-select">
-                  <div className="radio">           
+                  <div className="candidate-radio">           
                     <label>
                       {PresElectData[0].president[0].party}<br />
                       {PresElectData[0].president[0].candidate}
@@ -73,11 +72,11 @@ const PresElect = (props) => {
               <Col xs lg={1}>
               <input
                   type="radio"
-                  checked={radio === "Joseph R. Biden"}
+                  checked={candidate === "Joseph R. Biden"}
                   value="Joseph R. Biden"
-                  id="radio1"
+                  id="candidate2"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                     console.log(e.target.value)
                   }}
                 />

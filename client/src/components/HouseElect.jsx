@@ -7,23 +7,22 @@ import {
   Card,
 } from "react-bootstrap";
 import RepElectData from "../seedData/repSeed";
+import axios from 'axios';
 
 const HouseElect = () => {
-  const [radio, setRadio] = useState([]);
+  const [candidate, setCandidate] = useState("");
 
   console.log(RepElectData);
-
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
 
   const submitVote = (event) => {
     event.preventDefault();
     console.log("hitting the button");
-  };
-
-  const votes = {};
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(err => console.log (err));
+    };
 
   return (
     <Container id="rep-elect-card">
@@ -38,11 +37,11 @@ const HouseElect = () => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={candidate === "Blake Moore"}
+                  value="Blake Moore"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                   }}
                 />
             </Col>
@@ -61,11 +60,11 @@ const HouseElect = () => {
               <Col xs lg={1}>   
                 <input
                   type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
+                  checked={candidate === "Darren Parry"}
+                  value="Darren Parry"
+                  id="candidate2"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                   }}
                 />
               </Col>
@@ -82,7 +81,7 @@ const HouseElect = () => {
               </form>
               </Col>
               </Row>
-          {/* <Button 
+          <Button 
             variant="secondary" 
             type="submit"
             size="lg" 
@@ -90,7 +89,7 @@ const HouseElect = () => {
             onClick={submitVote}
             >
             Submit
-            </Button> */}
+            </Button>
         </Card.Body>
       </Card>
     </Container>
