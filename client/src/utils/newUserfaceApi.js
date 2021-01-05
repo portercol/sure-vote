@@ -1,19 +1,17 @@
-// this kinda works, i have it so that it will add a person when called but it will not close the modal, that is a feature we may not need
+// this is built right now on click create a new PID (personID) in this case the Groupe ID has been hard Coded
 import ApiCalls from "./ApiCalls";
-
-
-
 export function newUserApi(Gid, newPnam, cb) {
-    //this.props.personGroupId
-
-
+    // GID is "5595"
     let body = {
         name: "class demo",
-        userData: "1234"
+        picture: "",
+        userData: "1234",
     };
 
     var api = new ApiCalls();
     api.Post(api.personsEndPoint("5595"), body)
         .then(cb)
+
 };
 
+console.log

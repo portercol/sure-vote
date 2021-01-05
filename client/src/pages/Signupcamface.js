@@ -76,8 +76,8 @@ const SignUp2 = () => {
         // const api = new ApiCalls();
         const data = canvas.toDataURL('image/png');
         // props needs the GID and the PID
-        const props = {}
-        submitToAgatha(props, data, () => { console.log("aj") })
+
+        submitToAgatha(newUserApi, () => { console.log("aj") })
     }
     console.log('click')
 
@@ -85,7 +85,6 @@ const SignUp2 = () => {
     const submitBtn = () => {
         console.log("submitted sign up form");
     }
-
     return (
         <>
             <Container id="main-container">

@@ -1,6 +1,4 @@
 import ApiCalls from "./ApiCalls";
-
-
 export function submitToAgatha(incomingValues, image, cb) {
     var reader = new FileReader();
     reader.onload = () => {
@@ -12,6 +10,7 @@ export function submitToAgatha(incomingValues, image, cb) {
     };
     reader.readAsArrayBuffer(image);
 };
+
 
 
 
