@@ -16,7 +16,7 @@ const HouseElect = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
+    alert("You voted for " + candidate + ".");
     axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
