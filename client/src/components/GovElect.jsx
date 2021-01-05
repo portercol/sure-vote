@@ -7,21 +7,23 @@ import {
   Card,
 } from "react-bootstrap";
 import GovElectData from "../seedData/govSeed";
+import axios from 'axios';
 
 const GovElect = () => {
-  const [radio, setRadio] = useState([]);
+
+  const [candidate, setCandidate] = useState("");
 
   console.log(GovElectData);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
-
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(err => console.log (err));
+    };
 
   const votes = {};
 
@@ -37,18 +39,18 @@ const GovElect = () => {
             <Col xs lg={1}>
               <input
                 type="radio"
-                checked={radio === "option1"}
-                value="option1"
-                id="radio1"
+                checked={candidate === "Spencer Cox"}
+                value="Spencer Cox"
+                id="candidate1"
                 onChange={(e) => {
-                  setRadio(e.target.value);
+                  setCandidate(e.target.value);
                 }}
               />
             </Col>
             <Col xs lg={5}>
               <form>
                 <div className="candidate-select">
-                  <div className="radio">
+                  <div className="candidate-radio">
                     <label>
                       {GovElectData[0].governor[0].party}
                       <br />
@@ -71,11 +73,11 @@ const GovElect = () => {
             <Col xs lg={1}>
               <input
                 type="radio"
-                checked={radio === "option2"}
-                value="option2"
-                id="radio2"
+                checked={candidate === "Chris Peterson"}
+                value="Chris Peterson"
+                id="candidate2"
                 onChange={(e) => {
-                  setRadio(e.target.value);
+                  setCandidate(e.target.value);
                 }}
               />
             </Col>
@@ -91,7 +93,7 @@ const GovElect = () => {
               </label>
             </Col>
           </Row>
-          {/* <Button 
+          <Button 
               variant="secondary" 
               type="submit"
               size="lg" 
@@ -99,7 +101,7 @@ const GovElect = () => {
               onClick={submitVote}
             >
               Submit
-            </Button> */}
+            </Button>
         </Card.Body>
       </Card>
     </Container>
