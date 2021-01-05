@@ -12,23 +12,20 @@ import axios from 'axios';
 
 const PresElect = (props) => {
   
-  const [radio, setRadio] = useState([]);
-
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
+  const [radio, setRadio] = useState("");
 
   console.log(PresElectData);
 
   const submitVote = (event) => {
     event.preventDefault();
     console.log("hitting the button");
-    axios.post('/api/vote')
-      .then((res) => setRadio([...radio, res.data]))
+    axios.post('/api/vote', { candidate: radio })
+      .then((res) => {
+        console.log(res.data)
+      })
       .catch(err => console.log (err));
-      console.log(radio);
-  };
+    };
+    console.log(radio);
 
   return (
     <Container id="pres-elect-card">
