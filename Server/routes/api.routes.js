@@ -57,9 +57,7 @@ router
                         errors: err
                     });
                 }
-                return res.status(200).json({
-                    success: `logged in ${user.id}`
-                });
+                return res.status(200).json(req.user);
             });
         })(req, res, next);
     });

@@ -23,15 +23,6 @@ const SignUp = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")
     } else {
-      // console.log(firstNameValue);
-      // console.log(lastNameValue);
-      // console.log(usernameValue);
-      // console.log(passwordValue);
-      // console.log(streetAddress1Value);
-      // console.log(streetAddress2Value);
-      // console.log(cityValue);
-      // console.log(stateValue);
-      // console.log(zipCodeValue);
 
       const userObj = {
         firstName: firstNameValue,
