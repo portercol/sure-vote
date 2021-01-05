@@ -6,68 +6,87 @@ import {
   Row,
   Card,
 } from "react-bootstrap";
+import ScRetainData from '../seedData/scretainSeed';
+import axios from 'axios';
+
 
 const ScRetain = () => {
-  const [radio, setRadio] = useState([]);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
+  const [answer, setAnswer] = useState("");
+
+  console.log(ScRetainData);
+
+  let scJustice = ScRetainData[0].candidate;
 
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted " + answer + " to retain " + scJustice);
+    axios.post('/api/vote', { answer: answer })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch(err => console.log (err));
+    };
 
-  const votes = {};
   return (
     <Container id="scretain-elect-card">
       <Card bg="light">
         <Card.Body>
           <h3>Utah Supreme Court Retention</h3>
           <h6>Should John A. Pearce be retained in the Utah Supreme Court?</h6>
+          <hr />
 
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
+          <Row>
+            <Col xs lg={5}></Col>
+            <Col xs lg={1}>  
+              <form>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={answer === "yes"}
+                  value="yes"
+                  id="answer1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setAnswer(e.target.value);
                   }}
                 />
-                <label>Yes</label>
-              </div>
-            </div>
+                </form>
+              </Col>
+            <Col xs lg={1}>
+                <p>Yes</p>
+            </Col>
+            <Col xs lg={5}></Col>
+          </Row>
 
-            <div className="candidate-select">
-              <div className="radio">
+          <Row>
+            <Col xs lg={5}></Col>
+            <Col xs lg={1}>  
+              <form>
                 <input
                   type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
+                  checked={answer === "no"}
+                  value="no"
+                  id="answer1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setAnswer(e.target.value);
                   }}
                 />
-                <label>No</label>
-              </div>
-            </div>
-          </form>
-          {/* <Button 
-                    variant="secondary" 
-                    type="submit"
-                    size="lg" 
-                    block
-                    onClick={submitVote}
-                  >
-                    Submit
-                  </Button>*/}
+                </form>
+              </Col>
+            <Col xs lg={1}>
+                <p>No</p>
+            </Col>
+            <Col xs lg={5}></Col>
+          </Row>
+
+          <Button 
+              variant="dark" 
+              type="submit"
+              size="lg" 
+              block
+              onClick={submitVote}
+            >
+              Submit
+            </Button>
         </Card.Body>
       </Card>
     </Container>

@@ -69,7 +69,7 @@ const Ballot = () => {
           <ConstAmend1 />
           <ConstAmend2 />
 
-          <Container id="submit-card">
+          {/* <Container id="submit-card">
             <Card bg="light">
               <Card.Body>
                 <h5>Please verify answers and click submit.</h5>
@@ -87,7 +87,7 @@ const Ballot = () => {
                   </Button>
               </Card.Body>
             </Card>
-          </Container>
+          </Container> */}
         </Jumbotron>
       </Container>
 
