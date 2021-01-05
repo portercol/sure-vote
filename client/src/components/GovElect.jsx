@@ -94,7 +94,7 @@ const GovElect = () => {
             </Col>
           </Row>
           <Button 
-              variant="secondary" 
+              variant="dark" 
               type="submit"
               size="lg" 
               block

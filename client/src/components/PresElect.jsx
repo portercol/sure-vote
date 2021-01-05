@@ -91,7 +91,7 @@ const PresElect = (props) => {
                 </label>
               </Col>
               <Button 
-                variant="secondary" 
+                variant="dark" 
                 type="submit"
                 size="lg" 
                 block

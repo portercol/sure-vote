@@ -80,7 +80,7 @@ const StSenElect = () => {
           </Row>
 
           <Button 
-                    variant="secondary" 
+                    variant="dark" 
                     type="submit"
                     size="lg" 
                     block

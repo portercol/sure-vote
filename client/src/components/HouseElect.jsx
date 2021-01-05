@@ -82,7 +82,7 @@ const HouseElect = () => {
               </Col>
               </Row>
           <Button 
-            variant="secondary" 
+            variant="dark" 
             type="submit"
             size="lg" 
             block
