@@ -121,7 +121,10 @@ const SignUp2 = () => {
                                     <button onClick={startVideo}>Start</button>
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
-                            <button className="btn btn-success" id="capture" onClick={newUserApi}>CAPTURE2</button>
+                            <button className="btn btn-success" id="capture" onClick={() => {
+                                newUserApi();
+                                snap();
+                            }}>CAPTURE2</button>
                         </div>
                         <div className="app__input">
                             <button id="save" type="button">save</button>
