@@ -12,6 +12,7 @@ import axios from 'axios';
 const GovElect = () => {
 
   const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(GovElectData);
 
@@ -21,6 +22,7 @@ const GovElect = () => {
     axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
+        setVoted(true)
       })
       .catch(err => console.log (err));
     };
@@ -40,6 +42,7 @@ const GovElect = () => {
               <input
                 type="radio"
                 checked={candidate === "Spencer Cox"}
+                disabled={voted}
                 value="Spencer Cox"
                 id="candidate1"
                 onChange={(e) => {
@@ -74,6 +77,7 @@ const GovElect = () => {
               <input
                 type="radio"
                 checked={candidate === "Chris Peterson"}
+                disabled={voted}
                 value="Chris Peterson"
                 id="candidate2"
                 onChange={(e) => {
@@ -99,6 +103,7 @@ const GovElect = () => {
               type="submit"
               size="lg" 
               block
+              disabled={voted}
               onClick={submitVote}
             >
               Submit

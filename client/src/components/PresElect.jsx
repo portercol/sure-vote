@@ -13,6 +13,7 @@ import axios from 'axios';
 const PresElect = (props) => {
   
   const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(PresElectData);
 
@@ -22,9 +23,11 @@ const PresElect = (props) => {
     axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
+        setVoted(true)
       })
       .catch(err => console.log (err));
     };
+
 
   return (
     <Container id="pres-elect-card">
@@ -39,6 +42,7 @@ const PresElect = (props) => {
                 <input
                   type="radio"
                   checked={candidate === "Donald J. Trump"}
+                  disabled={voted}
                   value="Donald J. Trump"
                   id="candidate1"
                   onChange={(e) => {
@@ -73,6 +77,7 @@ const PresElect = (props) => {
               <input
                   type="radio"
                   checked={candidate === "Joseph R. Biden"}
+                  disabled={voted}
                   value="Joseph R. Biden"
                   id="candidate2"
                   onChange={(e) => {
@@ -97,6 +102,7 @@ const PresElect = (props) => {
                 type="submit"
                 size="lg" 
                 block
+                disabled={voted}
                 onClick={submitVote}
                 >
                 Submit

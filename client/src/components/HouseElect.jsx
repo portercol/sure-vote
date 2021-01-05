@@ -11,6 +11,7 @@ import axios from 'axios';
 
 const HouseElect = () => {
   const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(RepElectData);
 
@@ -20,6 +21,7 @@ const HouseElect = () => {
     axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
+        setVoted(true)
       })
       .catch(err => console.log (err));
     };
@@ -38,6 +40,7 @@ const HouseElect = () => {
                 <input
                   type="radio"
                   checked={candidate === "Blake Moore"}
+                  disabled={voted}
                   value="Blake Moore"
                   id="candidate1"
                   onChange={(e) => {
@@ -61,6 +64,7 @@ const HouseElect = () => {
                 <input
                   type="radio"
                   checked={candidate === "Darren Parry"}
+                  disabled={voted}
                   value="Darren Parry"
                   id="candidate2"
                   onChange={(e) => {
@@ -87,6 +91,7 @@ const HouseElect = () => {
             type="submit"
             size="lg" 
             block
+            disabled={voted}
             onClick={submitVote}
             >
             Submit

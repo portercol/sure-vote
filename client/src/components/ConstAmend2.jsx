@@ -6,6 +6,7 @@ import ConstAmend1Data from '../seedData/const1';
 const ConstAmend2 = () => {
 
   const [answer, setAnswer] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(ConstAmend1Data);
 
@@ -17,6 +18,7 @@ const ConstAmend2 = () => {
     axios.post('/api/vote', { answer: answer })
       .then((res) => {
         console.log(res.data)
+        setVoted(true)
       })
       .catch(err => console.log (err));
     };
@@ -38,6 +40,7 @@ const ConstAmend2 = () => {
                 <input
                   type="radio"
                   checked={answer === "yes"}
+                  disabled={voted}
                   value="yes"
                   id="answer1"
                   onChange={(e) => {
@@ -59,6 +62,7 @@ const ConstAmend2 = () => {
                 <input
                   type="radio"
                   checked={answer === "no"}
+                  disabled={voted}
                   value="no"
                   id="answer1"
                   onChange={(e) => {
@@ -78,6 +82,7 @@ const ConstAmend2 = () => {
             type="submit"
             size="lg"
             block
+            disabled={voted}
             onClick={submitVote}
           >
             Submit

@@ -21,30 +21,28 @@ import axios from 'axios';
 const Ballot = () => {
   const [radio, setRadio] = useState([]);
 
-  useEffect(() => {
-    sendVote()
-  }, [])
+  // useEffect(() => {
+  //   sendVote()
+  // }, [])
 
-  const sendVote = () => {
-    axios.post('/api/vote' + radio)
-      .then((res) => setRadio([...radio, res.data]))
-      .catch(err => console.log (err));
-      console.log(radio);
-  }
+  // const sendVote = () => {
+  //   axios.post('/api/vote' + radio)
+  //     .then((res) => setRadio([...radio, res.data]))
+  //     .catch(err => console.log (err));
+  //     console.log(radio);
+  // }
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
-
-  const submitVote = (event) => {
-    // event.preventDefault();
-    console.log(radio);
-    axios.post('/api/vote', { key: radio })
-      .then(() => console.log("Success"))
-      .catch(err => console.log(err));
-  };
-
+  
+  // const submitVote = (event) => {
+    //   // event.preventDefault();
+    //   console.log(radio);
+    //   axios.post('/api/vote', { key: radio })
+    //     .then(() => console.log("Success"))
+    //     .catch(err => console.log(err));
+    // };
+    
+  const submitButton = () => {}
+  
   return (
     <>
       <Navbar />
@@ -69,25 +67,27 @@ const Ballot = () => {
           <ConstAmend1 />
           <ConstAmend2 />
 
-          {/* <Container id="submit-card">
+          <Container id="submit-card">
             <Card bg="light">
               <Card.Body>
-                <h5>Please verify answers and click submit.</h5>
+                <h5>When you are done voting, click submit</h5>
+                <h5>WARNING: You will not be able to return to this ballot.</h5>
                 <br />
                 <Button
+                  href="/profile"
                   variant="dark"
                   type="submit"
                   size="lg"
                   block
-                  onClick={() => {submitVote()
-                  sendVote(radio);
+                  onClick={() => {submitButton()
+                  // sendVote(radio);
                   }}
                 >
                   Submit
                   </Button>
               </Card.Body>
             </Card>
-          </Container> */}
+          </Container>
         </Jumbotron>
       </Container>
 
