@@ -27,8 +27,6 @@ const GovElect = () => {
       .catch(err => console.log (err));
     };
 
-  const votes = {};
-
   return (
     <Container id="gov-elect-card">
       <Card bg="light">

@@ -14,7 +14,7 @@ const PresElect = (props) => {
 
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
-  const [dataReceived, setDataReceived] = useState(false);
+  // const [dataReceived, setDataReceived] = useState(false);
 
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election

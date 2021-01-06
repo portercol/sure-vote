@@ -5,7 +5,6 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
-  Jumbotron
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from '../assets/landlady.jpg';
