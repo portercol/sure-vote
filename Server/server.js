@@ -29,6 +29,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(apiRoutes);
 
+// fetch data from back end to profile path
+// app.get('/profile', (req, res) => {
+//   console.log(__dirname = '/controllers')
+//   res.json(path.join(__dirname = '/client/src/pages/Profile.jsx'))
+// })
+
 app.listen(PORT, () => {
   console.log('app running on PORT: ' + PORT);
 });

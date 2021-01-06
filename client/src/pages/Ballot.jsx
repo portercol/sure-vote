@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Jumbotron,
@@ -16,22 +16,33 @@ import ConstAmend1 from "../components/ConstAmend1";
 import ConstAmend2 from "../components/ConstAmend2";
 // import "../scripts/seed";
 import "./Ballot.css";
+import axios from 'axios';
 
 const Ballot = () => {
   const [radio, setRadio] = useState([]);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
+  // useEffect(() => {
+  //   sendVote()
+  // }, [])
 
-  const submitVote = (event) => {
-    event.preventDefault();
-    console.log("hitting the button");
-  };
+  // const sendVote = () => {
+  //   axios.post('/api/vote' + radio)
+  //     .then((res) => setRadio([...radio, res.data]))
+  //     .catch(err => console.log (err));
+  //     console.log(radio);
+  // }
 
-  const votes = {};
-
+  
+  // const submitVote = (event) => {
+    //   // event.preventDefault();
+    //   console.log(radio);
+    //   axios.post('/api/vote', { key: radio })
+    //     .then(() => console.log("Success"))
+    //     .catch(err => console.log(err));
+    // };
+    
+  const submitButton = () => {}
+  
   return (
     <>
       <Navbar />
@@ -42,20 +53,11 @@ const Ballot = () => {
           <h6>
             Click the radio button for the corresponding option to vote.
             When you are done, click submit.
-              </h6>
+          </h6>
           <h6>
             Ensure your selections are correct. If you encounter any
             problems, please click the 'Contact' button above.
-              </h6>
-          <PresElect />
-          <HouseElect />
-          <GovElect />
-          <StSenElect />
-          <ScRetain />
-          <ConstAmend1 />
-          <ConstAmend2 />
-
-
+          </h6>
           <PresElect />
           <HouseElect />
           <GovElect />
@@ -68,30 +70,18 @@ const Ballot = () => {
           <Container id="submit-card">
             <Card bg="light">
               <Card.Body>
-                <h5>Please verify answers and click submit.</h5>
+                <h5>When you are done voting, click submit</h5>
+                <h5>WARNING: You will not be able to return to this ballot.</h5>
                 <br />
                 <Button
-                  variant="secondary"
-                  type="submit"
-                  size="lg"
-                  block
-                  onClick={submitVote}
-                >
-                  Submit
-                </Button>
-              </Card.Body>
-            </Card>
-
-            <Card bg="light">
-              <Card.Body>
-                <h5>Please verify answers and click submit.</h5>
-                <br />
-                <Button
+                  href="/profile"
                   variant="dark"
                   type="submit"
                   size="lg"
                   block
-                  onClick={submitVote}
+                  onClick={() => {submitButton()
+                  // sendVote(radio);
+                  }}
                 >
                   Submit
                   </Button>

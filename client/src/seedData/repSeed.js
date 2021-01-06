@@ -6,11 +6,11 @@ const RepElectData = [
       houseRep: [
         {
           party: "Republican Party",
-          candidate: "Blake Moore, ",
+          candidate: "Blake Moore",
         },
         {
           party: "Democratic Party",
-          candidate: "Darren Parry, ",
+          candidate: "Darren Parry",
         },
       ],
     },

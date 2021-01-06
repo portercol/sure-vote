@@ -1,32 +1,33 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
-  Jumbotron,
   Container,
   Col,
   Row,
-  Form,
   Card,
 } from "react-bootstrap";
 import StRepElectData from '../seedData/strepSeed';
+import axios from 'axios';
 
 
 const PresElect = () => {
-  const [radio, setRadio] = useState([]);
+
+  const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(StRepElectData);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
-
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+        setVoted(true)
+      })
+      .catch(err => console.log (err));
+    };
 
-  const votes = {};
   return (
     <Container id="staterep-elect-card">
       <Card bg="light">
@@ -34,54 +35,64 @@ const PresElect = () => {
           <h3><span>Utah </span>{StRepElectData[0].office}</h3>
           <h5>{StRepElectData[0].district}</h5>
           <hr />
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
-                <label>
-                  {StRepElectData[0].stateHouse[0].candidate}
-                  {StRepElectData[0].stateHouse[0].party}
-                </label>
-                <br />
-                <input
-                  type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
-                  onChange={(e) => {
-                    setRadio(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
 
-            <div className="candidate-select">
-              <div className="radio">
-                <label>
-                  {StRepElectData[0].stateHouse[1].candidate}
-                  {StRepElectData[0].stateHouse[1].party}
-                </label>
-                <br />
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
+                  checked={candidate === "Ryan Wilcox"}
+                  disabled={voted}
+                  value="Ryan Wilcox"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                   }}
                 />
-              </div>
-            </div>
-          </form>
-          {/* <Button
-            variant="secondary"
+                </Col>
+            <Col xs lg={4}>
+
+                <label>
+                  {StRepElectData[0].stateHouse[0].party}<br />
+                  {StRepElectData[0].stateHouse[0].candidate}
+                </label>
+                </Col>
+            <Col xs lg={4}></Col>
+          </Row>
+
+          <Row>
+            <Col xs lg={3}></Col>
+            <Col xs lg={1}>
+                <input
+                  type="radio"
+                  checked={candidate === "Grant Protzman"}
+                  disabled={voted}
+                  value="Grant Protzman"
+                  id="candidate2"
+                  onChange={(e) => {
+                    setCandidate(e.target.value);
+                  }}
+                />
+                </Col>
+            <Col xs lg={4}>
+                <label>
+                  {StRepElectData[0].stateHouse[1].party}<br />
+                  {StRepElectData[0].stateHouse[1].candidate}
+                </label>
+                </Col>
+            <Col xs lg={4}></Col>
+          </Row>
+
+          <Button
+            variant="dark"
             type="submit"
             size="lg"
             block
+            disabled={voted}
             onClick={submitVote}
           >
             Submit
-          </Button> */}
+          </Button>
         </Card.Body>
       </Card>
     </Container>

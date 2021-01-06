@@ -6,7 +6,7 @@ const StRepElectData = [
       stateHouse: [
         {
           party: "Republican Party",
-          candidate: "Ryan Wilcox, ",
+          candidate: "Ryan Wilcox",
         },
         {
           party: "Democratic Party",
