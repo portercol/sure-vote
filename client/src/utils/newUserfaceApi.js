@@ -1,38 +1,18 @@
-
+// this is built right now on click create a new PID (personID) in this case the Groupe ID has been hard Coded
 import ApiCalls from "./ApiCalls";
+export async function newUserApi(Gid, newPnam, cb) {
+    // GID is "5595"
+    let body = {
+        name: "class demo",
+        picture: "",
+        userData: "1234",
+    };
+
+    var api = new ApiCalls();
+    var results = await api.Post(api.personsEndPoint("5595"), body).then((res) => res.json())
 
 
+    console.log(results, "aj results")
+    return results
+};
 
-
-export function newUserApi(e) {
-    //this.props.personGroupId
-    this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-        let body = {
-            name: this.state.newPersonName,
-            userData: ""
-        };
-
-        var api = new ApiCalls();
-        api.Post(api.personsEndPoint(this.props.personGroupId), body)
-            .then(rest => {
-                // Tell the parent we've added a new item
-                this.setState({ showLoadingOverlay: false }, () => {
-                    this.closeModal();
-                    this.props.onChanged();
-                });
-            });
-    });
-}
-
-
-    // submit = e => {
-    //     this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-    //         submitToAgatha(this.props, this.state.picture, () => {
-    //             this.setState({ showLoadingOverlay: false }, () => {
-    //                 this.closeModal();
-    //                 this.props.onChanged();
-    //             });
-    //         })
-
-    //     });
-    // }

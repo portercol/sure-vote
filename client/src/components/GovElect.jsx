@@ -24,8 +24,8 @@ const GovElect = () => {
         console.log(res.data)
         setVoted(true)
       })
-      .catch(err => console.log (err));
-    };
+      .catch(err => console.log(err));
+  };
 
   const votes = {};
 
@@ -98,15 +98,15 @@ const GovElect = () => {
             </Col>
             <Col xs lg={4}></Col>
           </Row>
-          <Button 
-              variant="dark" 
-              type="submit"
-              size="lg" 
-              block
-              disabled={voted}
-              onClick={submitVote}
-            >
-              Submit
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            block
+            disabled={voted}
+            onClick={submitVote}
+          >
+            Submit
             </Button>
         </Card.Body>
       </Card>

@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
-import ApiCalls from "../utils/ApiCalls";
+// import ApiCalls from "../utils/ApiCalls";
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
 import { newUserApi } from '../utils/newUserfaceApi';
@@ -77,7 +77,7 @@ const SignUp2 = () => {
         const data = canvas.toDataURL('image/png');
         // props needs the GID and the PID
 
-        submitToAgatha(newUserApi, () => { console.log("aj") })
+        return data
     }
     console.log('click')
 
@@ -85,6 +85,7 @@ const SignUp2 = () => {
     const submitBtn = () => {
         console.log("submitted sign up form");
     }
+
     return (
         <>
             <Container id="main-container">
@@ -121,12 +122,13 @@ const SignUp2 = () => {
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
+
                                 newUserApi()
                                     .then(PIDR => {
                                         snap();
+                                        // save()
                                         submitToAgatha("5595", PIDR.personId,);
-
-                                    })
+                                    });
                             }}>CAPTURE2</button>
                         </div>
                         <div className="app__input">
