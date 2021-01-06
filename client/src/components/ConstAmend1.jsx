@@ -10,8 +10,6 @@ const ConstAmend1 = () => {
 
   console.log(ConstAmend1Data);
 
-  // let constAmend1 = ConstAmend1Data[0].ballotQ.answer1;
-
   const submitVote = (event) => {
     event.preventDefault();
     alert("You voted " + answer + " on Constitutional Amendment 1.");
@@ -66,7 +64,7 @@ const ConstAmend1 = () => {
                   checked={answer === "no"}
                   disabled={voted}
                   value="no"
-                  id="answer2"
+                  id="answer1"
                   onChange={(e) => {
                     setAnswer(e.target.value);
                   }}
@@ -84,7 +82,7 @@ const ConstAmend1 = () => {
             type="submit"
             size="lg"
             block
-            disabled={answer || voted}
+            disabled={!answer || voted}
             onClick={submitVote}
           >
             Submit

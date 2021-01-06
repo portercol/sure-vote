@@ -10,7 +10,6 @@ const ConstAmend2 = () => {
 
   console.log(ConstAmend1Data);
 
-  // let constAmend1 = ConstAmend1Data[0].ballotQ.answer1;
 
   const submitVote = (event) => {
     event.preventDefault();
@@ -82,7 +81,7 @@ const ConstAmend2 = () => {
             type="submit"
             size="lg"
             block
-            disabled={voted}
+            disabled={!answer || voted}
             onClick={submitVote}
           >
             Submit

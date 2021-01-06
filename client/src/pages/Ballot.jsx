@@ -18,8 +18,10 @@ import ConstAmend2 from "../components/ConstAmend2";
 import "./Ballot.css";
 // import axios from 'axios';
 
+
 const Ballot = () => {
-//   const [radio, setRadio] = useState([]);
+  // const [radio, setRadio] = useState([]);
+
 
 // useEffect(() => {
 //   sendVote()
