@@ -38,7 +38,7 @@ const SignIn = () => {
         <Jumbotron id="main-jumbotron">
           <h1 className="header">Sign In</h1>
           <hr />
-          <Form>
+          <Form id="signIn-form">
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label></Form.Label>
               <Form.Control
@@ -48,7 +48,7 @@ const SignIn = () => {
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone.
-                            </Form.Text>
+              </Form.Text>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label></Form.Label>
@@ -59,7 +59,7 @@ const SignIn = () => {
               />
               <Form.Text className="text-muted">
                 We'll never share your password with anyone.
-                            </Form.Text>
+              </Form.Text>
             </Form.Group>
           </Form>
           <div id="userSignIn">
