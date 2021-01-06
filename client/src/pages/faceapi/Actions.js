@@ -11,7 +11,6 @@ import ApiCalls from "../../utils/ApiCalls";
 import IdentificationHelper from "../../utils/IdentificationHelper";
 import 'react-overlay-loader/styles.css';
 import { trainingStart } from '../../utils/Training'
-// import '../../css/App.css';
 
 class Actions extends Component {
 
@@ -231,6 +230,7 @@ class TrainGroup extends Component {
 
         });
 
+
     }
 
     checkTraining() {
@@ -253,7 +253,7 @@ class TrainGroup extends Component {
                 <Button variant="primary" className="action-but" onClick={this.startTraining}>Train group</Button>
                 <Loader fullPage loading={this.state.showLoadingOverlay} text="Training in progress ..."
                     containerStyle={{ background: "rgba(255, 255, 255, 0.9)" }} />
-            </Fragment>
+            </Fragment >
         );
     }
 }

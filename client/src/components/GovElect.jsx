@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect, useState, Component, submitBtn } from "react";
-import GovElectData from "../seedData/govSeed"
-=======
 import React, { useState } from "react";
->>>>>>> 29f6d116964d9d664283d8c342f62fd6dc6fbdb1
 import {
   Button,
   Container,
@@ -29,8 +24,8 @@ const GovElect = () => {
         console.log(res.data)
         setVoted(true)
       })
-      .catch(err => console.log (err));
-    };
+      .catch(err => console.log(err));
+  };
 
   const votes = {};
 
@@ -103,15 +98,15 @@ const GovElect = () => {
             </Col>
             <Col xs lg={4}></Col>
           </Row>
-          <Button 
-              variant="dark" 
-              type="submit"
-              size="lg" 
-              block
-              disabled={voted}
-              onClick={submitVote}
-            >
-              Submit
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            block
+            disabled={voted}
+            onClick={submitVote}
+          >
+            Submit
             </Button>
         </Card.Body>
       </Card>
