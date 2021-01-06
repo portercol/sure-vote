@@ -98,7 +98,7 @@ export class PersonActionUpload extends Component {
 
     submit = e => {
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-            submitToAgatha(this.props, this.state.picture, () => {
+            submitToAgatha(this.props.personGroupId, this.props.person.personId, this.state.picture, () => {
                 // this.setState({ showLoadingOverlay: false }, () => {
                 //     this.closeModal();
                 //     this.props.onChanged();

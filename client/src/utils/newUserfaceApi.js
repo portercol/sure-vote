@@ -3,7 +3,7 @@ import ApiCalls from "./ApiCalls";
 
 
 
-export function newUserApi(Gid, newPnam, cb) {
+export async function newUserApi(Gid, newPnam, cb) {
     // GID is "5595"
     let body = {
         name: "class demo",
@@ -11,7 +11,9 @@ export function newUserApi(Gid, newPnam, cb) {
     };
 
     var api = new ApiCalls();
-    api.Post(api.personsEndPoint("5595"), body)
+    var results = await api.Post(api.personsEndPoint("5595"), body).then((res) => res.json())
 
+    console.log(results, "aj results")
+    return results
 };
 
