@@ -5,7 +5,6 @@ import {
   ListGroup,
   ListGroupItem,
   Button,
-  Jumbotron
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from '../assets/landlady.jpg';
@@ -43,9 +42,10 @@ const Profile = () => {
           <ListGroup className="list-group-flush">
             <ListGroupItem>Joe Shmoe<span></span></ListGroupItem>
             {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
-            <ListGroupItem>Street: <span id="street-span">123 Main St.</span></ListGroupItem>
-            <ListGroupItem>City: <span id="city-span">Anytown</span></ListGroupItem>
-            <ListGroupItem>State: <span id="state-span">Utah</span></ListGroupItem>
+            <ListGroupItem>Street: <span id="street-span">{}</span></ListGroupItem>
+            <ListGroupItem>City: <span id="city-span">{}</span></ListGroupItem>
+            <ListGroupItem>State: <span id="state-span">{}</span></ListGroupItem>
+            <ListGroupItem>Zip Code: <span id="state-span">{}</span></ListGroupItem>
           </ListGroup>
           <Card.Body>
             <Button variant="dark" type="submit">
