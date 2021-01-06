@@ -63,7 +63,7 @@ const ConstAmend2 = () => {
                   checked={answer === "no"}
                   disabled={voted}
                   value="no"
-                  id="answer1"
+                  id="answer2"
                   onChange={(e) => {
                     setAnswer(e.target.value);
                   }}

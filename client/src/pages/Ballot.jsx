@@ -94,8 +94,8 @@ return (
       </Jumbotron>
     </Container>
 
-//     </>
-//   );
-// };
+     </>
+  );
+};
 
-// export default Ballot;
+export default Ballot;

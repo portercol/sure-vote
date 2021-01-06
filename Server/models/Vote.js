@@ -3,12 +3,9 @@ const Schema = mongoose.Schema;
 
 const VoteSchema = new Schema({
     
-        level: { type: String, required: true },
-        office: { type: String, required: true },
-        candidate1: { type: String, required: true},
-        // candidateParty1: { type: String, required: true},
-        candidate2: { type: String, required: true},
-        // candidateParty2: { type: String, required: true}
+        user: [ { type: mongoose.Schema.Types.ObjectId, ref: 'User' } ],
+        election: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Election' } ],
+        candidate: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Candidate' } ]
       },
 );
 

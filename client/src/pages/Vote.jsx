@@ -9,8 +9,6 @@ const Vote = () => {
 
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
-  const [usernameValue, setUsernameValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
   const [streetAddress1Value, setStreetAddress1Value] = useState('');
   const [streetAddress2Value, setStreetAddress2Value] = useState('');
   const [cityValue, setCityValue] = useState('');
@@ -20,7 +18,7 @@ const Vote = () => {
 
   // create function for submit button 'onclick'
   const submitBtn = (e) => {
-    if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
+    if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")
     } else {
       // console.log(firstNameValue);
@@ -36,8 +34,6 @@ const Vote = () => {
       const userObj = {
         firstName: firstNameValue,
         lastName: lastNameValue,
-        username: usernameValue,
-        password: passwordValue,
         streetAddress1: streetAddress1Value,
         streetAddress2: streetAddress2Value,
         city: cityValue,
