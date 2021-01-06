@@ -19,19 +19,10 @@ const SignUp = () => {
 
 
   // create function for submit button 'onclick'
-  const submitBtn = (e) => {
+  const submitBtn = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
-      console.log("Missing required credentials")
+      console.log("Missing required credentials");
     } else {
-      // console.log(firstNameValue);
-      // console.log(lastNameValue);
-      // console.log(usernameValue);
-      // console.log(passwordValue);
-      // console.log(streetAddress1Value);
-      // console.log(streetAddress2Value);
-      // console.log(cityValue);
-      // console.log(stateValue);
-      // console.log(zipCodeValue);
 
       const userObj = {
         firstName: firstNameValue,
@@ -49,9 +40,11 @@ const SignUp = () => {
         data: userObj
       }).then(() => {
         console.log("Successfully registered!");
+        alert("Successfully Registered!");
       }).catch(err => {
         console.log(err);
       });
+      
     }
   }
 
@@ -214,7 +207,7 @@ const SignUp = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button onClick={() => { submitBtn() }} variant="dark"
+              <Button href="/" onClick={() => {submitBtn()}} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 

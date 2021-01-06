@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, submitBtn } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -6,50 +6,55 @@ import {
   Row,
   Col
 } from "react-bootstrap";
-
 import PresElectData from '../seedData/presSeed';
+import axios from 'axios';
 
 
-const PresElect = () => {
+const PresElect = (props) => {
   
-  const [radio, setRadio] = useState([]);
-
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
+  const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(PresElectData);
 
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+        setVoted(true)
+      })
+      .catch(err => console.log (err));
+    };
 
-  const votes = {};
+
   return (
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
           <h3>{PresElectData[0].office}</h3>
           <hr />
+
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={candidate === "Donald J. Trump"}
+                  disabled={voted}
+                  value="Donald J. Trump"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
+                    console.log(e.target.value)
                   }}
                 />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
-                  <div className="radio">           
+                  <div className="candidate-radio">           
                     <label>
                       {PresElectData[0].president[0].party}<br />
                       {PresElectData[0].president[0].candidate}
@@ -63,25 +68,25 @@ const PresElect = () => {
                 </div>
                 </form>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
             </Row>
 
             <Row>
               <Col xs lg={3}></Col>
               <Col xs lg={1}>
               <input
-                    type="radio"
-                    checked={radio === "option2"}
-                    value="option2"
-                    id="radio2"
-                    onChange={(e) => {
-                      setRadio(e.target.value);
-                    }}
-                  />
+                  type="radio"
+                  checked={candidate === "Joseph R. Biden"}
+                  disabled={voted}
+                  value="Joseph R. Biden"
+                  id="candidate2"
+                  onChange={(e) => {
+                    setCandidate(e.target.value);
+                    console.log(e.target.value)
+                  }}
+                />
               </Col>
-              <Col xs lg={5}>
-
-            <form>
+              <Col xs lg={4}>
                 <label>
                   {PresElectData[0].president[1].party}<br />
                   {PresElectData[0].president[1].candidate}
@@ -89,23 +94,19 @@ const PresElect = () => {
                   {PresElectData[0].president[1].runningMate}
                   {PresElectData[0].president[1].runningMateState}
                 </label>
-                <div className="candidate-select">
-              <div className="radio">
-                
-              </div>
-            </div>
-          </form>
               </Col>
-          {/* <Button 
-                variant="secondary" 
+              <Col xs lg={4}></Col>
+              </Row>
+              <Button 
+                variant="dark" 
                 type="submit"
                 size="lg" 
                 block
+                disabled={voted}
                 onClick={submitVote}
                 >
                 Submit
-                </Button> */}
-                </Row>
+              </Button>
         </Card.Body>
       </Card>
     </Container>
