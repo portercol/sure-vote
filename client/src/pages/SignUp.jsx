@@ -21,7 +21,7 @@ const SignUp = () => {
   // create function for submit button 'onclick'
   const submitBtn = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
-      console.log("Missing required credentials")
+      console.log("Missing required credentials");
     } else {
 
       const userObj = {

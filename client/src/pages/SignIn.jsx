@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron } from "react-bootstrap";
 import './SignIn.css'
+import axios from "axios";
 
 // create functional component to hold sign up page data
 const SignIn = () => {
@@ -9,12 +10,26 @@ const SignIn = () => {
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
 
-  console.log(usernameLogin);
-  console.log(passwordLogin);
   // create function for submit button 'onclick'
   const submitBtn = () => {
     console.log(usernameLogin);
     console.log(passwordLogin);
+    if (usernameLogin === "" || passwordLogin === "") {
+      console.log("Missing username or password");
+    } else {
+      const userLoginObj = {
+        username: usernameLogin,
+        password: passwordLogin
+      }
+      console.log(userLoginObj);
+      axios.post("/api/login",
+        userLoginObj
+      ).then((res) => {
+        console.log("User authenticated");
+      }).catch(err => {
+        console.log(err);
+      });
+    }
   }
 
   return (
@@ -49,12 +64,12 @@ const SignIn = () => {
           </Form>
           <div id="userSignIn">
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/" onClick={() => { submitBtn() }} variant="dark"
+              <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={() => { submitBtn() }} variant="dark"
+              <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>Sign In</Button>
             </ButtonGroup>
           </div>
