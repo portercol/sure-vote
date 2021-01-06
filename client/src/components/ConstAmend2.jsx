@@ -82,7 +82,7 @@ const ConstAmend2 = () => {
             type="submit"
             size="lg"
             block
-            disabled={voted}
+            disabled={!answer || voted}
             onClick={submitVote}
           >
             Submit

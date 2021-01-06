@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -11,9 +11,14 @@ import axios from 'axios';
 
 
 const PresElect = (props) => {
-  
+
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  const [dataReceived, setDataReceived] = useState(false);
+
+  // get data back, set to true
+  // if they've already voted they're not allowed to vote in this election
+
 
   console.log(PresElectData);
 
@@ -28,6 +33,32 @@ const PresElect = (props) => {
       .catch(err => console.log (err));
     };
 
+    // useEffect(() => {
+    //   axios.get('/api/vote', )
+    // }, []); 
+
+    // if (!dataReceived) {
+    //   return (
+    //     <>
+    //   <Container id="pres-elect-card">
+    //   <Card bg="light">
+    //     <Card.Body>
+    //       <h3>{PresElectData[0].office}</h3> 
+    //       <h5>Data not available for the following possible reasons:</h5>
+    //       <ul>
+    //         <li>
+              
+    //         </li>
+    //         <li>
+
+    //         </li>
+    //       </ul>        
+    //     </Card.Body>
+    //   </Card>
+    // </Container>
+    //     </>
+    //   )
+    // }
 
   return (
     <Container id="pres-elect-card">
@@ -42,9 +73,10 @@ const PresElect = (props) => {
                 <input
                   type="radio"
                   checked={candidate === "Donald J. Trump"}
-                  disabled={voted}
                   value="Donald J. Trump"
                   id="candidate1"
+                  disabled={voted}
+                  setAllowSubmit={true}
                   onChange={(e) => {
                     setCandidate(e.target.value);
                     console.log(e.target.value)
@@ -63,7 +95,6 @@ const PresElect = (props) => {
                       {PresElectData[0].president[0].runningMateState}
                     </label>
                     <br />
-
                   </div>
                 </div>
                 </form>
@@ -77,9 +108,9 @@ const PresElect = (props) => {
               <input
                   type="radio"
                   checked={candidate === "Joseph R. Biden"}
-                  disabled={voted}
                   value="Joseph R. Biden"
                   id="candidate2"
+                  disabled={voted}
                   onChange={(e) => {
                     setCandidate(e.target.value);
                     console.log(e.target.value)
@@ -102,7 +133,7 @@ const PresElect = (props) => {
                 type="submit"
                 size="lg" 
                 block
-                disabled={voted}
+                disabled={!candidate || voted}
                 onClick={submitVote}
                 >
                 Submit
