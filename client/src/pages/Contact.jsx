@@ -51,18 +51,20 @@ const Contact = () => {
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>
                     <hr />
+                    <p>801.867.5309 | surev0te@zohomail.com | SLC, UT</p>
+                    <hr />
                     <Form id="contact-form">
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="name" placeholder="Name" onChange={(e) => setNameValue(e.target.value)} />
+                            <Form.Control type="name" placeholder="Your Name" onChange={(e) => setNameValue(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="email" placeholder="Email" onChange={(e) => setEmailValue(e.target.value)} />
+                            <Form.Control type="email" placeholder="Your Email" onChange={(e) => setEmailValue(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="message" placeholder="Message" as="textarea" rows={2} onChange={(e) => setMessageValue(e.target.value)} />
+                            <Form.Control type="message" placeholder="Your Message" as="textarea" rows={2} onChange={(e) => setMessageValue(e.target.value)} />
                         </Form.Group>
                     </Form>
 

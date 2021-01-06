@@ -1,3 +1,7 @@
+p {
+    font-weight: bold;
+}
+
 .main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');
     opacity: .9;
