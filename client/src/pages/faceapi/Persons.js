@@ -11,9 +11,6 @@ import { Loader } from 'react-overlay-loader';
 import 'react-overlay-loader/styles.css';
 import { submitToAgatha } from '../../utils/submitApiImgP';
 import { newUserApi } from '../../utils/newUserfaceApi'
-
-const personID = newUserApi()
-
 class PersonActionDelete extends Component {
     constructor(props) {
         super(props)
@@ -99,7 +96,7 @@ export class PersonActionUpload extends Component {
         this.setState({ picture: e.target.files[0] })
     }
 
-    submit = () => {
+    submit = e => {
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
             submitToAgatha(this.props, this.state.picture, () => {
                 // this.setState({ showLoadingOverlay: false }, () => {

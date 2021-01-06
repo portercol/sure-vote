@@ -16,4 +16,3 @@ export function submitToAgatha(incomingValues, image, cb) {
 
 
 
-

@@ -85,6 +85,7 @@ const SignUp2 = () => {
     const submitBtn = () => {
         console.log("submitted sign up form");
     }
+
     return (
         <>
             <Container id="main-container">

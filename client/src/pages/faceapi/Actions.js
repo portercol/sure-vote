@@ -10,6 +10,7 @@ import { Loader } from 'react-overlay-loader';
 import ApiCalls from "../../utils/ApiCalls";
 import IdentificationHelper from "../../utils/IdentificationHelper";
 import 'react-overlay-loader/styles.css';
+import { trainingStart } from '../../utils/Training'
 // import '../../css/App.css';
 
 class Actions extends Component {
@@ -225,11 +226,9 @@ class TrainGroup extends Component {
 
     startTraining = e => {
         this.setState({ showLoadingOverlay: true }, () => {
-            var api = new ApiCalls();
-            api.Post(api.personGroupTrainEndPoint(this.props.personGroupId))
-                .then(rest => {
-                    this.timer = setInterval(() => this.checkTraining(), 5000);
-                });
+            trainingStart(this.props, () => {
+            })
+
         });
 
     }
