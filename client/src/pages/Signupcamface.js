@@ -121,8 +121,12 @@ const SignUp2 = () => {
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
-                                newUserApi();
-                                snap();
+                                newUserApi()
+                                    .then(PIDR => {
+                                        snap();
+                                        submitToAgatha("5595", PIDR.personId,);
+
+                                    })
                             }}>CAPTURE2</button>
                         </div>
                         <div className="app__input">
