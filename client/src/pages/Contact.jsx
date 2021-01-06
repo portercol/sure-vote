@@ -16,18 +16,18 @@ const Contact = () => {
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
-
+    
     const handleSubmit = e => {
-        // e.preventDefault()
-        axios({
-            method: "POST",
-            url: "http://localhost:5000/send",
-            data: {
-                name: nameValue,
-                email: emailValue,
-                message: messageValue
-            }
-        }).then((response) => {
+
+         e.preventDefault()
+         
+        axios.post('/send', 
+        {
+            name: nameValue,
+            email: emailValue,
+            message: messageValue
+        })
+        .then((response) => {
             if (response.data.status === 'success') {
                 alert("Message Sent.");
                 // resetForm()
@@ -66,7 +66,7 @@ const Contact = () => {
                         </Form.Group>
                     </Form>
 
-                    <Button variant="dark" onClick={() => { handleSubmit() }}>Submit</Button>
+                    <Button variant="dark" onClick={ handleSubmit }>Submit</Button>
 
                 </Jumbotron>
             </Container>
