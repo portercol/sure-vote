@@ -1,83 +1,96 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Container,
-  Col,
-  Row,
-  Card,
-} from "react-bootstrap";
+import { Button, Jumbotron, Container, Col, Row, Card } from "react-bootstrap";
+import axios from 'axios';
+import ConstAmend1Data from '../seedData/const1';
 
+const ConstAmend2 = () => {
 
-const PresElect = () => {
-  const [radio, setRadio] = useState([]);
+  const [answer, setAnswer] = useState("");
+  const [voted, setVoted] = useState(false);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
+  console.log(ConstAmend1Data);
+
+  let constAmend1 = ConstAmend1Data[0].ballotQ.answer1;
 
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted " + answer + " on Constitutional Amendment 2.");
+    axios.post('/api/vote', { answer: answer })
+      .then((res) => {
+        console.log(res.data)
+        setVoted(true)
+      })
+      .catch(err => console.log (err));
+    };
 
-  const votes = {};
   return (
     <Container id="const-amend1-card">
       <Card bg="light">
         <Card.Body>
           <h3>Utah State Constitutional Amendment 2</h3>
           <h6>
-            Shall the Utah Constitution be amended to specify that certain
-            requirements that a person must meet to be eligible for the office
-            of senator or representative in the Utah Legislature apply at the
-            time the person is elected or appointed?
+          Shall the Utah Constitution be amended to specify that certain requirements that a person must meet to be eligible for the office of senator or representative in the Utah Legislature apply at the time the person is elected or appointed?
           </h6>
+          <hr />
 
-          <form>
-            <div className="candidate-select">
-              <div className="radio">
+          <Row>
+            <Col xs lg={5}></Col>
+            <Col xs lg={1}>
+              <form>
                 <input
                   type="radio"
-                  checked={radio === "option1"}
-                  value="option1"
-                  id="radio1"
+                  checked={answer === "yes"}
+                  disabled={voted}
+                  value="yes"
+                  id="answer1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setAnswer(e.target.value);
                   }}
                 />
-                <label>Yes</label>
-              </div>
-            </div>
+              </form>
+            </Col>
+            <Col xs lg={1}>
+              <p>Yes</p>
+            </Col>
+            <Col xs lg={5}></Col>
+          </Row>
 
-            <div className="candidate-select">
-              <div className="radio">
+          <Row>
+            <Col xs lg={5}></Col>
+            <Col xs lg={1}>
+              <form>
                 <input
                   type="radio"
-                  checked={radio === "option2"}
-                  value="option2"
-                  id="radio2"
+                  checked={answer === "no"}
+                  disabled={voted}
+                  value="no"
+                  id="answer1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setAnswer(e.target.value);
                   }}
                 />
-                <label>No</label>
-              </div>
-            </div>
-          </form>
-          {/* <Button 
-                    variant="secondary" 
-                    type="submit"
-                    size="lg" 
-                    block
-                    onClick={submitVote}
-                  >
-                    Submit
-                  </Button>*/}
+              </form>
+            </Col>
+            <Col xs lg={1}>
+              <p>No</p>
+            </Col>
+            <Col xs lg={5}></Col>
+          </Row>
+
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            block
+            disabled={voted}
+            onClick={submitVote}
+          >
+            Submit
+          </Button>
         </Card.Body>
       </Card>
     </Container>
   );
 };
 
-export default PresElect;
+export default ConstAmend2;

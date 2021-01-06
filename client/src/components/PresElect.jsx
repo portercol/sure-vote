@@ -12,20 +12,22 @@ import axios from 'axios';
 
 const PresElect = (props) => {
   
-  const [radio, setRadio] = useState("");
+  const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(PresElectData);
 
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-    axios.post('/api/vote', { candidate: radio })
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
+        setVoted(true)
       })
       .catch(err => console.log (err));
     };
-    console.log(radio);
+
 
   return (
     <Container id="pres-elect-card">
@@ -39,19 +41,20 @@ const PresElect = (props) => {
             <Col xs lg={1}>
                 <input
                   type="radio"
-                  checked={radio === "Donald J. Trump"}
+                  checked={candidate === "Donald J. Trump"}
+                  disabled={voted}
                   value="Donald J. Trump"
-                  id="radio1"
+                  id="candidate1"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                     console.log(e.target.value)
                   }}
                 />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
-                  <div className="radio">           
+                  <div className="candidate-radio">           
                     <label>
                       {PresElectData[0].president[0].party}<br />
                       {PresElectData[0].president[0].candidate}
@@ -65,7 +68,7 @@ const PresElect = (props) => {
                 </div>
                 </form>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
             </Row>
 
             <Row>
@@ -73,16 +76,17 @@ const PresElect = (props) => {
               <Col xs lg={1}>
               <input
                   type="radio"
-                  checked={radio === "Joseph R. Biden"}
+                  checked={candidate === "Joseph R. Biden"}
+                  disabled={voted}
                   value="Joseph R. Biden"
-                  id="radio1"
+                  id="candidate2"
                   onChange={(e) => {
-                    setRadio(e.target.value);
+                    setCandidate(e.target.value);
                     console.log(e.target.value)
                   }}
                 />
               </Col>
-              <Col xs lg={5}>
+              <Col xs lg={4}>
                 <label>
                   {PresElectData[0].president[1].party}<br />
                   {PresElectData[0].president[1].candidate}
@@ -91,16 +95,18 @@ const PresElect = (props) => {
                   {PresElectData[0].president[1].runningMateState}
                 </label>
               </Col>
+              <Col xs lg={4}></Col>
+              </Row>
               <Button 
-                variant="secondary" 
+                variant="dark" 
                 type="submit"
                 size="lg" 
                 block
+                disabled={voted}
                 onClick={submitVote}
                 >
                 Submit
               </Button>
-          </Row>
         </Card.Body>
       </Card>
     </Container>

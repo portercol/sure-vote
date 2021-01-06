@@ -7,21 +7,25 @@ import {
   Card,
 } from "react-bootstrap";
 import GovElectData from "../seedData/govSeed";
+import axios from 'axios';
 
 const GovElect = () => {
-  const [radio, setRadio] = useState([]);
+
+  const [candidate, setCandidate] = useState("");
+  const [voted, setVoted] = useState(false);
 
   console.log(GovElectData);
 
-  const radios = [
-    { name: "Option 1", value: "option1" },
-    { name: "Option 2", value: "option2" },
-  ];
-
   const submitVote = (event) => {
     event.preventDefault();
-    console.log("hitting the button");
-  };
+    alert("You voted for " + candidate + ".");
+    axios.post('/api/vote', { candidate: candidate })
+      .then((res) => {
+        console.log(res.data)
+        setVoted(true)
+      })
+      .catch(err => console.log (err));
+    };
 
   const votes = {};
 
@@ -37,18 +41,19 @@ const GovElect = () => {
             <Col xs lg={1}>
               <input
                 type="radio"
-                checked={radio === "option1"}
-                value="option1"
-                id="radio1"
+                checked={candidate === "Spencer Cox"}
+                disabled={voted}
+                value="Spencer Cox"
+                id="candidate1"
                 onChange={(e) => {
-                  setRadio(e.target.value);
+                  setCandidate(e.target.value);
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <form>
                 <div className="candidate-select">
-                  <div className="radio">
+                  <div className="candidate-radio">
                     <label>
                       {GovElectData[0].governor[0].party}
                       <br />
@@ -63,7 +68,7 @@ const GovElect = () => {
                 </div>
               </form>
             </Col>
-            <Col xs lg={3}></Col>
+            <Col xs lg={4}></Col>
           </Row>
 
           <Row>
@@ -71,15 +76,16 @@ const GovElect = () => {
             <Col xs lg={1}>
               <input
                 type="radio"
-                checked={radio === "option2"}
-                value="option2"
-                id="radio2"
+                checked={candidate === "Chris Peterson"}
+                disabled={voted}
+                value="Chris Peterson"
+                id="candidate2"
                 onChange={(e) => {
-                  setRadio(e.target.value);
+                  setCandidate(e.target.value);
                 }}
               />
             </Col>
-            <Col xs lg={5}>
+            <Col xs lg={4}>
               <label>
                 {GovElectData[0].governor[1].party}
                 <br />
@@ -90,16 +96,18 @@ const GovElect = () => {
                 {GovElectData[0].governor[1].office2}
               </label>
             </Col>
+            <Col xs lg={4}></Col>
           </Row>
-          {/* <Button 
-              variant="secondary" 
+          <Button 
+              variant="dark" 
               type="submit"
               size="lg" 
               block
+              disabled={voted}
               onClick={submitVote}
             >
               Submit
-            </Button> */}
+            </Button>
         </Card.Body>
       </Card>
     </Container>
