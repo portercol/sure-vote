@@ -6,7 +6,7 @@ import ApiCalls from "../utils/ApiCalls";
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
 import { newUserApi } from '../utils/newUserfaceApi';
-
+import { trainingStart } from '../utils/Training'
 
 import "./Signupcamface.css";
 
@@ -59,7 +59,8 @@ const SignUp2 = () => {
             context.drawImage(videoRef.current, 0, 0, HEIGHT, WIDTH);
 
         }
-        console.log('snap')
+        console.log(context, 'snap')
+        return context
     }
 
     window.onload = () => {
@@ -72,19 +73,20 @@ const SignUp2 = () => {
 
 
     // save function 
-    function save(canvas) {
+    function save(vest) {
         // const api = new ApiCalls();
-        const data = canvas.toDataURL('image/png');
         // props needs the GID and the PID
-
-        submitToAgatha(newUserApi, () => { console.log("aj") })
+        const data = vest.toDataURL('image/png');
+        console.log(data, 'click')
+        return data
+        // submitToAgatha(newUserApi, () => { console.log("aj") })
     }
-    console.log('click')
 
     // create function for submit button 'onclick'
     const submitBtn = () => {
         console.log("submitted sign up form");
     }
+
     return (
         <>
             <Container id="main-container">
@@ -121,13 +123,20 @@ const SignUp2 = () => {
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
-                                newUserApi()
-                                    .then(PIDR => {
-                                        snap();
-                                        submitToAgatha("5595", PIDR.personId,);
+                                console.log(snap(), "RENDER SNAP")
+                                snap().canvas.toBlob(data => {
 
-                                    })
-                            }}>CAPTURE2</button>
+                                    newUserApi()
+                                        .then(PIDR => {
+
+
+                                            submitToAgatha("5595", PIDR.personId, data);
+
+                                            trainingStart()
+                                        })
+                                });
+
+                            }}>use</button>
                         </div>
                         <div className="app__input">
                             <button id="save" type="button">save</button>
