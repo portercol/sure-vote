@@ -1,11 +1,13 @@
-require('./config/db')();
 const express = require('express');
-const apiRoutes = require('./routes/api.routes');
 const app = express();
+const apiRoutes = require('./routes/api.routes');
+const mailerRoute = require('./routes/mailer.route');
 const passport = require("passport");
 const logger = require("morgan");
 const User = require("./models/User");
 const LocalStrategy = require("passport-local").Strategy;
+const cors = require('cors');
+require('./config/db')();
 
 app.use(logger("dev"));
 
@@ -27,8 +29,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 // parsing middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(apiRoutes);
+app.use(cors())
 
+app.use(apiRoutes);
+app.use(mailerRoute);
 // fetch data from back end to profile path
 // app.get('/profile', (req, res) => {
 //   console.log(__dirname = '/controllers')

@@ -10,6 +10,8 @@ import Fetchino from 'react-fetchino';
 import { Loader } from 'react-overlay-loader';
 import 'react-overlay-loader/styles.css';
 import { submitToAgatha } from '../../utils/submitApiImgP';
+import { newUserApi } from '../../utils/newUserfaceApi'
+
 
 class PersonActionDelete extends Component {
     constructor(props) {
@@ -72,7 +74,7 @@ class PersonActionDelete extends Component {
     }
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class PersonActionUpload extends Component {
+export class PersonActionUpload extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -96,13 +98,16 @@ class PersonActionUpload extends Component {
         this.setState({ picture: e.target.files[0] })
     }
 
+
+
+
     submit = e => {
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-            submitToAgatha(this.props, this.state.picture, () => {
-                this.setState({ showLoadingOverlay: false }, () => {
-                    this.closeModal();
-                    this.props.onChanged();
-                });
+            submitToAgatha(this.props.personGroupId, this.props.person.personId, this.state.picture, () => {
+                // this.setState({ showLoadingOverlay: false }, () => {
+                //     this.closeModal();
+                //     this.props.onChanged();
+
             })
 
         });
@@ -147,7 +152,7 @@ class PersonActionEdit extends Component {
         super(props)
         this.state = {
             openModal: false,
-            newPersonName: "",
+            newPersonName: "FUCKING RIGHT1!",
             showLoadingOverlay: false
         }
         this.openModal = this.openModal.bind(this)
@@ -186,6 +191,8 @@ class PersonActionEdit extends Component {
     }
 
     render() {
+        console.log(this.props.person, "lets see what up")
+
         return (
             <Fragment>
 
@@ -210,7 +217,7 @@ class PersonActionEdit extends Component {
                         </Button>
                         <Button variant="primary" onClick={this.edit}>
                             Save Changes
-                        </Button>
+                            </Button>
                     </Modal.Footer>
                 </Modal>
                 <Loader fullPage loading={this.state.showLoadingOverlay} containerStyle={{ background: "rgba(255, 255, 255, 0.9)" }} />
@@ -236,7 +243,7 @@ class PersonsItmes extends Component {
                             <h5>{person.name}</h5>
                             <p>
                                 {person.persistedFaceIds.length} pictures
-                            </p>
+            </p>
                         </Col>
                         <Col sm={2} className="group-actions-button">
                             <PersonActionUpload onChanged={this.onChanged} person={person} personGroupId={this.props.personGroupId} />
@@ -249,7 +256,6 @@ class PersonsItmes extends Component {
         );
     }
 }
-
 class Persons extends Component {
     constructor(props) {
         super(props)
@@ -274,7 +280,6 @@ class Persons extends Component {
         const options = {
             headers
         };
-
         return (
             !this.state.show ? (
                 <Fragment></Fragment>
@@ -305,7 +310,7 @@ class AddPerson extends Component {
         super(props)
         this.state = {
             openModal: false,
-            newPersonName: "",
+            newPersonName: "class demo",
             showLoadingOverlay: false
         }
         this.openModal = this.openModal.bind(this)
@@ -322,26 +327,16 @@ class AddPerson extends Component {
 
     setNewPersonName = e => {
         this.setState({ newPersonName: e.target.value })
+        console.log(this.setState({ newPersonName: e.target.value }), "PID")
     }
 
     submit = e => {
-        //this.props.personGroupId
         this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-            let body = {
-                name: this.state.newPersonName,
-                userData: ""
-            };
+            newUserApi(this.props.personGroupId, this.state.newPersonName, () => {
 
-            var api = new ApiCalls();
-            api.Post(api.personsEndPoint(this.props.personGroupId), body)
-                .then(rest => {
-                    // Tell the parent we've added a new item
-                    this.setState({ showLoadingOverlay: false }, () => {
-                        this.closeModal();
-                        this.props.onChanged();
-                    });
-                });
-        });
+            });
+        }
+        )
     }
 
     render() {
@@ -350,26 +345,27 @@ class AddPerson extends Component {
 
                 <Button className="add-button" variant="primary" onClick={this.openModal}>
                     Push me
-                </Button>
+            </Button>
                 <Modal show={this.state.openModal} onHide={this.closeModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add a new person</Modal.Title>
+                        <Modal.Title>YO Add a new person</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
                             <Form.Group controlId="formPersonName">
                                 <Form.Label>Person name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter the person name" onChange={this.setNewPersonName} />
+                                {/* this has made any imput a hard coded valus from add person even if i do enter text in the box aka the text box is usless */}
+                                <Form.Control type="text" placeholder="sup my dude" onChange={this.setNewPersonName} />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.closeModal}>
                             Cancel
-                        </Button>
+                    </Button>
                         <Button variant="primary" onClick={this.submit}>
                             Save Changes
-                        </Button>
+                    </Button>
                     </Modal.Footer>
                 </Modal>
                 <Loader fullPage loading={this.state.showLoadingOverlay} />
@@ -377,5 +373,6 @@ class AddPerson extends Component {
         );
     }
 }
+
 
 export default Persons;
