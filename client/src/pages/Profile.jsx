@@ -37,14 +37,14 @@ const Profile = () => {
           <Container>
             <Row>
               <Col xs lg={4}></Col>
-            <Col xs lg={4}>    
-          <Card className="mainCard" style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={landLady} />
-              <Card.Body>
-                <Card.Title>{}</Card.Title>
-                {/* <Card.Text>
-              If you're behind on your rent I'll work with you.
-            </Card.Text> */}
+              <Col xs lg={4}>    
+                <Card className="mainCard" style={{ width: "18rem" }}>
+                 <Card.Img variant="top" src={landLady} />
+                 <Card.Body>
+                 <Card.Title>{}</Card.Title>
+                 {/* <Card.Text>
+                 If you're behind on your rent I'll work with you.
+                 </Card.Text> */}
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
