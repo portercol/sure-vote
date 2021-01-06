@@ -7,7 +7,7 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
-// import Ballot from './pages/Ballot'
+import Ballot from './pages/Ballot'
 import Contact from './pages/Contact'
 import AddPerson from './pages/Signupcamface'
 // import face from './pages/cam.faceRe'
@@ -22,6 +22,7 @@ function App() {
           <Route exact path='/signup' component={SignUp} />
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/ballot' component={Ballot} />
           <Route exact path='/election' component={Election} />
           <Route exact path='/vote' component={Vote} />
           <Route exact path='/contact' component={Contact} />

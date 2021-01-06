@@ -1,6 +1,6 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState } from "react";
-import { Button, ButtonGroup, Col, Container, Form, Jumbotron } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap";
 import './SignIn.css'
 import axios from "axios";
 

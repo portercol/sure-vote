@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Jumbotron, Container, Col, Row, Card } from "react-bootstrap";
+import { Button, Container, Col, Row, Card } from "react-bootstrap";
 import axios from 'axios';
 import ConstAmend1Data from '../seedData/const1';
 
@@ -10,7 +10,7 @@ const ConstAmend1 = () => {
 
   console.log(ConstAmend1Data);
 
-  let constAmend1 = ConstAmend1Data[0].ballotQ.answer1;
+  // let constAmend1 = ConstAmend1Data[0].ballotQ.answer1;
 
   const submitVote = (event) => {
     event.preventDefault();
@@ -66,7 +66,7 @@ const ConstAmend1 = () => {
                   checked={answer === "no"}
                   disabled={voted}
                   value="no"
-                  id="answer1"
+                  id="answer2"
                   onChange={(e) => {
                     setAnswer(e.target.value);
                   }}
@@ -84,7 +84,7 @@ const ConstAmend1 = () => {
             type="submit"
             size="lg"
             block
-            disabled={voted}
+            disabled={answer || voted}
             onClick={submitVote}
           >
             Submit
