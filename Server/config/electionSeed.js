@@ -1,8 +1,5 @@
-let mongoose = require("mongoose");
-// let db = require("../models");
+const mongoose = require("mongoose");
 const ElectionSchema = require('../models/Election');
-
-const Schema = mongoose.Schema;
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/sureVote_db", {
@@ -12,20 +9,87 @@ mongoose.connect(
     useFindAndModify: false
 });
 
-const newElection = new ElectionSchema({
+const electionSeed = [
+  {
     date: Date.now(),
     level: "Federal",
+    type: "Office",
     location: "Utah",
-    office: "US Representative",
+    office: "President of the United States",
     candidates: [ ]
-})
+  },
+  {
+    date: Date.now(),
+    level: "Federal",
+    type: "Office",
+    location: "Utah",
+    office: "United States Senator",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "Federal",
+    type: "Office",
+    location: "Utah",
+    office: "United States Representative",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Office",
+    location: "Utah",
+    office: "Governor",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Office",
+    location: "Utah",
+    office: "Utah State Senator",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Office",
+    location: "Utah",
+    office: "Utah State Representative",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Office",
+    location: "Utah",
+    office: "Utah Supreme Court",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Referendum",
+    location: "Utah",
+    office: "Utah State Representative",
+    candidates: [ ]
+  },
+  {
+    date: Date.now(),
+    level: "State",
+    type: "Referendum",
+    location: "Utah",
+    office: "Utah State Representative",
+    candidates: [ ]
+  },
+]
 
-newElection.save();
+electionSeed.save();
 
 console.log("Data Saved");
 
-// db.Worko.deleteMany({})
-//   .then(() => db.Workout.collection.insertMany(workoutSeed))
+// ElectionSchema.Election.deleteMany({})
+//   .then(() => ElectionSchema.Election.collection.insertMany(electionSeed))
 //   .then(data => {
 //     console.log(data.result.n + " records inserted!");
 //     process.exit(0);

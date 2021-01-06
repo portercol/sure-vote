@@ -25,6 +25,7 @@ const PresElect = (props) => {
   const submitVote = (event) => {
     event.preventDefault();
     alert("You voted for " + candidate + ".");
+    console.log("Button works")
     axios.post('/api/vote', { candidate: candidate })
       .then((res) => {
         console.log(res.data)
