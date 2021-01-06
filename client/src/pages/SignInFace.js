@@ -126,7 +126,7 @@ const SignUp2 = () => {
                                 newUserApi()
                                     .then(PIDR => {
                                         snap();
-
+                                        // save()
                                         submitToAgatha("5595", PIDR.personId,);
                                     });
                             }}>CAPTURE2</button>
