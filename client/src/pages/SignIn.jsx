@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron } from "react-bootstrap";
 import './SignIn.css'
 import axios from "axios";
+import isAuthenticated from "../utils/isAuthenticated"
 
 // create functional component to hold sign up page data
 const SignIn = () => {
@@ -21,11 +22,11 @@ const SignIn = () => {
         username: usernameLogin,
         password: passwordLogin
       }
-      console.log(userLoginObj);
       axios.post("/api/login",
         userLoginObj
-      ).then((res) => {
-        console.log("User authenticated");
+      ).then((data) => {
+        console.log(data);
+        console.log(isAuthenticated());
       }).catch(err => {
         console.log(err);
       });

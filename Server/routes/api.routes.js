@@ -8,16 +8,16 @@ const Vote = require("../models/Vote");
 const User = require("../models/User");
 
 router
-    // .route("/api/signup")
-    // .get((req, res) => {
-    //     User    
-    //         .find({})
-    //         .then(data => {
-    //             res.json({ success: true, data});
-    //         })
-    //         .catch(err => ({ err });
-    //         res.json({ success: false });
-    // })
+    .get("/api/profile", (req, res) => {
+        User
+            .findById(req.body._id)
+            .then(data => {
+                res.json({ success: true, data });
+            })
+            .catch(err => {
+                res.json({ success: false, err })
+            })
+    })
     .post("/api/signup", (req, res) => {
         Users = new User({
             username: req.body.data.username,
@@ -89,7 +89,17 @@ router
         //         console.log({ err });
         //         res.json({ success: false });
         //     });
-    });
+    })
+
+// .post("/api/person", (req, res, next) {
+//     User.findByIdAndUpdate(
+//         {
+//             _id: req.user._id,
+//             personId: req.body.personId
+//         }
+//     )
+
+// });
 
 
 
