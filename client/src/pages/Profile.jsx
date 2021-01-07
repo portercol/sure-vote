@@ -19,18 +19,22 @@ const Profile = () => {
 
   // const [profileData, setProfileData] = useState();
 
+  // const useEffect
+
   const getProfile = () => {
-    axios
-      .get('/api/profile', 
-      {
+    axios({
+      method: 'GET',
+      url: '/api/profile',
+      data: { 
         _id: "5ff67acffb1185391c11fdfb",
-      }).then((res) => {
+      }
+    }).then((res) => {
         console.log(res)
       }).catch(err => {
         console.log(err);
-      })
+  })
   }
-
+  
   getProfile();
 
   return (
