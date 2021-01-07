@@ -2,6 +2,26 @@ p {
     font-weight: bold;
 }
 
+hr {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h6 {
+    font-weight: bold;
+    color: rgb(15, 15, 15); 
+}
+
+a {
+    font-weight: bold;
+    color: rgb(15, 15, 15);
+}
+
+#contact-form {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 .main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');
     opacity: .9;

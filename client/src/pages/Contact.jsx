@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import {
-    Container,
-    Jumbotron,
     Button,
-    Form
+    Container,
+    Form,
+    Jumbotron
 } from "react-bootstrap";
 import './Contact.css'
 import Navbar from '../components/Navbar.jsx'
@@ -51,7 +51,8 @@ const Contact = () => {
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>
                     <hr />
-                    <p>801.867.5309 | surev0te@zohomail.com | SLC, UT</p>
+                    <h6>801.867.5309 | SLC, UT</h6>
+                    <a href='mailto:surev0te@zohomail.com'>surev0te@zohomail.com</a>
                     <hr />
                     <Form id="contact-form">
                         <Form.Group controlId="exampleForm.ControlInput1">
@@ -67,8 +68,8 @@ const Contact = () => {
                             <Form.Control type="message" placeholder="Your Message" as="textarea" rows={2} onChange={(e) => setMessageValue(e.target.value)} />
                         </Form.Group>
                     </Form>
-
-                    <Button variant="dark" onClick={ handleSubmit }>Submit</Button>
+                    <br/>
+                    <Button size="lg" variant="dark" id="submitBtn" onClick={ handleSubmit }>Submit</Button>
 
                 </Jumbotron>
             </Container>
