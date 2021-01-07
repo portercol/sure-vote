@@ -9,7 +9,7 @@ const NavbarFixed = () => {
     return (
         <>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand class="sure-vote" href="/profile">SURE V<img className="fpNavlogo" src={FingerPrint} alt='finger print logo' />TE</Navbar.Brand>
+                <Navbar.Brand className="sure-vote" href="/profile">SURE V<img className="fpNavlogo" src={FingerPrint} alt='finger print logo' />TE</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

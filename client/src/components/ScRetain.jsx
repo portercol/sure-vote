@@ -69,7 +69,7 @@ const ScRetain = () => {
                   checked={answer === "no"}
                   disabled={voted}
                   value="no"
-                  id="answer1"
+                  id="answer2"
                   onChange={(e) => {
                     setAnswer(e.target.value);
                   }}
@@ -87,7 +87,7 @@ const ScRetain = () => {
               type="submit"
               size="lg" 
               block
-              disabled={voted}
+              disabled={!answer || voted}
               onClick={submitVote}
             >
               Submit

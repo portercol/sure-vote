@@ -1,6 +1,15 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState } from "react";
-import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
+import { 
+  Button, 
+  ButtonGroup, 
+  Col, 
+  Container, 
+  Form, 
+  FormControl, 
+  InputGroup, 
+  Jumbotron 
+} from "react-bootstrap";
 import "./SignUp.css";
 const axios = require("axios");
 
@@ -53,7 +62,8 @@ const SignUp = () => {
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
           <h1 id="pi">Personal Information</h1>
-          <Form>
+          <hr />
+          <Form id="signUp-form">
             <Form.Row>
               <Col>
                 <Form.Control
@@ -186,24 +196,14 @@ const SignUp = () => {
 
           <div id="verification">
             <h3 id="verification-header">Voting Verification</h3>
+            <h6>Please click 'PSWD' to generate password</h6>
 
-            <Button variant="dark" size="lg" block>
-              Generate Random Password
-              </Button>
-
-            <div id="random-password">
-              <InputGroup className="mb-3">
-                <FormControl
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-              </InputGroup>
-            </div>
-            <Button variant="dark" size="lg" block>
-              Capture Image
-              </Button>
-
-            <br />
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+                <Button variant="dark">PSWD</Button>
+              </InputGroup.Prepend>
+              <FormControl className="pswd-form" aria-describedby="basic-addon1" />
+            </InputGroup>
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
@@ -215,17 +215,6 @@ const SignUp = () => {
               <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>Sign Up</Button>
             </ButtonGroup>
-
-
-            <div id="capture-image">
-              {/* <InputGroup className="mb-3">
-                  <FormControl
-                    // placeholder="Username"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup> */}
-            </div>
           </div>
         </Jumbotron>
       </Container>

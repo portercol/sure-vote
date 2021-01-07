@@ -77,18 +77,6 @@ router
         console.log(req.body);
         console.log("hit vote route")
         res.end();
-        // Election
-        //     .create({
-        //         text: req.body.text
-        //     })
-        //     .then(data => {
-        //         console.log({ data })
-        //         res.json({ success: true, data })
-        //     })
-        //     .catch(err => {
-        //         console.log({ err });
-        //         res.json({ success: false });
-        //     });
     })
 
 // .post("/api/person", (req, res, next) {
@@ -100,6 +88,7 @@ router
 //     )
 
 // });
+
 
 
 

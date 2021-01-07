@@ -2,18 +2,25 @@ body {
     background-color: rgb(199, 212, 224);
 }
 
+h6 {
+    font-weight: lighter;
+    color:rgb(24, 24, 24)
+}
+
+#random-password {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#signUp-form {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 #signup-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');  
     margin-top: 40px;
     opacity: .9; 
-}
-
-#pi {
-    padding-bottom: 20px;
-}
-
-#address {
-    font-weight: bold;
 }
 
 #verification {
@@ -22,4 +29,12 @@ body {
 
 #verification-header {
     padding-bottom: 10px;
+}
+
+.mb-3 {
+    margin-left: 20px;
+}
+
+.pswd-form {
+    margin-right: 50px;
 }
