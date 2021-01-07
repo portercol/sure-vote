@@ -1,14 +1,25 @@
+// for this page we need to do several things
+// create a hot route to page to work on it
+// ????? how will varify work with the camera ????????
+// 1. draw out the site page
+// 2. cut down the varification function so that it can render on this page
+// 3. pull data to run it agensts(hard code to start)
+// 4. pull the confidence rating (run some tests on the confidence witht the new system)
+// 5. use the confidence rating to varify user and give access to voting page
+
+
+
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
+import { newUserApi } from '../utils/newUserfaceApi';
+import { trainingStart } from '../utils/Training'
 // import ApiCalls from "../utils/ApiCalls";
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
-import { newUserApi } from '../utils/newUserfaceApi';
-
-
 import "./Signupcamface.css";
+
 
 
 
@@ -16,7 +27,7 @@ import "./Signupcamface.css";
 
 
 
-const SignUp2 = () => {
+const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
 
     const vest = useRef(null);
@@ -59,7 +70,8 @@ const SignUp2 = () => {
             context.drawImage(videoRef.current, 0, 0, HEIGHT, WIDTH);
 
         }
-        console.log('snap')
+        console.log(context, 'snap')
+        return context
     }
 
     window.onload = () => {
@@ -72,14 +84,14 @@ const SignUp2 = () => {
 
 
     // save function 
-    function save(canvas) {
+    function save(vest) {
         // const api = new ApiCalls();
-        const data = canvas.toDataURL('image/png');
         // props needs the GID and the PID
-
+        const data = vest.toDataURL('image/png');
+        console.log(data, 'click')
         return data
+        // submitToAgatha(newUserApi, () => { console.log("aj") })
     }
-    console.log('click')
 
     // create function for submit button 'onclick'
     const submitBtn = () => {
@@ -122,14 +134,20 @@ const SignUp2 = () => {
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
+                                console.log(snap(), "RENDER SNAP")
+                                snap().canvas.toBlob(data => {
 
-                                newUserApi()
-                                    .then(PIDR => {
-                                        snap();
-                                        // save()
-                                        submitToAgatha("5595", PIDR.personId,);
-                                    });
-                            }}>CAPTURE2</button>
+                                    newUserApi()
+                                        .then(PIDR => {
+
+
+                                            submitToAgatha("5595", PIDR.personId, data);
+
+                                            trainingStart()
+                                        })
+                                });
+
+                            }}>use</button>
                         </div>
                         <div className="app__input">
                             <button id="save" type="button">save</button>
@@ -175,4 +193,4 @@ const SignUp2 = () => {
 };
 
 // export component from SignUp.jsx
-export default SignUp2;
+export default SignIn2;

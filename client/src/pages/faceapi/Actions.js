@@ -8,9 +8,12 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import { Loader } from 'react-overlay-loader';
 import ApiCalls from "../../utils/ApiCalls";
-import IdentificationHelper from "../../utils/IdentificationHelper";
 import 'react-overlay-loader/styles.css';
 import { trainingStart } from '../../utils/Training'
+import { letsSeeYourFace } from '../../utils/Identify'
+// import IdentificationHelper from "../../utils/IdentificationHelper";
+
+
 
 class Actions extends Component {
 
@@ -84,65 +87,20 @@ class Identify extends Component {
     identify = e => {
         if (this.state.picture !== null) {
             this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-                // Post photo to detect face first
                 var reader = new FileReader();
-                reader.onload = () => {
-                    let idHelper = new IdentificationHelper();
-                    idHelper.Detect(reader.result)
-                        .then(facesDetected => {
-                            if (facesDetected.length > 0) {
-                                //the face has been added and now is being checked aganst taught data 
-                                idHelper.Identify(this.props.personGroupId, facesDetected)
-                                    .then(facesIdentified => {
-                                        //  do not have the candidate name in the return json, so ask for it ...
-                                        facesIdentified.forEach(face => {
-                                            //For each faceId found in the picture
-                                            if (face.candidates.length > 0) {
-                                                // For each candidates, get the name
-                                                var allCalls = []
-                                                face.candidates.forEach((c) => {
-                                                    const candidate = idHelper.Authentify(this.props.personGroupId, c.personId, c.confidence);
-                                                    allCalls.push(candidate);
-                                                });
-                                                // Wait for all the async calls before sending the results
-                                                Promise.all(allCalls)
-                                                    .then(value => {
-                                                        this.identificationCompleteted(
-                                                            {
-                                                                ok: true,
-                                                                message: "I have found the following candidates: ",
-                                                                candidates: value
-                                                            }
-                                                        );
-                                                    })
-                                            }
-                                            else {
-                                                this.identificationCompleteted(
-                                                    {
-                                                        ok: false,
-                                                        message: "No matching candidates were found in the picture."
-                                                    }
-                                                );
-                                            }
-                                            return;
-                                        });
+                letsSeeYourFace(this.props.personGroupId, reader.result, this.state.picture, this.identificationCompleteted(), this.props.personGroupId.personId, () => {
 
-                                    });
-                            }
-                            else {
-                                this.identificationCompleteted(
-                                    {
-                                        ok: false,
-                                        message: "This picture does not contain any face."
-                                    }
-                                );
-                            }
-                        });
-                };
-                reader.readAsArrayBuffer(this.state.picture);
-            });
+                })
+            })
         }
     }
+
+
+
+
+
+
+
 
     render() {
         let modalClose = () => this.setState({ showResults: false });
@@ -213,7 +171,7 @@ class IdentficationResults extends Component {
         );
     }
 }
-
+// Training does not work on click right now and is an issue for latter 1/5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class TrainGroup extends Component {
 
     constructor(props) {

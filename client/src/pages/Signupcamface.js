@@ -2,13 +2,13 @@
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
-import ApiCalls from "../utils/ApiCalls";
-// import GroupPersons from './faceapi/Groups';
-// import Actions from './faceapi/Actions';
 import { newUserApi } from '../utils/newUserfaceApi';
 import { trainingStart } from '../utils/Training'
-
+// import ApiCalls from "../utils/ApiCalls";
+// import GroupPersons from './faceapi/Groups';
+// import Actions from './faceapi/Actions';
 import "./Signupcamface.css";
+
 
 
 
