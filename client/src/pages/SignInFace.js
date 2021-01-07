@@ -13,11 +13,11 @@
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
-import { newUserApi } from '../utils/newUserfaceApi';
-import { trainingStart } from '../utils/Training'
+// import { newUserApi } from '../utils/newUserfaceApi';
+// import { trainingStart } from '../utils/Training'
+import { letsSeeYourFace } from '../utils/Identify';
 // import ApiCalls from "../utils/ApiCalls";
-// import GroupPersons from './faceapi/Groups';
-// import Actions from './faceapi/Actions';
+
 import "./Signupcamface.css";
 
 
@@ -137,16 +137,29 @@ const SignIn2 = () => {
                                 console.log(snap(), "RENDER SNAP")
                                 snap().canvas.toBlob(data => {
 
-                                    newUserApi()
-                                        .then(PIDR => {
+                                    // remember at this time the code is hard coded
+                                    var STA = submitToAgatha("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", data)
+                                    letsSeeYourFace(STA)
+                                }
+                                    // .then(IMG => {
+
+                                    //     letsSeeYourFace(submitToAgatha(IMG))
+                                    //     console.log(letsSeeYourFace(submitToAgatha()), "lets see if this reads a face or anything")
 
 
-                                            submitToAgatha("5595", PIDR.personId, data);
+                                    // })
+                                    // newUserApi()
+                                    // letsSeeYourFace(submitToAgatha("5595", "98643950-7820-4eea-b01a-f42065343011", data))
 
-                                            trainingStart()
-                                        })
-                                });
 
+                                    // submitToAgatha("5595", "5595", "98643950-7820-4eea-b01a-f42065343011", data);
+
+
+
+
+
+
+                                )
                             }}>use</button>
                         </div>
                         <div className="app__input">

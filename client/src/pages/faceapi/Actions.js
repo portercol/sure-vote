@@ -88,7 +88,8 @@ class Identify extends Component {
         if (this.state.picture !== null) {
             this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
                 var reader = new FileReader();
-                letsSeeYourFace(this.props.personGroupId, reader.result, this.state.picture, this.identificationCompleteted(), this.props.personGroupId.personId, () => {
+                var pid = "fa704750-0b81-43d0-a3a4-3e025f3eb2ba"
+                letsSeeYourFace(this.props.personGroupId, reader.result, this.state.picture, this.identificationCompleteted(), this.props.personGroupId.personId, pid.confidence, () => {
 
                 })
             })
@@ -138,38 +139,39 @@ class Identify extends Component {
 }
 
 class IdentficationResults extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
+    let e = identify()
+constructor(props) {
+    super(props)
+    this.e.state = {}
+}
 
-    render() {
-        return (
-            <Modal {...this.props}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Results of the identification</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {
-                        this.props.results !== null &&
-                        <Alert variant={this.props.results.ok ? "success" : "danger"}>
-                            {this.props.results.ok === false &&
-                                <Fragment>{this.props.results.message}</Fragment>
-                            }
-                            {this.props.results.ok === true &&
-                                <Fragment>
-                                    {this.props.results.message}
-                                    {this.props.results.candidates.map((c) => { return `${c.name} with a confidence of ${c.confidence}` }).join(",")}
-                                </Fragment>
-                            }
-                        </Alert>
-                    }
-                </Modal.Body>
-                <Modal.Footer>
-                </Modal.Footer>
-            </Modal>
-        );
-    }
+render() {
+    return (
+        <Modal {...this.props}>
+            <Modal.Header closeButton>
+                <Modal.Title>Results of the identification</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                {
+                    this.props.results !== null &&
+                    <Alert variant={this.props.results.ok ? "success" : "danger"}>
+                        {this.props.results.ok === false &&
+                            <Fragment>{this.props.results.message}</Fragment>
+                        }
+                        {this.props.results.ok === true &&
+                            <Fragment>
+                                {this.props.results.message}
+                                {this.props.results.candidates.map((c) => { return `${c.name} with a confidence of ${c.confidence}` }).join(",")}
+                            </Fragment>
+                        }
+                    </Alert>
+                }
+            </Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+        </Modal>
+    );
+}
 }
 // Training does not work on click right now and is an issue for latter 1/5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class TrainGroup extends Component {

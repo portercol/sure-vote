@@ -20,7 +20,7 @@ export function letsSeeYourFace(GID, helperD, thisPicture, idCompleted, PID) {
                 // For each candidates, get the name
                 var allCalls = []
                 var foreach = faceFour.candidates.forEach((c) => {
-                    const candidate = idHelper.Authentify("5595", "98643950-7820-4eea-b01a-f42065343011", c.confidence);
+                    const candidate = idHelper.Authentify("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", c.confidence);
                     console.log(candidate, "canidatedata and confidence")
                     allCalls.push(candidate);
                 });
@@ -49,7 +49,7 @@ export function letsSeeYourFace(GID, helperD, thisPicture, idCompleted, PID) {
         }
 
     };
-    renderOnload()
-}
 
+    return renderOnload()
+}
 
