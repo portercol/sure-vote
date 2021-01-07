@@ -1,5 +1,5 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
@@ -13,22 +13,25 @@ import {
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
 import "../pages/Profile.css";
+import axios from 'axios';
 
-// create functional component to hold profile data
 const Profile = () => {
-  // useEffect(() => {
-  //   async function fetchProfileData(){
-  //     try {
-  //       const response = await fetch("/api/signup");
-  //       const json = await response.json();
-  //       console.log({ json });
-  //     } catch (err) {
-  //       console.log({ err });
-  //     }
-  //   }
 
-  //   fetchProfileData();
-  // }, []);
+  // const [profileData, setProfileData] = useState();
+
+  const getProfile = () => {
+    axios
+      .get('/api/profile', 
+      {
+        _id: "5ff67acffb1185391c11fdfb",
+      }).then((res) => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+  getProfile();
 
   return (
     <>
@@ -74,7 +77,8 @@ const Profile = () => {
         </Jumbotron>
     </>
   );
-};
+
+}
 
 // export component from Profile.jsx
 export default Profile;
