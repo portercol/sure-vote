@@ -35,8 +35,8 @@ const SignIn2 = () => {
 
 
 
-    const HEIGHT = 500;
-    const WIDTH = 500;
+    const HEIGHT = 650;
+    const WIDTH = 490;
 
     const startVideo = () => {
         setPlaying(true);
@@ -136,10 +136,14 @@ const SignIn2 = () => {
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
                                 snap().canvas.toBlob(data => {
+                                    // this is considered asyc 
+                                    letsSeeYourFace('5595', data, 'fa704750-0b81-43d0-a3a4-3e025f3eb2ba')
 
                                     // remember at this time the code is hard coded
-                                    var STA = submitToAgatha("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", data)
-                                    letsSeeYourFace(STA)
+                                    // submitToAgatha("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", data, async (STA) => {
+                                    //     var data = await STA.json()
+                                    //     console.log(data, "AJCLEMENS")
+                                    // })
                                 }
                                     // .then(IMG => {
 
