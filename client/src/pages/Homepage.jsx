@@ -32,10 +32,10 @@ const Homepage = () => {
         <hr />
         <br />
         <ButtonGroup size="lg" className="mr-3">
-          <Button href="/signup" onClick={() => {signUpBtn()}} variant="dark" id='left-button'>Sign Up</Button>
+          <Button href="/signup" onClick={() => { signUpBtn() }} variant="dark" id='left-button'>Sign Up</Button>
         </ButtonGroup>
         <ButtonGroup size="lg" className="mr-3">
-          <Button href="/signin" onClick={() => {signInBtn()}} variant="dark" id='right-button'>Sign In</Button>
+          <Button href="/signin" onClick={() => { signInBtn() }} variant="dark" id='right-button'>Sign In</Button>
         </ButtonGroup>
       </Jumbotron>
     </Container>
