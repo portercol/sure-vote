@@ -32,11 +32,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-        <Jumbotron>
-          <Container>
-            <Row>
-              <Col xs lg={4}></Col>
-              <Col xs lg={4}>    
+          <Container> 
                 <Card className="mainCard" style={{ width: "18rem" }}>
                  <Card.Img variant="top" src={landLady} />
                  <Card.Body>
@@ -63,11 +59,7 @@ const Profile = () => {
                 </Button>
           </Card.Body>
         </Card>
-        </Col>
-        <Col xs lg={4}></Col>
-        </Row>
       </Container>
-      </Jumbotron>
     </>
   );
 
