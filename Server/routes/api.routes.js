@@ -2,16 +2,18 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { v4: newUuid } = require("uuid");
-const Vote = require("../models/Vote");
+// const Vote = require("../models/Vote");
 
 
 const User = require("../models/User");
 
 router
-    .get("/api/profile", (req, res) => {
+    .get("/api/profile/:id", (req, res) => {
+        console.log(req.params.id);
         User
-            .findById(req.body._id)
+            .findById(req.params.id)
             .then(data => {
+                console.log(data);
                 res.json({ success: true, data });
             })
             .catch(err => {
@@ -42,9 +44,10 @@ router
             }
             else {
                 console.log("success");
+                console.log(user);
                 res.json({
                     success: true,
-                    message: "Account registered"
+                    message: "Account registered",
                 });
             };
         });
