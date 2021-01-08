@@ -49,7 +49,7 @@ const Vote = () => {
       }).catch(err => {
         console.log(err);
       });
-      
+
     }
   }
 
@@ -73,25 +73,6 @@ const Vote = () => {
                 />
               </Col>
             </Form.Row>
-            {/* <Form.Row>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  onChange={(e) => setUsernameValue(e.target.value)}
-                />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label></Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  onChange={(e) => setPasswordValue(e.target.value)}
-                />
-              </Form.Group>
-            </Form.Row> */}
 
             <Form.Group controlId="formGridAddress1">
               <Form.Label ></Form.Label>
@@ -121,7 +102,6 @@ const Vote = () => {
               <Form.Group as={Col} controlId="formGridState">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  // id="state"
                   onChange={(e) => setStateValue(e.target.value)}
                   as="select" defaultValue="State...">
                   <option>State</option>
@@ -191,19 +171,12 @@ const Vote = () => {
 
           <div id="verification">
             <h3 id="verification-header">Voting Verification</h3>
+            <h6>Please enter unique ID below</h6>
 
-            <Button variant="dark" size="lg" block>
-              Enter Randomly Generated Password
-              </Button>
-
-            <div id="random-password">
-              <InputGroup className="mb-3">
-                <FormControl
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-              </InputGroup>
-            </div>
+            <InputGroup className="mb-3">
+              <FormControl id="id-field" aria-describedby="basic-addon1" />
+            </InputGroup>
+            <br />
             <Button variant="dark" size="lg" block>
               Capture Image
               </Button>
@@ -212,7 +185,7 @@ const Vote = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={() => {submitBtn()}} variant="dark"
+              <Button href="/profile" onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
             </ButtonGroup>
 
@@ -220,17 +193,6 @@ const Vote = () => {
               <Button href="/ballot" onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>VOTE</Button>
             </ButtonGroup>
-
-
-            <div id="capture-image">
-              {/* <InputGroup className="mb-3">
-                  <FormControl
-                    // placeholder="Username"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                </InputGroup> */}
-            </div>
           </div>
         </Jumbotron>
       </Container>
