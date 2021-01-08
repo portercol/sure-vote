@@ -24,9 +24,8 @@ const SignIn = () => {
       }
       axios.post("/api/login",
         userLoginObj
-      ).then((data) => {
-        console.log(data);
-        console.log(isAuthenticated());
+      ).then((res) => {
+        console.log(res.data.userId);
       }).catch(err => {
         console.log(err);
       });

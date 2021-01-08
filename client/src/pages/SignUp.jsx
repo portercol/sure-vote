@@ -49,7 +49,7 @@ const SignUp = () => {
         userObj
       ).then((res) => {
         console.log("Successfully registered!");
-        console.log(res);
+        console.log(res.data.userId);
         alert("Successfully Registered!");
       }).catch(err => {
         console.log(err);
@@ -195,18 +195,18 @@ const SignUp = () => {
             </Form.Row>
           </Form>
 
-          <br/>
+          <br />
 
-            <ButtonGroup size="lg" className="mr-3">
-              <Button href="/" onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='right-button'>Go Back</Button>
-            </ButtonGroup>
+          <ButtonGroup size="lg" className="mr-3">
+            <Button href="/" onClick={() => { submitBtn() }} variant="dark"
+              type="submit" id='right-button'>Go Back</Button>
+          </ButtonGroup>
 
-            <ButtonGroup size="lg" className="mr-3">
-              <Button onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='left-button'>Sign Up</Button>
-            </ButtonGroup>
-          
+          <ButtonGroup size="lg" className="mr-3">
+            <Button onClick={() => { submitBtn() }} variant="dark"
+              type="submit" id='left-button'>Sign Up</Button>
+          </ButtonGroup>
+
         </Jumbotron>
       </Container>
     </>

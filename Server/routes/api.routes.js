@@ -71,7 +71,11 @@ router
                         errors: err
                     });
                 }
-                return res.status(200).json(req.user);
+                return res.status(200).json({
+                    success: true,
+                    message: "Logged in",
+                    userId: user._id
+                });
             });
         })(req, res, next);
     })
@@ -82,14 +86,13 @@ router
         res.end();
     })
 
-// .post("/api/person", (req, res, next) {
+// .post("/api/storePersonId", (req, res, next) => {
 //     User.findByIdAndUpdate(
 //         {
-//             _id: req.user._id,
+//             _id: req.user.id,
 //             personId: req.body.personId
 //         }
 //     )
-
 // });
 
 

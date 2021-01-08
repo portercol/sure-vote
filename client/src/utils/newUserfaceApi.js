@@ -1,6 +1,6 @@
 // this is built right now on click create a new PID (personID) in this case the Groupe ID has been hard Coded
 import ApiCalls from "./ApiCalls";
-// const axios = require('axios')
+const axios = require('axios')
 
 export async function newUserApi(Gid, newPnam, cb) {
     // GID is "5595"
