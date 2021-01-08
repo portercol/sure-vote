@@ -16,18 +16,22 @@ const Profile = () => {
 
   // const [profileData, setProfileData] = useState();
 
-  const getProfile = () => {
-    axios
-      .get('/api/profile',
-        {
-          _id: "5ff67acffb1185391c11fdfb",
-        }).then((res) => {
-          console.log(res)
-        }).catch(err => {
-          console.log(err);
-        })
-  }
+  // const useEffect
 
+  const getProfile = () => {
+
+  axios
+    .get('/api/profile',
+      {
+        _id: "5ff67acffb1185391c11fdfb",
+      }).then((res) => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+      })
+
+  }
+  
   getProfile();
 
   return (
