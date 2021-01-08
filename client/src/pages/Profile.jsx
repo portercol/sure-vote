@@ -1,62 +1,68 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
+  Container,
   ListGroup,
   ListGroupItem,
-  Button,
-  Jumbotron
+  Button
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
-import landLady from '../assets/landlady.jpg';
-import '../pages/Profile.css'
+import landLady from "../assets/landlady.jpg";
+import "../pages/Profile.css";
+import axios from 'axios';
 
-// create functional component to hold profile data
 const Profile = () => {
 
-  // useEffect(() => {
-  //   async function fetchProfileData(){
-  //     try {
-  //       const response = await fetch("/api/signup");
-  //       const json = await response.json();
-  //       console.log({ json });
-  //     } catch (err) {
-  //       console.log({ err });
-  //     }
-  //   }
-
-  //   fetchProfileData();
-  // }, []);
+  const getProfile = () => {
+    
+    var id = "5ff67acffb1185391c11fdfb";
+    
+    axios
+      .get('/api/profile/' + id)
+      .then((res) => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+    })
+    }
+  
+  getProfile();
 
   return (
     <>
       <Navbar />
-      <div className="col d-flex justify-content-center">
-        <Card className="mainCard" style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={landLady} />
-          <Card.Body>
-            <Card.Title>{}</Card.Title>
-            {/* <Card.Text>
-              If you're behind on your rent I'll work with you.
-            </Card.Text> */}
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroupItem>Joe Shmoe<span></span></ListGroupItem>
-            {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
-            <ListGroupItem>Street: <span id="street-span">123 Main St.</span></ListGroupItem>
-            <ListGroupItem>City: <span id="city-span">Anytown</span></ListGroupItem>
-            <ListGroupItem>State: <span id="state-span">Utah</span></ListGroupItem>
-          </ListGroup>
-          <Card.Body>
-            <Button variant="dark" type="submit">
-              Update Profile
-            </Button>
+          <Container id="main-container"> 
+                <Card className="mainCard" style={{ width: "30rem" }}>
+                 <Card.Img variant="top" src={landLady} />
+                 <Card.Body>
+                 <Card.Title>{}</Card.Title>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                  Joe Shmoe<span></span>
+                </ListGroupItem>
+                {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
+                <ListGroupItem>
+                  Street: <span id="street-span">123 Main St.</span>
+                </ListGroupItem>
+                <ListGroupItem>
+                  City: <span id="city-span">Anytown</span>
+                </ListGroupItem>
+                <ListGroupItem>
+                  State: <span id="state-span">Utah</span>
+                </ListGroupItem>
+              </ListGroup>
+              <Card.Body>
+                <Button variant="dark" type="submit">
+                  Update Profile
+                </Button>
           </Card.Body>
         </Card>
-      </div>
+      </Container>
     </>
   );
-};
 
-// export component from Profile.jsx
+}
+
 export default Profile;

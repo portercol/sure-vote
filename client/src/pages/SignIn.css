@@ -1,17 +1,27 @@
-body {
+/* body {
     background-color: rgb(199, 212, 224);
+} */
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px #808080;
+}
+
+#signIn-form {
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 #main-jumbotron {
     background-image: url('../assets/brushed-alum-dark.png');  
-    margin-top: 40px;
     opacity: .9;
 }
 
-#signIn {
+/* #signIn {
     padding-bottom: 20px;
-}
+} */
 
-#userSignIn {
+/* #userSignIn {
     padding-top: 30px;
-}
+} */

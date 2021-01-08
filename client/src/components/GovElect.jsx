@@ -27,8 +27,6 @@ const GovElect = () => {
       .catch(err => console.log(err));
   };
 
-  const votes = {};
-
   return (
     <Container id="gov-elect-card">
       <Card bg="light">
@@ -98,15 +96,17 @@ const GovElect = () => {
             </Col>
             <Col xs lg={4}></Col>
           </Row>
-          <Button
-            variant="dark"
-            type="submit"
-            size="lg"
-            block
-            disabled={voted}
-            onClick={submitVote}
-          >
-            Submit
+
+          <Button 
+              variant="dark" 
+              type="submit"
+              size="lg" 
+              block
+              disabled={!candidate || voted}
+              onClick={submitVote}
+            >
+              Submit
+
             </Button>
         </Card.Body>
       </Card>

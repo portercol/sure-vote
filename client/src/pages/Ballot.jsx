@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Button,
   Jumbotron,
@@ -16,10 +16,12 @@ import ConstAmend1 from "../components/ConstAmend1";
 import ConstAmend2 from "../components/ConstAmend2";
 // import "../scripts/seed";
 import "./Ballot.css";
-import axios from 'axios';
+// import axios from 'axios';
 
-// const Ballot = () => {
-//   const [radio, setRadio] = useState([]);
+
+const Ballot = () => {
+  // const [radio, setRadio] = useState([]);
+
 
 // useEffect(() => {
 //   sendVote()
@@ -92,8 +94,8 @@ return (
       </Jumbotron>
     </Container>
 
-//     </>
-//   );
-// };
+     </>
+  );
+};
 
-// export default Ballot;
+export default Ballot;
