@@ -137,7 +137,7 @@ const SignIn2 = () => {
                                 console.log(snap(), "RENDER SNAP")
                                 snap().canvas.toBlob(data => {
                                     // this is considered asyc 
-                                    letsSeeYourFace('5595', data, 'fa704750-0b81-43d0-a3a4-3e025f3eb2ba')
+                                    letsSeeYourFace('5595', data, 'fa704750-0b81-43d0-a3a4-3e025f3eb2ba', letsSeeYourFace.allCall,)
 
                                     // remember at this time the code is hard coded
                                     // submitToAgatha("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", data, async (STA) => {

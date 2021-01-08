@@ -23,9 +23,15 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
                     var allCalls = []
                     await allCalls.forEach(async function (face) {
                         // this will be hard coded for now +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        // this will works as .Authentify(GID, pid, face); and will be un hard coded
                         const candidate = idHelper.Authentify("5595", 'fa704750-0b81-43d0-a3a4-3e025f3eb2ba', face);
-                        console.log(candidate, 'this is canadate.......')
+                        allCalls.push(candidate);
+                        // in my hopes and deams this will be the the canidate... as of right now i belive it is and that is 7:44 1/7/2021
                     })
+                    console.log(allCalls, 'this is canadate.......')
+                    Promise.all(allCalls)
+
+                    return allCalls
 
                 }
 

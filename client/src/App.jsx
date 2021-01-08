@@ -11,7 +11,7 @@ import Contact from './pages/Contact'
 import App2 from './pages/faceapi/App'
 import AddPerson from './pages/Signupcamface'
 import SignIn2 from './pages/SignInFace'
-// import Ballot from './pages/Ballot'
+import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
           <Route exact path='/election' component={Election} />
           <Route exact path='/vote' component={Vote} />
           <Route exact path='/contact' component={Contact} />
+          <Route exact path='/ballot' component={Ballot} />
           <Route exact path='/face' component={App2} />
           <Route exact path='/cam2' component={AddPerson} />
           <Route exact path='/cam3' component={SignIn2} />
@@ -37,5 +38,4 @@ function App() {
   );
 }
 
-// <Route exact path='/ballot' component={Ballot} />
 export default App;
