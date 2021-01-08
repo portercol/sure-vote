@@ -195,17 +195,7 @@ const SignUp = () => {
             </Form.Row>
           </Form>
 
-          <div id="verification">
-            <h3 id="verification-header">Voting Verification</h3>
-            <h6>Please click 'PSWD' to generate password</h6>
-
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <Button variant="dark">PSWD</Button>
-              </InputGroup.Prepend>
-              <FormControl className="pswd-form" aria-describedby="basic-addon1" />
-            </InputGroup>
-            <br />
+          <br/>
 
             <ButtonGroup size="lg" className="mr-3">
               <Button href="/" onClick={() => { submitBtn() }} variant="dark"
@@ -216,7 +206,7 @@ const SignUp = () => {
               <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>Sign Up</Button>
             </ButtonGroup>
-          </div>
+          
         </Jumbotron>
       </Container>
     </>
