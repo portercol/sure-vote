@@ -11,15 +11,29 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
         let facesDetected = await idHelper.Detect(helperD)
         console.log(facesDetected, "dot then")
         if (facesDetected.length > 0) {
-            //        
-            let idFace = await idHelper.Identify("5595", facesDetected)
-            console.log(idFace, "ajidface")
-            //  let DOTTHEN2 = idHelper.then(idFace({}))
+
+
+            let facesIdentified = await idHelper.Identify("5595", facesDetected)
+            console.log(facesIdentified, "ajidface")
+            await facesDetected.forEach(async function (facesIdentified) {
+                var face = facesIdentified
+
+                // facesIdentified is the face id from above 
+                if (face.length > 0) {
+                    var allCalls = []
+                    await allCalls.forEach(async function (face) {
+                        // this will be hard coded for now +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        const candidate = idHelper.Authentify("5595", 'fa704750-0b81-43d0-a3a4-3e025f3eb2ba', face);
+                        console.log(candidate, 'this is canadate.......')
+                    })
+
+                }
+
+            })
+            //         let faceFour = facesId
             //         let facesId = DOTTHEN2
-            //         let faceFour = facesId.forEach()
 
             //         //For each faceId found in the picture
-            //         if (faceFour.candidates.length > 0) {
             //             // For each candidates, get the name
             //             var allCalls = []
             //             var foreach = faceFour.forEach()
