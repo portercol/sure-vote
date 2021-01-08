@@ -13,7 +13,7 @@ router
         User    
             .findById(req.params.id)
             .then(data => {
-                res.json({ success: true, data});
+                res.json(data);
             })
             .catch(err => console.log(err));
     })

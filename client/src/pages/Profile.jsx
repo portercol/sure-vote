@@ -14,20 +14,34 @@ import axios from 'axios';
 
 const Profile = () => {
 
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [addressOne, setAddressOne] = useState("");
+  // const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
+  // const [zipCode, setZipCode] = useState("");
+
+  const [data, getData] = useState();
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   const getProfile = () => {
-    
     var id = "5ff67acffb1185391c11fdfb";
     
     axios
       .get('/api/profile/' + id)
       .then((res) => {
-        console.log(res)
+        console.log(data)
+        const allData = res.data;
+        getData(allData);
       }).catch(err => {
         console.log(err);
     })
-    }
+  }
   
-  getProfile();
+  if (!data) return (<> </>);
 
   return (
     <>
@@ -36,21 +50,23 @@ const Profile = () => {
                 <Card className="mainCard" style={{ width: "30rem" }}>
                  <Card.Img variant="top" src={landLady} />
                  <Card.Body>
-                 <Card.Title>{}</Card.Title>
+                 <Card.Title>
+                   {data.firstName} {data.lastName}
+                 </Card.Title>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>
-                  Joe Shmoe<span></span>
-                </ListGroupItem>
                 {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
                 <ListGroupItem>
-                  Street: <span id="street-span">123 Main St.</span>
+                  <span id="street">Street Address: </span> {data.address1}
                 </ListGroupItem>
                 <ListGroupItem>
-                  City: <span id="city-span">Anytown</span>
+                  <span id="city">CITY: </span>{data.city}
                 </ListGroupItem>
                 <ListGroupItem>
-                  State: <span id="state-span">Utah</span>
+                  <span id="state">STATE: </span>{data.state}
+                </ListGroupItem>
+                <ListGroupItem>
+                  <span id="zipcode">ZIP CODE: </span>{data.zipCode}
                 </ListGroupItem>
               </ListGroup>
               <Card.Body>
