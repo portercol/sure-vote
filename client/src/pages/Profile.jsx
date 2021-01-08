@@ -1,5 +1,5 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
@@ -29,7 +29,7 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    const id = "5ff24eadb055a76f5c253581";
+    const id = "5ff7d7df643ba6a844d111bd";
 
     axios
       .get('/api/profile/' + id)
