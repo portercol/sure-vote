@@ -29,6 +29,7 @@ const SignUp = () => {
   const submitBtn = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials");
+      alert("Missing required credentials. Please enter required information");
     } else {
 
       const userObj = {
@@ -66,13 +67,13 @@ const SignUp = () => {
             <Form.Row>
               <Col>
                 <Form.Control
-                  placeholder="First name"
+                  placeholder="First name*"
                   onChange={(e) => setFirstNameValue(e.target.value)}
                 />
               </Col>
               <Col>
                 <Form.Control
-                  placeholder="Last name"
+                  placeholder="Last name*"
                   onChange={(e) => setLastNameValue(e.target.value)}
                 />
               </Col>
@@ -82,7 +83,7 @@ const SignUp = () => {
                 <Form.Label></Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email"
+                  placeholder="Enter email*"
                   onChange={(e) => setUsernameValue(e.target.value)}
                 />
               </Form.Group>
@@ -91,7 +92,7 @@ const SignUp = () => {
                 <Form.Label></Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder="Password*"
                   onChange={(e) => setPasswordValue(e.target.value)}
                 />
               </Form.Group>
@@ -100,7 +101,7 @@ const SignUp = () => {
             <Form.Group controlId="formGridAddress1">
               <Form.Label ></Form.Label>
               <Form.Control
-                placeholder="Street Address"
+                placeholder="Street Address*"
                 onChange={(e) => setStreetAddress1Value(e.target.value)}
               />
             </Form.Group>
@@ -117,7 +118,7 @@ const SignUp = () => {
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="City"
+                  placeholder="City*"
                   onChange={(e) => setCityValue(e.target.value)}
                 />
               </Form.Group>
@@ -128,7 +129,7 @@ const SignUp = () => {
                   // id="state"
                   onChange={(e) => setStateValue(e.target.value)}
                   as="select" defaultValue="State...">
-                  <option>State</option>
+                  <option>State*</option>
                   <option id="AL">Alabama</option>
                   <option id="AK">Alaska</option>
                   <option id="AZ">Arizona</option>
@@ -186,13 +187,13 @@ const SignUp = () => {
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="Zip Code"
+                  placeholder="Zip Code*"
                   onChange={(e) => setZipCodeValue(e.target.value)}
                 />
               </Form.Group>
             </Form.Row>
           </Form>
-
+          <h6>* required</h6>
           <br />
 
           <ButtonGroup size="lg" className="mr-3">
@@ -202,8 +203,11 @@ const SignUp = () => {
 
           <ButtonGroup size="lg" className="mr-3">
             <Button onClick={() => { submitBtn() }} variant="dark"
-              type="submit" id='left-button'>Sign Up</Button>
+              type="submit" id='left-button'>Continue</Button>
           </ButtonGroup>
+
+          <br /><br />
+          <h5>Click 'Continue' to Capture Image</h5>
 
         </Jumbotron>
       </Container>
