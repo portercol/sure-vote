@@ -8,28 +8,14 @@ const { v4: newUuid } = require("uuid");
 const User = require("../models/User");
 
 router
-<<<<<<< HEAD
-    .get("/api/profile/:id", (req, res) => {
-        console.log(req.params.id);
+    .get('/api/profile/:id', (req, res) => {
+
         User
             .findById(req.params.id)
             .then(data => {
-                console.log(data);
                 res.json({ success: true, data });
             })
-            .catch(err => {
-                res.json({ success: false, err })
-            })
-=======
-    .get('/api/profile/:id', (req, res) => {
-
-        User    
-            .findById(req.params.id)
-            .then(data => {
-                res.json({ success: true, data});
-            })
             .catch(err => console.log(err));
->>>>>>> origin
     })
     .post("/api/signup", (req, res) => {
         const uuid = newUuid()
