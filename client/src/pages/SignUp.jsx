@@ -6,8 +6,6 @@ import {
   Col,
   Container,
   Form,
-  FormControl,
-  InputGroup,
   Jumbotron
 } from "react-bootstrap";
 import "./SignUp.css";
