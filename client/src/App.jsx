@@ -23,7 +23,6 @@ function App() {
           <Route exact path='/signup' component={SignUp} />
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/profile' component={Profile} />
-          <Route exact path='/ballot' component={Ballot} />
           <Route exact path='/election' component={Election} />
           <Route exact path='/vote' component={Vote} />
           <Route exact path='/contact' component={Contact} />
