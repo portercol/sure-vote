@@ -49,7 +49,6 @@ const SignUp = () => {
         data: userObj
       }).then(() => {
         console.log("Successfully registered!");
-        alert("Successfully Registered!");
       }).catch(err => {
         console.log(err);
       });
