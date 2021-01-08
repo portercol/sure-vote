@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import {
     Button,
+    ButtonGroup,
     Container,
     Form,
     Jumbotron
@@ -47,6 +48,7 @@ const Contact = () => {
     return (
         <>
             <Navbar />
+
             <Container id="main-container">
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>

@@ -191,7 +191,7 @@ class PersonActionEdit extends Component {
     }
 
     render() {
-        console.log(this.props.person, "lets see what up")
+        // console.log(this.props.person, "lets see what up")
 
         return (
             <Fragment>

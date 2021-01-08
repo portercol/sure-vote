@@ -5,7 +5,7 @@ import {
   Container,
   ListGroup,
   ListGroupItem,
-  Button
+  Button,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
@@ -21,8 +21,9 @@ const Profile = () => {
   }, []);
 
   const getProfile = () => {
-    var id = "5ff67acffb1185391c11fdfb";
-    
+
+    const id = "5ff7d7df643ba6a844d111bd";
+
     axios
       .get('/api/profile/' + id)
       .then((res) => {
@@ -31,40 +32,40 @@ const Profile = () => {
         getData(allData);
       }).catch(err => {
         console.log(err);
-    })
+      })
   }
-  
+
   if (!data) return (<> </>);
 
   return (
     <>
       <Navbar />
-          <Container id="main-container"> 
-                <Card className="mainCard" style={{ width: "30rem" }}>
-                 <Card.Img variant="top" src={landLady} />
-                 <Card.Body>
-                 <Card.Title>
-                   {data.firstName} {data.lastName}
-                 </Card.Title>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
-                <ListGroupItem>
-                  <span id="street">Street Address: </span> {data.address1}
-                </ListGroupItem>
-                <ListGroupItem>
-                  <span id="city">CITY: </span>{data.city}
-                </ListGroupItem>
-                <ListGroupItem>
-                  <span id="state">STATE: </span>{data.state}
-                </ListGroupItem>
-                <ListGroupItem>
-                  <span id="zipcode">ZIP CODE: </span>{data.zipCode}
-                </ListGroupItem>
-              </ListGroup>
-              <Card.Body>
-                <Button variant="dark" type="submit">
-                  Update Profile
+      <Container id="main-container">
+        <Card className="mainCard" style={{ width: "30rem" }}>
+          <Card.Img variant="top" src={landLady} />
+          <Card.Body>
+            <Card.Title>
+              {data.firstName} {data.lastName}
+            </Card.Title>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
+            <ListGroupItem>
+              <span id="street">Street Address: </span> {data.address1}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span id="city">CITY: </span>{data.city}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span id="state">STATE: </span>{data.state}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span id="zipcode">ZIP CODE: </span>{data.zipCode}
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Body>
+            <Button variant="dark" type="submit">
+              Update Profile
                 </Button>
           </Card.Body>
         </Card>
