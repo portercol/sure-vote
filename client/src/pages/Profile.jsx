@@ -32,8 +32,8 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-          <Container> 
-                <Card className="mainCard" style={{ width: "18rem" }}>
+          <Container id="main-container"> 
+                <Card className="mainCard" style={{ width: "30rem" }}>
                  <Card.Img variant="top" src={landLady} />
                  <Card.Body>
                  <Card.Title>{}</Card.Title>
