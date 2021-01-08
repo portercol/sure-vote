@@ -21,6 +21,8 @@ router
             })
     })
     .post("/api/signup", (req, res) => {
+        const uuid = newUuid()
+
         Users = new User({
             username: req.body.data.username,
             firstName: req.body.data.firstName,
@@ -30,7 +32,7 @@ router
             city: req.body.data.city,
             state: req.body.data.state,
             zipCode: req.body.data.zipCode,
-            uuid: newUuid()
+            uuid: uuid
         });
         console.log("Body: ", req.body);
 
@@ -49,6 +51,10 @@ router
                     success: true,
                     message: "Account registered",
                 });
+
+                message: uuid
+
+
             };
         });
     })

@@ -37,7 +37,7 @@ const SignIn = () => {
     <>
       <Container id="main-container">
         <Jumbotron id="main-jumbotron">
-          <h1 className="header">Sign In</h1>
+          <h1>Sign In</h1>
           <hr />
           <Form id="signIn-form">
             <Form.Group controlId="exampleForm.ControlInput1">

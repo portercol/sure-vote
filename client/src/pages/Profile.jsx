@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
-  Row,
-  Col,
   ListGroup,
   ListGroupItem,
-  Button,
-  Jumbotron,
+  Button
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
@@ -17,16 +14,13 @@ import axios from 'axios';
 
 const Profile = () => {
 
-  // const [profileData, setProfileData] = useState();
-
   const getProfile = () => {
-    const id = "5ff24eadb055a76f5c253581";
+
+    const id = "5ff67acffb1185391c11fdfb";
+
     axios
-      .get('/api/profile', {
-        params: {
-          id: id
-        }
-      }).then((res) => {
+      .get('/api/profile/' + id)
+      .then((res) => {
         console.log(res)
       }).catch(err => {
         console.log(err);
@@ -82,5 +76,4 @@ const Profile = () => {
 
 }
 
-// export component from Profile.jsx
 export default Profile;
