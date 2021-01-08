@@ -5,7 +5,10 @@ import {
   Container,
   ListGroup,
   ListGroupItem,
-  Button
+  Button,
+  Jumbotron,
+  Row,
+  Col
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
