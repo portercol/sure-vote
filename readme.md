@@ -33,7 +33,7 @@ MIT_license
 
 ## Questions
 
-For questions and comments, contact me at:
+For questions and comments, contact us at:
 
 Github: [jburz, Cloggedbat, LayneHansen, portercol](https://github.com/LayneHansen)
 
