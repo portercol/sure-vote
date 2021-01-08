@@ -1,7 +1,9 @@
 body {
-    background-color: rgb(199, 212, 224);
-    background-image: url("http://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+    background-image: url('../assets/abstract-globe.jpg');
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 h1 {
@@ -19,9 +21,12 @@ hr {
     border-color: black;
 }
 
-.main-jumbotron {
-    background-image: url('../assets/brushed-alum-dark.png');
-    opacity: .8;
+#main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .mr-3 {

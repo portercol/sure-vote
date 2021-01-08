@@ -88,7 +88,7 @@ const PresElect = () => {
             type="submit"
             size="lg"
             block
-            disabled={voted}
+            disabled={!candidate || voted}
             onClick={submitVote}
           >
             Submit
