@@ -4,19 +4,6 @@ h1 {
     text-shadow: 3px 3px 3px #808080;
 }
 
-#signIn-form {
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
 #main-jumbotron {
     opacity: .9;
 }
-
-/* #signIn {
-    padding-bottom: 20px;
-} */
-
-/* #userSignIn {
-    padding-top: 30px;
-} */

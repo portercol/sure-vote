@@ -62,7 +62,7 @@ const SignIn = () => {
               </Form.Text>
             </Form.Group>
           </Form>
-          <div id="userSignIn">
+          <br/>
             <ButtonGroup size="lg" className="mr-3">
               <Button href='/' onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='right-button'>Go Back</Button>
@@ -72,7 +72,7 @@ const SignIn = () => {
               <Button onClick={() => { submitBtn() }} variant="dark"
                 type="submit" id='left-button'>Sign In</Button>
             </ButtonGroup>
-          </div>
+          
         </Jumbotron>
       </Container>
     </>

@@ -17,9 +17,14 @@ const Vote = () => {
 
 
   // create function for submit button 'onclick'
-  const submitBtn = (e) => {
+  const goBackBtn = () => {
+    console.log("Hit profile page");
+  }
+
+  const voteBtn = (e) => {
     if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")
+      alert("Missing required credentials. Please enter required information");
     } else {
       // console.log(firstNameValue);
       // console.log(lastNameValue);
@@ -57,18 +62,19 @@ const Vote = () => {
     <>
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
-          <h1 id="pi">Verify Personal Information</h1>
+          <h1>Verify Personal Information</h1>
+          <hr />
           <Form>
             <Form.Row>
               <Col>
                 <Form.Control
-                  placeholder="First name"
+                  placeholder="*First name"
                   onChange={(e) => setFirstNameValue(e.target.value)}
                 />
               </Col>
               <Col>
                 <Form.Control
-                  placeholder="Last name"
+                  placeholder="*Last name"
                   onChange={(e) => setLastNameValue(e.target.value)}
                 />
               </Col>
@@ -77,7 +83,7 @@ const Vote = () => {
             <Form.Group controlId="formGridAddress1">
               <Form.Label ></Form.Label>
               <Form.Control
-                placeholder="Street Address"
+                placeholder="*Street Address"
                 onChange={(e) => setStreetAddress1Value(e.target.value)}
               />
             </Form.Group>
@@ -94,7 +100,7 @@ const Vote = () => {
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="City"
+                  placeholder="*City"
                   onChange={(e) => setCityValue(e.target.value)}
                 />
               </Form.Group>
@@ -104,7 +110,7 @@ const Vote = () => {
                 <Form.Control
                   onChange={(e) => setStateValue(e.target.value)}
                   as="select" defaultValue="State...">
-                  <option>State</option>
+                  <option>*State</option>
                   <option id="AL">Alabama</option>
                   <option id="AK">Alaska</option>
                   <option id="AZ">Arizona</option>
@@ -162,13 +168,14 @@ const Vote = () => {
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="Zip Code"
+                  placeholder="*Zip Code"
                   onChange={(e) => setZipCodeValue(e.target.value)}
                 />
               </Form.Group>
             </Form.Row>
           </Form>
-
+          <h6>* required</h6>
+          <hr />
           <div id="verification">
             <h3 id="verification-header">Voting Verification</h3>
             <h6>Please enter unique ID below</h6>
@@ -185,13 +192,13 @@ const Vote = () => {
             <br />
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='right-button'>Go Back</Button>
+              <Button href="/profile" onClick={() => { goBackBtn() }} variant="dark"
+                type="submit" id='left-button'>Go Back</Button>
             </ButtonGroup>
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/ballot" onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='left-button'>VOTE</Button>
+              <Button href="/ballot" onClick={() => { voteBtn() }} variant="dark"
+                type="submit" id='right-button'>VOTE</Button>
             </ButtonGroup>
           </div>
         </Jumbotron>
