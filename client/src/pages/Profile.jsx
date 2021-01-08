@@ -14,13 +14,6 @@ import axios from 'axios';
 
 const Profile = () => {
 
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [addressOne, setAddressOne] = useState("");
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
-  // const [zipCode, setZipCode] = useState("");
-
   const [data, getData] = useState();
 
   useEffect(() => {
