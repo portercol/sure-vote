@@ -17,23 +17,18 @@ import axios from 'axios';
 
 const Profile = () => {
 
-  // const [profileData, setProfileData] = useState();
-
-  // const useEffect
-
   const getProfile = () => {
-    axios({
-      method: 'GET',
-      url: '/api/profile',
-      data: { 
-        _id: "5ff67acffb1185391c11fdfb",
-      }
-    }).then((res) => {
+    
+    var id = "5ff67acffb1185391c11fdfb";
+    
+    axios
+      .get('/api/profile/' + id)
+      .then((res) => {
         console.log(res)
       }).catch(err => {
         console.log(err);
-  })
-  }
+    })
+    }
   
   getProfile();
 
@@ -49,9 +44,6 @@ const Profile = () => {
                  <Card.Img variant="top" src={landLady} />
                  <Card.Body>
                  <Card.Title>{}</Card.Title>
-                 {/* <Card.Text>
-                 If you're behind on your rent I'll work with you.
-                 </Card.Text> */}
               </Card.Body>
               <ListGroup className="list-group-flush">
                 <ListGroupItem>
@@ -84,5 +76,4 @@ const Profile = () => {
 
 }
 
-// export component from Profile.jsx
 export default Profile;
