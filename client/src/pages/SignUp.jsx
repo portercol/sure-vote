@@ -26,7 +26,11 @@ const SignUp = () => {
 
 
   // create function for submit button 'onclick'
-  const submitBtn = () => {
+  const goBackBtn = () => {
+    console.log("Hit homepage");
+  }
+
+  const signInBtn = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials");
       alert("Missing required credentials. Please enter required information");
@@ -67,13 +71,13 @@ const SignUp = () => {
             <Form.Row>
               <Col>
                 <Form.Control
-                  placeholder="First name*"
+                  placeholder="*First name"
                   onChange={(e) => setFirstNameValue(e.target.value)}
                 />
               </Col>
               <Col>
                 <Form.Control
-                  placeholder="Last name*"
+                  placeholder="*Last name"
                   onChange={(e) => setLastNameValue(e.target.value)}
                 />
               </Col>
@@ -83,7 +87,7 @@ const SignUp = () => {
                 <Form.Label></Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email*"
+                  placeholder="*Enter email"
                   onChange={(e) => setUsernameValue(e.target.value)}
                 />
               </Form.Group>
@@ -92,7 +96,7 @@ const SignUp = () => {
                 <Form.Label></Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password*"
+                  placeholder="*Password"
                   onChange={(e) => setPasswordValue(e.target.value)}
                 />
               </Form.Group>
@@ -101,7 +105,7 @@ const SignUp = () => {
             <Form.Group controlId="formGridAddress1">
               <Form.Label ></Form.Label>
               <Form.Control
-                placeholder="Street Address*"
+                placeholder="*Street Address"
                 onChange={(e) => setStreetAddress1Value(e.target.value)}
               />
             </Form.Group>
@@ -118,7 +122,7 @@ const SignUp = () => {
               <Form.Group as={Col} controlId="formGridCity">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="City*"
+                  placeholder="*City"
                   onChange={(e) => setCityValue(e.target.value)}
                 />
               </Form.Group>
@@ -129,7 +133,7 @@ const SignUp = () => {
                   // id="state"
                   onChange={(e) => setStateValue(e.target.value)}
                   as="select" defaultValue="State...">
-                  <option>State*</option>
+                  <option>*State</option>
                   <option id="AL">Alabama</option>
                   <option id="AK">Alaska</option>
                   <option id="AZ">Arizona</option>
@@ -187,7 +191,7 @@ const SignUp = () => {
               <Form.Group as={Col} controlId="formGridZip">
                 <Form.Label></Form.Label>
                 <Form.Control
-                  placeholder="Zip Code*"
+                  placeholder="*Zip Code"
                   onChange={(e) => setZipCodeValue(e.target.value)}
                 />
               </Form.Group>
@@ -197,17 +201,17 @@ const SignUp = () => {
           <br />
 
           <ButtonGroup size="lg" className="mr-3">
-            <Button href="/" onClick={() => { submitBtn() }} variant="dark"
-              type="submit" id='right-button'>Go Back</Button>
+            <Button href="/" onClick={() => { goBackBtn() }} variant="dark"
+              type="submit" id='left-button'>Go Back</Button>
           </ButtonGroup>
 
           <ButtonGroup size="lg" className="mr-3">
-            <Button onClick={() => { submitBtn() }} variant="dark"
-              type="submit" id='left-button'>Continue</Button>
+            <Button onClick={() => { signInBtn() }} variant="dark"
+              type="submit" id='right-button'>Continue</Button>
           </ButtonGroup>
 
           <br /><br />
-          <h5>Click 'Continue' to Capture Image</h5>
+          <h6>Click 'Continue' to Capture Image</h6>
 
         </Jumbotron>
       </Container>
