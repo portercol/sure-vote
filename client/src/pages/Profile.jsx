@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
-  Row,
-  Col,
   ListGroup,
   ListGroupItem,
-  Button,
-  Jumbotron,
+  Button
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
@@ -22,17 +19,17 @@ const Profile = () => {
   // const useEffect
 
   const getProfile = () => {
-    axios({
-      method: 'GET',
-      url: '/api/profile',
-      data: { 
+
+  axios
+    .get('/api/profile',
+      {
         _id: "5ff67acffb1185391c11fdfb",
-      }
-    }).then((res) => {
+      }).then((res) => {
         console.log(res)
       }).catch(err => {
         console.log(err);
-  })
+      })
+
   }
   
   getProfile();
@@ -40,45 +37,35 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-        <Jumbotron>
-          <Container>
-            <Row>
-              <Col xs lg={4}></Col>
-              <Col xs lg={4}>    
-                <Card className="mainCard" style={{ width: "18rem" }}>
-                 <Card.Img variant="top" src={landLady} />
-                 <Card.Body>
-                 <Card.Title>{}</Card.Title>
-                 {/* <Card.Text>
-                 If you're behind on your rent I'll work with you.
-                 </Card.Text> */}
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>
-                  Joe Shmoe<span></span>
-                </ListGroupItem>
-                {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
-                <ListGroupItem>
-                  Street: <span id="street-span">123 Main St.</span>
-                </ListGroupItem>
-                <ListGroupItem>
-                  City: <span id="city-span">Anytown</span>
-                </ListGroupItem>
-                <ListGroupItem>
-                  State: <span id="state-span">Utah</span>
-                </ListGroupItem>
-              </ListGroup>
-              <Card.Body>
-                <Button variant="dark" type="submit">
-                  Update Profile
+      <Container id="main-container">
+        <Card className="mainCard" style={{ width: "30rem" }}>
+          <Card.Img variant="top" src={landLady} />
+          <Card.Body>
+            <Card.Title>{ }</Card.Title>
+            <Card.Text></Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>
+              Joe Shmoe<span></span>
+            </ListGroupItem>
+            {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
+            <ListGroupItem>
+              Street: <span id="street-span">123 Main St.</span>
+            </ListGroupItem>
+            <ListGroupItem>
+              City: <span id="city-span">Anytown</span>
+            </ListGroupItem>
+            <ListGroupItem>
+              State: <span id="state-span">Utah</span>
+            </ListGroupItem>
+          </ListGroup>
+          <Card.Body>
+            <Button variant="dark" type="submit">
+              Update Profile
                 </Button>
-              </Card.Body>
-            </Card>
-              </Col> 
-              <Col xs lg={4}></Col>
-              </Row>
-          </Container>
-        </Jumbotron>
+          </Card.Body>
+        </Card>
+      </Container>
     </>
   );
 

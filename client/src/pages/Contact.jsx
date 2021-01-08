@@ -16,25 +16,25 @@ const Contact = () => {
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
-    
+
     const handleSubmit = e => {
 
-         e.preventDefault()
-         
-        axios.post('/send', 
-        {
-            name: nameValue,
-            email: emailValue,
-            message: messageValue
-        })
-        .then((response) => {
-            if (response.data.status === 'success') {
-                alert("Message Sent.");
-                // resetForm()
-            } else if (response.data.status === 'fail') {
-                alert("Message failed to send.")
-            }
-        })
+        e.preventDefault()
+
+        axios.post('/send',
+            {
+                name: nameValue,
+                email: emailValue,
+                message: messageValue
+            })
+            .then((response) => {
+                if (response.data.status === 'success') {
+                    alert("Message Sent.");
+                    // resetForm()
+                } else if (response.data.status === 'fail') {
+                    alert("Message failed to send.")
+                }
+            })
     }
 
     //  resetForm = e => {
@@ -51,8 +51,13 @@ const Contact = () => {
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>
                     <hr />
-                    <h6>801.867.5309 | SLC, UT</h6>
-                    <a href='mailto:surev0te@zohomail.com'>surev0te@zohomail.com</a>
+                    <div>
+                        <h6>801.867.5309</h6>
+                    </div>
+                    <div>
+                        <h6>SLC, UT</h6>
+                    </div>
+                    <a id="email-text" href='mailto:surev0te@zohomail.com'>surev0te@zohomail.com</a>
                     <hr />
                     <Form id="contact-form">
                         <Form.Group controlId="exampleForm.ControlInput1">
@@ -68,8 +73,8 @@ const Contact = () => {
                             <Form.Control type="message" placeholder="Your Message" as="textarea" rows={2} onChange={(e) => setMessageValue(e.target.value)} />
                         </Form.Group>
                     </Form>
-                    <br/>
-                    <Button size="lg" variant="dark" id="submitBtn" onClick={ handleSubmit }>Submit</Button>
+                    <br />
+                    <Button size="lg" variant="dark" id="submitBtn" onClick={handleSubmit}>Send</Button>
 
                 </Jumbotron>
             </Container>
