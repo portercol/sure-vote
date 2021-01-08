@@ -2,12 +2,8 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { v4: newUuid } = require("uuid");
-<<<<<<< HEAD
-// const Vote = require("../models/Vote");
-=======
 const Vote = require("../models/Vote");
 const User = require("../models/User");
->>>>>>> origin
 
 var nodemailer = require('nodemailer');
 require('dotenv').config();
