@@ -22,7 +22,7 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    const id = "5ff7d7df643ba6a844d111bd";
+    const id = "5ff68727f86e984d2c0e21e3";
 
     axios
       .get('/api/profile/' + id)
