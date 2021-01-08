@@ -3,13 +3,8 @@ body {
 }
 
 h6 {
-    font-weight: lighter;
+    font-weight: normal;
     color:rgb(24, 24, 24)
-}
-
-#random-password {
-    margin-left: 30px;
-    margin-right: 30px;
 }
 
 #signUp-form {
@@ -24,17 +19,11 @@ h6 {
 }
 
 #verification {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 #verification-header {
     padding-bottom: 10px;
-}
-
-.mb-3 {
-    margin-left: 20px;
-}
-
-.pswd-form {
-    margin-right: 50px;
+    font-weight: normal;
+    color:rgb(24, 24, 24)
 }
