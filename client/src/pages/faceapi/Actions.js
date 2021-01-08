@@ -8,9 +8,12 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import { Loader } from 'react-overlay-loader';
 import ApiCalls from "../../utils/ApiCalls";
-import IdentificationHelper from "../../utils/IdentificationHelper";
 import 'react-overlay-loader/styles.css';
 import { trainingStart } from '../../utils/Training'
+import { letsSeeYourFace } from '../../utils/Identify'
+// import IdentificationHelper from "../../utils/IdentificationHelper";
+
+
 
 class Actions extends Component {
 
@@ -79,72 +82,29 @@ class Identify extends Component {
 
     identificationCompleteted(output) {
         this.setState({ results: output, showResults: true, showLoadingOverlay: false });
-        console.log(output, "aja")
+        console.log(output, "this is the result being passed")
     }
     identify = e => {
         if (this.state.picture !== null) {
             this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
-                // Post photo to detect face first
                 var reader = new FileReader();
-                reader.onload = () => {
-                    let idHelper = new IdentificationHelper();
-                    idHelper.Detect(reader.result)
-                        .then(facesDetected => {
-                            if (facesDetected.length > 0) {
-                                //the face has been added and now is being checked aganst taught data 
-                                idHelper.Identify(this.props.personGroupId, facesDetected)
-                                    .then(facesIdentified => {
-                                        //  do not have the candidate name in the return json, so ask for it ...
-                                        facesIdentified.forEach(face => {
-                                            //For each faceId found in the picture
-                                            if (face.candidates.length > 0) {
-                                                // For each candidates, get the name
-                                                var allCalls = []
-                                                face.candidates.forEach((c) => {
-                                                    const candidate = idHelper.Authentify(this.props.personGroupId, c.personId, c.confidence);
-                                                    allCalls.push(candidate);
-                                                });
-                                                // Wait for all the async calls before sending the results
-                                                Promise.all(allCalls)
-                                                    .then(value => {
-                                                        this.identificationCompleteted(
-                                                            {
-                                                                ok: true,
-                                                                message: "I have found the following candidates: ",
-                                                                candidates: value
-                                                            }
-                                                        );
-                                                    })
-                                            }
-                                            else {
-                                                this.identificationCompleteted(
-                                                    {
-                                                        ok: false,
-                                                        message: "No matching candidates were found in the picture."
-                                                    }
-                                                );
-                                            }
-                                            return;
-                                        });
+                var pid = "fa704750-0b81-43d0-a3a4-3e025f3eb2ba"
+                letsSeeYourFace(this.props.personGroupId, reader.result, this.props.personGroupId.personId, pid.confidence, this.identificationCompleteted(), () => {
 
-                                    });
-                            }
-                            else {
-                                this.identificationCompleteted(
-                                    {
-                                        ok: false,
-                                        message: "This picture does not contain any face."
-                                    }
-                                );
-                            }
-                        });
-                };
-                reader.readAsArrayBuffer(this.state.picture);
-            });
+                })
+            })
         }
     }
 
+
+
+
+
+
+
+
     render() {
+        console.log(this.state.results, "this should be the results")
         let modalClose = () => this.setState({ showResults: false });
 
         return (
@@ -183,8 +143,8 @@ class IdentficationResults extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-    }
 
+    }
     render() {
         return (
             <Modal {...this.props}>
@@ -193,18 +153,18 @@ class IdentficationResults extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     {
-                        this.props.results !== null &&
-                        <Alert variant={this.props.results.ok ? "success" : "danger"}>
-                            {this.props.results.ok === false &&
-                                <Fragment>{this.props.results.message}</Fragment>
-                            }
-                            {this.props.results.ok === true &&
-                                <Fragment>
-                                    {this.props.results.message}
-                                    {this.props.results.candidates.map((c) => { return `${c.name} with a confidence of ${c.confidence}` }).join(",")}
-                                </Fragment>
-                            }
-                        </Alert>
+                        //     this.props.results !== null &&
+                        //     <Alert variant={this.props.results.ok ? "success" : "danger"}>
+                        //         {this.props.results.ok === false &&
+                        //             <Fragment>{this.props.results.message}</Fragment>
+                        //         }
+                        //         {this.props.results.ok === true &&
+                        //             <Fragment>
+                        //                 {this.props.results.message}
+                        //                 {this.props.results.candidates.map((c) => { return `${c.name} with a confidence of ${c.confidence}` }).join(",")}
+                        //             </Fragment>
+                        //         }
+                        //     </Alert>
                     }
                 </Modal.Body>
                 <Modal.Footer>
@@ -213,7 +173,7 @@ class IdentficationResults extends Component {
         );
     }
 }
-
+// Training does not work on click right now and is an issue for latter 1/5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class TrainGroup extends Component {
 
     constructor(props) {

@@ -3,14 +3,35 @@ const passport = require("passport");
 const router = express.Router();
 const { v4: newUuid } = require("uuid");
 const Vote = require("../models/Vote");
-
-
 const User = require("../models/User");
+
+var nodemailer = require('nodemailer');
+require('dotenv').config();
+
+const transport = {
+    host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.CREDENTIAL_USER,
+        pass: process.env.CREDENTIAL_PASS
+    }
+}
+
+const transporter = nodemailer.createTransport(transport)
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Server is ready to take messages');
+    }
+})
 
 router
     .get('/api/profile/:id', (req, res) => {
 
-        User    
+        User
             .findById(req.params.id)
             .then(data => {
                 res.json(data);
@@ -18,20 +39,21 @@ router
             .catch(err => console.log(err));
     })
     .post("/api/signup", (req, res) => {
+
         Users = new User({
-            username: req.body.data.username,
-            firstName: req.body.data.firstName,
-            lastName: req.body.data.lastName,
-            address1: req.body.data.streetAddress1,
-            address2: req.body.data.streetAddress2,
-            city: req.body.data.city,
-            state: req.body.data.state,
-            zipCode: req.body.data.zipCode,
-            uuid: newUuid()
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            address1: req.body.streetAddress1,
+            address2: req.body.streetAddress2,
+            city: req.body.city,
+            state: req.body.state,
+            zipCode: req.body.zipCode,
+            uuid: uuid
         });
         console.log("Body: ", req.body);
 
-        User.register(Users, req.body.data.password, (err, user) => {
+        User.register(Users, req.body.password, (err, user) => {
             if (err) {
                 console.log(err);
                 res.json({
@@ -41,12 +63,34 @@ router
             }
             else {
                 console.log("success");
+                console.log(user);
                 res.json({
                     success: true,
-                    message: "Account registered"
+                    message: "Account registered",
+                    userId: user._id
                 });
             };
         });
+
+        const mail = {
+            from: 'surev0te@zohomail.com',
+            to: Users.username,  // Change to email address that you want to receive messages on
+            subject: 'New Message from sure vote',
+            text: Users.uuid
+        }
+
+        transporter.sendMail(mail, (err, data) => {
+            if (err) {
+                res.json({
+                    status: 'fail'
+                })
+                console.log("mail", err);
+            } else {
+                res.json({
+                    status: 'success'
+                })
+            }
+        })
     })
 
     .post("/api/login", (req, res, next) => {
@@ -67,7 +111,11 @@ router
                         errors: err
                     });
                 }
-                return res.status(200).json(req.user);
+                return res.status(200).json({
+                    success: true,
+                    message: "Logged in",
+                    userId: user._id
+                });
             });
         })(req, res, next);
     })
@@ -76,7 +124,17 @@ router
         console.log(req.body);
         console.log("hit vote route")
         res.end();
-    });
+    })
+
+// .post("/api/storePersonId", (req, res, next) => {
+//     User.findByIdAndUpdate(
+//         {
+//             _id: req.user.id,
+//             personId: req.body.personId
+//         }
+//     )
+// });
+
 
 
 
