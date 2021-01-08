@@ -1,14 +1,14 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState } from "react";
-import { 
-  Button, 
-  ButtonGroup, 
-  Col, 
-  Container, 
-  Form, 
-  FormControl, 
-  InputGroup, 
-  Jumbotron 
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  InputGroup,
+  Jumbotron
 } from "react-bootstrap";
 import "./SignUp.css";
 const axios = require("axios");
@@ -45,10 +45,11 @@ const SignUp = () => {
         zipCode: zipCodeValue
       }
       console.log(userObj);
-      axios.post("/api/signup", {
-        data: userObj
-      }).then(() => {
+      axios.post("/api/signup",
+        userObj
+      ).then((res) => {
         console.log("Successfully registered!");
+        console.log(res);
         alert("Successfully Registered!");
       }).catch(err => {
         console.log(err);

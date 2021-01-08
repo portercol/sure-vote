@@ -21,19 +21,19 @@ router
         const uuid = newUuid()
 
         Users = new User({
-            username: req.body.data.username,
-            firstName: req.body.data.firstName,
-            lastName: req.body.data.lastName,
-            address1: req.body.data.streetAddress1,
-            address2: req.body.data.streetAddress2,
-            city: req.body.data.city,
-            state: req.body.data.state,
-            zipCode: req.body.data.zipCode,
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            address1: req.body.streetAddress1,
+            address2: req.body.streetAddress2,
+            city: req.body.city,
+            state: req.body.state,
+            zipCode: req.body.zipCode,
             uuid: uuid
         });
         console.log("Body: ", req.body);
 
-        User.register(Users, req.body.data.password, (err, user) => {
+        User.register(Users, req.body.password, (err, user) => {
             if (err) {
                 console.log(err);
                 res.json({
@@ -47,11 +47,8 @@ router
                 res.json({
                     success: true,
                     message: "Account registered",
+                    userId: user._id
                 });
-
-                message: uuid
-
-
             };
         });
     })

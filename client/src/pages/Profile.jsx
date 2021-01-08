@@ -1,14 +1,11 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Card,
   Container,
   ListGroup,
   ListGroupItem,
   Button,
-  Jumbotron,
-  Row,
-  Col
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
@@ -19,7 +16,7 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    const id = "5ff67acffb1185391c11fdfb";
+    const id = "5ff24eadb055a76f5c253581";
 
     axios
       .get('/api/profile/' + id)
