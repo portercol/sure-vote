@@ -3,12 +3,9 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
-  Row,
-  Col,
   ListGroup,
   ListGroupItem,
-  Button,
-  Jumbotron,
+  Button
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
@@ -64,13 +61,13 @@ const Profile = () => {
                 <Button variant="dark" type="submit">
                   Update Profile
                 </Button>
-              </Card.Body>
-            </Card>
-              </Col> 
-              <Col xs lg={4}></Col>
-              </Row>
-          </Container>
-        </Jumbotron>
+          </Card.Body>
+        </Card>
+        </Col>
+        <Col xs lg={4}></Col>
+        </Row>
+      </Container>
+      </Jumbotron>
     </>
   );
 
