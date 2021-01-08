@@ -26,12 +26,9 @@ function App() {
           <Route exact path='/election' component={Election} />
           <Route exact path='/vote' component={Vote} />
           <Route exact path='/contact' component={Contact} />
-          <Route exact path='/ballot' component={Ballot} />
           <Route exact path='/face' component={App2} />
           <Route exact path='/cam2' component={AddPerson} />
           <Route exact path='/cam3' component={SignIn2} />
-
-
         </Switch>
       </div>
     </Router>

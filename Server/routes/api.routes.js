@@ -2,10 +2,35 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { v4: newUuid } = require("uuid");
+<<<<<<< HEAD
 // const Vote = require("../models/Vote");
-
-
+=======
+const Vote = require("../models/Vote");
 const User = require("../models/User");
+>>>>>>> origin
+
+var nodemailer = require('nodemailer');
+require('dotenv').config();
+
+const transport = {
+    host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.CREDENTIAL_USER,
+        pass: process.env.CREDENTIAL_PASS
+    }
+}
+
+const transporter = nodemailer.createTransport(transport)
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Server is ready to take messages');
+    }
+})
 
 router
     .get('/api/profile/:id', (req, res) => {
@@ -13,12 +38,11 @@ router
         User
             .findById(req.params.id)
             .then(data => {
-                res.json({ success: true, data });
+                res.json(data);
             })
             .catch(err => console.log(err));
     })
     .post("/api/signup", (req, res) => {
-        const uuid = newUuid()
 
         Users = new User({
             username: req.body.username,
@@ -51,6 +75,26 @@ router
                 });
             };
         });
+
+        const mail = {
+            from: 'surev0te@zohomail.com',
+            to: Users.username,  // Change to email address that you want to receive messages on
+            subject: 'New Message from sure vote',
+            text: Users.uuid
+        }
+
+        transporter.sendMail(mail, (err, data) => {
+            if (err) {
+                res.json({
+                    status: 'fail'
+                })
+                console.log("mail", err);
+            } else {
+                res.json({
+                    status: 'success'
+                })
+            }
+        })
     })
 
     .post("/api/login", (req, res, next) => {
