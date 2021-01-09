@@ -124,12 +124,16 @@ const SignUp2 = () => {
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
                                 snap().canvas.toBlob(data => {
-
+                                    // need to find away to get new user to wait on the FID befor subing a new user.
+                                    // if anything let look inside of STA
                                     newUserApi()
                                         .then(PIDR => {
 
+                                            submitToAgatha("5595", PIDR.personId, data)
+                                            if (submitToAgatha === {}) {
+                                                console.error('no picture taken')
+                                            }
 
-                                            submitToAgatha("5595", PIDR.personId, data);
 
                                             trainingStart()
                                         })

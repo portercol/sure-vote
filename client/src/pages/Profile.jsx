@@ -8,14 +8,22 @@ import {
   Button,
 } from "react-bootstrap";
 import Navbar from "../components/Navbar.jsx";
-import landLady from "../assets/landlady.jpg";
+// import landLady from "../assets/landlady.jpg";
 import "../pages/Profile.css";
 import axios from 'axios';
-import { CustomPlaceholder } from 'react-placeholder-image'; 
+import { CustomPlaceholder } from 'react-placeholder-image';
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
+
+
 
 const Profile = () => {
 
   const [data, getData] = useState();
+  // const [userId, dispatch] = useGlobalContextAuthUser();
+  const message = useGlobalContextAuthUser();
+  console.log(message);
+  // console.log(dispatch);
+
 
   useEffect(() => {
     getProfile();
@@ -23,12 +31,10 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    const id = "5ff68727f86e984d2c0e21e3";
-
     axios
-      .get('/api/profile/' + id)
+      .get('/api/profile/' + userId)
       .then((res) => {
-        console.log(data)
+        console.log("axios: ", data)
         const allData = res.data;
         getData(allData);
       }).catch(err => {
