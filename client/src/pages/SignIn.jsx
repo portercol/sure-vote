@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap";
 import './SignIn.css'
 import axios from "axios";
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
+
 
 // create functional component to hold sign up page data
 const SignIn = () => {
 
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
+  const [userId, dispatch] = useGlobalContextAuthUser();
+  console.log(userId);
 
   // create function for submit button 'onclick'
   const submitBtn = () => {
@@ -21,11 +25,11 @@ const SignIn = () => {
         username: usernameLogin,
         password: passwordLogin
       }
-      console.log(userLoginObj);
       axios.post("/api/login",
         userLoginObj
       ).then((res) => {
-        console.log("User authenticated");
+        console.log(res.data.userId);
+        dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
       }).catch(err => {
         console.log(err);
       });
@@ -62,17 +66,17 @@ const SignIn = () => {
               </Form.Text>
             </Form.Group>
           </Form>
-          <div id="userSignIn">
-            <ButtonGroup size="lg" className="mr-3">
-              <Button onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='right-button'>Go Back</Button>
-            </ButtonGroup>
+          <br />
+          <ButtonGroup size="lg" className="mr-3">
+            <Button href='/' onClick={() => { submitBtn() }} variant="dark"
+              type="submit" id='right-button'>Go Back</Button>
+          </ButtonGroup>
 
-            <ButtonGroup size="lg" className="mr-3">
-              <Button onClick={() => { submitBtn() }} variant="dark"
-                type="submit" id='left-button'>Sign In</Button>
-            </ButtonGroup>
-          </div>
+          <ButtonGroup size="lg" className="mr-3">
+            <Button onClick={() => { submitBtn() }} variant="dark"
+              type="submit" id='left-button'>Sign In</Button>
+          </ButtonGroup>
+
         </Jumbotron>
       </Container>
     </>

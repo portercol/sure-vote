@@ -9,9 +9,13 @@ const LocalStrategy = require("passport-local").Strategy;
 const cors = require('cors');
 require('./config/db')();
 
-app.use(logger("dev"));
-
 const PORT = process.env.PORT || 5000;
+
+// parsing middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(logger("dev"));
 
 app.use(logger('dev'));
 
@@ -26,9 +30,6 @@ passport.deserializeUser(User.deserializeUser());
 //authenticate users
 passport.use(new LocalStrategy(User.authenticate()));
 
-// parsing middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(cors())
 
 app.use(apiRoutes);

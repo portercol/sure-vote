@@ -47,6 +47,7 @@ const Contact = () => {
     return (
         <>
             <Navbar />
+
             <Container id="main-container">
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>

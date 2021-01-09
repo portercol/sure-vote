@@ -40,7 +40,7 @@ router.post('/send', (req, res, next) => {
         from: 'surev0te@zohomail.com',
         to: email,
         subject: 'A message from the team',
-        text: `Thank you for contacting us!\n\nForm details\nName: ${name}\n Email: ${email}\n Message: ${message}`
+        text: `Thank you for contacting us!\n\nForm details:\n\nName: ${name}\n Email: ${email}\n Message: ${message}`
       }
       
       transporter.sendMail(mail, (err, data) => {

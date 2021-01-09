@@ -7,34 +7,34 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
-import Ballot from './pages/Ballot'
 import Contact from './pages/Contact'
 import App2 from './pages/faceapi/App'
 import AddPerson from './pages/Signupcamface'
 import SignIn2 from './pages/SignInFace'
-// import Ballot from './pages/Ballot'
+import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
+import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route exact path='/signup' component={SignUp} />
-          <Route exact path='/signin' component={SignIn} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/ballot' component={Ballot} />
-          <Route exact path='/election' component={Election} />
-          <Route exact path='/vote' component={Vote} />
-          <Route exact path='/contact' component={Contact} />
-          <Route exact path='/face' component={App2} />
-          <Route exact path='/cam2' component={AddPerson} />
-          <Route exact path='/cam3' component={SignIn2} />
-
-
-        </Switch>
-      </div>
+      <GlobalProviderAuthUser>
+        <div className="App">
+          <Switch>
+            <Route exact path='/' component={Homepage} />
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/signin' component={SignIn} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/election' component={Election} />
+            <Route exact path='/ballot' component={Ballot} />
+            <Route exact path='/vote' component={Vote} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/face' component={App2} />
+            <Route exact path='/cam2' component={AddPerson} />
+            <Route exact path='/cam3' component={SignIn2} />
+          </Switch>
+        </div>
+      </GlobalProviderAuthUser>
     </Router>
   );
 }
