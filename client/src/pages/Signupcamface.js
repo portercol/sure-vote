@@ -116,9 +116,9 @@ const SignUp2 = () => {
                     <div className="app">
                         <div className="app__input">
                             {playing ? (
-                                <button onClick={stopVideo}>Stop</button>
+                                <button className="btn btn-success" onClick={stopVideo}>Stop</button>
                             ) : (
-                                    <button onClick={startVideo}>Start</button>
+                                    <button className="btn btn-success" onClick={startVideo}>Start</button>
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
@@ -150,16 +150,7 @@ const SignUp2 = () => {
 
                     </div>
 
-                    <Form>
-                        <Form.Row>
-                            <Col>
-                                <Form.Control placeholder="First name" />
-                            </Col>
-                            <Col>
-                                <Form.Control placeholder="Last name" />
-                            </Col>
-                        </Form.Row>
-                    </Form>
+
 
 
                     <br />

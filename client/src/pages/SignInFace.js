@@ -127,11 +127,17 @@ const SignIn2 = () => {
                     </Container>
                     <div className="app">
                         <div className="app__input">
+
+
                             {playing ? (
-                                <button onClick={stopVideo}>Stop</button>
+                                <button className="btn btn-success" onClick={stopVideo}>Stop</button>
                             ) : (
-                                    <button onClick={startVideo}>Start</button>
+                                    <button className="btn btn-success" onClick={startVideo}>Start</button>
                                 )}
+
+
+
+
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
@@ -153,6 +159,8 @@ const SignIn2 = () => {
 
                             }}>use</button>
                         </div>
+
+
                         <div className="app__input">
                             <button id="save" type="button">save</button>
                         </div>
@@ -162,16 +170,7 @@ const SignIn2 = () => {
 
                     </div>
 
-                    <Form>
-                        <Form.Row>
-                            <Col>
-                                <Form.Control placeholder="First name" />
-                            </Col>
-                            <Col>
-                                <Form.Control placeholder="Last name" />
-                            </Col>
-                        </Form.Row>
-                    </Form>
+
 
 
                     <br />
