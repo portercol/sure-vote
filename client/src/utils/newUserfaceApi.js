@@ -12,7 +12,8 @@ export async function newUserApi(Gid, newPnam, cb) {
     var api = new ApiCalls();
     var results = await api.Post(api.personsEndPoint("5595"), body).then((res) => res.json())
     // const res = await axios.update('')
-    console.log(results, "aj results")
+    console.log(results, "aj results");
+
     return results
 };
 

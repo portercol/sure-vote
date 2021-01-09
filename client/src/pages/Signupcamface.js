@@ -92,9 +92,8 @@ const SignUp2 = () => {
             <Container id="main-container">
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Information</h1>
-
-
-                    <h1 id='name'>your name goes here</h1>
+                    <h2 id='name'>your name goes here</h2>
+                    <h4>Please remove hats and glasses and look directly at the camera.</h4>
                     <Container>
                         <Row>
                             <Col>

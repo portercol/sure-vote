@@ -83,6 +83,7 @@ class ApiCalls {
                     'Content-Type': 'application/json',
                 }
             })
+            .catch(err => alert("Picture upload failed.  Please try again."));
     }
 
     async Patch(url, jsonBody) {
