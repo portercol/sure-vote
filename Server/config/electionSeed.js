@@ -11,7 +11,7 @@ mongoose.connect(
     useFindAndModify: false
 });
 
-const electionSeed = new ElectionSchema(
+const electionSeed = [
 
   {
     date: Date.now(),
@@ -85,19 +85,16 @@ const electionSeed = new ElectionSchema(
     office: "Utah State Representative",
     candidates: [ ]
   }
-)
+]
 
-electionSeed.save();
 
-console.log("Data Saved");
-
-// ElectionSchema.Election.deleteMany({})
-//   .then(() => ElectionSchema.Election.collection.insertMany(electionSeed))
-//   .then(data => {
-//     console.log(data.result.n + " records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+ElectionSchema.deleteMany()
+  .then(() => ElectionSchema.collection.insertMany(electionSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
