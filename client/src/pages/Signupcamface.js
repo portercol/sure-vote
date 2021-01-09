@@ -129,8 +129,10 @@ const SignUp2 = () => {
                                     newUserApi()
                                         .then(PIDR => {
 
-
                                             submitToAgatha("5595", PIDR.personId, data)
+                                            if (submitToAgatha === {}) {
+                                                console.error('no picture taken')
+                                            }
 
 
                                             trainingStart()

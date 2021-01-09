@@ -28,18 +28,22 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
                     let confidenceX = await confidence * 100
                     console.log(confidenceX, 'we got the confidence ')
                     console.log(InPID, 'InPID')
+
+
                     // if your incoming PID doesnt mach our PID then we need to loop you back to the top
-                    if (InPID !== "ae44c1fa-7b5f-4665-bc93-768487277f50") {
+                    if (InPID !== "23b37d80-a651-48b6-a2cc-bb7d0a8ccd10") {
                         // both errors work need to make them more offical and or a propt
                         console.error('your PID is not correct')
                     }
+                    // both errors work need to make them more offical and or a propt
+
                     else if (confidence < !50.0) {
 
                         console.error('we do not think this is you')
 
                     }
                     else {
-                        var allCalls = idHelper.Authentify("5595", "ae44c1fa-7b5f-4665-bc93-768487277f50", idCompleted.confidence)
+                        var allCalls = idHelper.Authentify("5595", "23b37d80-a651-48b6-a2cc-bb7d0a8ccd10", idCompleted.confidence)
                         return allCalls
                     }
 
