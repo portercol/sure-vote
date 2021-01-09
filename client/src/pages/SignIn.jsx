@@ -4,6 +4,7 @@ import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap
 import './SignIn.css'
 import axios from "axios";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
+import { Link } from "react-router-dom";
 
 
 // create functional component to hold sign up page data
@@ -12,7 +13,7 @@ const SignIn = () => {
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
   const [userId, dispatch] = useGlobalContextAuthUser();
-  console.log(userId);
+
 
   // create function for submit button 'onclick'
   const submitBtn = () => {
@@ -76,6 +77,8 @@ const SignIn = () => {
             <Button onClick={() => { submitBtn() }} variant="dark"
               type="submit" id='left-button'>Sign In</Button>
           </ButtonGroup>
+
+          <Link to="/profile">Profile</Link>
 
         </Jumbotron>
       </Container>

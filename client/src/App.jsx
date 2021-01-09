@@ -18,8 +18,8 @@ import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
 function App() {
   return (
     <Router>
-      <GlobalProviderAuthUser>
-        <div className="App">
+      <div className="App">
+        <GlobalProviderAuthUser>
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route exact path='/signup' component={SignUp} />
@@ -33,8 +33,8 @@ function App() {
             <Route exact path='/cam2' component={AddPerson} />
             <Route exact path='/cam3' component={SignIn2} />
           </Switch>
-        </div>
-      </GlobalProviderAuthUser>
+        </GlobalProviderAuthUser>
+      </div>
     </Router>
   );
 }
