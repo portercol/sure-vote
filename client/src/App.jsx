@@ -39,4 +39,5 @@ function App() {
   );
 }
 
+// <Route exact path='/ballot' component={Ballot} />
 export default App;
