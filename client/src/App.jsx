@@ -13,12 +13,12 @@ import AddPerson from './pages/Signupcamface'
 import SignIn2 from './pages/SignInFace'
 import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
-import GlobalContextAuthUser from "./utils/GlobalContextAuthUser"
+import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
 
 function App() {
   return (
     <Router>
-      <GlobalContextAuthUser>
+      <GlobalProviderAuthUser>
         <div className="App">
           <Switch>
             <Route exact path='/' component={Homepage} />
@@ -34,7 +34,7 @@ function App() {
             <Route exact path='/cam3' component={SignIn2} />
           </Switch>
         </div>
-      </GlobalContextAuthUser>
+      </GlobalProviderAuthUser>
     </Router>
   );
 }

@@ -5,12 +5,13 @@ export const GlobalContextAuthUser = createContext();
 
 //set up global provider & reducer
 const defaultState = {
-    id: ""
+    id: null
 };
 
 //reducer 
 const reducer = (state, action) => {
     console.log("GlobalContextAuthUser: reducer", { action });
+    console.log({ state })
     switch (action.type) {
         case 'UPDATE_USERID':
             return {
@@ -33,7 +34,6 @@ const GlobalProviderAuthUser = (props) => {
 
 export default GlobalProviderAuthUser;
 
-//custom hook for 
 export const useGlobalContextAuthUser = () => {
     return useContext(GlobalContextAuthUser);
 };

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap";
 import './SignIn.css'
 import axios from "axios";
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 
 
 // create functional component to hold sign up page data
@@ -10,6 +11,7 @@ const SignIn = () => {
 
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
+  const [, dispatch] = useGlobalContextAuthUser();
 
   // create function for submit button 'onclick'
   const submitBtn = () => {
@@ -26,6 +28,7 @@ const SignIn = () => {
         userLoginObj
       ).then((res) => {
         console.log(res.data.userId);
+        dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
       }).catch(err => {
         console.log(err);
       });
