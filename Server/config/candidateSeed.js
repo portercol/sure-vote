@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ElectionSchema = require('../models/Candidate');
+const CandidateSchema = require('../models/Candidate');
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/sureVote_db", {
@@ -9,7 +9,7 @@ mongoose.connect(
     useFindAndModify: false
 });
 
-const candidateSeed = [
+const candidateSeed = new CandidateSchema (
     {  
         name: "Donald J. Trump",
         party: "Republican Party",
@@ -70,7 +70,7 @@ const candidateSeed = [
         location: "United States",
         district: "7th House District"
     },
-]
+)
 
 candidateSeed.save();
 
