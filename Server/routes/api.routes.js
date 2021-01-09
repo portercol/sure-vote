@@ -39,6 +39,7 @@ router
             .catch(err => console.log(err));
     })
     .post("/api/signup", (req, res) => {
+        const uuid = newUuid();
 
         Users = new User({
             username: req.body.username,
@@ -126,14 +127,20 @@ router
         res.end();
     })
 
-// .post("/api/storePersonId", (req, res, next) => {
-//     User.findByIdAndUpdate(
-//         {
-//             _id: req.user.id,
-//             personId: req.body.personId
-//         }
-//     )
-// });
+    .post("/api/storePersonId", (req, res) => {
+        User.findByIdAndUpdate(
+            req.body.id,
+            { personId: req.body.personId }
+        )
+            .then(data => {
+                console.log(`PersonId ${data} successfully added`);
+                res.json({ message: "PersonId successfully added" });
+            })
+            .catch(err => {
+                console.log(err);
+                res.json({ message: "Error logging PersonId: ", err })
+            })
+    });
 
 
 
