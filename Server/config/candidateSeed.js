@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const CandidateSchema = require('../models/Candidate');
 
+const Schema = mongoose.Schema;
+
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/sureVote_db", {
     useNewUrlParser: true,
@@ -9,7 +11,7 @@ mongoose.connect(
     useFindAndModify: false
 });
 
-const candidateSeed = new CandidateSchema (
+const candidateSeed = [
     {  
         name: "Donald J. Trump",
         party: "Republican Party",
@@ -70,19 +72,15 @@ const candidateSeed = new CandidateSchema (
         location: "United States",
         district: "7th House District"
     },
-)
+]
 
-candidateSeed.save();
-
-console.log("Data Saved");
-
-// ElectionSchema.Election.deleteMany({})
-//   .then(() => ElectionSchema.Election.collection.insertMany(electionSeed))
-//   .then(data => {
-//     console.log(data.result.n + " records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+CandidateSchema.deleteMany()
+  .then(() => CandidateSchema.collection.insertMany(candidateSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
