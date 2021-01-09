@@ -19,17 +19,21 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
                 // console.log(facesDetected, 'FD1')
                 let face = await con.candidates
                 console.log(face, 'FACE')
-                // let InPID = await con.candidates.confidence.personId
-                // console.log(InPID, "incoming pid")
+
                 await face.forEach(async function (idCompleted) {
                     // async Authentify(personGroupId, personId, confidence)
                     // let complete = idCompleted.confidence
-                    // console.log(idCompleted, 'we got the confidence ')
+                    console.log(idCompleted.personId, 'we got the confidence ')
+                    let InPID = await idCompleted.personId
+                    console.log(InPID, 'InPID')
+                    // if your incoming PID doesnt mach our PID then we need to loop you back to the top
+                    if (InPID !== "ae44c1fa-7b5f-4665-bc93-768487277f50") {
 
-                    var allCalls = idHelper.Authentify("5595", "0b571036-08c5-43b0-9855-f308cd649d52", idCompleted.confidence)
-                    console.log(idCompleted.personId, 'candidates')
+                        console.error('your PID is not correct')
+                    }
+                    var allCalls = idHelper.Authentify("5595", "ae44c1fa-7b5f-4665-bc93-768487277f50", idCompleted.confidence)
 
-                    console.log(allCalls, 'candidates')
+                    // console.log(allCalls, 'candidates')
                     return allCalls
                 })
 
