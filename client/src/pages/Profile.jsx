@@ -31,15 +31,15 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    // axios
-    //   .get('/api/profile/' + userId)
-    //   .then((res) => {
-    //     console.log("axios: ", data)
-    //     const allData = res.data;
-    //     getData(allData);
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
+    axios
+      .get('/api/profile/' + userId)
+      .then((res) => {
+        console.log("axios: ", data)
+        const allData = res.data;
+        getData(allData);
+      }).catch(err => {
+        console.log(err);
+      })
   }
 
 
