@@ -14,6 +14,7 @@ import SignIn2 from './pages/SignInFace'
 import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
+import Toast from './pages/toast/Toast';
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
             <Route exact path='/cam2' component={AddPerson} />
             <Route exact path='/cam3' component={SignIn2} />
           </Switch>
+
+
         </div>
       </GlobalProviderAuthUser>
     </Router>

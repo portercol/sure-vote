@@ -10,33 +10,44 @@
 
 
 // import Rreact, elements from React-Bootstrap, SignUp.css
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
 // import { submitToAgatha } from "../utils/submitApiImgP"
 // import { newUserApi } from '../utils/newUserfaceApi';
 // import { trainingStart } from '../utils/Training'
+// import checkIcon from './assets/check.svg';
+// import errorIcon from './assets/error.svg';
+// import infoIcon from './assets/info.svg';
+// import warningIcon from './assets/warning.svg';
 import { letsSeeYourFace } from '../utils/Identify';
 // import ApiCalls from "../utils/ApiCalls";
-
+import Toast from 'react-bootstrap/Toast'
 import "./Signupcamface.css";
-
 
 
 
 // create functional component to hold sign up page data
 
-
+// Toast()
 
 const SignIn2 = () => {
-    const [playing, setPlaying] = useState(false);
 
+    const [showA, setShowA] = useState(true);
+    const toggleShowA = () => setShowA(!showA);
+
+    const [playing, setPlaying] = useState(false);
     const vest = useRef(null);
     const videoRef = useRef(null);
-
+    // const [list, setList] = useState(toastList);
 
 
     const HEIGHT = 650;
     const WIDTH = 490;
+
+
+
+
+
 
     const startVideo = () => {
         setPlaying(true);
@@ -128,13 +139,11 @@ const SignIn2 = () => {
                     <div className="app">
                         <div className="app__input">
 
-
                             {playing ? (
                                 <button className="btn btn-success" onClick={stopVideo}>Stop</button>
                             ) : (
                                     <button className="btn btn-success" onClick={startVideo}>Start</button>
                                 )}
-
 
 
 
@@ -158,6 +167,8 @@ const SignIn2 = () => {
 
 
                             }}>use</button>
+
+
                         </div>
 
 
@@ -175,6 +186,19 @@ const SignIn2 = () => {
 
                     <br />
                     <br />
+
+                    <Toast show={showA} onClose={toggleShowA}>
+                        <Toast.Header>
+                            <img
+                                src="holder.js/20x20?text=%20"
+                                className="rounded mr-2"
+                                alt=""
+                            />
+                            <strong className="mr-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                        </Toast.Header>
+                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                    </Toast>
 
                     <ButtonGroup size="lg" className="mr-3">
                         <Button href="/" onClick={submitBtn()} variant="dark"
@@ -195,5 +219,5 @@ const SignIn2 = () => {
     );
 };
 
-// export component from SignUp.jsx
+
 export default SignIn2;
