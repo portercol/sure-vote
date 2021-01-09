@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const ElectionSchema = require('../models/Election');
 
+const Schema = mongoose.Schema;
+
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/sureVote_db", {
     useNewUrlParser: true,
@@ -9,7 +11,8 @@ mongoose.connect(
     useFindAndModify: false
 });
 
-const electionSeed = [
+const electionSeed = new ElectionSchema(
+
   {
     date: Date.now(),
     level: "Federal",
@@ -81,8 +84,8 @@ const electionSeed = [
     location: "Utah",
     office: "Utah State Representative",
     candidates: [ ]
-  },
-]
+  }
+)
 
 electionSeed.save();
 
