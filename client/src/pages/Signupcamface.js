@@ -130,7 +130,8 @@ const SignUp2 = () => {
                                         .then(PIDR => {
 
 
-                                            submitToAgatha("5595", PIDR.personId, data);
+                                            submitToAgatha("5595", PIDR.personId, data)
+
 
                                             trainingStart()
                                         })

@@ -12,7 +12,7 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
-import { submitToAgatha } from "../utils/submitApiImgP"
+// import { submitToAgatha } from "../utils/submitApiImgP"
 // import { newUserApi } from '../utils/newUserfaceApi';
 // import { trainingStart } from '../utils/Training'
 import { letsSeeYourFace } from '../utils/Identify';
@@ -137,33 +137,20 @@ const SignIn2 = () => {
                                 console.log(snap(), "RENDER SNAP")
                                 snap().canvas.toBlob(data => {
                                     // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
-                                    letsSeeYourFace('5595', data, "3300f642-91db-4165-b27d-270559430b26", letsSeeYourFace.confidence,)
+                                    letsSeeYourFace('5595', data, "2597d71c-9ef3-4d71-a4f4-9ea63b1cbb72", letsSeeYourFace.confidence,)
+
+                                    // this is logging the propmise but is never fafilled 
+                                }
 
                                     // remember at this time the code is hard coded
                                     // submitToAgatha("5595", "fa704750-0b81-43d0-a3a4-3e025f3eb2ba", data, async (STA) => {
                                     //     var data = await STA.json()
                                     //     console.log(data, "AJCLEMENS")
                                     // })
-                                }
-                                    // .then(IMG => {
-
-                                    //     letsSeeYourFace(submitToAgatha(IMG))
-                                    //     console.log(letsSeeYourFace(submitToAgatha()), "lets see if this reads a face or anything")
-
-
-                                    // })
-                                    // newUserApi()
-                                    // letsSeeYourFace(submitToAgatha("5595", "98643950-7820-4eea-b01a-f42065343011", data))
-
-
-                                    // submitToAgatha("5595", "5595", "98643950-7820-4eea-b01a-f42065343011", data);
-
-
-
-
-
 
                                 )
+
+
                             }}>use</button>
                         </div>
                         <div className="app__input">
