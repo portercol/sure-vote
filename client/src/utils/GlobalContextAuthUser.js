@@ -10,9 +10,9 @@ const defaultState = {
 
 //reducer 
 const reducer = (state, action) => {
-    console.log({ action });
+    console.log("GlobalContextAuthUser: reducer", { action });
     switch (action.type) {
-        case 'current_user':
+        case 'UPDATE_USERID':
             return {
                 ...state,
                 id: action.payload
@@ -22,7 +22,7 @@ const reducer = (state, action) => {
     }
 };
 
-const GlobalProvider = (props) => {
+const GlobalProviderAuthUser = (props) => {
     const [state, dispatch] = useReducer(reducer, defaultState);
 
     return (
@@ -31,7 +31,7 @@ const GlobalProvider = (props) => {
 };
 
 
-export default GlobalProvider;
+export default GlobalProviderAuthUser;
 
 //custom hook for 
 export const useGlobalContextAuthUser = () => {
