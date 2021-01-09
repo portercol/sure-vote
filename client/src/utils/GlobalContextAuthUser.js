@@ -29,6 +29,9 @@ const GlobalProviderAuthUser = (props) => {
     return (
         <GlobalContextAuthUser.Provider value={[state, dispatch]} {...props} />
     );
+
+
+
 };
 
 

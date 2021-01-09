@@ -11,7 +11,8 @@ const SignIn = () => {
 
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
-  const [, dispatch] = useGlobalContextAuthUser();
+  const [userId, dispatch] = useGlobalContextAuthUser();
+  console.log(userId);
 
   // create function for submit button 'onclick'
   const submitBtn = () => {

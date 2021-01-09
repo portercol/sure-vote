@@ -19,8 +19,11 @@ import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 const Profile = () => {
 
   const [data, getData] = useState();
-  const [userId, dispatch] = useGlobalContextAuthUser();
-  console.log(dispatch);
+  // const [userId, dispatch] = useGlobalContextAuthUser();
+  const message = useGlobalContextAuthUser();
+  console.log(message);
+  // console.log(dispatch);
+
 
   useEffect(() => {
     getProfile();
@@ -28,15 +31,15 @@ const Profile = () => {
 
   const getProfile = () => {
 
-    axios
-      .get('/api/profile/' + userId)
-      .then((res) => {
-        console.log("axios: ", data)
-        const allData = res.data;
-        getData(allData);
-      }).catch(err => {
-        console.log(err);
-      })
+    // axios
+    //   .get('/api/profile/' + userId)
+    //   .then((res) => {
+    //     console.log("axios: ", data)
+    //     const allData = res.data;
+    //     getData(allData);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
   }
 
 
