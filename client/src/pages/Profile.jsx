@@ -19,8 +19,11 @@ import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 const Profile = () => {
 
   const [data, getData] = useState();
-  const [userId, dispatch] = useGlobalContextAuthUser();
-  console.log(dispatch);
+  // const [userId, dispatch] = useGlobalContextAuthUser();
+  const message = useGlobalContextAuthUser();
+  console.log(message);
+  // console.log(dispatch);
+
 
   useEffect(() => {
     getProfile();
