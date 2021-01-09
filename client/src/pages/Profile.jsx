@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar.jsx";
 import landLady from "../assets/landlady.jpg";
 import "../pages/Profile.css";
 import axios from 'axios';
+import { CustomPlaceholder } from 'react-placeholder-image'; 
 
 const Profile = () => {
 
@@ -35,6 +36,7 @@ const Profile = () => {
       })
   }
 
+
   if (!data) return (<> </>);
 
   return (
@@ -42,7 +44,15 @@ const Profile = () => {
       <Navbar />
       <Container id="main-container">
         <Card className="mainCard" style={{ width: "30rem" }}>
-          <Card.Img variant="top" src={landLady} />
+          {/* <Card.Img variant="top" src="holder.js/300x300" /> */}
+          <CustomPlaceholder width={200} height={400} />
+          <ListGroupItem>
+            <h6>Upload a Photo</h6>
+            <form>
+              <input type='file' name='picture' />
+              <button>Submit</button>
+            </form>
+          </ListGroupItem>
           <Card.Body>
             <Card.Title>
               {data.firstName} {data.lastName}
