@@ -5,11 +5,11 @@ import {
   Container,
   Form,
   ListGroup,
-  ListGroupItem,
-  Button,
+  ListGroupItem
 } from "react-bootstrap";
 import ImageUploader from 'react-images-upload';
 import Navbar from "../components/Navbar.jsx";
+import Modal from '../components/Modal.jsx';
 import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
@@ -22,11 +22,19 @@ const Profile = () => {
   const message = useGlobalContextAuthUser();
   console.log(message);
   // console.log(dispatch);
-  
+
   const uploadPicture = (pic) => {
     let reader = new FileReader();
+    console.log(reader, "READER");
     reader.onload = (e) => {
       setPicture(e.target.result);
+      axios
+        .post('/api/uploadImage', "5ff9f49cadcf8f122db8f226", e.target.result)
+        .then((res) => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err);
+        })
     };
     reader.readAsDataURL(pic[0]);
   }
@@ -86,12 +94,11 @@ const Profile = () => {
             </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Button variant="dark" type="submit">
-              Update Profile
-                </Button>
+            <Modal />
           </Card.Body>
         </Card>
       </Container>
+
     </>
   );
 
