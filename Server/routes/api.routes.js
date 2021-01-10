@@ -116,7 +116,8 @@ router
                 return res.status(200).json({
                     success: true,
                     message: "Logged in",
-                    userId: user._id
+                    userId: user._id,
+                    personId: user.personId
                 });
             });
         })(req, res, next);

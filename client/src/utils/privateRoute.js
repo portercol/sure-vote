@@ -1,14 +1,14 @@
-import { Route } from 'react-router-dom';
-import { useGlobalContextAuthUser } from "./GlobalContextAuthUser";
-import { Redirect } from "react-router-dom";
+import { Redirect, Route } from 'react-router-dom';
+import { useGlobalContextAuthUser } from './GlobalContextAuthUser';
 
 export const PrivateRoute = ({ children, ...rest }) => {
     const userId = useGlobalContextAuthUser();
+    console.log("private route userId: ", userId);
     return (
-        <Route {...rest} render={() => {
+        <Route {...rest}> render={() => {
             return userId !== null
-                ? children
-                : <Redirect to='/signin' />
-        }} />
+                ? children : <Redirect to="/signin" />
+        }}
+        </Route>
     )
 }
