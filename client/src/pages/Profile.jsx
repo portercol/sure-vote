@@ -29,7 +29,7 @@ const Profile = () => {
     // console.log(reader, "READER");
     reader.onload = (e) => {
       setPicture(e.target.result);
-      
+
       axios
         .post('/api/uploadImage', { id: "5ff9f49cadcf8f122db8f226", profilePic: e.target.result })
         .then((res) => {
