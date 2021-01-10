@@ -4,217 +4,211 @@ const router = express.Router();
 const { v4: newUuid } = require("uuid");
 const Vote = require("../models/Vote");
 const User = require("../models/User");
-const Candidate = require('../models/Candidate')
-const Election = require('../models/Election')
+const Candidate = require("../models/Candidate");
+const Election = require("../models/Election");
 
-var nodemailer = require('nodemailer');
-require('dotenv').config();
+var nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const transport = {
-    host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
-    port: 465,
-    secure: true,
-    auth: {
-        user: process.env.CREDENTIAL_USER,
-        pass: process.env.CREDENTIAL_PASS
-    }
-}
+  host: "smtp.zoho.com", // Don’t forget to replace with the SMTP host of your provider
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.CREDENTIAL_USER,
+    pass: process.env.CREDENTIAL_PASS,
+  },
+};
 
-const transporter = nodemailer.createTransport(transport)
+const transporter = nodemailer.createTransport(transport);
 
 transporter.verify((error, success) => {
-    if (error) {
-        console.log(error);
-    } else {
-        console.log('Server is ready to take messages');
-    }
-})
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Server is ready to take messages");
+  }
+});
 
 router
-    .get('/api/profile/:id', (req, res) => {
+  .get("/api/profile/:id", (req, res) => {
+    User.findById(req.params.id)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => console.log(err));
+  })
+  .post("/api/signup", (req, res) => {
+    const uuid = newUuid();
 
-        User
-            .findById(req.params.id)
-            .then(data => {
-                res.json(data);
-            })
-            .catch(err => console.log(err));
-    })
-    .post("/api/signup", (req, res) => {
-        const uuid = newUuid();
-
-        Users = new User({
-            username: req.body.username,
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            address1: req.body.streetAddress1,
-            address2: req.body.streetAddress2,
-            city: req.body.city,
-            state: req.body.state,
-            zipCode: req.body.zipCode,
-            uuid: uuid
-        });
-        console.log("Body: ", req.body);
-
-        User.register(Users, req.body.password, (err, user) => {
-            if (err) {
-                console.log(err);
-                res.json({
-                    success: false,
-                    message: "Error while registering: ", err
-                });
-            }
-            else {
-                console.log("success");
-                console.log(user);
-                res.json({
-                    success: true,
-                    message: "Account registered",
-                    userId: user._id
-                });
-            };
-        });
-
-        const mail = {
-            from: 'surev0te@zohomail.com',
-            to: Users.username,  // Change to email address that you want to receive messages on
-            subject: 'New Message from sure vote',
-            text: Users.uuid
-        }
-
-        transporter.sendMail(mail, (err, data) => {
-            if (err) {
-                res.json({
-                    status: 'fail'
-                })
-                console.log("mail", err);
-            } else {
-                res.json({
-                    status: 'success'
-                })
-            }
-        })
-    })
-
-    .post("/api/login", (req, res, next) => {
-        passport.authenticate("local", function (err, user, info) {
-            if (err) {
-                return res.status(400).json({
-                    errors: err
-                });
-            }
-            if (!user) {
-                return res.status(400).json({
-                    errors: "Incorrect username or password"
-                });
-            }
-            req.logIn(user, function (err) {
-                if (err) {
-                    return res.status(400).json({
-                        errors: err
-                    });
-                }
-                return res.status(200).json({
-                    success: true,
-                    message: "Logged in",
-                    userId: user._id
-                });
-            });
-        })(req, res, next);
-    })
-
-    .post("/api/vote", 
-        async (req, res, next) => {
-            console.log("hit vote route")
-            
-            let vote = new Vote({
-                user: "5ff68727f86e984d2c0e21e3",
-                candidate: "5ff9e6c8d238fa2e88be98e0",
-                election: "5ff9e4392cc42041549d7e07"
-            })
-            await vote.save();
-            console.log(req.body);
-            res.end();
-    })
-    .get('/api/vote', 
-        async (req, res) => {
-            console.log(req.body);
-            const getVote = Vote.findOne({}).populate('user').populate('election').populate('candidate');
-            await res.json({getVote})
-    })
-
-    // .post("/api/candidate", 
-    //     async (req, res, next) => {
-    //         console.log("hit vote route")
-            
-    //         let vote = new Vote({
-    //             user: "5ff68727f86e984d2c0e21e3",
-    //             candidate: "5ff9e6c8d238fa2e88be98e0",
-    //             election: "5ff9e4392cc42041549d7e07"
-    //         })
-    //         await vote.save();
-    //         console.log(req.body);
-    //         res.end();
-    // })
-    .get('/api/candidate', 
-        async (req, res) => {
-            console.log(req.body);
-            const getCandidate = await Candidate.find({})
-            res.json({getCandidate})
-    })
-
-    // .post("/api/election", 
-    //     async (req, res, next) => {
-    //         console.log("hit vote route")
-            
-    //         let vote = new Vote({
-    //             user: "5ff68727f86e984d2c0e21e3",
-    //             candidate: "5ff9e6c8d238fa2e88be98e0",
-    //             election: "5ff9e4392cc42041549d7e07"
-    //         })
-    //         await vote.save();
-    //         console.log(req.body);
-    //         res.end();
-    // })
-    .get('/api/election', 
-        async (req, res) => {
-            console.log(req.body);
-            const getElection = await Election.find({})
-            res.json({getElection})
-    })
-
-
-
-    .post("/api/storePersonId", (req, res) => {
-        User.findByIdAndUpdate(
-            req.body.id,
-            { personId: req.body.personId }
-        )
-            .then(data => {
-                console.log(`PersonId ${data} successfully added`);
-                res.json({ message: "PersonId successfully added" });
-            })
-            .catch(err => {
-                console.log(err);
-                res.json({ message: "Error logging PersonId: ", err })
-            })
-    })
-
-    .post("/api/uploadImage", (req, res) => {
-        console.log("hit image upload route");
-        // console.log(req.body.profilePic);
-        User.findByIdAndUpdate(
-            req.body.id,
-            { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1]} }
-        )
-            .then(data => {
-                console.log(`profile pic ${data} successfully added`);
-                res.json({ message: "profile pic successfully added" });
-            })
-            .catch(err => {
-                console.log(err);
-                res.json({ message: "Error logging profile pic: ", err })
-            })
+    Users = new User({
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address1: req.body.streetAddress1,
+      address2: req.body.streetAddress2,
+      city: req.body.city,
+      state: req.body.state,
+      zipCode: req.body.zipCode,
+      uuid: uuid,
     });
+    console.log("Body: ", req.body);
+
+    User.register(Users, req.body.password, (err, user) => {
+      if (err) {
+        console.log(err);
+        res.json({
+          success: false,
+          message: "Error while registering: ",
+          err,
+        });
+      } else {
+        console.log("success");
+        console.log(user);
+        res.json({
+          success: true,
+          message: "Account registered",
+          userId: user._id,
+        });
+      }
+    });
+
+    const mail = {
+      from: "surev0te@zohomail.com",
+      to: Users.username, // Change to email address that you want to receive messages on
+      subject: "New Message from sure vote",
+      text: Users.uuid,
+    };
+
+    transporter.sendMail(mail, (err, data) => {
+      if (err) {
+        res.json({
+          status: "fail",
+        });
+        console.log("mail", err);
+      } else {
+        res.json({
+          status: "success",
+        });
+      }
+    });
+  })
+
+  .post("/api/login", (req, res, next) => {
+    passport.authenticate("local", function (err, user, info) {
+      if (err) {
+        return res.status(400).json({
+          errors: err,
+        });
+      }
+      if (!user) {
+        return res.status(400).json({
+          errors: "Incorrect username or password",
+        });
+      }
+      req.logIn(user, function (err) {
+        if (err) {
+          return res.status(400).json({
+            errors: err,
+          });
+        }
+        return res.status(200).json({
+          success: true,
+          message: "Logged in",
+          userId: user._id,
+        });
+      });
+    })(req, res, next);
+  })
+
+  .post("/api/vote", async (req, res, next) => {
+    console.log("hit vote route");
+
+    let vote = new Vote({
+      user: "5ff68727f86e984d2c0e21e3",
+      candidate: "5ff9e6c8d238fa2e88be98e0",
+      election: "5ff9e4392cc42041549d7e07",
+    });
+    await vote.save();
+    console.log(req.body);
+    res.end();
+  })
+  .get("/api/vote", async (req, res) => {
+    console.log(req.body);
+    const getVote = Vote.findOne({})
+      .populate("user")
+      .populate("election")
+      .populate("candidate");
+    await res.json({ getVote });
+  })
+
+  // .post("/api/candidate",
+  //     async (req, res, next) => {
+  //         console.log("hit vote route")
+
+  //         let vote = new Vote({
+  //             user: "5ff68727f86e984d2c0e21e3",
+  //             candidate: "5ff9e6c8d238fa2e88be98e0",
+  //             election: "5ff9e4392cc42041549d7e07"
+  //         })
+  //         await vote.save();
+  //         console.log(req.body);
+  //         res.end();
+  // })
+  .get("/api/candidate", async (req, res) => {
+    console.log(req.body);
+    const getCandidate = await Candidate.find({});
+    res.json({ getCandidate });
+  })
+
+  // .post("/api/election",
+  //     async (req, res, next) => {
+  //         console.log("hit vote route")
+
+  //         let vote = new Vote({
+  //             user: "5ff68727f86e984d2c0e21e3",
+  //             candidate: "5ff9e6c8d238fa2e88be98e0",
+  //             election: "5ff9e4392cc42041549d7e07"
+  //         })
+  //         await vote.save();
+  //         console.log(req.body);
+  //         res.end();
+  // })
+  .get("/api/election", async (req, res) => {
+    console.log(req.body);
+    const getElection = await Election.find({});
+    res.json({ getElection });
+  })
+
+  .post("/api/storePersonId", (req, res) => {
+    User.findByIdAndUpdate(req.body.id, { personId: req.body.personId })
+      .then((data) => {
+        console.log(`PersonId ${data} successfully added`);
+        res.json({ message: "PersonId successfully added" });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({ message: "Error logging PersonId: ", err });
+      });
+  })
+
+  .post("/api/uploadImage", (req, res) => {
+    console.log("hit image upload route");
+    // console.log(req.body.profilePic);
+    User.findByIdAndUpdate(req.body.id, {
+      profilePic: {
+        data: req.body.profilePic,
+        contentType: req.body.profilePic.split(";")[0].split(":")[1],
+      },
+    })
+      .then((data) => {
+        console.log(`profile pic ${data} successfully added`);
+        res.json({ message: "profile pic successfully added" });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({ message: "Error logging profile pic: ", err });
+      });
+  });
 
 module.exports = router;
