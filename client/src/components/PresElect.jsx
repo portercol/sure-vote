@@ -12,24 +12,51 @@ import axios from 'axios';
 
 const PresElect = (props) => {
 
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  
   // const [dataReceived, setDataReceived] = useState(false);
-
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election
 
 
+  // pulling data from back end to page
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        setCandidateList(candidateData);
+        console.log(candidateData)
+      })
+
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        console.log(electionData)
+      })
+  }, []); 
+
   console.log(PresElectData);
+  console.log(candidateList, "Herro")
+  console.log(electionList, "Herro")
+
 
   const submitVote = (event) => {
     event.preventDefault();
+    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+    const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
     alert("You voted for " + candidate + ".");
     console.log("Button works")
-    axios.post('/api/vote', { candidate: candidate })
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
         console.log(res.data)
         setVoted(true)
+        setCandidate()
       })
       .catch(err => console.log (err));
     };
@@ -65,9 +92,10 @@ const PresElect = (props) => {
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>{PresElectData[0].office}</h3>
+          <h3 data-id="5ff9e4392cc42041549d7e07">
+            {electionList.office}
+          </h3>
           <hr />
-
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
@@ -77,7 +105,6 @@ const PresElect = (props) => {
                   value="Donald J. Trump"
                   id="candidate1"
                   disabled={voted}
-                  setAllowSubmit={true}
                   onChange={(e) => {
                     setCandidate(e.target.value);
                     console.log(e.target.value)
