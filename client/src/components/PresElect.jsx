@@ -54,6 +54,8 @@ const PresElect = (props) => {
       .then((res) => {
         console.log(res.data)
         setVoted(true)
+
+        setCandidate()
         setCandidateList()
       })
       .catch(err => console.log (err));

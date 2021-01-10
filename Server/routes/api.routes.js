@@ -4,6 +4,8 @@ const router = express.Router();
 const { v4: newUuid } = require("uuid");
 const Vote = require("../models/Vote");
 const User = require("../models/User");
+const Candidate = require('../models/Candidate')
+const Election = require('../models/Election')
 
 var nodemailer = require('nodemailer');
 require('dotenv').config();
@@ -121,11 +123,67 @@ router
         })(req, res, next);
     })
 
-    .post("/api/vote", (req, res, next) => {
-        console.log(req.body);
-        console.log("hit vote route")
-        res.end();
+    .post("/api/vote", 
+        async (req, res, next) => {
+            console.log("hit vote route")
+            
+            let vote = new Vote({
+                user: "5ff68727f86e984d2c0e21e3",
+                candidate: "5ff9e6c8d238fa2e88be98e0",
+                election: "5ff9e4392cc42041549d7e07"
+            })
+            await vote.save();
+            console.log(req.body);
+            res.end();
     })
+    .get('/api/vote', 
+        async (req, res) => {
+            console.log(req.body);
+            const getVote = Vote.findOne({}).populate('user').populate('election').populate('candidate');
+            await res.json({getVote})
+    })
+
+    // .post("/api/candidate", 
+    //     async (req, res, next) => {
+    //         console.log("hit vote route")
+            
+    //         let vote = new Vote({
+    //             user: "5ff68727f86e984d2c0e21e3",
+    //             candidate: "5ff9e6c8d238fa2e88be98e0",
+    //             election: "5ff9e4392cc42041549d7e07"
+    //         })
+    //         await vote.save();
+    //         console.log(req.body);
+    //         res.end();
+    // })
+    .get('/api/candidate', 
+        async (req, res) => {
+            console.log(req.body);
+            const getCandidate = await Candidate.find({})
+            res.json({getCandidate})
+    })
+
+    // .post("/api/election", 
+    //     async (req, res, next) => {
+    //         console.log("hit vote route")
+            
+    //         let vote = new Vote({
+    //             user: "5ff68727f86e984d2c0e21e3",
+    //             candidate: "5ff9e6c8d238fa2e88be98e0",
+    //             election: "5ff9e4392cc42041549d7e07"
+    //         })
+    //         await vote.save();
+    //         console.log(req.body);
+    //         res.end();
+    // })
+    .get('/api/election', 
+        async (req, res) => {
+            console.log(req.body);
+            const getElection = await Election.find({})
+            res.json({getElection})
+    })
+
+
 
     .post("/api/storePersonId", (req, res) => {
         User.findByIdAndUpdate(
@@ -143,9 +201,11 @@ router
     })
 
     .post("/api/uploadImage", (req, res) => {
+        console.log("hit image upload route");
+        // console.log(req.body.profilePic);
         User.findByIdAndUpdate(
             req.body.id,
-            { profilePic: req.body.profilePic }
+            { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1]} }
         )
             .then(data => {
                 console.log(`profile pic ${data} successfully added`);
@@ -156,6 +216,5 @@ router
                 res.json({ message: "Error logging profile pic: ", err })
             })
     });
-
 
 module.exports = router;
