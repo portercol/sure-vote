@@ -140,9 +140,22 @@ router
                 console.log(err);
                 res.json({ message: "Error logging PersonId: ", err })
             })
+    })
+
+    .post("/api/uploadImage", (req, res) => {
+        User.findByIdAndUpdate(
+            req.body.id,
+            { profilePic: req.body.profilePic }
+        )
+            .then(data => {
+                console.log(`profile pic ${data} successfully added`);
+                res.json({ message: "profile pic successfully added" });
+            })
+            .catch(err => {
+                console.log(err);
+                res.json({ message: "Error logging profile pic: ", err })
+            })
     });
-
-
 
 
 module.exports = router;

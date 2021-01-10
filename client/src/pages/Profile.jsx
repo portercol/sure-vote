@@ -3,27 +3,41 @@ import React, { useState, useEffect } from "react";
 import {
   Card,
   Container,
+  Form,
   ListGroup,
-  ListGroupItem,
-  Button,
+  ListGroupItem
 } from "react-bootstrap";
+import ImageUploader from 'react-images-upload';
 import Navbar from "../components/Navbar.jsx";
-// import landLady from "../assets/landlady.jpg";
-import "../pages/Profile.css";
+import Modal from '../components/Modal.jsx';
+import "./Profile.css";
 import axios from 'axios';
-import { CustomPlaceholder } from 'react-placeholder-image';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
-
-
 
 const Profile = () => {
 
   const [data, getData] = useState();
+  const [picture, setPicture] = useState();
   // const [userId, dispatch] = useGlobalContextAuthUser();
   const message = useGlobalContextAuthUser();
   console.log(message);
   // console.log(dispatch);
 
+  const uploadPicture = (pic) => {
+    let reader = new FileReader();
+    console.log(reader, "READER");
+    reader.onload = (e) => {
+      setPicture(e.target.result);
+      axios
+        .post('/api/uploadImage', "5ff9f49cadcf8f122db8f226", e.target.result)
+        .then((res) => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err);
+        })
+    };
+    reader.readAsDataURL(pic[0]);
+  }
 
   useEffect(() => {
     getProfile();
@@ -32,7 +46,7 @@ const Profile = () => {
   const getProfile = () => {
 
     axios
-      .get('/api/profile/' + userId)
+      .get('/api/profile/' + "5ff9f49cadcf8f122db8f226")
       .then((res) => {
         console.log("axios: ", data)
         const allData = res.data;
@@ -42,7 +56,6 @@ const Profile = () => {
       })
   }
 
-
   if (!data) return (<> </>);
 
   return (
@@ -50,22 +63,23 @@ const Profile = () => {
       <Navbar />
       <Container id="main-container">
         <Card className="mainCard" style={{ width: "30rem" }}>
-          {/* <Card.Img variant="top" src="holder.js/300x300" /> */}
-          <CustomPlaceholder width={200} height={400} />
           <ListGroupItem>
-            <h6>Upload a Photo</h6>
-            <form>
-              <input type='file' name='picture' />
-              <button>Submit</button>
-            </form>
+            <Form>
+              {picture ? <img src={picture}></img> :
+                <ImageUploader
+                  withIcon={true}
+                  buttonText='Upload Image'
+                  onChange={uploadPicture}
+                  imgExtension={['.jpeg', '.jpg', '.gif', '.png', '.gif']}
+                  maxFileSize={5242880} />}
+            </Form>
           </ListGroupItem>
           <Card.Body>
-            <Card.Title>
+            <Card.Title id="card-title">
               {data.firstName} {data.lastName}
             </Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            {/* <ListGroupItem>Password:<span id="password-span">{uuid}</span></ListGroupItem> */}
             <ListGroupItem>
               <span id="street">Street Address: </span> {data.address1}
             </ListGroupItem>
@@ -80,15 +94,15 @@ const Profile = () => {
             </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Button variant="dark" type="submit">
-              Update Profile
-                </Button>
+            <Modal />
           </Card.Body>
         </Card>
       </Container>
+
     </>
   );
 
 }
 
+// export Profile component from Profile.jsx
 export default Profile;
