@@ -12,24 +12,49 @@ import axios from 'axios';
 
 const PresElect = (props) => {
 
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  
   // const [dataReceived, setDataReceived] = useState(false);
-
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election
 
 
+  // pulling data from back end to page
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        console.log(candidateData)
+        setCandidateList(candidateData);
+      })
+
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection[0];
+        console.log(electionData)
+        setElectionList(electionData);
+      })
+  }, []); 
+
   console.log(PresElectData);
+  console.log(candidateList, "Herro")
+  console.log(electionList, "Herro")
+
 
   const submitVote = (event) => {
     event.preventDefault();
     alert("You voted for " + candidate + ".");
     console.log("Button works")
-    axios.post('/api/vote', { candidate: candidate })
+    axios.post('/api/vote', { candidate: candidateList.name })
       .then((res) => {
         console.log(res.data)
         setVoted(true)
+        setCandidateList()
       })
       .catch(err => console.log (err));
     };
@@ -65,9 +90,10 @@ const PresElect = (props) => {
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>{PresElectData[0].office}</h3>
+          <h3 data-id="5ff9e4392cc42041549d7e07">
+            {electionList.office}
+          </h3>
           <hr />
-
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
@@ -76,8 +102,9 @@ const PresElect = (props) => {
                   checked={candidate === "Donald J. Trump"}
                   value="Donald J. Trump"
                   id="candidate1"
+                  data-id="5ff9e6c8d238fa2e88be98e0"
+                  data-id="5ff9e4392cc42041549d7e07"
                   disabled={voted}
-                  setAllowSubmit={true}
                   onChange={(e) => {
                     setCandidate(e.target.value);
                     console.log(e.target.value)
@@ -111,6 +138,8 @@ const PresElect = (props) => {
                   checked={candidate === "Joseph R. Biden"}
                   value="Joseph R. Biden"
                   id="candidate2"
+                  data-id="5ff9e6c8d238fa2e88be98e1"
+                  data-id="5ff9e4392cc42041549d7e07"
                   disabled={voted}
                   onChange={(e) => {
                     setCandidate(e.target.value);
