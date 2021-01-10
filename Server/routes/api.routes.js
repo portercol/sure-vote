@@ -1,3 +1,4 @@
+// import required modules and packages, models
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
@@ -10,18 +11,21 @@ const Election = require("../models/Election");
 var nodemailer = require("nodemailer");
 require("dotenv").config();
 
+// set up transport schema
 const transport = {
-  host: "smtp.zoho.com", // Don’t forget to replace with the SMTP host of your provider
+  host: 'smtp.zoho.com',
   port: 465,
   secure: true,
   auth: {
     user: process.env.CREDENTIAL_USER,
-    pass: process.env.CREDENTIAL_PASS,
-  },
-};
+    pass: process.env.CREDENTIAL_PASS
+  }
+}
 
-const transporter = nodemailer.createTransport(transport);
+// create new tranport schema
+const transporter = nodemailer.createTransport(transport)
 
+// verify that transporter is ready
 transporter.verify((error, success) => {
   if (error) {
     console.log(error);
@@ -29,6 +33,7 @@ transporter.verify((error, success) => {
     console.log("Server is ready to take messages");
   }
 });
+
 
 router
   .get("/api/profile/:id", (req, res) => {
@@ -74,24 +79,24 @@ router
     });
 
     const mail = {
-      from: "surev0te@zohomail.com",
-      to: Users.username, // Change to email address that you want to receive messages on
-      subject: "New Message from sure vote",
-      text: Users.uuid,
-    };
+      from: 'surev0te@zohomail.com',
+      to: Users.username,
+      subject: 'New Message from sure vote',
+      text: Users.uuid
+    }
 
     transporter.sendMail(mail, (err, data) => {
       if (err) {
         res.json({
-          status: "fail",
-        });
+          status: 'fail'
+        })
         console.log("mail", err);
       } else {
         res.json({
-          status: "success",
-        });
+          status: 'success'
+        })
       }
-    });
+    })
   })
 
   .post("/api/login", (req, res, next) => {
@@ -112,7 +117,6 @@ router
             errors: err,
           });
         }
-        console.log(user);
         return res.status(200).json({
           success: true,
           message: "Logged in",
@@ -134,7 +138,6 @@ router
     console.log(req.body);
     res.end();
   })
-
   .get("/api/vote", async (req, res) => {
     console.log(req.body);
     const getVote = Vote.findOne({})
@@ -182,33 +185,32 @@ router
     res.json({ getElection });
   })
 
-  .post("/api/uploadImage", (req, res) => {
-    console.log("hit image upload route");
-    // console.log(req.body.profilePic);
-    User.findByIdAndUpdate(req.body.id, {
-      profilePic: {
-        data: req.body.profilePic,
-        contentType: req.body.profilePic.split(";")[0].split(":")[1],
-      }
-    })
+  .post("/api/storePersonId", (req, res) => {
+    User.findByIdAndUpdate(req.body.id, { personId: req.body.personId })
+      .then((data) => {
+        console.log(`PersonId ${data} successfully added`);
+        res.json({ message: "PersonId successfully added" });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({ message: "Error logging PersonId: ", err });
+      });
   })
 
-  .post("/api/storePersonId", (req, res) => {
-    console.log("/api/StorePersonId: ", req.body.id);
-    console.log(req.body.personId);
+  .post("/api/uploadImage", (req, res) => {
+    console.log("hit image upload route");
     User.findByIdAndUpdate(
       req.body.id,
-      { personId: req.body.personId }
+      { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
     )
       .then(data => {
-        console.log(`PersonId ${data.personId} successfully added`);
-        res.json({ message: "PersonId successfully added" });
+        res.json({ message: "profile pic successfully added" });
       })
       .catch(err => {
         console.log(err);
-        res.json({ message: "Error logging PersonId: ", err })
+        res.json({ message: "Error adding profile pic: ", err })
       })
   });
 
-
+// export router out of api.routes.js
 module.exports = router;
