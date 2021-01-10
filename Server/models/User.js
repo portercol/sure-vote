@@ -53,6 +53,10 @@ const UserSchema = new Schema({
     },
     personId: {
         type: String
+    },
+    profilePic: {
+        data: Buffer,
+        contentType: String
     }
 });
 
