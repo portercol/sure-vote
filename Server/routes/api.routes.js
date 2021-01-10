@@ -128,21 +128,21 @@ router
       user: "5ff68727f86e984d2c0e21e3",
       candidate: "5ff9e6c8d238fa2e88be98e0",
       election: "5ff9e4392cc42041549d7e07",
-    });
+      });
     await vote.save();
     console.log(req.body);
     res.end();
-  })
+    })
   .get("/api/vote", async (req, res) => {
-    console.log(req.body);
-    const getVote = Vote.findOne({})
-      .populate("user")
-      .populate("election")
-      .populate("candidate");
-    await res.json({ getVote });
-  })
+      console.log(req.body);
+      const getVote = Vote.findOne({})
+        .populate("user")
+        .populate("election")
+        .populate("candidate");
+      await res.json({ getVote });
+    })
 
-  // .post("/api/candidate",
+// .post("/api/candidate",
   //     async (req, res, next) => {
   //         console.log("hit vote route")
 
@@ -161,7 +161,7 @@ router
     res.json({ getCandidate });
   })
 
-  // .post("/api/election",
+// .post("/api/election",
   //     async (req, res, next) => {
   //         console.log("hit vote route")
 
@@ -180,7 +180,7 @@ router
     res.json({ getElection });
   })
 
-  .post("/api/storePersonId", (req, res) => {
+.post("/api/storePersonId", (req, res) => {
     User.findByIdAndUpdate(req.body.id, { personId: req.body.personId })
       .then((data) => {
         console.log(`PersonId ${data} successfully added`);

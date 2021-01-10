@@ -25,11 +25,14 @@ const Profile = () => {
 
   const uploadPicture = (pic) => {
     let reader = new FileReader();
-    console.log(reader, "READER");
+    // console.log(reader, "READER");
     reader.onload = (e) => {
       setPicture(e.target.result);
+      console.log(e.target);
+      console.log("hit image upload route");
+
       axios
-        .post('/api/uploadImage', "5ff9f49cadcf8f122db8f226", e.target.result)
+        .post('/api/uploadImage', { id: "5ff9f49cadcf8f122db8f226", profilePic: e.target.result })
         .then((res) => {
           console.log(res)
         }).catch(err => {
