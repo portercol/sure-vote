@@ -28,16 +28,16 @@ const PresElect = (props) => {
       .get('/api/candidate')
       .then((res) => {
         const candidateData = res.data.getCandidate;
-        console.log(candidateData)
         setCandidateList(candidateData);
+        console.log(candidateData)
       })
 
     axios
       .get('/api/election')
       .then((res) => {
-        const electionData = res.data.getElection[0];
-        console.log(electionData)
+        const electionData = res.data.getElection;
         setElectionList(electionData);
+        console.log(electionData)
       })
   }, []); 
 
@@ -48,13 +48,15 @@ const PresElect = (props) => {
 
   const submitVote = (event) => {
     event.preventDefault();
+    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+    const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
     alert("You voted for " + candidate + ".");
     console.log("Button works")
-    axios.post('/api/vote', { candidate: candidateList.name })
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
         console.log(res.data)
         setVoted(true)
-        setCandidateList()
+        setCandidate()
       })
       .catch(err => console.log (err));
     };
@@ -102,8 +104,6 @@ const PresElect = (props) => {
                   checked={candidate === "Donald J. Trump"}
                   value="Donald J. Trump"
                   id="candidate1"
-                  data-id="5ff9e6c8d238fa2e88be98e0"
-                  data-id="5ff9e4392cc42041549d7e07"
                   disabled={voted}
                   onChange={(e) => {
                     setCandidate(e.target.value);
@@ -138,8 +138,6 @@ const PresElect = (props) => {
                   checked={candidate === "Joseph R. Biden"}
                   value="Joseph R. Biden"
                   id="candidate2"
-                  data-id="5ff9e6c8d238fa2e88be98e1"
-                  data-id="5ff9e4392cc42041549d7e07"
                   disabled={voted}
                   onChange={(e) => {
                     setCandidate(e.target.value);
