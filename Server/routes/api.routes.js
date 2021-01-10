@@ -143,9 +143,11 @@ router
     })
 
     .post("/api/uploadImage", (req, res) => {
+        console.log("hit image upload route");
+        // console.log(req.body.profilePic);
         User.findByIdAndUpdate(
             req.body.id,
-            { profilePic: req.body.profilePic }
+            { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1]} }
         )
             .then(data => {
                 console.log(`profile pic ${data} successfully added`);
