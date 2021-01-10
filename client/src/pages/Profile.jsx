@@ -28,9 +28,7 @@ const Profile = () => {
     // console.log(reader, "READER");
     reader.onload = (e) => {
       setPicture(e.target.result);
-      console.log(e.target);
-      console.log("hit image upload route");
-
+      
       axios
         .post('/api/uploadImage', { id: "5ff9f49cadcf8f122db8f226", profilePic: e.target.result })
         .then((res) => {
