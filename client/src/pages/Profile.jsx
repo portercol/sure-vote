@@ -13,22 +13,23 @@ import Modal from '../components/Modal.jsx';
 import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
+// import { IsAuthenticated } from "../utils/isAuthenticated.js";
 
 const Profile = () => {
+  // console.log(IsAuthenticated());
 
   const [data, getData] = useState();
+  const [userId] = useGlobalContextAuthUser();
+  console.log("userId: ", userId.id);
   const [picture, setPicture] = useState();
-  // const [userId, dispatch] = useGlobalContextAuthUser();
-  const message = useGlobalContextAuthUser();
-  console.log(message);
-  // console.log(dispatch);
+
 
   const uploadPicture = (pic) => {
     let reader = new FileReader();
     // console.log(reader, "READER");
     reader.onload = (e) => {
       setPicture(e.target.result);
-      
+
       axios
         .post('/api/uploadImage', { id: "5ff9f49cadcf8f122db8f226", profilePic: e.target.result })
         .then((res) => {
@@ -41,15 +42,15 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    getProfile();
+    getProfile(userId);
   }, []);
 
-  const getProfile = () => {
+  const getProfile = (userId) => {
 
     axios
-      .get('/api/profile/' + "5ff9f49cadcf8f122db8f226")
+      .get('/api/profile/' + userId.id)
       .then((res) => {
-        console.log("axios: ", data)
+        console.log("/profile axios: ", res.data)
         const allData = res.data;
         getData(allData);
       }).catch(err => {
@@ -102,7 +103,6 @@ const Profile = () => {
 
     </>
   );
-
 }
 
 // export Profile component from Profile.jsx
