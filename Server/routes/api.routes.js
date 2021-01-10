@@ -112,6 +112,7 @@ router
                         errors: err
                     });
                 }
+                console.log(user);
                 return res.status(200).json({
                     success: true,
                     message: "Logged in",
@@ -128,12 +129,14 @@ router
     })
 
     .post("/api/storePersonId", (req, res) => {
+        console.log("/api/StorePersonId: ", req.body.id);
+        console.log(req.body.personId);
         User.findByIdAndUpdate(
             req.body.id,
             { personId: req.body.personId }
         )
             .then(data => {
-                console.log(`PersonId ${data} successfully added`);
+                console.log(`PersonId ${data.personId} successfully added`);
                 res.json({ message: "PersonId successfully added" });
             })
             .catch(err => {

@@ -10,8 +10,10 @@
 
 
 // import Rreact, elements from React-Bootstrap, SignUp.css
-import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
+import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 // import { submitToAgatha } from "../utils/submitApiImgP"
 // import { newUserApi } from '../utils/newUserfaceApi';
 // import { trainingStart } from '../utils/Training'
@@ -29,6 +31,29 @@ import "./Signupcamface.css";
 
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
+    const [userId] = useGlobalContextAuthUser();
+    const [personId, getPersonId] = useState();
+    console.log("cam3 userId: ", userId.id);
+    console.log("personIdinState: ", personId)
+
+    useEffect(() => {
+        returnPersonId(userId);
+        console.log("sanity check")
+    }, []);
+
+    const returnPersonId = (userId) => {
+
+        axios
+            .get('/api/profile/' + userId.id)
+            .then((res) => {
+                console.log("/singinfacecam axios: ", res.data)
+                const currentPersonId = res.data.personId;
+                console.log("signinface PersonId: ", currentPersonId);
+                getPersonId(currentPersonId);
+            }).catch(err => {
+                console.log(err);
+            })
+    }
 
     const vest = useRef(null);
     const videoRef = useRef(null);
@@ -135,9 +160,10 @@ const SignIn2 = () => {
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
+
                                 snap().canvas.toBlob(data => {
                                     // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
-                                    letsSeeYourFace('5595', data, "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5", letsSeeYourFace.confidence,)
+                                    letsSeeYourFace('5595', data, personId, letsSeeYourFace.confidence,)
 
                                     // this is logging the propmise but is never fafilled 
                                 }

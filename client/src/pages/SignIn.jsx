@@ -12,7 +12,7 @@ const SignIn = () => {
 
   const [usernameLogin, setUsernameLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
-  const [userId, dispatch] = useGlobalContextAuthUser();
+  const [, dispatch] = useGlobalContextAuthUser();
 
 
   // create function for submit button 'onclick'
@@ -30,7 +30,9 @@ const SignIn = () => {
         userLoginObj
       ).then((res) => {
         console.log(res.data.userId);
+        console.log(res.data.personId);
         dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
+        dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
       }).catch(err => {
         console.log(err);
       });
@@ -79,6 +81,9 @@ const SignIn = () => {
           </ButtonGroup>
 
           <Link to="/profile">Profile</Link>
+          <Link to="/cam3">Cam 3</Link>
+          <Link to="/cam2">Cam 2</Link>
+
 
         </Jumbotron>
       </Container>

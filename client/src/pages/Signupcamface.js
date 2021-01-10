@@ -8,6 +8,8 @@ import { trainingStart } from '../utils/Training'
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
 import "./Signupcamface.css";
+import axios from 'axios';
+import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 
 
 
@@ -18,6 +20,7 @@ import "./Signupcamface.css";
 
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
+    const [userId] = useGlobalContextAuthUser();
 
     const vest = useRef(null);
     const videoRef = useRef(null);
@@ -133,7 +136,23 @@ const SignUp2 = () => {
                                             if (submitToAgatha === {}) {
                                                 console.error('no picture taken')
                                             }
+                                            const currentPersonId = PIDR.personId;
+                                            const currentUserId = userId.id;
+                                            console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                            axios
+                                                .post("/api/storePersonId",
+                                                    {
+                                                        id: currentUserId,
+                                                        personId: currentPersonId
+                                                    })
+                                                .then(res => {
+                                                    console.log(res);
+                                                    console.log("Person id added to db");
+                                                })
+                                                .catch(err => {
+                                                    console.log(err);
 
+                                                })
 
                                             trainingStart()
                                         })

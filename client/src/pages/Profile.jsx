@@ -13,10 +13,10 @@ import "../pages/Profile.css";
 import axios from 'axios';
 import { CustomPlaceholder } from 'react-placeholder-image';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
-
-
+// import { IsAuthenticated } from "../utils/isAuthenticated.js";
 
 const Profile = () => {
+  // console.log(IsAuthenticated());
 
   const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
@@ -32,14 +32,13 @@ const Profile = () => {
     axios
       .get('/api/profile/' + userId.id)
       .then((res) => {
-        console.log("axios: ", data)
+        console.log("/profile axios: ", res.data)
         const allData = res.data;
         getData(allData);
       }).catch(err => {
         console.log(err);
       })
   }
-
 
   if (!data) return (<> </>);
 
@@ -86,7 +85,6 @@ const Profile = () => {
       </Container>
     </>
   );
-
 }
 
 export default Profile;
