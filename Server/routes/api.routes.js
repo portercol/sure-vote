@@ -1,15 +1,16 @@
+// import required modules and packages, models
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const { v4: newUuid } = require("uuid");
 const Vote = require("../models/Vote");
 const User = require("../models/User");
-
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+// set up transport schema
 const transport = {
-    host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
+    host: 'smtp.zoho.com',
     port: 465,
     secure: true,
     auth: {
@@ -18,8 +19,10 @@ const transport = {
     }
 }
 
+// create new tranport schema
 const transporter = nodemailer.createTransport(transport)
 
+// verify that transporter is ready
 transporter.verify((error, success) => {
     if (error) {
         console.log(error);
@@ -28,9 +31,9 @@ transporter.verify((error, success) => {
     }
 })
 
+
 router
     .get('/api/profile/:id', (req, res) => {
-
         User
             .findById(req.params.id)
             .then(data => {
@@ -75,7 +78,7 @@ router
 
         const mail = {
             from: 'surev0te@zohomail.com',
-            to: Users.username,  // Change to email address that you want to receive messages on
+            to: Users.username,
             subject: 'New Message from sure vote',
             text: Users.uuid
         }
@@ -144,20 +147,18 @@ router
 
     .post("/api/uploadImage", (req, res) => {
         console.log("hit image upload route");
-        // console.log(req.body.profilePic);
         User.findByIdAndUpdate(
             req.body.id,
-            { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1]} }
+            { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
         )
             .then(data => {
-                console.log(`profile pic ${data} successfully added`);
                 res.json({ message: "profile pic successfully added" });
             })
             .catch(err => {
                 console.log(err);
-                res.json({ message: "Error logging profile pic: ", err })
+                res.json({ message: "Error adding profile pic: ", err })
             })
     });
 
-
+// export router out of api.routes.js
 module.exports = router;

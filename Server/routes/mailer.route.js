@@ -1,8 +1,10 @@
+// import necessary modules and packages
 const express = require("express");
 const router = express.Router();
 var nodemailer = require('nodemailer');
 require('dotenv').config();
 
+// set up transport schema
 const transport = {
     host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
     port: 465,
@@ -13,8 +15,10 @@ const transport = {
   }
   }
 
+// create new tranport schema
 const transporter = nodemailer.createTransport(transport)
 
+// verify that transporter
 transporter.verify((error, success) => {
 if (error) {
   console.log(error);
@@ -71,4 +75,5 @@ router.post('/send', (req, res, next) => {
     
   });
 
+// export router from mailer.route.js
 module.exports = router;

@@ -1,11 +1,12 @@
+// import required modules and packages
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
-//initialize mongoose schema
+// initialize mongoose schema
 const Schema = mongoose.Schema;
 
-//create mongoose Schema for user model
-//there is no password field because passport-local-mongoose will salt and hash and store those fields in the database
+// create mongoose Schema for user model
+// there is no password field because passport-local-mongoose will salt and hash and store those fields in the database
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -60,9 +61,11 @@ const UserSchema = new Schema({
     }
 });
 
+// use plugin for passport in new user schema
 UserSchema.plugin(passportLocalMongoose);
 
 //initialize user model
 const User = mongoose.model("User", UserSchema);
 
+// export User out of User.js
 module.exports = User;
