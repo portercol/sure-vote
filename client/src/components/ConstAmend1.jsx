@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Container, Col, Row, Card } from "react-bootstrap";
 import axios from 'axios';
 import ConstAmend1Data from '../seedData/const1';
 
 const ConstAmend1 = () => {
 
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [answer, setAnswer] = useState("");
   const [voted, setVoted] = useState(false);
 
-  console.log(ConstAmend1Data);
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        setCandidateList(candidateData);
+        console.log(candidateData)
+      })
+
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        console.log(electionData)
+      })
+  }, []); 
 
   const submitVote = (event) => {
     event.preventDefault();
-    alert("You voted " + answer + " on Constitutional Amendment 1.");
-    axios.post('/api/vote', { answer: answer })
+    // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
+    const selectedElection = electionList.find(currentElection => currentElection.question === "Constitutional Amendment 1")
+    alert("You voted for " + answer + ".");
+    axios.post('/api/vote', { election: selectedElection._id })
       .then((res) => {
         console.log(res.data)
         setVoted(true)
+        setAnswer()
       })
       .catch(err => console.log (err));
     };
