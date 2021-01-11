@@ -31,8 +31,8 @@ const SignIn = () => {
             axios.post("/api/login",
                 userLoginObj
             ).then((res) => {
-                console.log(res.data.userId);
-                console.log(res.data.personId);
+                console.log(res.data);
+
 
                 //once user is created store userid and personid in global context
                 dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
