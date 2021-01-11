@@ -2,7 +2,7 @@
   "name": "sure-vote",
   "version": "1.0.0",
   "engines": {
-    "node": "6.11.1",
+    "node": "12.18.3",
     "npm": "6.14.6"
   },
   "description": "This app allows you to securely vote in political elections",
