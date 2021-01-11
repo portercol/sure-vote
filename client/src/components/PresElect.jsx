@@ -41,17 +41,12 @@ const PresElect = (props) => {
       })
   }, []); 
 
-  console.log(PresElectData);
-  console.log(candidateList, "Herro")
-  console.log(electionList, "Herro")
-
 
   const submitVote = (event) => {
     event.preventDefault();
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
     alert("You voted for " + candidate + ".");
-    console.log("Button works")
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
         console.log(res.data)

@@ -74,7 +74,7 @@ const electionSeed = [
     level: "State",
     type: "Referendum",
     location: "Utah",
-    office: "Utah State Representative",
+    question: "Constitutional Amendment 1",
     candidates: [ ]
   },
   {
@@ -82,7 +82,7 @@ const electionSeed = [
     level: "State",
     type: "Referendum",
     location: "Utah",
-    office: "Utah State Representative",
+    question: "Constitutional Amendment 2",
     candidates: [ ]
   }
 ]
