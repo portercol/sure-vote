@@ -79,7 +79,7 @@ router
     });
 
     const mail = {
-      from: 'surev0te@zohomail.com',
+      from: process.env.CREDENTIAL_USER,
       to: Users.username,
       subject: 'New Message from sure vote',
       text: Users.uuid
@@ -201,7 +201,12 @@ router
     console.log("hit image upload route");
     User.findByIdAndUpdate(
       req.body.id,
-      { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
+      {
+        profilePic: {
+          data: req.body.profilePic,
+          contentType: req.body.profilePic.split(";")[0].split(":")[1]
+        }
+      }
     )
       .then(data => {
         res.json({ message: "profile pic successfully added" });
