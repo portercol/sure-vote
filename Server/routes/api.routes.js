@@ -79,7 +79,7 @@ router
     });
 
     const mail = {
-      from: 'surev0te@zohomail.com',
+      from: process.env.CREDENTIAL_USER,
       to: Users.username,
       subject: 'New Message from sure vote',
       text: Users.uuid
