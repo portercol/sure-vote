@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 import './cam.faceR.css';
 
 const URLAPI = `http://localhost:5000`
@@ -9,6 +10,9 @@ function face() {
     const [data, setData] = useState([])
     // eslint-disable-next-line
     const [image, setImage] = useState('')
+    const [userId] = useGlobalContextAuthUser();
+
+    console.log("Face user: ", userId);
 
     const handleOnChange = event => {
         setImage(event.target.value)

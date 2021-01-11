@@ -21,6 +21,7 @@ import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
+    console.log("Cam2 user: ", userId);
 
     const vest = useRef(null);
     const videoRef = useRef(null);

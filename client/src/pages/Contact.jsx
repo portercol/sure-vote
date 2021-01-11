@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import './Contact.css'
 import Navbar from '../components/Navbar.jsx'
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 
 // create Contact functional component to hold data
 const Contact = () => {
@@ -16,6 +17,8 @@ const Contact = () => {
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
+    const [userId] = useGlobalContextAuthUser();
+    console.log("Contact user: ", userId);
 
     const handleSubmit = e => {
 

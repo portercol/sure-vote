@@ -33,8 +33,8 @@ const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
     const [personId, getPersonId] = useState();
-    console.log("cam3 userId: ", userId.id);
-    console.log("personIdinState: ", personId)
+    console.log("Cam3 user: ", userId);
+
 
     useEffect(() => {
         returnPersonId(userId);

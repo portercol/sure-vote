@@ -20,7 +20,7 @@ const Profile = () => {
 
   const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
-  console.log("profile userId: ", userId.id);
+  console.log("profile user: ", userId);
   const [picture, setPicture] = useState();
 
 
