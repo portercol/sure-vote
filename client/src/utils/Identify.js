@@ -11,6 +11,11 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
         let idHelper = new IdentificationHelper();
         let facesDetected = await idHelper.Detect(helperD)
         console.log(facesDetected, "dot then")
+        if (facesDetected.length === 0)
+            alert(
+                "Your account has yet been varified with Agatha"
+            )
+
         if (facesDetected.length > 0) {
 
 
@@ -32,7 +37,7 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
 
 
                     // if your incoming PID doesnt mach our PID then we need to loop you back to the top
-                    if (AGPID !== AthPID) {
+                    if (AGPID !== AthPID || null) {
                         // both errors work need to make them more offical and or a propt
                         console.error('your PID is not correct')
                         alert(

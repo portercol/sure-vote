@@ -23,6 +23,7 @@ import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
+    const [Hidden, Unhidden] = useState(false);
     console.log("Cam2 user: ", userId);
 
     const vest = useRef(null);
@@ -80,7 +81,6 @@ const SignUp2 = () => {
     };
 
 
-
     // save function 
     function save(vest) {
         // const api = new ApiCalls();
@@ -93,7 +93,10 @@ const SignUp2 = () => {
 
     // create function for submit button 'onclick'
     const submitBtn = () => {
-        console.log("submitted sign up form");
+        if (Hidden === false)
+
+
+            console.log("submitted sign up form");
     }
 
 
@@ -131,7 +134,6 @@ const SignUp2 = () => {
                             ) : (
                                     <button className="btn btn-success" onClick={startVideo}>Start</button>
                                 )}
-                            <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
                                 if (playing === true)
@@ -160,6 +162,7 @@ const SignUp2 = () => {
                                                     .then(res => {
                                                         console.log(res);
                                                         console.log("Person id added to db");
+                                                        return true
                                                     })
                                                     .catch(err => {
                                                         console.log(err);
@@ -187,13 +190,13 @@ const SignUp2 = () => {
                     <br />
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/" onClick={submitBtn()} variant="dark"
+                        <Button href="/" disabled={true} onClick={submitBtn()} variant="dark"
                             type="submit" id='right-button'>Go Back</Button>
                     </ButtonGroup>
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/profile" onClick={submitBtn()} variant="dark"
-                            type="submit" id='left-button'>Sign Up</Button>
+                        <Button href="/profile" disabled={true} onClick={submitBtn()} variant="dark"
+                            id='left-button'>Sign Up</Button>
                     </ButtonGroup>
 
 

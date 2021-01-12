@@ -210,7 +210,7 @@ const SignUp = () => {
           </ButtonGroup>
 
           <ButtonGroup size="lg" className="mr-3">
-            <Button onClick={() => { signInBtn() }} variant="dark"
+            <Button href="/cam2" onClick={() => { signInBtn() }} variant="dark"
               type="submit" id='right-button'>Continue</Button>
           </ButtonGroup>
 

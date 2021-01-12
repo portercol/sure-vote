@@ -39,7 +39,7 @@ const SignIn = () => {
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
 
                 console.log("Redirect to profile");
-                <Redirect to="/profile"></Redirect>
+                <Redirect to="/cam3"></Redirect>
                 console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
@@ -84,8 +84,8 @@ const SignIn = () => {
                     </ButtonGroup>
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button onClick={() => { submitBtn() }} variant="dark"
-                            type="submit" id='left-button'>Sign In</Button>
+                        <Button href='/cam3' onClick={() => { submitBtn() }} variant="dark"
+                            id='left-button'>Continue</Button>
                     </ButtonGroup>
                     <hr></hr>
                     <h5>Protected Routes</h5>
