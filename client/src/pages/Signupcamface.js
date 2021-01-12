@@ -149,6 +149,8 @@ const SignUp2 = () => {
                                                 const currentPersonId = PIDR.personId;
                                                 const currentUserId = userId.id;
                                                 console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                                // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
+
                                                 axios
                                                     .post("/api/storePersonId",
                                                         {
@@ -161,10 +163,9 @@ const SignUp2 = () => {
                                                     })
                                                     .catch(err => {
                                                         console.log(err);
-
                                                     })
 
-                                                trainingStart()
+
                                             })
                                     });
 

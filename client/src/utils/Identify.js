@@ -1,7 +1,7 @@
 import ApiCalls from "./ApiCalls";
 import IdentificationHelper from "./IdentificationHelper";
-import axios from "axios";
 
+// we need to get the SERVERPID into the hard coded values
 
 
 // athenticate faces with incoming value 
@@ -32,7 +32,7 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
 
 
                     // if your incoming PID doesnt mach our PID then we need to loop you back to the top
-                    if (!InPID === "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5-a651-48b6-a2cc-bb7d0a8ccd10") {
+                    if (InPID !== "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5-a651-48b6-a2cc-bb7d0a8ccd10") {
                         // both errors work need to make them more offical and or a propt
                         console.error('your PID is not correct')
                     }
@@ -44,7 +44,7 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
 
                     }
                     else {
-                        var allCalls = idHelper.Authentify("5595", "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5", idCompleted.confidence)
+                        var allCalls = idHelper.Authentify("5595", InPID, idCompleted.confidence)
                         return allCalls
                     }
 

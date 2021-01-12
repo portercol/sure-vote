@@ -150,9 +150,31 @@ const SignIn2 = () => {
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
+
+
+
+
                                 if (playing === true)
+
+
                                     snap().canvas.toBlob(data => {
                                         // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
+                                        axios
+                                            .get("/api/storePersonId",
+                                                {
+                                                    id: currentUserId,
+                                                    personId: currentPersonId
+                                                })
+                                            .then(res => {
+                                                console.log(res);
+                                                console.log("Person id added to db");
+                                            })
+                                            .catch(err => {
+                                                console.log(err);
+                                            })
+
+
+
                                         letsSeeYourFace('5595', data, "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5", letsSeeYourFace.confidence,)
 
 
