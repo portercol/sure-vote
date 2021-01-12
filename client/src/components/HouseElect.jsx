@@ -23,7 +23,7 @@ const HouseElect = () => {
         .then((res) => {
           const candidateData = res.data.getCandidate;
           setCandidateList(candidateData);
-          console.log(candidateData)
+          // console.log(candidateData)
         })
   
       axios
@@ -31,24 +31,18 @@ const HouseElect = () => {
         .then((res) => {
           const electionData = res.data.getElection;
           setElectionList(electionData);
-          console.log(electionData)
+          // console.log(electionData)
         })
     }, []); 
-
-  console.log(RepElectData);
-  console.log(candidateList, "Herro")
-  console.log(electionList, "Herro")
 
   const submitVote = (event) => {
     event.preventDefault();
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "United States Representative")
     alert("You voted for " + candidate + ".");
-    console.log(selectedCandidate)
-    console.log(selectedElection)
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
       })
       .catch(err => console.log (err));
@@ -73,7 +67,7 @@ const HouseElect = () => {
                   id="candidate1"
                   onChange={(e) => {
                     setCandidate(e.target.value);
-                    console.log(e.target.value)
+                    // console.log(e.target.value)
                   }}
                 />
             </Col>

@@ -16,7 +16,7 @@ const ConstAmend2 = () => {
       .then((res) => {
         const candidateData = res.data.getCandidate;
         setCandidateList(candidateData);
-        console.log(candidateData)
+        // console.log(candidateData)
       })
 
     axios
@@ -24,7 +24,7 @@ const ConstAmend2 = () => {
       .then((res) => {
         const electionData = res.data.getElection;
         setElectionList(electionData);
-        console.log(electionData)
+        // console.log(electionData)
       })
   }, []); 
 
@@ -35,7 +35,7 @@ const ConstAmend2 = () => {
      alert("You voted for " + answer + ".");
      axios.post('/api/vote', { election: selectedElection._id })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
         setAnswer()
       })
