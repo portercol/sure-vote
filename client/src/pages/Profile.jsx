@@ -7,7 +7,7 @@ import {
   ListGroup,
   ListGroupItem
 } from "react-bootstrap";
-// import ImageUploader from 'react-images-upload';
+import ImageUploader from 'react-images-upload';
 import Navbar from "../components/Navbar.jsx";
 import Modal from '../components/Modal.jsx';
 import "./Profile.css";
