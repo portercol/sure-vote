@@ -38,7 +38,7 @@ function App() {
           </Switch>
         </GlobalProviderAuthUser>
       </div>
-    </Router>
+    </Router >
   );
 }
 

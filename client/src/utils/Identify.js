@@ -1,10 +1,11 @@
 import ApiCalls from "./ApiCalls";
 import IdentificationHelper from "./IdentificationHelper";
 
+// we need to get the SERVERPID into the hard coded values
 
 
 // athenticate faces with incoming value 
-export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
+export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
     var reader = new FileReader();
     var renderOnload = reader.onload = async () => {
         let idHelper = new IdentificationHelper();
@@ -23,27 +24,35 @@ export async function letsSeeYourFace(GID, helperD, PID, con, idCompleted) {
                 await face.forEach(async function (idCompleted) {
                     // async Authentify(personGroupId, personId, confidence)
                     // let complete = idCompleted.confidence
-                    let InPID = await idCompleted.personId
+                    let AGPID = await idCompleted.personId
                     let confidence = await idCompleted.confidence
                     let confidenceX = await confidence * 100
                     console.log(confidenceX, 'we got the confidence ')
-                    console.log(InPID, 'InPID')
+                    console.log(AGPID, 'InPID')
 
 
                     // if your incoming PID doesnt mach our PID then we need to loop you back to the top
-                    // if (InPID !== InPID) {
-                    //     // both errors work need to make them more offical and or a propt
-                    //     console.error('your PID is not correct')
-                    // }
+                    if (AGPID !== AthPID) {
+                        // both errors work need to make them more offical and or a propt
+                        console.error('your PID is not correct')
+                        alert(
+                            "We do not believe that this is you, please try again"
+                        )
+                    }
                     // both errors work need to make them more offical and or a propt
 
-                    if (confidence < !50.0) {
-
+                    else if (confidence < 75.0) {
+                        alert(
+                            "We do not believe that this is you, please try again"
+                        )
                         console.error('we do not think this is you')
 
                     }
                     else {
-                        var allCalls = idHelper.Authentify("5595", InPID, idCompleted.confidence)
+                        var allCalls = idHelper.Authentify("5595", AGPID, idCompleted.confidence)
+                        alert(
+                            "Thank you for signing in"
+                        )
                         return allCalls
                     }
 
