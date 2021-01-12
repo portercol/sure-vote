@@ -40,7 +40,7 @@ const SignIn = () => {
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
 
                 console.log("Redirect to profile");
-                <Redirect to="/profile"></Redirect>
+                //route user to /cam2
                 console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
