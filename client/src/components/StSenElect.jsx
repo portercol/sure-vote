@@ -22,7 +22,7 @@ const StSenElect = () => {
       .then((res) => {
         const candidateData = res.data.getCandidate;
         setCandidateList(candidateData);
-        console.log(candidateData)
+        // console.log(candidateData)
       })
 
     axios
@@ -30,7 +30,7 @@ const StSenElect = () => {
       .then((res) => {
         const electionData = res.data.getElection;
         setElectionList(electionData);
-        console.log(electionData)
+        // console.log(electionData)
       })
   }, []); 
 
@@ -41,7 +41,7 @@ const StSenElect = () => {
     alert("You voted for " + candidate + ".");
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
         setCandidate()
       })
