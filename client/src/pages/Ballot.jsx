@@ -1,3 +1,4 @@
+// import necessary packages/modules, components and stylesheets
 import React from "react";
 import {
   Button,
@@ -97,9 +98,9 @@ const Ballot = () => {
           </Container>
         </Jumbotron>
       </Container>
-
     </>
   );
 };
 
+// export Ballot from Ballot.jsx
 export default Ballot;

@@ -1,4 +1,4 @@
-// import Rreact, elements from React-Bootstrap, SignUp.css
+// import necessary packages/modules, components and stylesheets
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
@@ -9,6 +9,7 @@ const axios = require("axios");
 const Vote = () => {
   const [userId] = useGlobalContextAuthUser();
 
+  // establish state values with useState
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [streetAddress1Value, setStreetAddress1Value] = useState('');
@@ -20,9 +21,9 @@ const Vote = () => {
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
   const goBackBtn = () => {
-    console.log("Hit profile page");
   }
 
+  // create function for vote button and if all required fields are not met throw alert error
   const voteBtn = (e) => {
     if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")

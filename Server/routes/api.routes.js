@@ -199,7 +199,6 @@ router
   })
 
   .post("/api/uploadImage", (req, res) => {
-    console.log("hit image upload route");
     User.findByIdAndUpdate(
       req.body.id,
       { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
@@ -211,7 +210,13 @@ router
         console.log(err);
         res.json({ message: "Error adding profile pic: ", err })
       })
-  });
-
+  })
+  .get("/api/uploadImage", (req, res) => {
+    User.findById(req.params.id)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => console.log(err));
+  })
 // export router out of api.routes.js
 module.exports = router;
