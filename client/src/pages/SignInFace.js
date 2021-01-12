@@ -32,28 +32,7 @@ import "./Signupcamface.css";
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
-    const [personId, getPersonId] = useState();
     console.log("Cam3 user: ", userId);
-
-
-    useEffect(() => {
-        returnPersonId(userId);
-        console.log("sanity check")
-    }, []);
-
-    const returnPersonId = (userId) => {
-
-        axios
-            .get('/api/profile/' + userId.id)
-            .then((res) => {
-                console.log("/singinfacecam axios: ", res.data)
-                const currentPersonId = res.data.personId;
-                console.log("signinface PersonId: ", currentPersonId);
-                getPersonId(currentPersonId);
-            }).catch(err => {
-                console.log(err);
-            })
-    }
 
     const vest = useRef(null);
     const videoRef = useRef(null);
@@ -162,8 +141,9 @@ const SignIn2 = () => {
                                 console.log(snap(), "RENDER SNAP")
 
                                 snap().canvas.toBlob(data => {
+                                    console.log("hit snap personId: ", userId.personId);
                                     // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
-                                    letsSeeYourFace('5595', data, personId, letsSeeYourFace.confidence,)
+                                    letsSeeYourFace('5595', data, userId.personId, letsSeeYourFace.confidence,)
 
                                     // this is logging the propmise but is never fafilled 
                                 }
