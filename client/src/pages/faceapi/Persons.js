@@ -112,13 +112,13 @@ export class PersonActionUpload extends Component {
 
         });
     }
-
     render() {
+        console.log(this.submit)
         return (
             <Fragment>
                 <Button className="add-button" variant="primary" onClick={this.openModal}>
                     upload
-        </Button>
+            </Button>
 
                 <Modal show={this.state.modalOpen} onHide={this.closeModal}>
                     <Modal.Header closeButton>

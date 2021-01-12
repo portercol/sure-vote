@@ -7,6 +7,8 @@ import { trainingStart } from '../utils/Training'
 // import ApiCalls from "../utils/ApiCalls";
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
+import axios from "axios";
+
 import "./Signupcamface.css";
 
 
@@ -27,6 +29,8 @@ const SignUp2 = () => {
     const HEIGHT = 500;
     const WIDTH = 500;
 
+
+
     const startVideo = () => {
         setPlaying(true);
         navigator.getUserMedia(
@@ -38,13 +42,14 @@ const SignUp2 = () => {
                 if (video) {
                     video.srcObject = stream;
                 }
+
             },
             (err) => console.error(err)
         );
     };
 
     const stopVideo = () => {
-        setPlaying(false);
+        setPlaying(true);
         let video = document.getElementsByClassName('app__videoFeed')[0];
         video.srcObject.getTracks()[0].stop();
     };
@@ -87,6 +92,8 @@ const SignUp2 = () => {
         console.log("submitted sign up form");
     }
 
+
+
     return (
         <>
             <Container id="main-container">
@@ -123,22 +130,18 @@ const SignUp2 = () => {
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
-                                snap().canvas.toBlob(data => {
-                                    // need to find away to get new user to wait on the FID befor subing a new user.
-                                    // if anything let look inside of STA
-                                    newUserApi()
-                                        .then(PIDR => {
+                                if (playing === true)
+                                    snap().canvas.toBlob(data => {
 
-                                            submitToAgatha("5595", PIDR.personId, data)
-                                            if (submitToAgatha === {}) {
-                                                console.error('no picture taken')
-                                            }
+                                        // need to find away to get new user to wait on the FID befor subing a new user.
+                                        // if anything let look inside of STA
+                                        newUserApi()
+                                            .then(PIDR => {
+                                                submitToAgatha("5595", PIDR.personId, data)
 
-
-                                            trainingStart()
-                                        })
-                                });
-
+                                                trainingStart()
+                                            })
+                                    });
                             }}>use</button>
                         </div>
                         <div className="app__input">

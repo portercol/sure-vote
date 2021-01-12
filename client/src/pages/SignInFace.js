@@ -154,6 +154,7 @@ const SignIn2 = () => {
                                     // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
                                     letsSeeYourFace('5595', data, "57b7d3e3-a094-4ad7-94e7-ad02d7a486d5", letsSeeYourFace.confidence,)
 
+
                                     // this is logging the propmise but is never fafilled 
                                 }
 
@@ -187,18 +188,6 @@ const SignIn2 = () => {
                     <br />
                     <br />
 
-                    <Toast show={showA} onClose={toggleShowA}>
-                        <Toast.Header>
-                            <img
-                                src="holder.js/20x20?text=%20"
-                                className="rounded mr-2"
-                                alt=""
-                            />
-                            <strong className="mr-auto">Bootstrap</strong>
-                            <small>11 mins ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-                    </Toast>
 
                     <ButtonGroup size="lg" className="mr-3">
                         <Button href="/" onClick={submitBtn()} variant="dark"

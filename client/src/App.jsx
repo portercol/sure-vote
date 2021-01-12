@@ -14,7 +14,6 @@ import SignIn2 from './pages/SignInFace'
 import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
-import Toast from './pages/toast/Toast';
 
 function App() {
   return (
