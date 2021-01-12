@@ -17,13 +17,7 @@ import { letsSeeYourFace } from '../../utils/Identify'
 
 class Actions extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            show: false,
-            personGroupId: "",
-        }
-    }
+
 
     showActions(personGroupId) {
         this.setState({ personGroupId: personGroupId, show: true });

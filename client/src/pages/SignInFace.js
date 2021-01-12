@@ -23,6 +23,7 @@ import { letsSeeYourFace } from '../utils/Identify';
 // import ApiCalls from "../utils/ApiCalls";
 import Toast from 'react-bootstrap/Toast'
 import "./Signupcamface.css";
+import axios from "axios";
 
 
 
@@ -159,19 +160,6 @@ const SignIn2 = () => {
 
                                     snap().canvas.toBlob(data => {
                                         // this is considered asyc / and looks like this as an array letsSeeYourFace('5595':GID, DATA: Photo from snap, Person ID:"3300f642-91db-4165-b27d-270559430b26", and this is the confidence being found in canidate:letsSeeYourFace.confidence,)
-                                        axios
-                                            .get("/api/storePersonId",
-                                                {
-                                                    id: currentUserId,
-                                                    personId: currentPersonId
-                                                })
-                                            .then(res => {
-                                                console.log(res);
-                                                console.log("Person id added to db");
-                                            })
-                                            .catch(err => {
-                                                console.log(err);
-                                            })
 
 
 
