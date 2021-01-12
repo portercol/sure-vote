@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -12,20 +12,41 @@ import axios from 'axios';
 
 const ScRetain = () => {
 
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [answer, setAnswer] = useState("");
   const [voted, setVoted] = useState(false);
 
-  console.log(ScRetainData);
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        setCandidateList(candidateData);
+        // console.log(candidateData)
+      })
 
-  let scJustice = ScRetainData[0].candidate;
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        // console.log(electionData)
+      })
+  }, []); 
+
+  const scJustice = ScRetainData[0].candidate;
 
   const submitVote = (event) => {
     event.preventDefault();
-    alert("You voted " + answer + " to retain " + scJustice);
-    axios.post('/api/vote', { answer: answer })
+    // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
+    const selectedElection = electionList.find(currentElection => currentElection.office === "Utah Supreme Court")
+    alert("You voted for " + answer + ".");
+    axios.post('/api/vote', { election: selectedElection._id })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
+        setAnswer()
       })
       .catch(err => console.log (err));
     };

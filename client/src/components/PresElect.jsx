@@ -8,28 +8,59 @@ import {
 } from "react-bootstrap";
 import PresElectData from '../seedData/presSeed';
 import axios from 'axios';
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
 
 const PresElect = (props) => {
 
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  const [userId] = useGlobalContextAuthUser();
+  
   // const [dataReceived, setDataReceived] = useState(false);
-
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election
 
 
-  console.log(PresElectData);
+  // pulling data from back end to page
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        setCandidateList(candidateData);
+        // console.log(candidateData)
+      })
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        // console.log(electionData)
+      })
+    axios
+      .post('/api/vote')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        // console.log(electionData)
+      })
+  }, []); 
+
 
   const submitVote = (event) => {
     event.preventDefault();
+    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+    const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
+    //const userVoting = userId
     alert("You voted for " + candidate + ".");
-    console.log("Button works")
-    axios.post('/api/vote', { candidate: candidate })
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: "5ffc9cea87d3361e5087c7c8" })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
+        setCandidate()
       })
       .catch(err => console.log (err));
     };
@@ -65,9 +96,10 @@ const PresElect = (props) => {
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
-          <h3>{PresElectData[0].office}</h3>
+          <h3>
+            President of the United States
+          </h3>
           <hr />
-
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
@@ -77,10 +109,9 @@ const PresElect = (props) => {
                   value="Donald J. Trump"
                   id="candidate1"
                   disabled={voted}
-                  setAllowSubmit={true}
                   onChange={(e) => {
                     setCandidate(e.target.value);
-                    console.log(e.target.value)
+                    // console.log(e.target.value)
                   }}
                 />
             </Col>
@@ -114,7 +145,7 @@ const PresElect = (props) => {
                   disabled={voted}
                   onChange={(e) => {
                     setCandidate(e.target.value);
-                    console.log(e.target.value)
+                    // console.log(e.target.value)
                   }}
                 />
               </Col>

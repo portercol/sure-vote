@@ -10,6 +10,8 @@ import { trainingStart } from '../utils/Training'
 import axios from "axios";
 
 import "./Signupcamface.css";
+// import axios from 'axios';
+import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 
 
 
@@ -20,6 +22,8 @@ import "./Signupcamface.css";
 
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
+    const [userId] = useGlobalContextAuthUser();
+    console.log("Cam2 user: ", userId);
 
     const vest = useRef(null);
     const videoRef = useRef(null);
@@ -131,17 +135,39 @@ const SignUp2 = () => {
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
                                 if (playing === true)
-                                    snap().canvas.toBlob(data => {
 
+                                    snap().canvas.toBlob(data => {
                                         // need to find away to get new user to wait on the FID befor subing a new user.
                                         // if anything let look inside of STA
                                         newUserApi()
                                             .then(PIDR => {
+
                                                 submitToAgatha("5595", PIDR.personId, data)
+                                                if (submitToAgatha === {}) {
+                                                    console.error('no picture taken')
+                                                }
+                                                const currentPersonId = PIDR.personId;
+                                                const currentUserId = userId.id;
+                                                console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                                axios
+                                                    .post("/api/storePersonId",
+                                                        {
+                                                            id: currentUserId,
+                                                            personId: currentPersonId
+                                                        })
+                                                    .then(res => {
+                                                        console.log(res);
+                                                        console.log("Person id added to db");
+                                                    })
+                                                    .catch(err => {
+                                                        console.log(err);
+
+                                                    })
 
                                                 trainingStart()
                                             })
                                     });
+
                             }}>use</button>
                         </div>
                         <div className="app__input">

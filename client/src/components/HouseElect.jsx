@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -10,17 +10,39 @@ import RepElectData from "../seedData/repSeed";
 import axios from 'axios';
 
 const HouseElect = () => {
+
+  const [candidateList, setCandidateList] = useState([]);
+  const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
 
-  console.log(RepElectData);
+    // pulling data from back end to page
+    useEffect(() => {
+      axios
+        .get('/api/candidate')
+        .then((res) => {
+          const candidateData = res.data.getCandidate;
+          setCandidateList(candidateData);
+          // console.log(candidateData)
+        })
+  
+      axios
+        .get('/api/election')
+        .then((res) => {
+          const electionData = res.data.getElection;
+          setElectionList(electionData);
+          // console.log(electionData)
+        })
+    }, []); 
 
   const submitVote = (event) => {
     event.preventDefault();
+    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+    const selectedElection = electionList.find(currentElection => currentElection.office === "United States Representative")
     alert("You voted for " + candidate + ".");
-    axios.post('/api/vote', { candidate: candidate })
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setVoted(true)
       })
       .catch(err => console.log (err));
@@ -45,6 +67,7 @@ const HouseElect = () => {
                   id="candidate1"
                   onChange={(e) => {
                     setCandidate(e.target.value);
+                    // console.log(e.target.value)
                   }}
                 />
             </Col>
