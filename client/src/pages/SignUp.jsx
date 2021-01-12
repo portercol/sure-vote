@@ -8,6 +8,7 @@ import {
   Form,
   Jumbotron
 } from "react-bootstrap";
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
 const axios = require("axios");
 
@@ -23,6 +24,9 @@ const SignUp = () => {
   const [cityValue, setCityValue] = useState('');
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
+  const [userId] = useGlobalContextAuthUser();
+
+  console.log("Signup user: ", userId);
 
 
   // create function for submit button 'onclick'

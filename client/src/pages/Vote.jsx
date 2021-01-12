@@ -1,11 +1,13 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
 const axios = require("axios");
 
 // create functional component to hold sign up page data
 const Vote = () => {
+  const [userId] = useGlobalContextAuthUser();
 
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
@@ -15,7 +17,7 @@ const Vote = () => {
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
 
-
+  console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
   const goBackBtn = () => {
     console.log("Hit profile page");

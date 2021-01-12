@@ -7,9 +7,12 @@ import {
 } from "react-bootstrap";
 import './Homepage.css'
 import FingerPrint from '../assets/blkFingerPrint.png'
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 
 
 const Homepage = () => {
+  const [userId] = useGlobalContextAuthUser();
+  console.log("Homepage user: ", userId);
 
   const signUpBtn = () => {
     console.log("hit sign up path");

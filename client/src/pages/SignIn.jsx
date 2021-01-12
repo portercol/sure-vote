@@ -12,9 +12,9 @@ const SignIn = () => {
 
     const [usernameLogin, setUsernameLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
-    const [, dispatch] = useGlobalContextAuthUser();
+    const [userId, dispatch] = useGlobalContextAuthUser();
 
-
+    console.log("Signin user: ", userId);
     // create function for submit button 'onclick'
     const submitBtn = () => {
         console.log(usernameLogin);
@@ -31,8 +31,8 @@ const SignIn = () => {
             axios.post("/api/login",
                 userLoginObj
             ).then((res) => {
-                console.log(res.data.userId);
-                console.log(res.data.personId);
+                console.log(res.data);
+
 
                 //once user is created store userid and personid in global context
                 dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
@@ -87,11 +87,30 @@ const SignIn = () => {
                         <Button onClick={() => { submitBtn() }} variant="dark"
                             type="submit" id='left-button'>Sign In</Button>
                     </ButtonGroup>
-
+                    <hr></hr>
+                    <h5>Protected Routes</h5>
+                    <Link to="/cam2">Add Person (Cam 2)</Link>
+                    <br></br>
                     <Link to="/profile">Profile</Link>
-                    <Link to="/cam3">Cam 3</Link>
-                    <Link to="/cam2">Cam 2</Link>
-
+                    <br></br>
+                    <Link to="/cam3">Identify Person (Cam 3)</Link>
+                    <br></br>
+                    <Link to="/contact">Contact</Link>
+                    <br></br>
+                    <Link to="/face">App2 (Face)</Link>
+                    <br></br>
+                    <Link to="/election">Election</Link>
+                    <br></br>
+                    <Link to="/ballot">Ballot</Link>
+                    <br></br>
+                    <Link to="/vote">Vote</Link>
+                    <hr></hr>
+                    <h5>Unprotected Routes</h5>
+                    <Link to="/">Homepage</Link>
+                    <br></br>
+                    <Link to="/signup">Signup</Link>
+                    <br></br>
+                    <Link to="/signin">Signin</Link>
 
                 </Jumbotron>
             </Container>

@@ -79,7 +79,7 @@ router
     });
 
     const mail = {
-      from: process.env.CREDENTIAL_USER,
+      from: 'surev0te@zohomail.com',
       to: Users.username,
       subject: 'New Message from sure vote',
       text: Users.uuid
@@ -121,6 +121,7 @@ router
           success: true,
           message: "Logged in",
           userId: user._id,
+          personId: user.personId
         });
       });
     })(req, res, next);
@@ -201,12 +202,7 @@ router
     console.log("hit image upload route");
     User.findByIdAndUpdate(
       req.body.id,
-      {
-        profilePic: {
-          data: req.body.profilePic,
-          contentType: req.body.profilePic.split(";")[0].split(":")[1]
-        }
-      }
+      { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
     )
       .then(data => {
         res.json({ message: "profile pic successfully added" });

@@ -14,26 +14,11 @@ import SignIn2 from './pages/SignInFace'
 import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
 import GlobalProviderAuthUser, { useGlobalContextAuthUser } from './utils/GlobalContextAuthUser';
-// import { PrivateRoute } from './utils/privateRoute';
+import { PrivateRoute } from './utils/privateRoute';
 
 
 
 function App() {
-
-  const isAuthenticated = false;
-
-  const PrivateRoute = ({ children, ...rest }) => {
-    // const userId = useGlobalContextAuthUser();
-    // console.log("private route userId: ", userId);
-    return (
-      <Route {...rest}> render={() => {
-        return isAuthenticated === true
-          ? children : <Redirect to="/signin" />
-      }}
-      </Route>
-    )
-  }
-
   return (
     <Router>
       <div className="App">

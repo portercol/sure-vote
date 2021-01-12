@@ -20,7 +20,7 @@ const Profile = () => {
 
   const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
-  console.log("userId: ", userId.id);
+  console.log("profile user: ", userId);
   const [picture, setPicture] = useState();
 
 
@@ -58,7 +58,7 @@ const Profile = () => {
       })
   }
 
-  if (!data) return (<> </>);
+  if (!data) return (<> <h1>No user logged in</h1></>);
 
   return (
     <>

@@ -30,7 +30,7 @@ const reducer = (state, action) => {
 
 const GlobalProviderAuthUser = (props) => {
     const [state, dispatch] = useReducer(reducer, defaultState);
-    console.log("this one: ", state);
+    console.log("context state after reducer: ", state);
 
     return (
         <GlobalContextAuthUser.Provider value={[state, dispatch]} {...props} />
