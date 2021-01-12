@@ -1,4 +1,4 @@
-// import React, components from react-bootstrap, stylesheet and Navbar
+// import necessary packages/modules, components and stylesheets
 import React, { useState } from "react";
 import axios from 'axios';
 import {
@@ -14,16 +14,16 @@ import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 // create Contact functional component to hold data
 const Contact = () => {
 
+    // establish state and set state values
     const [nameValue, setNameValue] = useState('');
     const [emailValue, setEmailValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
     const [userId] = useGlobalContextAuthUser();
     console.log("Contact user: ", userId);
 
+    // create function for submit button
     const handleSubmit = e => {
-
         e.preventDefault()
-
         axios.post('/send',
             {
                 name: nameValue,
@@ -50,7 +50,6 @@ const Contact = () => {
     return (
         <>
             <Navbar />
-
             <Container id="main-container">
                 <Jumbotron id="main-jumbotron">
                     <h1 className="header">Contact Us</h1>
@@ -79,7 +78,6 @@ const Contact = () => {
                     </Form>
                     <br />
                     <Button size="lg" variant="dark" id="submitBtn" onClick={handleSubmit}>Send</Button>
-
                 </Jumbotron>
             </Container>
         </>
