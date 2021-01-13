@@ -19,13 +19,6 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
-  console.log(userId.id, "this is the user id");
-  
-  // const [dataReceived, setDataReceived] = useState(false);
-  // get data back, set to true
-  // if they've already voted they're not allowed to vote in this election
-
-
   // pulling data from back end to page
   useEffect(() => {
     axios
@@ -33,14 +26,14 @@ const PresElect = (props) => {
       .then((res) => {
         const candidateData = res.data.getCandidate;
         setCandidateList(candidateData);
-        console.log(candidateData)
+        // console.log(candidateData)
       })
     axios
       .get('/api/election')
       .then((res) => {
         const electionData = res.data.getElection;
         setElectionList(electionData);
-        console.log(electionData)
+        // console.log(electionData)
       })
   }, []);
 
@@ -52,7 +45,7 @@ const PresElect = (props) => {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
     const userVoting = userId.id
-    console.log(userVoting);
+    // console.log(userVoting);
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
     .then((res) => {
       // console.log(res.data)
@@ -70,30 +63,7 @@ const PresElect = (props) => {
     }
     };
 
-  // if (!dataReceived) {
-  //   return (
-  //     <>
-  //   <Container id="pres-elect-card">
-  //   <Card bg="light">
-  //     <Card.Body>
-  //       <h3>{PresElectData[0].office}</h3> 
-  //       <h5>Data not available for the following possible reasons:</h5>
-  //       <ul>
-  //         <li>
-
-  //         </li>
-  //         <li>
-
-  //         </li>
-  //       </ul>        
-  //     </Card.Body>
-  //   </Card>
-  // </Container>
-  //     </>
-  //   )
-  // }
-
-  return (
+ return (
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
