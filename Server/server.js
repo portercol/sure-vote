@@ -34,11 +34,6 @@ app.use(cors())
 
 app.use(apiRoutes);
 app.use(mailerRoute);
-// fetch data from back end to profile path
-// app.get('/profile', (req, res) => {
-//   console.log(__dirname = '/controllers')
-//   res.json(path.join(__dirname = '/client/src/pages/Profile.jsx'))
-// })
 
 app.listen(PORT, () => {
   console.log('app running on PORT: ' + PORT);
