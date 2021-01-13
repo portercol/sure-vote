@@ -1,14 +1,15 @@
-// import Rreact, elements from React-Bootstrap, SignUp.css
+// import necessary packages/modules, components and stylesheet
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
-import "./SignUp.css";
+import "./Vote.css";
 const axios = require("axios");
 
 // create functional component to hold sign up page data
 const Vote = () => {
   const [userId] = useGlobalContextAuthUser();
 
+  // establish state values with useState
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [streetAddress1Value, setStreetAddress1Value] = useState('');
@@ -20,23 +21,14 @@ const Vote = () => {
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
   const goBackBtn = () => {
-    console.log("Hit profile page");
   }
 
+  // create function for vote button and if all required fields are not met throw alert error
   const voteBtn = (e) => {
     if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials")
       alert("Missing required credentials. Please enter required information");
     } else {
-      // console.log(firstNameValue);
-      // console.log(lastNameValue);
-      // console.log(usernameValue);
-      // console.log(passwordValue);
-      // console.log(streetAddress1Value);
-      // console.log(streetAddress2Value);
-      // console.log(cityValue);
-      // console.log(stateValue);
-      // console.log(zipCodeValue);
 
       const userObj = {
         firstName: firstNameValue,
@@ -56,7 +48,6 @@ const Vote = () => {
       }).catch(err => {
         console.log(err);
       });
-
     }
   }
 
@@ -209,5 +200,5 @@ const Vote = () => {
   );
 };
 
-// export component from SignUp.jsx
+// export component from Vote.jsx
 export default Vote;

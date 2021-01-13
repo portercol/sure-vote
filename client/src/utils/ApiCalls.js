@@ -13,7 +13,7 @@ class ApiCalls {
         this._faceDetect = "/detect";
         this._faceIdentify = "/identify";
     }
-
+    
     personGroupsEndPoint(personGroupId) {
         if (typeof (personGroupId) === 'undefined') {
             return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}`);
@@ -34,11 +34,10 @@ class ApiCalls {
     personPictureEndPoint(personGroupId, personId) {
         return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}${this._personsEndPoint}/${personId}${this._personPictureEndPoint}`);
     }
-
     personGroupTrainEndPoint(personGroupId) {
         return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}${this._train}`);
     }
-
+    
     personGroupTrainingCheckEndPoint(personGroupId) {
         return (`${this.faceAPIBaseUrl}${this._personGroupsEndPoint}/${personGroupId}${this._trainingCheck}`);
     }
@@ -49,13 +48,13 @@ class ApiCalls {
     faceIdentifyEndPoint() {
         return (`${this.faceAPIBaseUrl}${this._faceIdentify}`);
     }
-
+    
     getCommonHeaders() {
         return {
             'Ocp-Apim-Subscription-Key': this.faceAPISecret,
         };
     }
-
+    
     async Get(url) {
         return fetch(url, {
             headers: {
@@ -63,7 +62,7 @@ class ApiCalls {
             }
         });
     }
-
+    
     async Delete(url) {
         return fetch(url, {
             method: "DELETE",
@@ -72,7 +71,7 @@ class ApiCalls {
             }
         });
     }
-
+    
     async Post(url, jsonBody) {
         return fetch(url,
             {
@@ -84,11 +83,11 @@ class ApiCalls {
                 }
             })
             .catch(err => alert("Picture upload failed.  Please try again."));
-    }
-
-    async Patch(url, jsonBody) {
-        return fetch(url,
-            {
+        }
+        
+        async Patch(url, jsonBody) {
+            return fetch(url,
+                {
                 method: "PATCH",
                 body: JSON.stringify(jsonBody),
                 headers: {
@@ -96,31 +95,31 @@ class ApiCalls {
                     'Content-Type': 'application/json',
                 }
             })
-    }
-
-    async PostImage(url, img) {
-        return fetch(url,
-            {
-                method: "POST",
-                body: img,
-                headers: {
-                    'Ocp-Apim-Subscription-Key': this.faceAPISecret,
+        }
+        
+        async PostImage(url, img) {
+            return fetch(url,
+                {
+                    method: "POST",
+                    body: img,
+                    headers: {
+                        'Ocp-Apim-Subscription-Key': this.faceAPISecret,
                     'Content-Type': 'application/octet-stream',
                 }
             })
-    }
+        }
 
-    async Put(url, jsonBody) {
-        return fetch(url,
-            {
-                method: "PUT",
-                body: JSON.stringify(jsonBody),
+        async Put(url, jsonBody) {
+            return fetch(url,
+                {
+                    method: "PUT",
+                    body: JSON.stringify(jsonBody),
                 headers: {
                     'Ocp-Apim-Subscription-Key': this.faceAPISecret,
                     'Content-Type': 'application/json',
                 }
             })
+        }
     }
-}
-
+    
 export default ApiCalls;

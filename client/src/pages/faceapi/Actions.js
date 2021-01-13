@@ -17,13 +17,7 @@ import { letsSeeYourFace } from '../../utils/Identify'
 
 class Actions extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            show: false,
-            personGroupId: "",
-        }
-    }
+
 
     showActions(personGroupId) {
         this.setState({ personGroupId: personGroupId, show: true });
@@ -88,7 +82,7 @@ class Identify extends Component {
         if (this.state.picture !== null) {
             this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
                 var reader = new FileReader();
-                var pid = "fa704750-0b81-43d0-a3a4-3e025f3eb2ba"
+                // var pid = "fa704750-0b81-43d0-a3a4-3e025f3eb2ba"
                 letsSeeYourFace(this.props.personGroupId, reader.result, this.personGroupId.personId, this.personGroupId.personId.confidence, this.identificationCompleteted(), () => {
 
                 })

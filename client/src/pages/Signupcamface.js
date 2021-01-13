@@ -7,8 +7,10 @@ import { trainingStart } from '../utils/Training'
 // import ApiCalls from "../utils/ApiCalls";
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
+import axios from "axios";
+
 import "./Signupcamface.css";
-import axios from 'axios';
+// import axios from 'axios';
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 
 
@@ -31,6 +33,8 @@ const SignUp2 = () => {
     const HEIGHT = 500;
     const WIDTH = 500;
 
+
+
     const startVideo = () => {
         setPlaying(true);
         navigator.getUserMedia(
@@ -42,13 +46,14 @@ const SignUp2 = () => {
                 if (video) {
                     video.srcObject = stream;
                 }
+
             },
             (err) => console.error(err)
         );
     };
 
     const stopVideo = () => {
-        setPlaying(false);
+        setPlaying(true);
         let video = document.getElementsByClassName('app__videoFeed')[0];
         video.srcObject.getTracks()[0].stop();
     };
@@ -91,6 +96,8 @@ const SignUp2 = () => {
         console.log("submitted sign up form");
     }
 
+
+
     return (
         <>
             <Container id="main-container">
@@ -120,44 +127,47 @@ const SignUp2 = () => {
                     <div className="app">
                         <div className="app__input">
                             {playing ? (
-                                <button onClick={stopVideo}>Stop</button>
+                                <button className="btn btn-success" onClick={stopVideo}>Stop</button>
                             ) : (
-                                    <button onClick={startVideo}>Start</button>
+                                    <button className="btn btn-success" onClick={startVideo}>Start</button>
                                 )}
                             <button className="btn btn-success" id="capture" onClick={snap}>CAPTURE</button>
                             <button className="btn btn-success" id="capture" onClick={() => {
                                 console.log(snap(), "RENDER SNAP")
-                                snap().canvas.toBlob(data => {
-                                    // need to find away to get new user to wait on the FID befor subing a new user.
-                                    // if anything let look inside of STA
-                                    newUserApi()
-                                        .then(PIDR => {
+                                if (playing === true)
 
-                                            submitToAgatha("5595", PIDR.personId, data)
-                                            if (submitToAgatha === {}) {
-                                                console.error('no picture taken')
-                                            }
-                                            const currentPersonId = PIDR.personId;
-                                            const currentUserId = userId.id;
-                                            console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
-                                            axios
-                                                .post("/api/storePersonId",
-                                                    {
-                                                        id: currentUserId,
-                                                        personId: currentPersonId
+                                    snap().canvas.toBlob(data => {
+                                        // need to find away to get new user to wait on the FID befor subing a new user.
+                                        // if anything let look inside of STA
+                                        newUserApi()
+                                            .then(PIDR => {
+
+                                                submitToAgatha("5595", PIDR.personId, data)
+                                                if (submitToAgatha === {}) {
+                                                    console.error('no picture taken')
+                                                }
+                                                const currentPersonId = PIDR.personId;
+                                                const currentUserId = userId.id;
+                                                console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                                // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
+
+                                                axios
+                                                    .post("/api/storePersonId",
+                                                        {
+                                                            id: currentUserId,
+                                                            personId: currentPersonId
+                                                        })
+                                                    .then(res => {
+                                                        console.log(res);
+                                                        console.log("Person id added to db");
                                                     })
-                                                .then(res => {
-                                                    console.log(res);
-                                                    console.log("Person id added to db");
-                                                })
-                                                .catch(err => {
-                                                    console.log(err);
+                                                    .catch(err => {
+                                                        console.log(err);
+                                                    })
 
-                                                })
 
-                                            trainingStart()
-                                        })
-                                });
+                                            })
+                                    });
 
                             }}>use</button>
                         </div>
@@ -170,16 +180,7 @@ const SignUp2 = () => {
 
                     </div>
 
-                    <Form>
-                        <Form.Row>
-                            <Col>
-                                <Form.Control placeholder="First name" />
-                            </Col>
-                            <Col>
-                                <Form.Control placeholder="Last name" />
-                            </Col>
-                        </Form.Row>
-                    </Form>
+
 
 
                     <br />

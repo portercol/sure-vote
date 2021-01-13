@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// import necessary packages/modules, pages and components
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import Homepage from './pages/Homepage'
@@ -15,7 +16,6 @@ import Ballot from './pages/Ballot'
 // import face from './pages/cam.faceRe'
 import GlobalProviderAuthUser, { useGlobalContextAuthUser } from './utils/GlobalContextAuthUser';
 import { PrivateRoute } from './utils/privateRoute';
-
 
 
 function App() {
@@ -38,9 +38,9 @@ function App() {
           </Switch>
         </GlobalProviderAuthUser>
       </div>
-    </Router>
+    </Router >
   );
 }
 
-// <Route exact path='/ballot' component={Ballot} />
+// export App out of App.jsx
 export default App;
