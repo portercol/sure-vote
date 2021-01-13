@@ -19,11 +19,8 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
-<<<<<<< HEAD
   console.log(userId.id, "this is the user id");
   
-=======
->>>>>>> main
   // const [dataReceived, setDataReceived] = useState(false);
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election
