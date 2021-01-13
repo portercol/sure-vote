@@ -19,11 +19,6 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
-  // const [dataReceived, setDataReceived] = useState(false);
-  // get data back, set to true
-  // if they've already voted they're not allowed to vote in this election
-
-
   // pulling data from back end to page
   useEffect(() => {
     axios
@@ -40,59 +35,35 @@ const PresElect = (props) => {
         setElectionList(electionData);
         // console.log(electionData)
       })
-    axios
-      .post('/api/vote')
-      .then((res) => {
-        const electionData = res.data.getElection;
-        setElectionList(electionData);
-        // console.log(electionData)
-      })
   }, []);
 
 
   const submitVote = (event) => {
     event.preventDefault();
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
+    {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
-    //const userVoting = userId
-    alert("You voted for " + candidate + ".");
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
+    const userVoting = userId.id
+    // console.log(userVoting);
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+    .then((res) => {
+      // console.log(res.data)
+      setVoted(true)
+      setCandidate()
+      setElectionList();
+      if (res.data.error) {
+        alert(res.data.error);
+      } else {
+        alert("You voted for " + candidate + ".");
+        }
+        console.log(res.data.error)
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log (err));
+    }
+    };
 
-  // useEffect(() => {
-  //   axios.get('/api/vote', )
-  // }, []); 
-
-  // if (!dataReceived) {
-  //   return (
-  //     <>
-  //   <Container id="pres-elect-card">
-  //   <Card bg="light">
-  //     <Card.Body>
-  //       <h3>{PresElectData[0].office}</h3> 
-  //       <h5>Data not available for the following possible reasons:</h5>
-  //       <ul>
-  //         <li>
-
-  //         </li>
-  //         <li>
-
-  //         </li>
-  //       </ul>        
-  //     </Card.Body>
-  //   </Card>
-  // </Container>
-  //     </>
-  //   )
-  // }
-
-  return (
+ return (
     <Container id="pres-elect-card">
       <Card bg="light">
         <Card.Body>
