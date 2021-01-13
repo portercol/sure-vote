@@ -3,12 +3,13 @@ import { useGlobalContextAuthUser } from './GlobalContextAuthUser';
 
 export const PrivateRoute = ({ children, ...rest }) => {
     const userId = useGlobalContextAuthUser();
+    console.log("private route userId object: ", userId);
     console.log("private route userId: ", userId[0].id);
     return (
         <Route {...rest} render={() => {
-            return (userId[0].id) !== null
-                ? children
-                : <Redirect to="/signin" />
+            if (userId.id !== null) {
+                return children
+            } else return <Redirect to="/signin" />
         }}
         />
     )
