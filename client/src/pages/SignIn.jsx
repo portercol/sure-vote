@@ -32,7 +32,7 @@ const SignIn = () => {
             axios.post("/api/login",
                 userLoginObj
             ).then((res) => {
-                console.log(res.data);
+                console.log("label", res.data);
 
 
                 //once user is created store userid and personid in global context

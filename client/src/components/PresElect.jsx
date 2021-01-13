@@ -19,6 +19,11 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
+<<<<<<< HEAD
+  console.log(userId.id, "this is the user id");
+  
+=======
+>>>>>>> main
   // const [dataReceived, setDataReceived] = useState(false);
   // get data back, set to true
   // if they've already voted they're not allowed to vote in this election
@@ -31,29 +36,44 @@ const PresElect = (props) => {
       .then((res) => {
         const candidateData = res.data.getCandidate;
         setCandidateList(candidateData);
-        // console.log(candidateData)
+        console.log(candidateData)
       })
     axios
       .get('/api/election')
       .then((res) => {
         const electionData = res.data.getElection;
         setElectionList(electionData);
-        // console.log(electionData)
-      })
-    axios
-      .post('/api/vote')
-      .then((res) => {
-        const electionData = res.data.getElection;
-        setElectionList(electionData);
-        // console.log(electionData)
+        console.log(electionData)
       })
   }, []);
 
 
   const submitVote = (event) => {
     event.preventDefault();
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
+    {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
+<<<<<<< HEAD
+    const userVoting = userId.id
+    console.log(userVoting);
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+    .then((res) => {
+      // console.log(res.data)
+      setVoted(true)
+      setCandidate()
+      setElectionList();
+      if (res.data.error) {
+        alert(res.data.error);
+      } else {
+        alert("You voted for " + candidate + ".");
+        }
+        console.log(res.data.error)
+      })
+      .catch(err => console.log (err));
+    }
+    };
+=======
     //const userVoting = userId
     alert("You voted for " + candidate + ".");
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
@@ -68,6 +88,7 @@ const PresElect = (props) => {
   // useEffect(() => {
   //   axios.get('/api/vote', )
   // }, []); 
+>>>>>>> main
 
   // if (!dataReceived) {
   //   return (
