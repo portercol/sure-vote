@@ -20,9 +20,9 @@ const Profile = () => {
 
   const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
+  console.log("testing: ", userId);
   console.log("profile user: ", userId);
   const [picture, setPicture] = useState();
-
 
   const uploadPicture = (pic) => {
     let reader = new FileReader();
@@ -31,7 +31,7 @@ const Profile = () => {
       setPicture(e.target.result);
 
       axios
-        .post('/api/uploadImage', { id: "5ff9f49cadcf8f122db8f226", profilePic: e.target.result })
+        .post('/api/uploadImage', { id: userId.id, profilePic: e.target.result })
         .then((res) => {
           console.log(res)
         }).catch(err => {
@@ -43,6 +43,7 @@ const Profile = () => {
 
   useEffect(() => {
     getProfile(userId);
+    console.log("useEffect: ", userId.id);
   }, []);
 
   const getProfile = (userId) => {

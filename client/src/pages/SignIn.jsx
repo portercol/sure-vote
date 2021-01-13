@@ -41,6 +41,7 @@ const SignIn = () => {
 
                 console.log("Redirect to profile");
                 redirectHandler();
+
                 console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
@@ -51,14 +52,18 @@ const SignIn = () => {
     const redirectHandler = () => {
         setRedirect(true);
         console.log("redirect handler: ", redirect);
-        renderRedirect();
+        // renderRedirect();
     }
 
-    const renderRedirect = () => {
-        if (redirect) {
-            console.log("render handler: ", redirect);
-            return <Redirect to="/cam2" />
-        }
+    // const renderRedirect = () => {
+    //     if (redirect) {
+    //         console.log("render handler: ", redirect);
+    //         return <Redirect to="/cam2" />
+    //     }
+    // }
+
+    if (redirect) {
+        return <Redirect to="/profile" />
     }
 
     return (
