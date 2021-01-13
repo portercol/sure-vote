@@ -8,10 +8,10 @@
   "description": "This app allows you to securely vote in political elections",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "start:server": "nodemon server/server.js",
+    "start": "node server.js",
+    "start:server": "nodemon server.js",
     "start:client": "cd client && npm start",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm i && npm run build",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",
+    "path-to-regexp": "^1.8.0",
     "uuid": "^8.3.2",
     "validator": "^13.5.2"
   }

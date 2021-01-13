@@ -1,19 +1,19 @@
-// import necessary packages, modules, components and stylesheets
+// import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState } from "react";
 import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap";
+import './SignIn.css'
 import axios from "axios";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import { Link, Redirect } from "react-router-dom";
-import './SignIn.css'
 
 
 // create functional component to hold sign up page data
 const SignIn = () => {
 
-    // establish state values with useState
     const [usernameLogin, setUsernameLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
     const [userId, dispatch] = useGlobalContextAuthUser();
+    const [redirect, setRedirect] = useState(false);
 
     console.log("Signin user: ", userId);
     // create function for submit button 'onclick'
@@ -40,11 +40,24 @@ const SignIn = () => {
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
 
                 console.log("Redirect to profile");
-                //route user to /cam2
+                redirectHandler();
                 console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
             });
+        }
+    }
+
+    const redirectHandler = () => {
+        setRedirect(true);
+        console.log("redirect handler: ", redirect);
+        renderRedirect();
+    }
+
+    const renderRedirect = () => {
+        if (redirect) {
+            console.log("render handler: ", redirect);
+            return <Redirect to="/cam2" />
         }
     }
 
@@ -64,7 +77,7 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone.
-                            </Form.Text>
+              </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label></Form.Label>
@@ -75,7 +88,7 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your password with anyone.
-                            </Form.Text>
+              </Form.Text>
                         </Form.Group>
                     </Form>
                     <br />
@@ -112,6 +125,7 @@ const SignIn = () => {
                     <Link to="/signup">Signup</Link>
                     <br></br>
                     <Link to="/signin">Signin</Link>
+
                 </Jumbotron>
             </Container>
         </>

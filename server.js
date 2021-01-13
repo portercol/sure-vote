@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-const apiRoutes = require('./routes/api.routes');
-const mailerRoute = require('./routes/mailer.route');
+const apiRoutes = require('./Server/routes/api.routes');
+const mailerRoute = require('./Server/routes/mailer.route');
 const passport = require("passport");
 const logger = require("morgan");
-const User = require("./models/User");
+const User = require("./Server/models/User");
 const LocalStrategy = require("passport-local").Strategy;
 const cors = require('cors');
-require('./config/db')();
+require('./Server/config/db')();
 
 const PORT = process.env.PORT || 5000;
 
@@ -34,11 +34,14 @@ app.use(cors())
 
 app.use(apiRoutes);
 app.use(mailerRoute);
-// fetch data from back end to profile path
-// app.get('/profile', (req, res) => {
-//   console.log(__dirname = '/controllers')
-//   res.json(path.join(__dirname = '/client/src/pages/Profile.jsx'))
-// })
+
+// if (process.env.NODE_ENV === "production") {
+app.use(express.static(__dirname + "/client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
+
+});
+// }
 
 app.listen(PORT, () => {
   console.log('app running on PORT: ' + PORT);

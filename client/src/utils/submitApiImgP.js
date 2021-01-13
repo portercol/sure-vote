@@ -36,7 +36,7 @@ export async function submitToAgatha(personGroupId, personId, image, cb) {
     reader.readAsArrayBuffer(image);
 
 
-    // renderOnload()
+    renderOnload()
 };
 
 
