@@ -51,7 +51,6 @@ const PresElect = (props) => {
     {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
-<<<<<<< HEAD
     const userVoting = userId.id
     console.log(userVoting);
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
@@ -70,22 +69,6 @@ const PresElect = (props) => {
       .catch(err => console.log (err));
     }
     };
-=======
-    //const userVoting = userId
-    alert("You voted for " + candidate + ".");
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
-      })
-      .catch(err => console.log(err));
-  };
-
-  // useEffect(() => {
-  //   axios.get('/api/vote', )
-  // }, []); 
->>>>>>> main
 
   // if (!dataReceived) {
   //   return (
