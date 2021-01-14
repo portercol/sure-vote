@@ -18,6 +18,7 @@ import { letsSeeYourFace } from '../utils/Identify';
 // import ApiCalls from "../utils/ApiCalls";
 import "./Signupcamface.css";
 import { Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
 // create functional component to hold sign up page data
 const SignIn2 = () => {
@@ -86,6 +87,7 @@ const SignIn2 = () => {
 
     return (
         <>
+            <Navbar />
             <Container id="main-container">
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Information</h1>

@@ -5,6 +5,7 @@ import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
 // create functional component to hold sign up page data
 const Vote = () => {
@@ -59,6 +60,7 @@ const Vote = () => {
 
   return (
     <>
+      <Navbar />
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
           <h1>Verify Personal Information</h1>

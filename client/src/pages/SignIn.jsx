@@ -5,6 +5,7 @@ import './SignIn.css'
 import axios from "axios";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import { Link, Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
 
 // create functional component to hold sign up page data
@@ -21,6 +22,7 @@ const SignIn = () => {
         console.log(usernameLogin);
         console.log(passwordLogin);
         if (usernameLogin === "" || passwordLogin === "") {
+            alert("Missing username or password");
             console.log("Missing username or password");
         } else {
             const userLoginObj = {
@@ -68,6 +70,7 @@ const SignIn = () => {
 
     return (
         <>
+            <Navbar />
             <Container id="main-container">
                 <Jumbotron id="main-jumbotron">
                     <h1>Sign In</h1>
@@ -82,7 +85,7 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone.
-              </Form.Text>
+                            </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label></Form.Label>
@@ -93,7 +96,7 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your password with anyone.
-              </Form.Text>
+                            </Form.Text>
                         </Form.Group>
                     </Form>
                     <br />
