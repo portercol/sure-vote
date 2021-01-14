@@ -13,6 +13,7 @@ const SignIn = () => {
     const [usernameLogin, setUsernameLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
     const [userId, dispatch] = useGlobalContextAuthUser();
+    const [redirect, setRedirect] = useState(false);
 
     console.log("Signin user: ", userId);
     // create function for submit button 'onclick'
@@ -31,7 +32,7 @@ const SignIn = () => {
             axios.post("/api/login",
                 userLoginObj
             ).then((res) => {
-                console.log(res.data);
+                console.log("label", res.data);
 
 
                 //once user is created store userid and personid in global context
@@ -39,12 +40,30 @@ const SignIn = () => {
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
 
                 console.log("Redirect to profile");
-                <Redirect to="/cam3"></Redirect>
+                redirectHandler();
+
                 console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
             });
         }
+    }
+
+    const redirectHandler = () => {
+        setRedirect(true);
+        console.log("redirect handler: ", redirect);
+        // renderRedirect();
+    }
+
+    // const renderRedirect = () => {
+    //     if (redirect) {
+    //         console.log("render handler: ", redirect);
+    //         return <Redirect to="/cam2" />
+    //     }
+    // }
+
+    if (redirect) {
+        return <Redirect to="/profile" />
     }
 
     return (

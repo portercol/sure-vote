@@ -1,4 +1,4 @@
-// import Rreact, elements from React-Bootstrap, SignUp.css
+// import necessary packages/modules, components & stylesheets
 import React, { useState } from "react";
 import {
   Button,
@@ -15,6 +15,7 @@ const axios = require("axios");
 // create functional component to hold sign up page data
 const SignUp = () => {
 
+  // establish state values with useState
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [usernameValue, setUsernameValue] = useState('');
@@ -34,7 +35,8 @@ const SignUp = () => {
     console.log("Hit homepage");
   }
 
-  const signInBtn = () => {
+  // create function for sign up button and if required fields are not met throw alert error
+  const signUpBtn = () => {
     if (firstNameValue === "" || lastNameValue === "" || usernameValue === "" || passwordValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
       console.log("Missing required credentials");
       alert("Missing required credentials. Please enter required information");
@@ -210,13 +212,12 @@ const SignUp = () => {
           </ButtonGroup>
 
           <ButtonGroup size="lg" className="mr-3">
-            <Button href="" onClick={() => { signInBtn() }} variant="dark"
+            <Button onClick={() => { signUpBtn() }} variant="dark"
               type="submit" id='right-button'>Continue</Button>
           </ButtonGroup>
 
           <br /><br />
           <h6>Click 'Continue' to Capture Image</h6>
-
         </Jumbotron>
       </Container>
     </>

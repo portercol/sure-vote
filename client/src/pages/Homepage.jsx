@@ -1,3 +1,4 @@
+// import necessary packages/modules, components, stylesheets and images
 import React from "react";
 import {
   Button,
@@ -9,18 +10,19 @@ import './Homepage.css'
 import FingerPrint from '../assets/blkFingerPrint.png'
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 
-
+// create functional component to hold data
 const Homepage = () => {
   const [userId] = useGlobalContextAuthUser();
   console.log("Homepage user: ", userId);
 
+  // create function for sign up button
   const signUpBtn = () => {
-    console.log("hit sign up path");
   }
 
+  // create function for sign in button
   const signInBtn = () => {
-    console.log("hit sign in path");
   }
+
   return (
     <Container id="main-container">
       <Jumbotron id="main-jumbotron">
@@ -45,4 +47,5 @@ const Homepage = () => {
   );
 };
 
+// export Homepage from Homepage.jsx
 export default Homepage;

@@ -2,6 +2,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const mongoose = require('mongoose');
 const { v4: newUuid } = require("uuid");
 const Vote = require("../models/Vote");
 const User = require("../models/User");
@@ -121,7 +122,6 @@ router
           success: true,
           message: "Logged in",
           userId: user._id,
-          personId: user.personId
         });
       });
     })(req, res, next);
@@ -129,11 +129,24 @@ router
 
   .post("/api/vote", async (req, res, next) => {
     console.log("hit vote route");
+    const alreadyVoted = await Vote.find({$and:[ 
+        {
+            "user" : mongoose.Types.ObjectId(req.body.userId),
+        },
+        {
+            "election" : mongoose.Types.ObjectId(req.body.election)
+        }
+        ]})
+        if (alreadyVoted) {
+
+            console.log(alreadyVoted);
+            return res.json({ error: "You have already voted for this election."} )
+        }
 
     let vote = new Vote({
-      user: "5ff68727f86e984d2c0e21e3",
-      candidate: "5ff9e6c8d238fa2e88be98e0",
-      election: "5ff9e4392cc42041549d7e07",
+      user: req.body.userId,
+      candidate: req.body.candidate,
+      election: req.body.election,
     });
     await vote.save();
     console.log(req.body);
@@ -141,11 +154,11 @@ router
   })
   .get("/api/vote", async (req, res) => {
     console.log(req.body);
-    const getVote = Vote.findOne({})
+    const getVote = await Vote.findOne({})
       .populate("user")
       .populate("election")
       .populate("candidate");
-    await res.json({ getVote });
+    res.json( getVote );
   })
 
   // .post("/api/candidate",
@@ -199,7 +212,6 @@ router
   })
 
   .post("/api/uploadImage", (req, res) => {
-    console.log("hit image upload route");
     User.findByIdAndUpdate(
       req.body.id,
       { profilePic: { data: req.body.profilePic, contentType: req.body.profilePic.split(";")[0].split(":")[1] } }
@@ -211,7 +223,13 @@ router
         console.log(err);
         res.json({ message: "Error adding profile pic: ", err })
       })
-  });
-
+  })
+  .get("/api/uploadImage", (req, res) => {
+    User.findById(req.params.id)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => console.log(err));
+  })
 // export router out of api.routes.js
 module.exports = router;
