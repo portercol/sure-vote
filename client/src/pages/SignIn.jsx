@@ -101,7 +101,7 @@ const SignIn = () => {
                     </Form>
                     <br />
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href='/' onClick={() => { submitBtn() }} variant="dark"
+                        <Button href='/' variant="dark"
                             type="submit" id='right-button'>Go Back</Button>
                     </ButtonGroup>
 
@@ -109,29 +109,6 @@ const SignIn = () => {
                         <Button onClick={() => { submitBtn() }} variant="dark"
                             type="submit" id='left-button'>Sign In</Button>
                     </ButtonGroup>
-                    <hr></hr>
-                    <h5>Protected Routes</h5>
-                    <Link to="/cam2">Add Person (Cam 2)</Link>
-                    <br></br>
-                    <Link to="/profile">Profile</Link>
-                    <br></br>
-                    <Link to="/cam3">Identify Person (Cam 3)</Link>
-                    <br></br>
-                    <Link to="/contact">Contact</Link>
-                    <br></br>
-                    <Link to="/election">Election</Link>
-                    <br></br>
-                    <Link to="/ballot">Ballot</Link>
-                    <br></br>
-                    <Link to="/vote">Vote</Link>
-                    <hr></hr>
-                    <h5>Unprotected Routes</h5>
-                    <Link to="/">Homepage</Link>
-                    <br></br>
-                    <Link to="/signup">Signup</Link>
-                    <br></br>
-                    <Link to="/signin">Signin</Link>
-
                 </Jumbotron>
             </Container>
         </>
