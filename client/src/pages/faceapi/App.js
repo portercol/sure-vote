@@ -7,6 +7,7 @@ import Badge from 'react-bootstrap/Badge'
 import GroupPersons from './Groups';
 import Persons from './Persons';
 import Actions from './Actions';
+import Navbar from "../components/Navbar.jsx";
 
 class App2 extends Component {
   personsRef = React.createRef();
@@ -27,29 +28,32 @@ class App2 extends Component {
 
   render() {
     return (
-      <Container>
-        <Row className="app-header-title">
-          <Col sm={1}>
+      <>
+        <Navbar />
+        <Container>
+          <Row className="app-header-title">
+            <Col sm={1}>
 
-          </Col>
-          <Col sm={11}>
-            <h1 className="app-title">
-              Agatha 1.5.6.7 <Badge variant="primary" pill></Badge>
-            </h1>
-          </Col>
-        </Row>
-        <Row className="app-header-body">
-          <Col>
-            <GroupPersons onSelect={this.onPersonGroupSelect} />
-          </Col>
-          <Col>
-            <Persons ref={this.personsRef} />
-          </Col>
-          <Col>
-            <Actions ref={this.actionsRef} />
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+            <Col sm={11}>
+              <h1 className="app-title">
+                Agatha 1.5.6.7 <Badge variant="primary" pill></Badge>
+              </h1>
+            </Col>
+          </Row>
+          <Row className="app-header-body">
+            <Col>
+              <GroupPersons onSelect={this.onPersonGroupSelect} />
+            </Col>
+            <Col>
+              <Persons ref={this.personsRef} />
+            </Col>
+            <Col>
+              <Actions ref={this.actionsRef} />
+            </Col>
+          </Row>
+        </Container>
+      </>
     );
   }
 }

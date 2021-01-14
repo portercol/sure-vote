@@ -10,7 +10,8 @@ import {
 } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
-const axios = require("axios");
+import axios from "axios";
+import Navbar from "../components/Navbar.jsx";
 
 // create functional component to hold sign up page data
 const SignUp = () => {
@@ -69,6 +70,7 @@ const SignUp = () => {
 
   return (
     <>
+      <Navbar />
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
           <h1 id="pi">Personal Information</h1>
