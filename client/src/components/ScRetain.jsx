@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import ScRetainData from '../seedData/scretainSeed';
 import axios from 'axios';
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
 
 const ScRetain = () => {
@@ -16,7 +17,9 @@ const ScRetain = () => {
   const [electionList, setElectionList] = useState([]);
   const [answer, setAnswer] = useState("");
   const [voted, setVoted] = useState(false);
+  const [userId] = useGlobalContextAuthUser();
 
+  // pulling data from back end to page
   useEffect(() => {
     axios
       .get('/api/candidate')
@@ -39,16 +42,27 @@ const ScRetain = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
+    {
     // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
     const selectedElection = electionList.find(currentElection => currentElection.office === "Utah Supreme Court")
-    alert("You voted for " + answer + ".");
-    axios.post('/api/vote', { election: selectedElection._id })
+    const userVoting = userId.id
+    console.log(userVoting);
+    axios.post('/api/vote', { election: selectedElection._id, userId: userVoting })
       .then((res) => {
         // console.log(res.data)
         setVoted(true)
         setAnswer()
+        setElectionList();
+        if (res.data.error) {
+          alert(res.data.error);
+        } else {
+          alert("You voted for " + answer + ".");
+          }
+          console.log(res.data.error)
       })
       .catch(err => console.log (err));
+    }
     };
 
   return (

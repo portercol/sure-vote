@@ -44,7 +44,6 @@ const HouseElect = () => {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "United States Representative")
     const userVoting = userId.id
-    alert("You voted for " + candidate + ".");
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
         // console.log(res.data)
