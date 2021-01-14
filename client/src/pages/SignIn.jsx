@@ -84,7 +84,7 @@ const SignIn = () => {
                     </ButtonGroup>
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href='/cam3' onClick={() => { submitBtn() }} variant="dark"
+                        <Button href='' onClick={() => { submitBtn() }} variant="dark"
                             id='left-button'>Continue</Button>
                     </ButtonGroup>
                     <hr></hr>
