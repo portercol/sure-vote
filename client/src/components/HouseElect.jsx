@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import RepElectData from "../seedData/repSeed";
 import axios from 'axios';
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
 const HouseElect = () => {
 
@@ -15,6 +16,7 @@ const HouseElect = () => {
   const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  const [userId] = useGlobalContextAuthUser();
 
     // pulling data from back end to page
     useEffect(() => {
@@ -37,15 +39,26 @@ const HouseElect = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
+    {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "United States Representative")
-    alert("You voted for " + candidate + ".");
+    const userVoting = userId.id
     axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
       .then((res) => {
         // console.log(res.data)
         setVoted(true)
-      })
-      .catch(err => console.log (err));
+        setCandidate()
+        setElectionList();
+        if (res.data.error) {
+          alert(res.data.error);
+        } else {
+          alert("You voted for " + candidate + ".");
+          }
+          console.log(res.data.error)
+        })
+        .catch(err => console.log (err));
+      }
     };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Container, Col, Row, Card } from "react-bootstrap";
 import axios from 'axios';
 import ConstAmend1Data from '../seedData/const1';
+import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
 const ConstAmend2 = () => {
 
@@ -9,7 +10,9 @@ const ConstAmend2 = () => {
   const [electionList, setElectionList] = useState([]);
   const [answer, setAnswer] = useState("");
   const [voted, setVoted] = useState(false);
+  const [userId] = useGlobalContextAuthUser();
 
+  // pulling data from back end to page
   useEffect(() => {
     axios
       .get('/api/candidate')
@@ -30,16 +33,27 @@ const ConstAmend2 = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
+    {
      // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
      const selectedElection = electionList.find(currentElection => currentElection.question === "Constitutional Amendment 2")
-     alert("You voted for " + answer + ".");
-     axios.post('/api/vote', { election: selectedElection._id })
+     const userVoting = userId.id
+    console.log(userVoting);
+     axios.post('/api/vote', { election: selectedElection._id, userId: userVoting })
       .then((res) => {
         // console.log(res.data)
         setVoted(true)
         setAnswer()
+        setElectionList();
+        if (res.data.error) {
+          alert(res.data.error);
+        } else {
+          alert("You voted for " + answer + ".");
+          }
+          console.log(res.data.error)
       })
       .catch(err => console.log (err));
+    }
     };
 
   return (

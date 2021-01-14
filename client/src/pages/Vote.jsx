@@ -1,4 +1,4 @@
-// import necessary packages/modules, components and stylesheets
+// import necessary packages/modules, components and stylesheet
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
@@ -30,15 +30,6 @@ const Vote = () => {
       console.log("Missing required credentials")
       alert("Missing required credentials. Please enter required information");
     } else {
-      // console.log(firstNameValue);
-      // console.log(lastNameValue);
-      // console.log(usernameValue);
-      // console.log(passwordValue);
-      // console.log(streetAddress1Value);
-      // console.log(streetAddress2Value);
-      // console.log(cityValue);
-      // console.log(stateValue);
-      // console.log(zipCodeValue);
 
       const userObj = {
         firstName: firstNameValue,
@@ -58,7 +49,6 @@ const Vote = () => {
       }).catch(err => {
         console.log(err);
       });
-
     }
   }
 
@@ -216,5 +206,5 @@ const Vote = () => {
   );
 };
 
-// export component from SignUp.jsx
+// export component from Vote.jsx
 export default Vote;
