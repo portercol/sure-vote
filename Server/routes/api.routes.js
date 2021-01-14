@@ -122,6 +122,8 @@ router
           success: true,
           message: "Logged in",
           userId: user._id,
+          personId: user.personId,
+          uuid: user.uuid
         });
       });
     })(req, res, next);
@@ -129,19 +131,21 @@ router
 
   .post("/api/vote", async (req, res, next) => {
     console.log("hit vote route");
-    const alreadyVoted = await Vote.find({$and:[ 
+    const alreadyVoted = await Vote.find({
+      $and: [
         {
-            "user" : mongoose.Types.ObjectId(req.body.userId),
+          "user": mongoose.Types.ObjectId(req.body.userId),
         },
         {
-            "election" : mongoose.Types.ObjectId(req.body.election)
+          "election": mongoose.Types.ObjectId(req.body.election)
         }
-        ]})
-        if (alreadyVoted) {
+      ]
+    })
+    if (alreadyVoted) {
 
-            console.log(alreadyVoted);
-            return res.json({ error: "You have already voted for this election."} )
-        }
+      console.log(alreadyVoted);
+      return res.json({ error: "You have already voted for this election." })
+    }
 
     let vote = new Vote({
       user: req.body.userId,
@@ -158,7 +162,7 @@ router
       .populate("user")
       .populate("election")
       .populate("candidate");
-    res.json( getVote );
+    res.json(getVote);
   })
 
   // .post("/api/candidate",

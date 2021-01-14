@@ -6,7 +6,8 @@ const GlobalContextAuthUser = createContext();
 //set up global provider & reducer
 const defaultState = {
     id: null,
-    personId: null
+    personId: null,
+    uuid: null
 };
 
 //reducer 
@@ -22,6 +23,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 personId: action.payload
+            };
+        case 'UPDATE_UUID':
+            return {
+                ...state,
+                uuid: action.payload
             };
         default:
             return state;
