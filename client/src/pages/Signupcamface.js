@@ -31,8 +31,8 @@ const SignUp2 = () => {
 
 
 
-    const HEIGHT = 500;
-    const WIDTH = 500;
+    const HEIGHT = 450;
+    const WIDTH = 390;
 
 
     const startVideo = () => {
@@ -102,9 +102,9 @@ const SignUp2 = () => {
         <>
             <Container id="main-container">
                 <Jumbotron id="signup-jumbotron">
-                    <h1 id="pi">Facial Information</h1>
-                    <h2 id='name'>your name goes here</h2>
-                    <h4>Please remove hats and glasses and look directly at the camera.</h4>
+                    <h1 id="pi">Facial Detection</h1>
+                    <hr />
+                    <p id='name'>This is the final step in creating a profile, please take of any hats and look directly into the camera, if you see that your glasses are showing any glair plaese remove them, thank you.</p>
                     <Container>
                         <Row>
                             <Col>
@@ -130,9 +130,10 @@ const SignUp2 = () => {
                                 <Col>
                                     <ButtonGroup size="lg" className="mr-3">
                                         {playing ? (
-                                            <button className="btn btn-success" onClick={stopVideo}>Stop</button>
-                                        ) : (
-                                                <button className="btn btn-success" onClick={startVideo}>Start</button>
+                                            <button className="btn btn-success" onClick={stopVideo}>Stop Camera</button>
+                                        
+                                            ) : (
+                                                <button className="btn btn-success" onClick={startVideo}>Start Camera</button>
                                             )}
                                     </ButtonGroup>
                                 </Col>
@@ -178,15 +179,27 @@ const SignUp2 = () => {
                                                     stopVideo()
                                                 });
 
-                                        }}>use</button>
+                                        }}>Take Picture</button>
                                     </ButtonGroup>
                                 </Col>
                             </Row>
+
+                            <div className="app__input">
+                            </div>
+
+
+                            <br />
+                            <br />
+                            <h1>Used Photo</h1>
+                            <br />
+                            <br />
                             <Col>
                                 <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
                             </Col>
                         </div>
+                        <div className="app__input">
 
+                        </div>
 
 
 
@@ -200,10 +213,8 @@ const SignUp2 = () => {
                     <br />
 
 
-                    <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/profile" disabled={true || submitToAgatha.res === false} onClick={submitBtn()} variant="dark"
-                            id='left-button'> Complete Sign Up</Button>
-                    </ButtonGroup>
+                    <Button variant="primary" size="lg" block href="/profile" disabled={true || submitToAgatha.res === false} onClick={submitBtn()}
+                        id="save"> Complete Sign Up</Button>
 
 
 

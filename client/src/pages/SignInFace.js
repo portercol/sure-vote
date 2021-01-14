@@ -140,7 +140,7 @@ const SignIn2 = () => {
                                                     }
                                                 }
                                                 )
-
+                                            stopVideo()
                                         }}>Take Picture</button>
                                     </ButtonGroup>
                                 </Col>
@@ -153,6 +153,8 @@ const SignIn2 = () => {
                     <br />
                     <br />
                     <h1>Used Photo</h1>
+                    <br />
+                    <br />
                     <Col>
                         <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
                     </Col>
@@ -161,7 +163,7 @@ const SignIn2 = () => {
 
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/profile" disabled={true} onClick={submitBtn()} variant="dark"
+                        <Button variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()} variant="dark"
                             type="submit" id='left-button'>VOTE!</Button>
                     </ButtonGroup>
 
