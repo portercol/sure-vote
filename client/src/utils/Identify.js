@@ -49,8 +49,8 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
                         }
                         // both errors work need to make them more offical and or a propt
 
-                        else if (confidenceX < 5.0) {
-                            reject(
+                        else if (confidenceX < 75.0) {
+                            alert(
                                 "We do not believe that this is you, please try again"
                             )
                             console.error('we do not think this is you')
@@ -62,7 +62,7 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
                                 "Thank you for signing in"
                             )
                             resolve(allCalls)
-                            
+
                             return { state: false }
                         }
 

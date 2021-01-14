@@ -136,12 +136,10 @@ const SignUp2 = () => {
                                             )}
                                     </ButtonGroup>
                                 </Col>
-                                <br />
-                                <br />
-                                <br />
+
                                 <Col>
                                     <ButtonGroup size="lg" className="mr-3">
-                                        <button id="save, capture " className="btn btn-success" onClick={() => {
+                                        <button id="capture " className="btn btn-success" onClick={() => {
                                             console.log(snap(), "RENDER SNAP")
                                             if (playing === true)
 
@@ -188,9 +186,7 @@ const SignUp2 = () => {
                                 <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
                             </Col>
                         </div>
-                        <div className="app__input">
-                            <button id="save" type="button">                     save                      </button>
-                        </div>
+
 
 
 
@@ -203,14 +199,10 @@ const SignUp2 = () => {
                     <br />
                     <br />
 
-                    <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/" disabled={true} onClick={submitBtn()} variant="dark"
-                            type="submit" id='right-button'>Go Back</Button>
-                    </ButtonGroup>
 
                     <ButtonGroup size="lg" className="mr-3">
                         <Button href="/profile" disabled={true || submitToAgatha.res === false} onClick={submitBtn()} variant="dark"
-                            id='left-button'>Sign Up</Button>
+                            id='left-button'> Complete Sign Up</Button>
                     </ButtonGroup>
 
 

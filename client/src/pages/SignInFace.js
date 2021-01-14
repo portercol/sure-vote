@@ -90,7 +90,7 @@ const SignIn2 = () => {
             <Container id="main-container">
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
-                    <h1 id='name'>Hi please remove any hats or glasses that cause glair</h1>
+                    <p id='name'>This is the final step to Voting, please take of any hats and look directly into the camera, if you see that your glasses are showing any glair plaese remove them, thank you.</p>
                     <Container>
                         <Row>
                             <Col>
@@ -103,41 +103,48 @@ const SignIn2 = () => {
                                         className="app__videoFeed"
                                     ></video>
                                 </div>
-
-                                <div>
-                                    <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
-                                </div>
                             </Col>
                         </Row>
                     </Container>
                     <div className="app">
                         <div className="app__input">
-                            {playing ? (
-                                <button onClick={stopVideo}>Stop</button>
-                            ) : (
-                                    <button onClick={startVideo}>Start</button>
-                                )}
+                            <Row>
+                                <Col>
+                                    <ButtonGroup size="lg" className="mr-3">
 
-                            <button id="save" className="btn btn-success" onClick={() => {
-                                console.log(snap(), "RENDER SNAP")
-                                if (playing === true)
-                                    snap().canvas.toBlob(async data => {
-                                        console.log("hit snap personId: ", userId.personId);
-                                        try {
+                                        {playing ? (
+                                            <button className="btn btn-success" onClick={stopVideo}>Stop Camera</button>
+                                        ) : (
+                                                <button className="btn btn-success" onClick={startVideo}>Start Camera</button>
+                                            )}
+                                    </ButtonGroup>
+                                </Col>
+                                <Col>
 
-                                            let ID = await letsSeeYourFace('5595', data, "91b029bd-89d9-41d7-b430-74a05753ee75", letsSeeYourFace.confidence,)
-                                            console.log(ID, "this is the id stuff")
-                                            // let open = await
-                                            //     console.log("this is open", open)
+                                    <ButtonGroup size="lg" className="mr-3">
+                                        <button id="save" className="btn btn-success" onClick={() => {
+                                            console.log(snap(), "RENDER SNAP")
+                                            if (playing === true)
+                                                snap().canvas.toBlob(async data => {
+                                                    console.log("hit snap personId: ", userId.personId);
+                                                    try {
+
+                                                        let ID = await letsSeeYourFace('5595', data, "91b029bd-89d9-41d7-b430-74a05753ee75", letsSeeYourFace.confidence,)
+                                                        console.log(ID, "this is the id stuff")
+                                                        // let open = await
+                                                        //     console.log("this is open", open)
 
 
-                                        } catch (err) {
-                                            console.error("this is an error", err)
-                                        }
-                                    }
-                                    )
+                                                    } catch (err) {
+                                                        console.error("this is an error", err)
+                                                    }
+                                                }
+                                                )
 
-                            }}>use</button>
+                                        }}>Take Picture</button>
+                                    </ButtonGroup>
+                                </Col>
+                            </Row>
                         </div>
                         <div className="app__input">
                         </div>
@@ -145,16 +152,17 @@ const SignIn2 = () => {
 
                     <br />
                     <br />
+                    <h1>Used Photo</h1>
+                    <Col>
+                        <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
+                    </Col>
 
 
 
-                    <ButtonGroup size="lg" className="mr-3">
-                        <Button href="/" disabled={true} onClick={submitBtn()} variant="dark"
-                            type="submit" id='right-button'>Go Back</Button>
-                    </ButtonGroup>
+
                     <ButtonGroup size="lg" className="mr-3">
                         <Button href="/profile" disabled={true} onClick={submitBtn()} variant="dark"
-                            type="submit" id='left-button'>Sign Up</Button>
+                            type="submit" id='left-button'>VOTE!</Button>
                     </ButtonGroup>
 
                 </Jumbotron>
