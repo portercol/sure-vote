@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
-const axios = require("axios");
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 // create functional component to hold sign up page data
 const Vote = () => {
@@ -59,6 +60,11 @@ const Vote = () => {
       });
 
     }
+  }
+
+  //reroute to signin if not authenticated
+  if (!userId.id) {
+    return (<Redirect to="/signin" />);
   }
 
   return (

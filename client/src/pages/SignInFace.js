@@ -17,6 +17,8 @@ import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 import { letsSeeYourFace } from '../utils/Identify';
 // import ApiCalls from "../utils/ApiCalls";
 import "./Signupcamface.css";
+import { Redirect } from "react-router-dom";
+
 // create functional component to hold sign up page data
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
@@ -76,6 +78,12 @@ const SignIn2 = () => {
     const submitBtn = () => {
         console.log("submitted sign up form");
     }
+
+    //reroute to signin if not authenticated
+    if (!userId.id) {
+        return (<Redirect to="/signin" />);
+    }
+
     return (
         <>
             <Container id="main-container">
