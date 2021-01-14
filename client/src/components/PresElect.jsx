@@ -19,14 +19,7 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
-  console.log(userId.id, "this is the user id");
-  
-  // const [dataReceived, setDataReceived] = useState(false);
-  // get data back, set to true
-  // if they've already voted they're not allowed to vote in this election
-
-
-  // pulling data from back end to page
+ // pulling data from back end to page
   useEffect(() => {
     axios
       .get('/api/candidate')
@@ -70,29 +63,6 @@ const PresElect = (props) => {
     }
     };
 
-  // if (!dataReceived) {
-  //   return (
-  //     <>
-  //   <Container id="pres-elect-card">
-  //   <Card bg="light">
-  //     <Card.Body>
-  //       <h3>{PresElectData[0].office}</h3> 
-  //       <h5>Data not available for the following possible reasons:</h5>
-  //       <ul>
-  //         <li>
-
-  //         </li>
-  //         <li>
-
-  //         </li>
-  //       </ul>        
-  //     </Card.Body>
-  //   </Card>
-  // </Container>
-  //     </>
-  //   )
-  // }
-
   return (
     <Container id="pres-elect-card">
       <Card bg="light">
@@ -101,6 +71,7 @@ const PresElect = (props) => {
             President of the United States
           </h3>
           <hr />
+          
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
