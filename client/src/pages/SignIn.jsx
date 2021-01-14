@@ -116,8 +116,6 @@ const SignIn = () => {
                     <br></br>
                     <Link to="/contact">Contact</Link>
                     <br></br>
-                    <Link to="/face">App2 (Face)</Link>
-                    <br></br>
                     <Link to="/election">Election</Link>
                     <br></br>
                     <Link to="/ballot">Ballot</Link>
