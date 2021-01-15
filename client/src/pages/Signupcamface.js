@@ -31,10 +31,14 @@ const SignUp2 = () => {
     const videoRef = useRef(null);
 
 
+<<<<<<< HEAD
+
+=======
     //reroute to signup if not authenticated
     // if (!userId.id) {
     //     return (<Redirect to="/signup" />);
     // }
+>>>>>>> bbbb0bfdaa79ad26170bc798d3a7c4db029fc44c
 
     const HEIGHT = 450;
     const WIDTH = 390;

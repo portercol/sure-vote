@@ -75,9 +75,7 @@ const SignIn2 = () => {
     }
 
     //reroute to signin if not authenticated
-    if (!userId.id) {
-        return (<Redirect to="/signin" />);
-    }
+
 
     return (
         <>
@@ -133,6 +131,7 @@ const SignIn2 = () => {
                                                     } catch (err) {
                                                         console.error("this is an error", err)
                                                     }
+
                                                 }
                                                 )
                                             stopVideo()
@@ -141,7 +140,7 @@ const SignIn2 = () => {
                                 </Col>
                             </Row>
                         </div>
-                        <div className="app__input">
+                        <div id="save" className="app__input">
                         </div>
                     </div>
 
@@ -158,8 +157,8 @@ const SignIn2 = () => {
 
 
 
-                    <Button variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()}
-                        type="submit" id='left-button'>VOTE!</Button>
+                    <Button id="save" variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()}
+                        type="submit">VOTE!</Button>
 
 
                 </Jumbotron>
