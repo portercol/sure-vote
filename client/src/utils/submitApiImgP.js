@@ -12,11 +12,6 @@ export async function submitToAgatha(personGroupId, personId, image, cb) {
     reader.readAsArrayBuffer(image);
 };
 
-
-
-
-
-
 // try { submitToAgatha("5595", personId, reader.result) }
 // catch (e) {
 //     if (e.personId === []) {
