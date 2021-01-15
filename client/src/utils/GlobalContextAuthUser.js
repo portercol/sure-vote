@@ -29,10 +29,10 @@ const reducer = (state, action) => {
                 ...state,
                 uuid: action.payload
             };
-        case 'confidenceLock':
+        case 'UPDATE_SIGNINFACE':
             return {
                 ...state,
-                confidence: action.payload
+                signInFace: action.payload
             };
         default:
             return state;

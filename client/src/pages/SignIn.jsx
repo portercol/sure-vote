@@ -40,7 +40,7 @@ const SignIn = () => {
                 //once user is created store userid and personid in global context
                 dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
-                dispatch({ type: "UPDATE_UUID", payload: res.data.uuid })
+                dispatch({ type: "UPDATE_UUID", payload: res.data.uuid });
 
                 redirectHandler();
                 console.log("Redirect to profile");
