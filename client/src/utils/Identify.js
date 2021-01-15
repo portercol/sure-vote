@@ -8,7 +8,6 @@ import IdentificationHelper from "./IdentificationHelper";
 export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
     return new Promise((resolve, reject) => {
 
-
         var reader = new FileReader();
         var renderOnload = reader.onload = async (props) => {
             let idHelper = new IdentificationHelper();

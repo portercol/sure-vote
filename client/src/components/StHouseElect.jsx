@@ -1,3 +1,4 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -10,7 +11,8 @@ import StRepElectData from '../seedData/strepSeed';
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
-const PresElect = () => {
+// create functional component to hold data
+const StHouseElect = () => {
 
   const [candidateList, setCandidateList] = useState([]);
   const [electionList, setElectionList] = useState([]);
@@ -133,4 +135,5 @@ const PresElect = () => {
   );
 };
 
-export default PresElect;
+// export StHouseElect out of StHouseElect.jsx
+export default StHouseElect;

@@ -12,7 +12,10 @@ import Navbar from "../components/Navbar.jsx";
 // create functional component to hold sign up page data
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
-    const [userId] = useGlobalContextAuthUser();
+    const [userId, dispatch] = useGlobalContextAuthUser();
+    const [disableValue, setDisableValue] = useState(true);
+    const [redirect, setRedirect] = useState(false);
+
     console.log("Cam3 user: ", userId);
     const vest = useRef(null);
     const videoRef = useRef(null);
@@ -68,10 +71,18 @@ const SignIn2 = () => {
     // create function for submit button 'onclick'
 
     const submitBtn = () => {
-
-
+        redirectHandler();
 
         console.log("submitted sign up form");
+    }
+
+    const redirectHandler = () => {
+        setRedirect(true);
+        console.log("redirect handler: ", redirect);
+    }
+
+    if (redirect) {
+        return <Redirect to="/ballot" />
     }
 
     //reroute to signin if not authenticated
@@ -86,7 +97,7 @@ const SignIn2 = () => {
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
                     <hr />
-                    <p id='name'>This is the final step to Voting, please take of any hats and look directly into the camera, if you see that your glasses are showing any glair plaese remove them, thank you.</p>
+                    <p id='name'>This is the final step to Voting, please take off any hats and look directly into the camera, if you see that your glasses are showing any glare please remove them, thank you.</p>
                     <Container>
                         <Row>
                             <Col>
@@ -127,12 +138,15 @@ const SignIn2 = () => {
 
                                                         let ID = await letsSeeYourFace('5595', data, userId.personId, letsSeeYourFace.confidence,)
                                                         console.log(ID, "this is the id stuff")
-
-
+                                                        if (ID.confidence >= .75) {
+                                                            setDisableValue(false);
+                                                            dispatch({ type: 'UPDATE_SIGNINFACE', payload: true });
+                                                        }
 
                                                     } catch (err) {
                                                         console.error("this is an error", err)
                                                     }
+
                                                 }
                                                 )
                                             stopVideo()
@@ -141,7 +155,7 @@ const SignIn2 = () => {
                                 </Col>
                             </Row>
                         </div>
-                        <div className="app__input">
+                        <div id="save" className="app__input">
                         </div>
                     </div>
 
@@ -158,8 +172,8 @@ const SignIn2 = () => {
 
 
 
-                    <Button variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()}
-                        type="submit" id='left-button'>VOTE!</Button>
+                    <Button id="save" variant="primary" size="lg" block disabled={disableValue} onClick={() => { submitBtn() }}
+                        type="submit">VOTE!</Button>
 
 
                 </Jumbotron>

@@ -27,7 +27,7 @@ const SignUp = () => {
   const [cityValue, setCityValue] = useState('');
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
-  const [userId] = useGlobalContextAuthUser();
+  const [userId, dispatch] = useGlobalContextAuthUser();
   const [redirect, setRedirect] = useState(false);
 
   console.log("Signup user: ", userId);
@@ -62,7 +62,10 @@ const SignUp = () => {
       ).then((res) => {
         console.log("Successfully registered!");
         console.log(res.data.userId);
-        alert("Successfully Registered!");
+        alert("Successfully Registered! You will receive a welcome email from our team!");
+
+        dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
+        dispatch({ type: "UPDATE_UUID", payload: res.data.uuid });
 
         redirectHandler();
         console.log("redirected to cam2");

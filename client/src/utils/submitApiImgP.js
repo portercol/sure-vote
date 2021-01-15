@@ -1,6 +1,6 @@
 import ApiCalls from "./ApiCalls";
 
-export function submitToAgatha(personGroupId, personId, image, cb) {
+export async function submitToAgatha(personGroupId, personId, image, cb) {
     var reader = new FileReader();
     reader.onload = () => {
         var api = new ApiCalls();
@@ -11,11 +11,6 @@ export function submitToAgatha(personGroupId, personId, image, cb) {
     };
     reader.readAsArrayBuffer(image);
 };
-
-
-
-
-
 
 // try { submitToAgatha("5595", personId, reader.result) }
 // catch (e) {
