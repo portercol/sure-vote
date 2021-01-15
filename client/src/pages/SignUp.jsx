@@ -62,7 +62,7 @@ const SignUp = () => {
       ).then((res) => {
         console.log("Successfully registered!");
         console.log(res.data.userId);
-        alert("Successfully Registered!");
+        alert("Successfully Registered! You will receive a welcome email from our team!");
 
         dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
         dispatch({ type: "UPDATE_UUID", payload: res.data.uuid });
