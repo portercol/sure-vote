@@ -1,5 +1,5 @@
 // import necessary modules/packages & components
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -36,32 +36,31 @@ const StSenElect = () => {
         setElectionList(electionData);
         // console.log(electionData)
       })
-  }, []); 
+  }, []);
 
   const submitVote = (event) => {
     event.preventDefault();
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
-    const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Senator")
-    const userVoting = userId.id
-    console.log(userVoting);
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
-        setElectionList();
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          alert("You voted for " + candidate + ".");
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
+      const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+      const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Senator")
+      const userVoting = userId.id
+      console.log(userVoting);
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+        .then((res) => {
+          // console.log(res.data)
+          setVoted(true)
+          setCandidate()
+          setElectionList();
+          if (res.data.error) {
+            alert(res.data.error);
+          } else {
+            alert("You voted for " + candidate + ".");
           }
           console.log(res.data.error)
-      })
-      .catch(err => console.log (err));
+        })
+        .catch(err => console.log(err));
     }
-    };
+  };
 
   return (
     <Container id="statesen-elect-card">
@@ -119,15 +118,15 @@ const StSenElect = () => {
             <Col xs lg={4}></Col>
           </Row>
 
-          <Button 
-              variant="dark" 
-              type="submit"
-              size="lg" 
-              block
-              disabled={!candidate || voted}
-              onClick={submitVote}
-            >
-              Submit
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            block
+            disabled={!candidate || voted}
+            onClick={submitVote}
+          >
+            Submit
             </Button>
         </Card.Body>
       </Card>

@@ -41,28 +41,27 @@ const StHouseElect = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
-    const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Representative")
-    const userVoting = userId.id
-    console.log(userVoting);
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
-        setElectionList();
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          alert("You voted for " + candidate + ".");
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
+      const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+      const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Representative")
+      const userVoting = userId.id
+      console.log(userVoting);
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+        .then((res) => {
+          // console.log(res.data)
+          setVoted(true)
+          setCandidate()
+          setElectionList();
+          if (res.data.error) {
+            alert(res.data.error);
+          } else {
+            alert("You voted for " + candidate + ".");
           }
           console.log(res.data.error)
-      })
-      .catch(err => console.log (err));
+        })
+        .catch(err => console.log(err));
     }
-    };
+  };
 
   return (
     <Container id="staterep-elect-card">
@@ -75,47 +74,47 @@ const StHouseElect = () => {
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
-                <input
-                  type="radio"
-                  checked={candidate === "Ryan Wilcox"}
-                  disabled={voted}
-                  value="Ryan Wilcox"
-                  id="candidate1"
-                  onChange={(e) => {
-                    setCandidate(e.target.value);
-                  }}
-                />
-                </Col>
+              <input
+                type="radio"
+                checked={candidate === "Ryan Wilcox"}
+                disabled={voted}
+                value="Ryan Wilcox"
+                id="candidate1"
+                onChange={(e) => {
+                  setCandidate(e.target.value);
+                }}
+              />
+            </Col>
             <Col xs lg={4}>
 
-                <label>
-                  {StRepElectData[0].stateHouse[0].party}<br />
-                  {StRepElectData[0].stateHouse[0].candidate}
-                </label>
-                </Col>
+              <label>
+                {StRepElectData[0].stateHouse[0].party}<br />
+                {StRepElectData[0].stateHouse[0].candidate}
+              </label>
+            </Col>
             <Col xs lg={4}></Col>
           </Row>
 
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>
-                <input
-                  type="radio"
-                  checked={candidate === "Grant Protzman"}
-                  disabled={voted}
-                  value="Grant Protzman"
-                  id="candidate2"
-                  onChange={(e) => {
-                    setCandidate(e.target.value);
-                  }}
-                />
-                </Col>
+              <input
+                type="radio"
+                checked={candidate === "Grant Protzman"}
+                disabled={voted}
+                value="Grant Protzman"
+                id="candidate2"
+                onChange={(e) => {
+                  setCandidate(e.target.value);
+                }}
+              />
+            </Col>
             <Col xs lg={4}>
-                <label>
-                  {StRepElectData[0].stateHouse[1].party}<br />
-                  {StRepElectData[0].stateHouse[1].candidate}
-                </label>
-                </Col>
+              <label>
+                {StRepElectData[0].stateHouse[1].party}<br />
+                {StRepElectData[0].stateHouse[1].candidate}
+              </label>
+            </Col>
             <Col xs lg={4}></Col>
           </Row>
 

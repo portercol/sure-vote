@@ -20,7 +20,7 @@ const PresElect = (props) => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
- // pulling data from back end to page
+  // pulling data from back end to page
   useEffect(() => {
     axios
       .get('/api/candidate')
@@ -41,28 +41,27 @@ const PresElect = (props) => {
 
   const submitVote = (event) => {
     event.preventDefault();
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
-    const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
-    const userVoting = userId.id
-    console.log(userVoting);
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
-    .then((res) => {
-      // console.log(res.data)
-      setVoted(true)
-      setCandidate()
-      setElectionList();
-      if (res.data.error) {
-        alert(res.data.error);
-      } else {
-        alert("You voted for " + candidate + ".");
-        }
-        console.log(res.data.error)
-      })
-      .catch(err => console.log (err));
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
+      const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+      const selectedElection = electionList.find(currentElection => currentElection.office === "President of the United States")
+      const userVoting = userId.id
+      console.log(userVoting);
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+        .then((res) => {
+          // console.log(res.data)
+          setVoted(true)
+          setCandidate()
+          setElectionList();
+          if (res.data.error) {
+            alert(res.data.error);
+          } else {
+            alert("You voted for " + candidate + ".");
+          }
+          console.log(res.data.error)
+        })
+        .catch(err => console.log(err));
     }
-    };
+  };
 
   return (
     <Container id="pres-elect-card">
@@ -72,7 +71,7 @@ const PresElect = (props) => {
             President of the United States
           </h3>
           <hr />
-          
+
           <Row>
             <Col xs lg={3}></Col>
             <Col xs lg={1}>

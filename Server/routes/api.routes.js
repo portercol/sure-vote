@@ -141,7 +141,8 @@ router
         }
       ]
     })
-    if (alreadyVoted) {
+    console.log("Vote not working: ", alreadyVoted);
+    if (alreadyVoted.length > 0) {
 
       console.log(alreadyVoted);
       return res.json({ error: "You have already voted for this election." })

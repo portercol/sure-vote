@@ -21,47 +21,46 @@ const GovElect = () => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
-    // pulling data from back end to page
-    useEffect(() => {
-      axios
-        .get('/api/candidate')
-        .then((res) => {
-          const candidateData = res.data.getCandidate;
-          setCandidateList(candidateData);
-          // console.log(candidateData)
-        })
-  
-      axios
-        .get('/api/election')
-        .then((res) => {
-          const electionData = res.data.getElection;
-          setElectionList(electionData);
-          // console.log(electionData)
-        })
-    }, []); 
+  // pulling data from back end to page
+  useEffect(() => {
+    axios
+      .get('/api/candidate')
+      .then((res) => {
+        const candidateData = res.data.getCandidate;
+        setCandidateList(candidateData);
+        // console.log(candidateData)
+      })
+
+    axios
+      .get('/api/election')
+      .then((res) => {
+        const electionData = res.data.getElection;
+        setElectionList(electionData);
+        // console.log(electionData)
+      })
+  }, []);
 
   const submitVote = (event) => {
     event.preventDefault();
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
-    const selectedElection = electionList.find(currentElection => currentElection.office === "Governor")
-    const userVoting = userId.id
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
-        setElectionList();
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          alert("You voted for " + candidate + ".");
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
+      const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
+      const selectedElection = electionList.find(currentElection => currentElection.office === "Governor")
+      const userVoting = userId.id
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, user: userVoting })
+        .then((res) => {
+          // console.log(res.data)
+          setVoted(true)
+          setCandidate()
+          setElectionList();
+          if (res.data.error) {
+            alert(res.data.error);
+          } else {
+            alert("You voted for " + candidate + ".");
           }
           console.log(res.data.error)
-      })
-      .catch(err => console.log(err));
-  }
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   return (
@@ -134,15 +133,15 @@ const GovElect = () => {
             <Col xs lg={4}></Col>
           </Row>
 
-          <Button 
-              variant="dark" 
-              type="submit"
-              size="lg" 
-              block
-              disabled={!candidate || voted}
-              onClick={submitVote}
-            >
-              Submit
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            block
+            disabled={!candidate || voted}
+            onClick={submitVote}
+          >
+            Submit
             </Button>
         </Card.Body>
       </Card>
