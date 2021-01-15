@@ -141,7 +141,7 @@ router
         }
       ]
     })
-    if (alreadyVoted) {
+    if (alreadyVoted.length > 0) {
 
       console.log(alreadyVoted);
       return res.json({ error: "You have already voted for this election." })
@@ -165,38 +165,12 @@ router
     res.json(getVote);
   })
 
-  // .post("/api/candidate",
-  //     async (req, res, next) => {
-  //         console.log("hit vote route")
-
-  //         let vote = new Vote({
-  //             user: "5ff68727f86e984d2c0e21e3",
-  //             candidate: "5ff9e6c8d238fa2e88be98e0",
-  //             election: "5ff9e4392cc42041549d7e07"
-  //         })
-  //         await vote.save();
-  //         console.log(req.body);
-  //         res.end();
-  // })
   .get("/api/candidate", async (req, res) => {
     console.log(req.body);
     const getCandidate = await Candidate.find({});
     res.json({ getCandidate });
   })
 
-  // .post("/api/election",
-  //     async (req, res, next) => {
-  //         console.log("hit vote route")
-
-  //         let vote = new Vote({
-  //             user: "5ff68727f86e984d2c0e21e3",
-  //             candidate: "5ff9e6c8d238fa2e88be98e0",
-  //             election: "5ff9e4392cc42041549d7e07"
-  //         })
-  //         await vote.save();
-  //         console.log(req.body);
-  //         res.end();
-  // })
   .get("/api/election", async (req, res) => {
     console.log(req.body);
     const getElection = await Election.find({});
