@@ -83,7 +83,7 @@ router
       from: 'surev0te@zohomail.com',
       to: Users.username,
       subject: 'New Message from sure vote',
-      text: Users.uuid
+      text: `Thank you for signing up with Sure Vote!\n\nBelow is your unique ID (UUID) Please keep this secure - you will need it to vote.\n\n${Users.uuid}`
     }
 
     transporter.sendMail(mail, (err, data) => {
