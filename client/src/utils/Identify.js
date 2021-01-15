@@ -14,10 +14,12 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
             let idHelper = new IdentificationHelper();
             let facesDetected = await idHelper.Detect(helperD)
             console.log(facesDetected, "dot then")
-            if (facesDetected.length === 0)
+            if (facesDetected.length === 0) {
+
                 alert(
                     "Your account has yet been varified with Agatha"
                 )
+            }
 
             if (facesDetected.length > 0) {
 
@@ -78,7 +80,7 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
 
         (async () => {
 
-            await renderOnload({ state: true })
+            await renderOnload()
         })()
     }
     )

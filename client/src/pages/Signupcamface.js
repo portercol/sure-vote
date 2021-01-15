@@ -167,6 +167,7 @@ const SignUp2 = () => {
                                                                         id: currentUserId,
                                                                         personId: currentPersonId
                                                                     })
+
                                                                 .then(res => {
                                                                     console.log(res);
                                                                     console.log("Person id added to db");
@@ -177,7 +178,10 @@ const SignUp2 = () => {
 
                                                                     // console.log(err);
                                                                 })
+                                                            if (currentPersonId.length < 0) {
+                                                                alert("Your face has been mapped, you may complete your sign up now.")
 
+                                                            }
 
                                                         })
                                                     stopVideo()

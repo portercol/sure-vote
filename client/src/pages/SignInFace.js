@@ -119,8 +119,7 @@ const SignIn2 = () => {
 
                                                         let ID = await letsSeeYourFace('5595', data, userId.personId, letsSeeYourFace.confidence,)
                                                         console.log(ID, "this is the id stuff")
-                                                        // let open = await
-                                                        //     console.log("this is open", open)
+
 
 
                                                     } catch (err) {
