@@ -1,4 +1,4 @@
-// Import React and bootstrap elements from React-Bootstrap
+// Import necessary mondules/packages, images and components
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';

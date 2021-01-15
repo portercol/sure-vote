@@ -1,10 +1,12 @@
+// import necessary modules/packages, stylesheets and components
 import React, { useState, useEffect } from "react";
 import { Button, Card, Modal, ListGroup, ListGroupItem } from 'react-bootstrap';
 import "./VoteHistory.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
-function VoteHistory() {
+// create functional component to hold data
+const VoteHistory = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,7 +30,6 @@ function VoteHistory() {
         })
         .catch((err) => console.log(err))
     }
-
 
   return (
     <>
@@ -73,4 +74,5 @@ function VoteHistory() {
   );
 }
 
+// export VoteHistory out of VoteHistory.jsx
 export default VoteHistory;

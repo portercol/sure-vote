@@ -1,3 +1,4 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -10,6 +11,7 @@ import RepElectData from "../seedData/repSeed";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
+// create functional component to hold data
 const HouseElect = () => {
 
   const [candidateList, setCandidateList] = useState([]);
@@ -138,4 +140,5 @@ const HouseElect = () => {
   );
 };
 
+// export HouseElect out of HouseElect.jsx
 export default HouseElect;
