@@ -131,8 +131,8 @@ const SignUp2 = () => {
                                     <ButtonGroup size="lg" className="mr-3">
                                         {playing ? (
                                             <button className="btn btn-success" onClick={stopVideo}>Stop Camera</button>
-                                        
-                                            ) : (
+
+                                        ) : (
                                                 <button className="btn btn-success" onClick={startVideo}>Start Camera</button>
                                             )}
                                     </ButtonGroup>
@@ -149,20 +149,22 @@ const SignUp2 = () => {
                                                     // if anything let look inside of STA
                                                     newUserApi()
                                                         .then(PIDR => {
-
                                                             submitToAgatha("5595", PIDR.personId, data)
-                                                            if (submitToAgatha === {}) {
+                                                            if (userId.personId === null) {
                                                                 console.error('no picture taken')
+
+                                                                alert(
+                                                                    "Your face was not detected, please turn the camera back on and try again."
+                                                                )
                                                             }
                                                             const currentPersonId = PIDR.personId;
                                                             const currentUserId = userId.id;
                                                             console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
                                                             // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
-
                                                             axios
                                                                 .post("/api/storePersonId",
                                                                     {
-                                                                        id: "5fff90e337455d54442f3d21",
+                                                                        id: currentUserId,
                                                                         personId: currentPersonId
                                                                     })
                                                                 .then(res => {
@@ -171,7 +173,9 @@ const SignUp2 = () => {
                                                                     return true
                                                                 })
                                                                 .catch(err => {
-                                                                    console.log(err);
+                                                                    console.log(err, "err")
+
+                                                                    // console.log(err);
                                                                 })
 
 
