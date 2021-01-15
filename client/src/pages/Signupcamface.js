@@ -31,10 +31,7 @@ const SignUp2 = () => {
     const videoRef = useRef(null);
 
 
-    //reroute to signup if not authenticated
-    if (!userId.id) {
-        return (<Redirect to="/signup" />);
-    }
+
 
     const HEIGHT = 450;
     const WIDTH = 390;
