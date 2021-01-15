@@ -83,7 +83,7 @@ class Identify extends Component {
             this.setState({ modalOpen: false, showLoadingOverlay: true }, () => {
                 var reader = new FileReader();
                 // var pid = "fa704750-0b81-43d0-a3a4-3e025f3eb2ba"
-                letsSeeYourFace(this.props.personGroupId, reader.result, "91b029bd-89d9-41d7-b430-74a05753ee75", this.personGroupId.personId.confidence, this.identificationCompleteted(), () => {
+                letsSeeYourFace(this.props.personGroupId, reader.result, this.props.personGroupId.personId, this.personGroupId.personId.confidence, this.identificationCompleteted(), () => {
 
                 })
             })
