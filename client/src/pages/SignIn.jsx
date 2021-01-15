@@ -106,7 +106,7 @@ const SignIn = () => {
 
                     <ButtonGroup size="lg" className="mr-3">
                         <Button onClick={() => { submitBtn() }} variant="dark"
-                            type="submit" id='left-button'>Sign In</Button>
+                            id='left-button'>Continue</Button>
                     </ButtonGroup>
                 </Jumbotron>
             </Container>
