@@ -1,12 +1,14 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import { Button, Container, Col, Row, Card } from "react-bootstrap";
 import axios from 'axios';
 import ConstAmend1Data from '../seedData/const1';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
-
+// create functional component to hold page data
 const ConstAmend1 = () => {
 
+  // set values for 'useState'
   const [candidateList, setCandidateList] = useState([]);
   const [electionList, setElectionList] = useState([]);
   const [answer, setAnswer] = useState("");
@@ -129,4 +131,5 @@ const ConstAmend1 = () => {
   );
 };
 
+// export ConstAmend1 out of ConstAmend1.jsx
 export default ConstAmend1;

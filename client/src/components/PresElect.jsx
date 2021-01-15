@@ -1,3 +1,4 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -10,7 +11,7 @@ import PresElectData from '../seedData/presSeed';
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
-
+// create functional component to hold data
 const PresElect = (props) => {
 
   const [candidateList, setCandidateList] = useState([]);
@@ -148,4 +149,5 @@ const PresElect = (props) => {
   );
 };
 
+// export PresElect out of PresElect.jsx
 export default PresElect;

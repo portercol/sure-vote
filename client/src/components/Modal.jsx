@@ -1,7 +1,9 @@
+// import necessary modules/packages, stylesheets & components
 import React, { useState } from "react";
 import { Button, Form, Modal } from 'react-bootstrap';
 import "./Modal.css";
 
+// create functional component to hold data
 function Update() {
   const [show, setShow] = useState(false);
 
@@ -50,4 +52,5 @@ function Update() {
   );
 }
 
+// export Update out of Update.jsx
 export default Update;
