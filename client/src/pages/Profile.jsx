@@ -14,7 +14,7 @@ import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 // import { IsAuthenticated } from "../utils/isAuthenticated.js";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Profile = () => {
   // console.log(IsAuthenticated());
@@ -107,6 +107,7 @@ const Profile = () => {
           <Card.Body>
             <Modal />
           </Card.Body>
+          <Link to="/cam2">Cam2</Link>
         </Card>
       </Container>
 

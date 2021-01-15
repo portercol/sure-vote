@@ -43,7 +43,7 @@ const Vote = () => {
     } else {
       alert("UUID incorrect.  Please try again.");
     }
-    
+
     // }
   }
 
@@ -55,11 +55,11 @@ const Vote = () => {
   const redirectHandler = () => {
     setRedirect(true);
     console.log("redirect handler: ", redirect);
-}
+  }
 
-if (redirect) {
+  if (redirect) {
     return <Redirect to="/cam3" />
-}
+  }
 
   return (
     <>
@@ -186,6 +186,8 @@ if (redirect) {
 
             <InputGroup className="mb-3">
               <FormControl
+                type="password"
+                placeholder="UUID"
                 id="id-field"
                 aria-describedby="basic-addon1"
                 onChange={e => setUuidValue(e.target.value)}

@@ -53,7 +53,12 @@ const Ballot = () => {
 
   //reroute to signin if not authenticated
   if (!userId.id) {
+    console.log("ballot userid: ", userId);
     return (<Redirect to="/signin" />);
+  }
+
+  if (!userId.signInFace) {
+    return (<Redirect to="/vote" />)
   }
 
   return (

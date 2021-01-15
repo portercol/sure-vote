@@ -1,5 +1,4 @@
 import ApiCalls from "./ApiCalls";
-import { useGlobalContextAuthUser } from "./GlobalContextAuthUser";
 import IdentificationHelper from "./IdentificationHelper";
 
 // we need to get the SERVERPID into the hard coded values
@@ -8,7 +7,6 @@ import IdentificationHelper from "./IdentificationHelper";
 // athenticate faces with incoming value 
 export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
     return new Promise((resolve, reject) => {
-        const [userId, dispatch] = useGlobalContextAuthUser();
 
         var reader = new FileReader();
         var renderOnload = reader.onload = async (props) => {
@@ -61,10 +59,6 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
                         }
                         else {
                             var allCalls = idHelper.Authentify("5595", AGPID, idCompleted.confidence)
-                            dispatch({
-                                type: "confidenceLock",
-                                payload: false
-                            })
                             alert(
                                 "Thank you for signing in"
                             )
