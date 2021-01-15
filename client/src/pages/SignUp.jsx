@@ -1,6 +1,5 @@
 // import necessary packages/modules, components & stylesheets
 import React, { useState } from "react";
-// import { Redirect } from 'react-router-dom';
 import {
   Button,
   ButtonGroup,
@@ -9,6 +8,7 @@ import {
   Form,
   Jumbotron
 } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
 import axios from "axios";
@@ -28,9 +28,15 @@ const SignUp = () => {
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
   const [userId] = useGlobalContextAuthUser();
-  // const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
-  // console.log("Signup user: ", userId);
+  console.log("Signup user: ", userId);
+
+
+  // create function for submit button 'onclick'
+  const goBackBtn = () => {
+    console.log("Hit homepage");
+  }
 
   // create function for sign up button and if required fields are not met throw alert error
   const signUpBtn = () => {
@@ -38,7 +44,7 @@ const SignUp = () => {
       console.log("Missing required credentials");
       alert("Missing required credentials. Please enter required information");
     } else {
-      
+
       const userObj = {
         firstName: firstNameValue,
         lastName: lastNameValue,
@@ -57,25 +63,23 @@ const SignUp = () => {
         console.log("Successfully registered!");
         console.log(res.data.userId);
         alert("Successfully Registered!");
-        
-        
-        // redirectHandler()
-        // console.log("redirect to cam2");
 
+        redirectHandler();
+        console.log("redirected to cam2");
       }).catch(err => {
         console.log(err);
       });
     }
   }
 
-  // const redirectHandler = () => {
-  //   setRedirect(true);
-  //   console.log("redirect handler: ", redirect);
-  // }
+  const redirectHandler = () => {
+    setRedirect(true);
+    console.log("redirect handler: ", redirect);
+  }
 
-  // if (redirect) {
-  //   return <Redirect to="/cam2" />
-  // }
+  if (redirect) {
+    return <Redirect to="/cam2" />
+  }
 
   return (
     <>
@@ -218,7 +222,7 @@ const SignUp = () => {
           <br />
 
           <ButtonGroup size="lg" className="mr-3">
-            <Button href="/" variant="dark"
+            <Button href="/" onClick={() => { goBackBtn() }} variant="dark"
               type="submit" id='left-button'>Go Back</Button>
           </ButtonGroup>
 

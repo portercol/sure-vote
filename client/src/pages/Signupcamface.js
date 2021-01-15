@@ -32,9 +32,9 @@ const SignUp2 = () => {
 
 
     //reroute to signup if not authenticated
-    if (!userId.id) {
-        return (<Redirect to="/signup" />);
-    }
+    // if (!userId.id) {
+    //     return (<Redirect to="/signup" />);
+    // }
 
     const HEIGHT = 450;
     const WIDTH = 390;
