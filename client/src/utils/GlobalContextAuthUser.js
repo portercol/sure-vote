@@ -29,6 +29,11 @@ const reducer = (state, action) => {
                 ...state,
                 uuid: action.payload
             };
+        case 'UPDATE_SIGNINFACE':
+            return {
+                ...state,
+                signInFace: action.payload
+            };
         default:
             return state;
     }

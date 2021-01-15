@@ -1,3 +1,4 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -10,7 +11,7 @@ import ScRetainData from '../seedData/scretainSeed';
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
-
+// create functional component to hold data
 const ScRetain = () => {
 
   const [candidateList, setCandidateList] = useState([]);
@@ -133,4 +134,5 @@ const ScRetain = () => {
   );
 };
 
+// export ScRetain out of ScRetain.jsx
 export default ScRetain;

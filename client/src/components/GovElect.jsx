@@ -1,3 +1,4 @@
+// import necessary modules/packages & components
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -10,8 +11,10 @@ import GovElectData from "../seedData/govSeed";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
+// create functional component to hold data
 const GovElect = () => {
 
+  // set values for 'useState'
   const [candidateList, setCandidateList] = useState([]);
   const [electionList, setElectionList] = useState([]);
   const [candidate, setCandidate] = useState("");
@@ -147,4 +150,5 @@ const GovElect = () => {
   );
 };
 
+// export GovElect out of GovElect.jsx
 export default GovElect;

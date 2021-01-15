@@ -1,10 +1,16 @@
-import { Button, } from "react-bootstrap";
+/*   ALL CODE WILL BE USED FOR FUTURE DEVELOPMENT
+
+
+
+// import necessary modules/packages & components
 import React, { useEffect, useState } from 'react';
+import { Button, } from "react-bootstrap";
 function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
-export function LoadingButton() {
+// create functional component to hold data
+const LoadingButton = () => {
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -28,4 +34,7 @@ export function LoadingButton() {
     );
 }
 
-// export default LoadingButton;
+// export LoadingButton out of LoadingButton.jsx
+export default LoadingButton;
+
+ */

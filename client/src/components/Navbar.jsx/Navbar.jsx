@@ -1,4 +1,4 @@
-// Import React and bootstrap elements from React-Bootstrap
+// Import necessary mondules/packages, images and components
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -24,9 +24,6 @@ const NavbarFixed = () => {
                     <Nav className="mr-auto">
                         <LinkContainer to="/election">
                             <Nav.Link>Election Info</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/ballot">
-                            <Nav.Link>Ballot</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/vote">
                             <Nav.Link>Vote</Nav.Link>

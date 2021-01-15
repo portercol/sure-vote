@@ -8,7 +8,7 @@ import { trainingStart } from '../utils/Training'
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
 import axios from "axios";
-import { LoadingButton } from '../components/isloading'
+// import { LoadingButton } from '../components/isloading'
 import "./Signupcamface.css";
 // import axios from 'axios';
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
@@ -24,6 +24,7 @@ import { Redirect } from "react-router-dom";
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
+    const [disableValue, setDisableValue] = useState(true);
 
     console.log("Cam2 user: ", userId);
     const [hide, show] = useState('')
@@ -31,10 +32,6 @@ const SignUp2 = () => {
     const videoRef = useRef(null);
 
 
-    //reroute to signup if not authenticated
-    // if (!userId.id) {
-    //     return (<Redirect to="/signup" />);
-    // }
 
     const HEIGHT = 450;
     const WIDTH = 390;
@@ -156,37 +153,39 @@ const SignUp2 = () => {
                                                     newUserApi()
                                                         .then(PIDR => {
                                                             submitToAgatha("5595", PIDR.personId, data)
-                                                            if (userId.personId === null) {
+                                                            if (PIDR.personId === null) {
                                                                 console.error('no picture taken')
 
                                                                 alert(
                                                                     "Your face was not detected, please turn the camera back on and try again."
                                                                 )
-                                                            }
-                                                            const currentPersonId = PIDR.personId;
-                                                            const currentUserId = userId.id;
-                                                            console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
-                                                            // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
-                                                            axios
-                                                                .post("/api/storePersonId",
-                                                                    {
-                                                                        id: currentUserId,
-                                                                        personId: currentPersonId
+                                                            } else {
+
+                                                                const currentPersonId = PIDR.personId;
+                                                                const currentUserId = userId.id;
+
+                                                                console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                                                // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
+                                                                axios
+                                                                    .post("/api/storePersonId",
+                                                                        {
+                                                                            id: currentUserId,
+                                                                            personId: currentPersonId
+                                                                        })
+
+                                                                    .then(res => {
+                                                                        console.log(res);
+                                                                        console.log("Person id added to db");
+                                                                        setDisableValue(false);
+                                                                        // dispatch({ type: "UPDATE_PERSONID", payload: currentPersondId });
+                                                                        alert("Your face has been mapped, you may complete your sign up now.");
+                                                                        return true
                                                                     })
+                                                                    .catch(err => {
+                                                                        console.log(err, "err")
 
-                                                                .then(res => {
-                                                                    console.log(res);
-                                                                    console.log("Person id added to db");
-                                                                    return true
-                                                                })
-                                                                .catch(err => {
-                                                                    console.log(err, "err")
-
-                                                                    // console.log(err);
-                                                                })
-                                                            if (currentPersonId.length < 0) {
-                                                                alert("Your face has been mapped, you may complete your sign up now.")
-
+                                                                        // console.log(err);
+                                                                    })
                                                             }
 
                                                         })
@@ -227,7 +226,7 @@ const SignUp2 = () => {
                     <br />
 
 
-                    <Button variant="primary" size="lg" block href="/profile" disabled={true || submitToAgatha.res === false} onClick={submitBtn()}
+                    <Button variant="primary" size="lg" block href="/profile" disabled={disableValue} onClick={trainingStart()}
                         id="save"> Complete Sign Up</Button>
 
 
