@@ -12,7 +12,7 @@ import Navbar from "../components/Navbar.jsx";
 // create functional component to hold sign up page data
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
-    const [userId] = useGlobalContextAuthUser();
+    const [userId, dispatch] = useGlobalContextAuthUser();
     const [disableValue, setDisableValue] = useState(true);
     const [redirect, setRedirect] = useState(false);
 
@@ -140,6 +140,7 @@ const SignIn2 = () => {
                                                         console.log(ID, "this is the id stuff")
                                                         if (ID.confidence >= .75) {
                                                             setDisableValue(false);
+                                                            dispatch({ type: 'UPDATE_SIGNINFACE', payload: true });
                                                         }
 
                                                     } catch (err) {
