@@ -29,6 +29,11 @@ const reducer = (state, action) => {
                 ...state,
                 uuid: action.payload
             };
+        case 'confidenceLock':
+            return {
+                ...state,
+                confidence: action.payload
+            };
         default:
             return state;
     }
