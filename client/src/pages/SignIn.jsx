@@ -15,12 +15,13 @@ const SignIn = () => {
     const [passwordLogin, setPasswordLogin] = useState('');
     const [userId, dispatch] = useGlobalContextAuthUser();
     const [redirect, setRedirect] = useState(false);
+    //console.log("Signin user: ", userId);
 
-    console.log("Signin user: ", userId);
     // create function for submit button 'onclick'
     const submitBtn = () => {
-        console.log(usernameLogin);
-        console.log(passwordLogin);
+        //console.log(usernameLogin);
+        //console.log(passwordLogin);
+
         if (usernameLogin === "" || passwordLogin === "") {
             alert("Missing username or password");
             console.log("Missing username or password");
@@ -36,16 +37,14 @@ const SignIn = () => {
             ).then((res) => {
                 console.log("label", res.data);
 
-
                 //once user is created store userid and personid in global context
                 dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
                 dispatch({ type: "UPDATE_UUID", payload: res.data.uuid })
 
-                console.log("Redirect to profile");
                 redirectHandler();
+                console.log("Redirect to profile");
 
-                console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
             });
@@ -55,9 +54,11 @@ const SignIn = () => {
     const redirectHandler = () => {
         setRedirect(true);
         console.log("redirect handler: ", redirect);
-        // renderRedirect();
     }
 
+    if (redirect) {
+        return <Redirect to="/profile" />
+    }
     // const renderRedirect = () => {
     //     if (redirect) {
     //         console.log("render handler: ", redirect);
@@ -65,9 +66,6 @@ const SignIn = () => {
     //     }
     // }
 
-    if (redirect) {
-        return <Redirect to="/profile" />
-    }
 
     return (
         <>

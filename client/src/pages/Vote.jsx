@@ -20,6 +20,7 @@ const Vote = () => {
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
   const [uuidValue, setUuidValue] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
@@ -37,10 +38,12 @@ const Vote = () => {
     console.log("uuid input: ", uuidValue);
     console.log("uuid db: ", userId.uuid);
     if (uuidValue === userId.uuid) {
-      alert("UUID Validated!! Proceeding to facial recognition.")
+      redirectHandler()
+      // alert("UUID Validated!! Proceeding to facial recognition.")
     } else {
       alert("UUID incorrect.  Please try again.");
     }
+    
     // }
   }
 
@@ -48,6 +51,15 @@ const Vote = () => {
   if (!userId.id) {
     return (<Redirect to="/signin" />);
   }
+
+  const redirectHandler = () => {
+    setRedirect(true);
+    console.log("redirect handler: ", redirect);
+}
+
+if (redirect) {
+    return <Redirect to="/cam3" />
+}
 
   return (
     <>
@@ -180,12 +192,12 @@ const Vote = () => {
               />
             </InputGroup>
             <br />
-            <Button variant="dark" size="lg" block>
+            {/* <Button variant="dark" size="lg" block>
               Capture Image
-              </Button>
+              </Button> */}
 
-            <br />
-            <br />
+            {/* <br />
+            <br /> */}
 
             <ButtonGroup size="lg" className="mr-3">
               <Button onClick={() => { goBackBtn() }} variant="dark"
