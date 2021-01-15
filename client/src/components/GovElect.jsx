@@ -47,7 +47,7 @@ const GovElect = () => {
     const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
     const selectedElection = electionList.find(currentElection => currentElection.office === "Governor")
     const userVoting = userId.id
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id })
+    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
       .then((res) => {
         // console.log(res.data)
         setVoted(true)

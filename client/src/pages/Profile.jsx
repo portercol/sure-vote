@@ -10,6 +10,7 @@ import {
 import ImageUploader from 'react-images-upload';
 import Navbar from "../components/Navbar.jsx";
 import Modal from '../components/Modal.jsx';
+import VoteHistory from '../components/VoteHistory.jsx';
 import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
@@ -106,6 +107,9 @@ const Profile = () => {
           </ListGroup>
           <Card.Body>
             <Modal />
+            <br />
+            <br />
+            <VoteHistory />
           </Card.Body>
           <Link to="/cam2">Cam2</Link>
         </Card>
