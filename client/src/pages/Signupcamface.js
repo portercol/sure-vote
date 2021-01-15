@@ -8,7 +8,7 @@ import { trainingStart } from '../utils/Training'
 // import GroupPersons from './faceapi/Groups';
 // import Actions from './faceapi/Actions';
 import axios from "axios";
-import { LoadingButton } from '../components/isloading'
+// import { LoadingButton } from '../components/isloading'
 import "./Signupcamface.css";
 // import axios from 'axios';
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
