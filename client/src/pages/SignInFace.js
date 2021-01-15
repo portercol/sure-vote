@@ -6,6 +6,10 @@ import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 import { letsSeeYourFace } from '../utils/Identify';
 import "./Signupcamface.css";
+import { Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
+
+// create functional component to hold sign up page data
 const SignIn2 = () => {
     const [playing, setPlaying] = useState(false);
     const [userId] = useGlobalContextAuthUser();
@@ -70,10 +74,14 @@ const SignIn2 = () => {
         console.log("submitted sign up form");
     }
 
-
+    //reroute to signin if not authenticated
+    if (!userId.id) {
+        return (<Redirect to="/signin" />);
+    }
 
     return (
         <>
+            <Navbar />
             <Container id="main-container">
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
@@ -150,7 +158,7 @@ const SignIn2 = () => {
 
 
 
-                    <Button variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()} variant="dark"
+                    <Button variant="primary" size="lg" block href="/profile" disabled={true} onClick={submitBtn()}
                         type="submit" id='left-button'>VOTE!</Button>
 
 

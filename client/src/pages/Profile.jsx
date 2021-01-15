@@ -14,6 +14,7 @@ import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 // import { IsAuthenticated } from "../utils/isAuthenticated.js";
+import { Redirect } from "react-router-dom";
 
 const Profile = () => {
   // console.log(IsAuthenticated());
@@ -59,7 +60,14 @@ const Profile = () => {
       })
   }
 
-  if (!data) return (<> <h1>No user logged in</h1></>);
+  //reroute to signin if not authenticated
+  if (!data) {
+    if (!userId.id) {
+      return (<Redirect to="/signin" />);
+    } else {
+      return (<> <h1>No user logged in</h1></>);
+    }
+  }
 
   return (
     <>

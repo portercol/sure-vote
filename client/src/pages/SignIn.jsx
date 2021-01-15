@@ -5,6 +5,7 @@ import './SignIn.css'
 import axios from "axios";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import { Link, Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
 
 // create functional component to hold sign up page data
@@ -14,13 +15,15 @@ const SignIn = () => {
     const [passwordLogin, setPasswordLogin] = useState('');
     const [userId, dispatch] = useGlobalContextAuthUser();
     const [redirect, setRedirect] = useState(false);
+    //console.log("Signin user: ", userId);
 
-    console.log("Signin user: ", userId);
     // create function for submit button 'onclick'
     const submitBtn = () => {
-        console.log(usernameLogin);
-        console.log(passwordLogin);
+        //console.log(usernameLogin);
+        //console.log(passwordLogin);
+
         if (usernameLogin === "" || passwordLogin === "") {
+            alert("Missing username or password");
             console.log("Missing username or password");
         } else {
             const userLoginObj = {
@@ -34,15 +37,14 @@ const SignIn = () => {
             ).then((res) => {
                 console.log("label", res.data);
 
-
                 //once user is created store userid and personid in global context
                 dispatch({ type: "UPDATE_USERID", payload: res.data.userId });
                 dispatch({ type: "UPDATE_PERSONID", payload: res.data.personId });
+                dispatch({ type: "UPDATE_UUID", payload: res.data.uuid })
 
-                console.log("Redirect to profile");
                 redirectHandler();
+                console.log("Redirect to profile");
 
-                console.log("Redirected to profile");
             }).catch(err => {
                 console.log(err);
             });
@@ -52,9 +54,11 @@ const SignIn = () => {
     const redirectHandler = () => {
         setRedirect(true);
         console.log("redirect handler: ", redirect);
-        // renderRedirect();
     }
 
+    if (redirect) {
+        return <Redirect to="/profile" />
+    }
     // const renderRedirect = () => {
     //     if (redirect) {
     //         console.log("render handler: ", redirect);
@@ -62,12 +66,10 @@ const SignIn = () => {
     //     }
     // }
 
-    if (redirect) {
-        return <Redirect to="/profile" />
-    }
 
     return (
         <>
+            <Navbar />
             <Container id="main-container">
                 <Jumbotron id="main-jumbotron">
                     <h1>Sign In</h1>
@@ -82,7 +84,7 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your email with anyone.
-              </Form.Text>
+                            </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label></Form.Label>
@@ -93,12 +95,12 @@ const SignIn = () => {
                             />
                             <Form.Text className="text-muted">
                                 We'll never share your password with anyone.
-              </Form.Text>
+                            </Form.Text>
                         </Form.Group>
                     </Form>
                     <br />
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href='/' onClick={() => { submitBtn() }} variant="dark"
+                        <Button href='/' variant="dark"
                             type="submit" id='right-button'>Go Back</Button>
                     </ButtonGroup>
 
@@ -106,31 +108,6 @@ const SignIn = () => {
                         <Button href='' onClick={() => { submitBtn() }} variant="dark"
                             id='left-button'>Continue</Button>
                     </ButtonGroup>
-                    <hr></hr>
-                    <h5>Protected Routes</h5>
-                    <Link to="/cam2">Add Person (Cam 2)</Link>
-                    <br></br>
-                    <Link to="/profile">Profile</Link>
-                    <br></br>
-                    <Link to="/cam3">Identify Person (Cam 3)</Link>
-                    <br></br>
-                    <Link to="/contact">Contact</Link>
-                    <br></br>
-                    <Link to="/face">App2 (Face)</Link>
-                    <br></br>
-                    <Link to="/election">Election</Link>
-                    <br></br>
-                    <Link to="/ballot">Ballot</Link>
-                    <br></br>
-                    <Link to="/vote">Vote</Link>
-                    <hr></hr>
-                    <h5>Unprotected Routes</h5>
-                    <Link to="/">Homepage</Link>
-                    <br></br>
-                    <Link to="/signup">Signup</Link>
-                    <br></br>
-                    <Link to="/signin">Signin</Link>
-
                 </Jumbotron>
             </Container>
         </>

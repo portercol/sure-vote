@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
-import "./Vote.css";
-const axios = require("axios");
+import "./SignUp.css";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
 
 // create functional component to hold sign up page data
 const Vote = () => {
@@ -17,6 +19,8 @@ const Vote = () => {
   const [cityValue, setCityValue] = useState('');
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');
+  const [uuidValue, setUuidValue] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
@@ -25,34 +29,41 @@ const Vote = () => {
 
   // create function for vote button and if all required fields are not met throw alert error
   const voteBtn = (e) => {
-    if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
-      console.log("Missing required credentials")
-      alert("Missing required credentials. Please enter required information");
-    } else {
+    // e.preventDefault();
+    // if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
+    //   console.log("Missing required credentials")
+    //   alert("Missing required credentials. Please enter required information");
+    // } else {
 
-      const userObj = {
-        firstName: firstNameValue,
-        lastName: lastNameValue,
-        streetAddress1: streetAddress1Value,
-        streetAddress2: streetAddress2Value,
-        city: cityValue,
-        state: stateValue,
-        zipCode: zipCodeValue
-      }
-      console.log(userObj);
-      axios.post("/api/signup", {
-        data: userObj
-      }).then(() => {
-        console.log("Successfully registered!");
-        alert("Successfully Registered!");
-      }).catch(err => {
-        console.log(err);
-      });
+    console.log("uuid input: ", uuidValue);
+    console.log("uuid db: ", userId.uuid);
+    if (uuidValue === userId.uuid) {
+      redirectHandler()
+      // alert("UUID Validated!! Proceeding to facial recognition.")
+    } else {
+      alert("UUID incorrect.  Please try again.");
     }
+    
+    // }
   }
+
+  //reroute to signin if not authenticated
+  if (!userId.id) {
+    return (<Redirect to="/signin" />);
+  }
+
+  const redirectHandler = () => {
+    setRedirect(true);
+    console.log("redirect handler: ", redirect);
+}
+
+if (redirect) {
+    return <Redirect to="/cam3" />
+}
 
   return (
     <>
+      <Navbar />
       <Container id="main-container">
         <Jumbotron id="signup-jumbotron">
           <h1>Verify Personal Information</h1>
@@ -174,23 +185,27 @@ const Vote = () => {
             <h6>Please enter unique ID below</h6>
 
             <InputGroup className="mb-3">
-              <FormControl id="id-field" aria-describedby="basic-addon1" />
+              <FormControl
+                id="id-field"
+                aria-describedby="basic-addon1"
+                onChange={e => setUuidValue(e.target.value)}
+              />
             </InputGroup>
             <br />
-            <Button variant="dark" size="lg" block>
+            {/* <Button variant="dark" size="lg" block>
               Capture Image
-              </Button>
+              </Button> */}
 
-            <br />
-            <br />
+            {/* <br />
+            <br /> */}
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/profile" onClick={() => { goBackBtn() }} variant="dark"
+              <Button onClick={() => { goBackBtn() }} variant="dark"
                 type="submit" id='left-button'>Go Back</Button>
             </ButtonGroup>
 
             <ButtonGroup size="lg" className="mr-3">
-              <Button href="/ballot" onClick={() => { voteBtn() }} variant="dark"
+              <Button onClick={() => { voteBtn() }} variant="dark"
                 type="submit" id='right-button'>VOTE</Button>
             </ButtonGroup>
           </div>

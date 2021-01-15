@@ -12,6 +12,7 @@ import { LoadingButton } from '../components/isloading'
 import "./Signupcamface.css";
 // import axios from 'axios';
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
+import { Redirect } from "react-router-dom";
 
 
 
@@ -30,6 +31,10 @@ const SignUp2 = () => {
     const videoRef = useRef(null);
 
 
+    //reroute to signup if not authenticated
+    if (!userId.id) {
+        return (<Redirect to="/signup" />);
+    }
 
     const HEIGHT = 450;
     const WIDTH = 390;
@@ -95,6 +100,7 @@ const SignUp2 = () => {
 
         console.log("submitted sign up form");
     }
+
 
 
 

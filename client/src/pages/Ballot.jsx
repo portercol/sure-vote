@@ -19,6 +19,7 @@ import ConstAmend2 from "../components/ConstAmend2";
 import "./Ballot.css";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 // import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 
 const Ballot = () => {
@@ -49,6 +50,11 @@ const Ballot = () => {
   // };
 
   const submitButton = () => { }
+
+  //reroute to signin if not authenticated
+  if (!userId.id) {
+    return (<Redirect to="/signin" />);
+  }
 
   return (
     <>
