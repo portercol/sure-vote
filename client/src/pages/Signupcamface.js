@@ -177,7 +177,6 @@ const SignUp2 = () => {
                                                                         console.log(res);
                                                                         console.log("Person id added to db");
                                                                         setDisableValue(false);
-                                                                        // dispatch({ type: "UPDATE_PERSONID", payload: currentPersondId });
                                                                         alert("Your face has been mapped, you may complete your sign up now.");
                                                                         return true
                                                                     })
