@@ -105,7 +105,7 @@ const SignIn = () => {
                     </ButtonGroup>
 
                     <ButtonGroup size="lg" className="mr-3">
-                        <Button href='' onClick={() => { submitBtn() }} variant="dark"
+                        <Button onClick={() => { submitBtn() }} variant="dark"
                             id='left-button'>Continue</Button>
                     </ButtonGroup>
                 </Jumbotron>
