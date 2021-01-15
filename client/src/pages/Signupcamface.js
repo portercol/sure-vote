@@ -107,7 +107,7 @@ const SignUp2 = () => {
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
                     <hr />
-                    <p id='name'>This is the final step in creating a profile, please take off any hats and look directly into the camera. If you see that your glasses are showing any glare plaese remove them, thank you.</p>
+                    <p id='name'>This is the final step in creating a profile, please take off any hats and look directly into the camera.  you see that your glasses are showing any glare plaese remove them, thank you.</p>
                     <Container>
                         <Row>
                             <Col>
@@ -146,24 +146,22 @@ const SignUp2 = () => {
                                         <button id="capture " className="btn btn-success" onClick={() => {
                                             console.log(snap(), "RENDER SNAP")
                                             if (playing === true)
-
                                                 snap().canvas.toBlob(data => {
+                                                    console.log("picData: ", data);
                                                     // need to find away to get new user to wait on the FID befor subing a new user.
                                                     // if anything let look inside of STA
                                                     newUserApi()
                                                         .then(PIDR => {
                                                             submitToAgatha("5595", PIDR.personId, data)
+                                                            console.log("submitToAgatha data: ", data);
                                                             if (PIDR.personId === null) {
                                                                 console.error('no picture taken')
-
                                                                 alert(
                                                                     "Your face was not detected, please turn the camera back on and try again."
                                                                 )
                                                             } else {
-
                                                                 const currentPersonId = PIDR.personId;
                                                                 const currentUserId = userId.id;
-
                                                                 console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
                                                                 // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
                                                                 axios
@@ -172,25 +170,22 @@ const SignUp2 = () => {
                                                                             id: currentUserId,
                                                                             personId: currentPersonId
                                                                         })
-
                                                                     .then(res => {
                                                                         console.log(res);
-                                                                        console.log("Person id added to db");
+                                                                        console.log("Person id added to db", currentPersonId);
+                                                                        // console.log(currentPersondId.length);
                                                                         setDisableValue(false);
-                                                                        alert("Your face has been mapped, you may complete your sign up now.");
+                                                                        // alert("Your face has been mapped, you may complete your sign up now.");
                                                                         return true
                                                                     })
                                                                     .catch(err => {
                                                                         console.log(err, "err")
-
                                                                         // console.log(err);
                                                                     })
                                                             }
-
                                                         })
                                                     stopVideo()
                                                 });
-
                                         }}>Take Picture</button>
                                     </ButtonGroup>
                                 </Col>
@@ -225,7 +220,7 @@ const SignUp2 = () => {
                     <br />
 
 
-                    <Button variant="primary" size="lg" block href="/profile" disabled={disableValue} onClick={trainingStart()}
+                    <Button variant="primary" size="lg" block href="/profile" disabled={disableValue}
                         id="save"> Complete Sign Up</Button>
 
 
