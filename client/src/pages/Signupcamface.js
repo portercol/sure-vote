@@ -15,11 +15,7 @@ import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 import { Redirect } from "react-router-dom";
 
 
-
-
 // create functional component to hold sign up page data
-
-
 
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
@@ -33,15 +29,15 @@ const SignUp2 = () => {
 
 
 
-    const HEIGHT = 450;
-    const WIDTH = 390;
+    const HEIGHT = 300;
+    const WIDTH = 300;
 
 
     const startVideo = () => {
         setPlaying(true);
         navigator.getUserMedia(
             {
-                video: true, width: 1280, height: 720
+                video: true
             },
             (stream) => {
                 let video = document.getElementsByClassName('app__videoFeed')[0];
@@ -98,134 +94,95 @@ const SignUp2 = () => {
         console.log("submitted sign up form");
     }
 
-
-
-
     return (
         <>
             <Container id="main-container">
-                <Jumbotron id="signup-jumbotron">
+                <Jumbotron id="main-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
                     <hr />
                     <p id='name'>This is the final step in creating a profile, please take off any hats and look directly into the camera.  you see that your glasses are showing any glare plaese remove them, thank you.</p>
-                    <Container>
-                        <Row>
-                            <Col>
-                                <div className="app__container my-">
-
-                                    <video ref={videoRef}
-                                        height="400"
-                                        width="400"
-                                        // margins
-                                        muted
-                                        autoPlay
-                                        className="app__videoFeed"
-                                    ></video>
-                                </div>
-                            </Col>
-
-                        </Row>
-                    </Container>
+                    <video
+                        id="video"
+                        ref={videoRef}
+                        height={HEIGHT}
+                        // width={WIDTH}
+                        // margins
+                        muted
+                        autoPlay
+                        className="app__videoFeed">
+                    </video>
                     <div className="app">
-
                         <div className="app__input">
-                            <Row>
-                                <Col>
-                                    <ButtonGroup size="lg" className="mr-3">
-                                        {playing ? (
-                                            <button className="btn btn-success" onClick={stopVideo}>Stop Camera</button>
-
-                                        ) : (
-                                                <button className="btn btn-success" onClick={startVideo}>Start Camera</button>
-                                            )}
-                                    </ButtonGroup>
-                                </Col>
-
-                                <Col>
-                                    <ButtonGroup size="lg" className="mr-3">
-                                        <button id="capture " className="btn btn-success" onClick={() => {
-                                            console.log(snap(), "RENDER SNAP")
-                                            if (playing === true)
-                                                snap().canvas.toBlob(data => {
-                                                    console.log("picData: ", data);
-                                                    // need to find away to get new user to wait on the FID befor subing a new user.
-                                                    // if anything let look inside of STA
-                                                    newUserApi()
-                                                        .then(PIDR => {
-                                                            submitToAgatha("5595", PIDR.personId, data)
-                                                            console.log("submitToAgatha data: ", data);
-                                                            if (PIDR.personId === null) {
-                                                                console.error('no picture taken')
-                                                                alert(
-                                                                    "Your face was not detected, please turn the camera back on and try again."
-                                                                )
-                                                            } else {
-                                                                const currentPersonId = PIDR.personId;
-                                                                const currentUserId = userId.id;
-                                                                console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
-                                                                // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
-                                                                axios
-                                                                    .post("/api/storePersonId",
-                                                                        {
-                                                                            id: currentUserId,
-                                                                            personId: currentPersonId
-                                                                        })
-                                                                    .then(res => {
-                                                                        console.log(res);
-                                                                        console.log("Person id added to db", currentPersonId);
-                                                                        // console.log(currentPersondId.length);
-                                                                        setDisableValue(false);
-                                                                        // alert("Your face has been mapped, you may complete your sign up now.");
-                                                                        return true
-                                                                    })
-                                                                    .catch(err => {
-                                                                        console.log(err, "err")
-                                                                        // console.log(err);
-                                                                    })
-                                                            }
-                                                        })
-                                                    stopVideo()
-                                                });
-                                        }}>Take Picture</button>
-                                    </ButtonGroup>
-                                </Col>
-                            </Row>
-
-                            <div className="app__input">
-                            </div>
-
-
                             <br />
+                            <ButtonGroup size="lg" className="mr-3">
+                                {playing ? (
+                                    <button className="btn btn-dark" onClick={stopVideo}>
+                                        Stop Camera</button>
+                                ) : (
+                                    <button className="btn btn-dark" onClick={startVideo}>
+                                        Start Camera</button>
+                                    )}
+                            </ButtonGroup>
+
+                            <ButtonGroup size="lg" className="mr-3">
+                                <button id="capture " className="btn btn-dark" onClick={() => {
+                                    console.log(snap(), "RENDER SNAP")
+                                    if (playing === true)
+                                        snap().canvas.toBlob(data => {
+                                            console.log("picData: ", data);
+                                            // need to find away to get new user to wait on the FID befor subing a new user.
+                                            // if anything let look inside of STA
+                                            newUserApi()
+                                                .then(PIDR => {
+                                                    submitToAgatha("5595", PIDR.personId, data)
+                                                    console.log("submitToAgatha data: ", data);
+                                                    if (PIDR.personId === null) {
+                                                        console.error('no picture taken')
+                                                        alert(
+                                                            "Your face was not detected, please turn the camera back on and try again."
+                                                        )
+                                                    } else {
+                                                        const currentPersonId = PIDR.personId;
+                                                        const currentUserId = userId.id;
+                                                        console.log("SubmitToAgatha UserId: ", currentUserId, "PersonId: ", currentPersonId);
+                                                        // console.log("PersonId: ", currentPersonId.length, "this gives the length of the string [36] sooo that can be used ");
+                                                        axios
+                                                            .post("/api/storePersonId",
+                                                                {
+                                                                    id: currentUserId,
+                                                                    personId: currentPersonId
+                                                                })
+                                                            .then(res => {
+                                                                console.log(res);
+                                                                console.log("Person id added to db", currentPersonId);
+                                                                // console.log(currentPersondId.length);
+                                                                setDisableValue(false);
+                                                                // alert("Your face has been mapped, you may complete your sign up now.");
+                                                                return true
+                                                            })
+                                                            .catch(err => {
+                                                                console.log(err, "err")
+                                                                // console.log(err);
+                                                            })
+                                                    }
+                                                })
+                                            stopVideo()
+                                        });
+
+                                }}>Take Picture</button>
+
+                            </ButtonGroup>
                             <br />
-                            <h1>Used Photo</h1>
-                            <br />
-                            <br />
-                            <Col>
-                                <canvas ref={vest} id="canvas" width={WIDTH} height={HEIGHT}></canvas>
-                            </Col>
+                            <h1>Used Photo</h1>     
+                            <canvas ref={vest} id="canvas" height={HEIGHT}></canvas>
                         </div>
-                        <div className="app__input">
-
-                        </div>
-
-
-
-
                     </div>
-
-
-
-
                     <br />
                     <br />
-
-
-                    <Button variant="primary" size="lg" block href="/profile" disabled={disableValue}
-                        id="save"> Complete Sign Up</Button>
-
-
-
-
+                    <Button variant="dark" size="lg" block href="/profile" disabled={disableValue}
+                        id="save">
+                        Complete Sign Up
+                    </Button>
                 </Jumbotron>
             </Container>
         </>
