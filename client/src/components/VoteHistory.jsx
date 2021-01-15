@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Modal, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button, Card, Modal, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import "./VoteHistory.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
@@ -8,7 +8,7 @@ function VoteHistory() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [data, setData] = useState();
+  const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
 
 // pulling data from back end to page
@@ -18,16 +18,23 @@ function VoteHistory() {
     }, []);
     
     const voteData = () => {
-        axios
+        
+      axios
         .get('/api/vote/' + userId.id)
         .then((res) => {
-            const getVote = res.params;
-            // setCandidateList(candidateData);
-            console.log(res.params)
+            const getVote = res.data;
+            getData(getVote);
+            console.log(getData)
             console.log(getVote)
         })
-        .catch((err) => console.log(err))
+        .catch(err => {
+          console.log(err);
+      })
     }
+
+    if (!data) {
+        return (<> <h1>Loading ...</h1></>);
+      }
 
 
   return (
@@ -39,6 +46,8 @@ function VoteHistory() {
         <Modal.Header closeButton>
           <Modal.Title id="title">Vote History</Modal.Title>
         </Modal.Header>
+        <Row></Row>
+
         <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Title>2020</Card.Title>
@@ -46,15 +55,18 @@ function VoteHistory() {
                 </Card.Text>
             </Card.Body>
             <ListGroup variant="flush">
-                <ListGroup.Item><span className="span">President of the United States: </span>Cras justo odio</ListGroup.Item>
-                <ListGroupItem><span className="span">US House, 2nd Congressional District: </span>Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem><span className="span">Governor of Utah: </span>Vestibulum at eros</ListGroupItem>
-                <ListGroupItem><span className="span">Utah State Senator, 19th Senate District: </span>Cras justo odio</ListGroupItem>
-                <ListGroupItem><span className="span">Utah State House, 7th Congressional District: </span>Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem><span className="span">Supreme Court Retention: </span>Vestibulum at eros</ListGroupItem>
-                <ListGroupItem><span className="span">Constitutional Amendment 1: </span>Cras justo odio</ListGroupItem>
-                <ListGroupItem><span className="span">Constitutional Amendment 2: </span>Dapibus ac facilisis in</ListGroupItem>
-            </ListGroup>
+              {data.map((election) => (
+                <ListGroupItem>
+                  <span className="span">
+                    {election.election.office}: 
+                  </span>
+                  {election.candidate.name}
+                  <br />
+                  {election.candidate.party}
+                </ListGroupItem>
+              )
+              )}
+                </ListGroup>
             <Card.Body>
                 <Card.Link href="#">Previous Year</Card.Link>
                 <Card.Link href="#">Next Year</Card.Link>
@@ -64,9 +76,6 @@ function VoteHistory() {
           <Button variant="dark" onClick={handleClose}>
             Close
           </Button>
-          {/* <Button variant="dark" onClick={handleClose}>
-            Save
-          </Button> */}
         </Modal.Footer>
       </Modal>
     </>
