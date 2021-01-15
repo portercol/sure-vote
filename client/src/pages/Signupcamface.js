@@ -107,7 +107,7 @@ const SignUp2 = () => {
                 <Jumbotron id="signup-jumbotron">
                     <h1 id="pi">Facial Detection</h1>
                     <hr />
-                    <p id='name'>This is the final step in creating a profile, please take of any hats and look directly into the camera, if you see that your glasses are showing any glair plaese remove them, thank you.</p>
+                    <p id='name'>This is the final step in creating a profile, please take off any hats and look directly into the camera. If you see that your glasses are showing any glare plaese remove them, thank you.</p>
                     <Container>
                         <Row>
                             <Col>
