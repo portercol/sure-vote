@@ -32,32 +32,30 @@ const ConstAmend2 = () => {
         setElectionList(electionData);
         // console.log(electionData)
       })
-  }, []); 
+  }, []);
 
   const submitVote = (event) => {
     event.preventDefault();
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-     // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
-     const selectedElection = electionList.find(currentElection => currentElection.question === "Constitutional Amendment 2")
-     const userVoting = userId.id
-    console.log(userVoting);
-     axios.post('/api/vote', { election: selectedElection._id, userId: userVoting })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setAnswer()
-        setElectionList();
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          alert("You voted for " + answer + ".");
+    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
+      // const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === answer)
+      const selectedElection = electionList.find(currentElection => currentElection.question === "Constitutional Amendment 2")
+      const userVoting = userId.id
+      console.log(userVoting);
+      axios.post('/api/vote', { election: selectedElection._id, userId: userVoting })
+        .then((res) => {
+          // console.log(res.data)
+          setVoted(true)
+          setAnswer()
+          setElectionList();
+          if (res.data.error) {
+            alert(res.data.error);
+          } else {
+            alert("You voted for " + answer + ".");
           }
-          console.log(res.data.error)
-      })
-      .catch(err => console.log (err));
+        })
+        .catch(err => console.log(err));
     }
-    };
+  };
 
   return (
     <Container id="const-amend1-card">
@@ -65,7 +63,7 @@ const ConstAmend2 = () => {
         <Card.Body>
           <h3>Utah State Constitutional Amendment 2</h3>
           <h6>
-          Shall the Utah Constitution be amended to specify that certain requirements that a person must meet to be eligible for the office of senator or representative in the Utah Legislature apply at the time the person is elected or appointed?
+            Shall the Utah Constitution be amended to specify that certain requirements that a person must meet to be eligible for the office of senator or representative in the Utah Legislature apply at the time the person is elected or appointed?
           </h6>
           <hr />
 

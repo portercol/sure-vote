@@ -12,7 +12,8 @@
     "start:server": "nodemon server.js",
     "start:client": "cd client && npm start",
     "build": "cd client && npm i && npm run build",
-    "heroku-postbuild": "npm run build"
+    "seed": "node Server/config/candidateSeed.js && node Server/config/electionSeed.js",
+    "heroku-postbuild": "npm run seed && npm run build"
   },
   "repository": {
     "type": "git",

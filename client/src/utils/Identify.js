@@ -16,7 +16,7 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
             if (facesDetected.length === 0) {
 
                 alert(
-                    "Your account has yet been varified with Agatha"
+                    "Your account has yet been verified with Agatha"
                 )
             }
 
@@ -45,7 +45,7 @@ export async function letsSeeYourFace(GID, helperD, AthPID, con, idCompleted) {
                             // both errors work need to make them more offical and or a propt
                             console.error('your PID is not correct', AGPID, AthPID)
                             reject(
-                                "We do not believe that this is you, please try again"
+                                "You can't have two accounts. Please send us an email using the contact button to help resolve this issue."
                             )
                         }
                         // both errors work need to make them more offical and or a propt

@@ -141,6 +141,7 @@ router
         }
       ]
     })
+    console.log("Vote not working: ", alreadyVoted);
     if (alreadyVoted.length > 0) {
 
       console.log(alreadyVoted);
