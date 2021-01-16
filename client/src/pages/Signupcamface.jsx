@@ -15,7 +15,7 @@ import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 import { Redirect } from "react-router-dom";
 
 
-// create functional component to hold sign up page data
+// create functional component to hold cam2 page data
 
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
@@ -27,12 +27,11 @@ const SignUp2 = () => {
     const vest = useRef(null);
     const videoRef = useRef(null);
 
-
-
+    // set height and width dimentions
     const HEIGHT = 300;
     const WIDTH = 300;
 
-
+    // create function for video start
     const startVideo = () => {
         setPlaying(true);
         navigator.getUserMedia(
