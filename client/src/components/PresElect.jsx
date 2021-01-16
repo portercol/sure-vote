@@ -27,14 +27,14 @@ const PresElect = (props) => {
       .then((res) => {
         const candidateData = res.data.getCandidate;
         setCandidateList(candidateData);
-        console.log(candidateData)
+        // console.log(candidateData)
       })
     axios
       .get('/api/election')
       .then((res) => {
         const electionData = res.data.getElection;
         setElectionList(electionData);
-        console.log(electionData)
+        // console.log(electionData)
       })
   }, []);
 
