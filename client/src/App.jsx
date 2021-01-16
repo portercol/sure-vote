@@ -14,6 +14,7 @@ import SignIn2 from './pages/SignInFace.jsx'
 import Ballot from './pages/Ballot'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
 
+
 function App() {
   return (
     <Router>
@@ -22,7 +23,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/cam2' component={SignIn1} />
+            <Route exact path='/cam2' component={AddPerson} />
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/signin' component={SignIn} />
             <Route exact path='/election' component={Election} />
