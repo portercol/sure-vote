@@ -32,19 +32,15 @@ const Contact = () => {
             })
             .then((response) => {
                 if (response.data.status === 'success') {
+                    setNameValue('');
+                    setEmailValue('');
+                    setMessageValue('');
                     alert("Message Sent.");
-                    // resetForm()
                 } else if (response.data.status === 'fail') {
                     alert("Message failed to send.")
                 }
             })
     }
-
-    //  resetForm = e => {
-    //     nameValue = '';
-    //     emailValue = '';
-    //     messageValue = '';
-    // }
 
     // return data to the page
     return (
@@ -65,15 +61,15 @@ const Contact = () => {
                     <Form id="contact-form">
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="name" placeholder="Your Name" onChange={(e) => setNameValue(e.target.value)} />
+                            <Form.Control type="name" placeholder="Your Name" value={nameValue} onChange={(e) => setNameValue(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlInput1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="email" placeholder="Your Email" onChange={(e) => setEmailValue(e.target.value)} />
+                            <Form.Control type="email" placeholder="Your Email" value={emailValue} onChange={(e) => setEmailValue(e.target.value)} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label></Form.Label>
-                            <Form.Control type="message" placeholder="Your Message" as="textarea" rows={2} onChange={(e) => setMessageValue(e.target.value)} />
+                            <Form.Control type="message" placeholder="Your Message" as="textarea" rows={2} value={messageValue} onChange={(e) => setMessageValue(e.target.value)} />
                         </Form.Group>
                     </Form>
                     <br />

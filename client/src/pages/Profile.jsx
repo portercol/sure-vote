@@ -1,6 +1,7 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
 import React, { useState, useEffect } from "react";
 import {
+  Button,
   Card,
   Container,
   Form,
@@ -66,7 +67,7 @@ const Profile = () => {
     if (!userId.id) {
       return (<Redirect to="/signin" />);
     } else {
-      return (<> <h1>No user logged in</h1></>);
+      return (<></>);
     }
   }
 
@@ -109,9 +110,13 @@ const Profile = () => {
             <Modal />
             {/* <br />
             <br />
-            <VoteHistory /> */}
+            <br />
+            {/* future dev */}
+            {/* <VoteHistory /> */}
+            <Button variant="dark" >
+              Vote History
+            </Button>
           </Card.Body>
-          <Link to="/cam2">Cam2</Link>
         </Card>
       </Container>
 
