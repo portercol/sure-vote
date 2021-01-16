@@ -9,8 +9,8 @@ import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
 import Contact from './pages/Contact'
-import AddPerson from './pages/Signupcamface'
-import SignIn2 from './pages/SignInFace'
+import AddPerson from './pages/Signupcamface.jsx'
+import SignIn2 from './pages/SignInFace.jsx'
 import Ballot from './pages/Ballot'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
 import { PrivateRoute } from './utils/privateRoute';
