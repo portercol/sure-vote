@@ -1,6 +1,7 @@
 # SURE VOTE
 
-![License Badge](https://img.shields.io/badge/License-MIT_license-brightgreen)
+
+Link to deployed site: [SURE VOTE](https://intense-mesa-78080.herokuapp.com/)
 
 ## Table of Contents
 * [Description](#description)
@@ -10,6 +11,7 @@
 * [Tests](#tests)
 * [License](#license)
 * [Questions](#questions)
+* [Github](#github)
 
 ## Description
 SURE VOTE is a mobile friendly web-based application that is used for safe, secure voting from the user's home. 
@@ -24,17 +26,16 @@ The user signs onto the site, creates a profile by signing up. The information w
 Jake Burzlaff, AJ Clemens, Layne Hansen, Collin Porter
 
 ## Tests 
-No.
+none
 
-## License
-MIT_license
-<br><br>
-<br>
+![License Badge](https://img.shields.io/badge/License-MIT_license-brightgreen)
 
 ## Questions
-
 For questions and comments, contact us at:
+surev0te@zohomail.com
 
-Github: [jburz, Cloggedbat, LayneHansen, portercol](https://github.com/LayneHansen)
-
-Email: surev0te@zohomail.com
+## Come see us at Github
+[Jake Burzlaff](https://github.com/jburz)
+[Alvin Clemens](https://github.com/Cloggedbat)
+[Layne Hansen](https://github.com/LayneHansen)
+[Collin Porter](https://github.com/portercol)

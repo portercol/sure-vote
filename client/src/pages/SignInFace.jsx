@@ -1,5 +1,4 @@
-// 5. use the confidence rating to varify user and give access to voting page
-import axios from 'axios';
+// import necessary modules/packages, stylesheets and components
 import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Container, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
@@ -10,16 +9,18 @@ import Navbar from "../components/Navbar.jsx/index.js";
 
 // create functional component to hold vote signIn page data
 const SignIn2 = () => {
+
     const [playing, setPlaying] = useState(false);
-    const [userId, dispatch] = useGlobalContextAuthUser();
     const [disableValue, setDisableValue] = useState(true);
     const [redirect, setRedirect] = useState(false);
-
+    const [userId, dispatch] = useGlobalContextAuthUser();
     console.log("Cam3 user: ", userId);
     const vest = useRef(null);
     const videoRef = useRef(null);
-    const HEIGHT = 450;
-    const WIDTH = 390;
+    const HEIGHT = 300;
+    const WIDTH = 300;
+
+    // create startVideo function
     const startVideo = () => {
         setPlaying(true);
         navigator.getUserMedia(
@@ -63,12 +64,10 @@ const SignIn2 = () => {
         // const api = new ApiCalls();
         // props needs the GID and the PID
         const data = vest.toDataURL('image/png');
-        // console.log(data, 'click')
         return data
-        // submitToAgatha(newUserApi, () => { console.log("aj") })
     }
-    // create function for submit button 'onclick'
 
+    // create function for submit button 'onclick'
     const submitBtn = () => {
         redirectHandler();
     }
@@ -82,7 +81,7 @@ const SignIn2 = () => {
         return <Redirect to="/ballot" />
     }
 
-    //reroute to signin if not authenticated
+    // reroute to signin if not authenticated
     if (!userId.id) {
         return (<Redirect to="/signin" />);
     }
@@ -132,9 +131,8 @@ const SignIn2 = () => {
                                                 }
 
                                             } catch (err) {
-                                                console.error("this is an error", err)
+                                                console.error(err)
                                             }
-
                                         }
                                         )
                                     stopVideo()
@@ -157,5 +155,6 @@ const SignIn2 = () => {
         </>
     );
 };
-// export component from SignInFace.js
+
+// export component from SignInFace.jsx
 export default SignIn2;
