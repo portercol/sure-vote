@@ -108,14 +108,9 @@ const Profile = () => {
           </ListGroup>
           <Card.Body>
             <Modal />
-            {/* <br />
             <br />
             <br />
-            {/* future dev */}
-            {/* <VoteHistory /> */}
-            <Button variant="dark" >
-              Vote History
-            </Button>
+            <VoteHistory />
           </Card.Body>
         </Card>
       </Container>

@@ -4,6 +4,9 @@ const router = express.Router();
 var nodemailer = require('nodemailer');
 require('dotenv').config();
 
+var nodemailer = require("nodemailer");
+require("dotenv").config();
+
 // set up transport schema
 const transport = {
   host: 'smtp.zoho.com', // Don’t forget to replace with the SMTP host of your provider
