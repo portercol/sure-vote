@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Container, Jumbotron } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
 import { newUserApi } from '../utils/newUserfaceApi';
 import axios from "axios";
-import "./SignUpCamFace.css";
+import "./Signupcamface.css";
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 
 
