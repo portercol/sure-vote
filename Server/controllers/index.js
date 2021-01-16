@@ -8,7 +8,8 @@ router.use('/api/signin', userRoutes);
 router.use('/signup', userRoutes);
 router.use('/api/login', userRoutes);
 router.use('/api/profile', userRoutes);
-router.use('/elections', electionRoutes);
+router.use('/api/elections', electionRoutes);
+router.use('/api/candidate', electionRoutes);
 router.use('/mailer', mailerRoutes);
 
 router.use(function(req, res) {

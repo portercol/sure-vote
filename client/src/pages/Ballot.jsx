@@ -1,5 +1,5 @@
 // import necessary packages/modules, components and stylesheets
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Jumbotron,
@@ -25,6 +25,7 @@ import { Redirect } from "react-router-dom";
 const Ballot = () => {
 
   const [userId] = useGlobalContextAuthUser();
+  const [redirect, setRedirect] = useState(false);
   console.log("Ballot user: ", userId);
   // const [radio, setRadio] = useState([]);
 
@@ -49,7 +50,19 @@ const Ballot = () => {
   //     .catch(err => console.log(err));
   // };
 
-  const submitButton = () => { }
+  const submitButton = () => {
+    redirectHandler();
+
+  }
+
+  const redirectHandler = () => {
+    setRedirect(true);
+    console.log("redirect handler: ", redirect);
+  }
+
+  if (redirect) {
+    return <Redirect to="/profile" />
+  }
 
   //reroute to signin if not authenticated
   if (!userId.id) {
@@ -92,7 +105,6 @@ const Ballot = () => {
                 <h5>WARNING: You will not be able to return to this ballot.</h5>
                 <br />
                 <Button
-                  href="/profile"
                   variant="dark"
                   type="submit"
                   size="lg"

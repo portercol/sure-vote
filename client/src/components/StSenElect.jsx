@@ -20,6 +20,7 @@ const StSenElect = () => {
   const [voted, setVoted] = useState(false);
   const [userId] = useGlobalContextAuthUser();
 
+
   useEffect(() => {
     axios
       .get('/api/candidate')
