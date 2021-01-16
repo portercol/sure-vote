@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react';
 import { Button, ButtonGroup, Container, Jumbotron } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
 import { newUserApi } from '../utils/newUserfaceApi';
-import { trainingStart } from '../utils/Training'
 import axios from "axios";
 import "./SignUpCamFace.css";
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
@@ -15,8 +14,6 @@ const SignUp2 = () => {
     const [disableValue, setDisableValue] = useState(true);
     const [userId] = useGlobalContextAuthUser();
     console.log("Cam2 user: ", userId);
-
-    const [hide, show] = useState('')
     const vest = useRef(null);
     const videoRef = useRef(null);
 

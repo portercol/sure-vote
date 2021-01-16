@@ -15,7 +15,7 @@ const Vote = () => {
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [streetAddress1Value, setStreetAddress1Value] = useState('');
-  const [streetAddress2Value, setStreetAddress2Value] = useState('');
+  const [, setStreetAddress2Value] = useState('');
   const [cityValue, setCityValue] = useState('');
   const [stateValue, setStateValue] = useState('');
   const [zipCodeValue, setZipCodeValue] = useState('');

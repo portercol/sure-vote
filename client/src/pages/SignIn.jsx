@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Container, Form, Jumbotron } from "react-bootstrap
 import './SignIn.css'
 import axios from "axios";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 
 
@@ -13,7 +13,7 @@ const SignIn = () => {
 
     const [usernameLogin, setUsernameLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
-    const [userId, dispatch] = useGlobalContextAuthUser();
+    const [ , dispatch] = useGlobalContextAuthUser();
     const [redirect, setRedirect] = useState(false);
     //console.log("Signin user: ", userId);
 
