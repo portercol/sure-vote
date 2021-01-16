@@ -9,7 +9,7 @@ import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
 import Contact from './pages/Contact'
-import AddPerson from './pages/Signupcamface.jsx'
+import SignIn1 from './pages/SignUpCamFace.jsx'
 import SignIn2 from './pages/SignInFace.jsx'
 import Ballot from './pages/Ballot'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Homepage} />
             <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/cam2' component={AddPerson} />
+            <Route exact path='/cam2' component={SignIn1} />
             <PrivateRoute exact path='/profile' component={Profile} />
             <Route exact path='/signin' component={SignIn} />
             <PrivateRoute exact path='/election' component={Election} />
