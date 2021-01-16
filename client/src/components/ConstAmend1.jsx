@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Col, Row, Card } from "react-bootstrap";
 import axios from 'axios';
-import ConstAmend1Data from '../seedData/const1';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
 // create functional component to hold page data

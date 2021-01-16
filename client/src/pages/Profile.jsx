@@ -1,7 +1,6 @@
 // import React, elements from React-Bootstrap, Navbar.jsx and img from assets
 import React, { useState, useEffect } from "react";
 import {
-  Button,
   Card,
   Container,
   Form,
@@ -16,7 +15,7 @@ import "./Profile.css";
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 // import { IsAuthenticated } from "../utils/isAuthenticated.js";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const Profile = () => {
   // console.log(IsAuthenticated());
@@ -78,7 +77,7 @@ const Profile = () => {
         <Card className="mainCard" style={{ width: "30rem" }}>
           <ListGroupItem>
             <Form>
-              {picture ? <img src={picture}></img> :
+              {picture ? <img alt="profilePic" src={picture}></img> :
                 <ImageUploader
                   withIcon={true}
                   buttonText='Upload Image'

@@ -7,7 +7,7 @@ import { useGlobalContextAuthUser } from "../../utils/GlobalContextAuthUser"
 
 // Create functional component to hold navbar data
 const NavbarFixed = () => {
-    const [userId, dispatch] = useGlobalContextAuthUser();
+    const [userId] = useGlobalContextAuthUser();
     let authLinkText = "Sign In";
     if (userId.id) {
         authLinkText = "Sign Out"
