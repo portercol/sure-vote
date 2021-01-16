@@ -1,5 +1,5 @@
 // import necessary packages/modules, components and stylesheet
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, ButtonGroup, Col, Container, Form, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser";
 import "./SignUp.css";
@@ -22,6 +22,7 @@ const Vote = () => {
   const [uuidValue, setUuidValue] = useState('');
   const [redirect, setRedirect] = useState(false);
   const [redirectRoute, setRedirectRoute] = useState('');
+  const [userData, getUserData] = useState();
 
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
@@ -30,25 +31,53 @@ const Vote = () => {
     redirectHandler();
   }
 
-  // create function for vote button and if all required fields are not met throw alert error
-  const voteBtn = (e) => {
-    // e.preventDefault();
-    // if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || zipCodeValue === "") {
-    //   console.log("Missing required credentials")
-    //   alert("Missing required credentials. Please enter required information");
-    // } else {
+  //profile get request to have user Info to validate
+  useEffect(() => {
+    getProfile(userId);
+    console.log("useEffect: ", userId.id);
+  }, []);
 
-    console.log("uuid input: ", uuidValue);
-    console.log("uuid db: ", userId.uuid);
-    if (uuidValue === userId.uuid) {
-      setRedirectRoute("/cam3");
-      redirectHandler()
-      // alert("UUID Validated!! Proceeding to facial recognition.")
+  const getProfile = (userId) => {
+
+    axios
+      .get('/api/profile/' + userId.id)
+      .then((res) => {
+        console.log("/profile axios: ", res.data)
+        const allData = res.data;
+        getUserData(allData);
+      }).catch(err => {
+        console.log(err);
+      })
+  }
+
+  // send to facial recognition or require validation
+  const voteBtn = () => {
+    if (firstNameValue === "" || lastNameValue === "" || streetAddress1Value === "" || cityValue === "" || stateValue === "" || zipCodeValue === "") {
+      alert("Missing required credentials. Please enter required information");
     } else {
-      alert("UUID incorrect.  Please try again.");
+      if (firstNameValue !== userData.firstName) {
+        alert("First Name Incorrect");
+      } else if (lastNameValue !== userData.lastName) {
+        alert("Last Name Incorrect");
+      } if (streetAddress1Value !== userData.address1) {
+        alert("Street Address Incorrect");
+      } if (cityValue !== userData.city) {
+        alert("City Incorrect");
+      } if (stateValue !== userData.state) {
+        alert("State Incorrect");
+      } if (zipCodeValue != userData.zipCode) {
+        alert("Zip Code Incorrect");
+      } else {
+        //validate UUID and send to facial recognition
+        if (uuidValue === userId.uuid) {
+          alert("All info verified! Proceeding to facial recognition.");
+          setRedirectRoute("/cam3");
+          redirectHandler()
+        } else {
+          alert("UUID incorrect.  Please try again.");
+        }
+      }
     }
-
-    // }
   }
 
   //reroute to signin if not authenticated

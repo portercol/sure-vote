@@ -119,7 +119,6 @@ const Profile = () => {
           </Card.Body>
         </Card>
       </Container>
-
     </>
   );
 }
