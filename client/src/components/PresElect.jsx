@@ -57,7 +57,6 @@ const PresElect = (props) => {
           } else {
             alert("You voted for " + candidate + ".");
           }
-          console.log(res.data.error)
         })
         .catch(err => console.log(err));
     }

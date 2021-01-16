@@ -41,13 +41,12 @@ const StHouseElect = () => {
 
   const submitVote = (event) => {
     event.preventDefault();
-<<<<<<< HEAD
     if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0) {
       const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
       const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Representative")
       const userVoting = userId.id
       console.log(userVoting);
-      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, user: userId.id })
         .then((res) => {
           // console.log(res.data)
           setVoted(true)
@@ -57,26 +56,7 @@ const StHouseElect = () => {
             alert(res.data.error);
           } else {
             alert("You voted for " + candidate + ".");
-=======
-    if (candidateList && electionList && candidateList.length > 0 && electionList.length > 0)
-    {
-    const selectedCandidate = candidateList.find(currentCandidate => currentCandidate.name === candidate)
-    const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Representative")
-    const userVoting = userId.id
-    console.log(userVoting);
-    axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, user: userId.id })
-      .then((res) => {
-        // console.log(res.data)
-        setVoted(true)
-        setCandidate()
-        setElectionList();
-        if (res.data.error) {
-          alert(res.data.error);
-        } else {
-          alert("You voted for " + candidate + ".");
->>>>>>> origin
           }
-          console.log(res.data.error)
         })
         .catch(err => console.log(err));
     }
