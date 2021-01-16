@@ -35,7 +35,7 @@ For questions and comments, contact us at:
 surev0te@zohomail.com
 
 ## Come see us at Github
-[Jake Burzlaff](https://github.com/jburz)
-[Alvin Clemens](https://github.com/Cloggedbat)
-[Layne Hansen](https://github.com/LayneHansen)
+[Jake Burzlaff](https://github.com/jburz) |
+[Alvin Clemens](https://github.com/Cloggedbat) |
+[Layne Hansen](https://github.com/LayneHansen) |
 [Collin Porter](https://github.com/portercol)

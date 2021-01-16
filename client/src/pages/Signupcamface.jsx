@@ -5,7 +5,7 @@ import { submitToAgatha } from "../utils/submitApiImgP"
 import { newUserApi } from '../utils/newUserfaceApi';
 import { trainingStart } from '../utils/Training'
 import axios from "axios";
-import "./Signupcamface.css";
+import "./SignUpCamFace.css";
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
 
 
