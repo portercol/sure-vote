@@ -108,6 +108,7 @@ const Profile = () => {
           </ListGroup>
           <Card.Body>
             <Modal />
+            {/* <br />
             <br />
             <br />
             {/* future dev */}

@@ -46,7 +46,7 @@ const StSenElect = () => {
       const selectedElection = electionList.find(currentElection => currentElection.office === "Utah State Senator")
       const userVoting = userId.id
       console.log(userVoting);
-      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, user: userVoting })
+      axios.post('/api/vote', { candidate: selectedCandidate._id, election: selectedElection._id, userId: userVoting })
         .then((res) => {
           // console.log(res.data)
           setVoted(true)

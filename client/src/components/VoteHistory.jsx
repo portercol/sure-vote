@@ -61,7 +61,7 @@ const VoteHistory = () => {
               {data.map((election) => (
                 <ListGroupItem>
                   <span className="span">
-                    {election.election.office}: 
+                  {election.election.office}: 
                   </span>
                   {election.candidate.name}
                   <br />
