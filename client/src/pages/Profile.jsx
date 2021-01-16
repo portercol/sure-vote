@@ -109,7 +109,8 @@ const Profile = () => {
             <Modal />
             <br />
             <br />
-            <VoteHistory />
+            {/* future dev */}
+            {/* <VoteHistory /> */}
           </Card.Body>
           <Link to="/cam2">Cam2</Link>
         </Card>
