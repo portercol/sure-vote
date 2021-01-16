@@ -10,7 +10,7 @@ const VoteHistory = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [data, getData] = useState();
+  const [data, getData] = useState([]);
   const [userId] = useGlobalContextAuthUser();
 
   // pulling data from back end to page
@@ -26,14 +26,13 @@ const VoteHistory = () => {
       .then((res) => {
         const getVote = res.data;
         getData(getVote);
-        console.log(getData)
-        console.log(getVote)
+        console.log("getVote: ", getVote)
+        console.log("data: ", data);
       })
       .catch(err => {
         console.log(err);
       })
   }
-
 
   if (!data) {
     return (<> <h5>No votes recorded</h5></>);
@@ -58,11 +57,11 @@ const VoteHistory = () => {
             </Card.Text>
           </Card.Body>
           <ListGroup variant="flush">
-            {data.map((election) => (
+            {data.map(election => (
               <ListGroupItem>
                 <span className="span">
-                  {election.election.office}:
-                  </span>
+                  {election.election[0].office ? election.election[0].office : election.election[0].question}:
+                </span>
                 {election.candidate.name}
                 <br />
                 {election.candidate.party}
