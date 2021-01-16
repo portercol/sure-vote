@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
-const apiRoutes = require('./Server/routes/api.routes');
-const mailerRoute = require('./Server/routes/mailer.route');
+const controllers = require('./Server/controllers')
+const apiRoutes = require('./Server/controllers/api.routes');
+const mailerRoute = require('./Server/controllers/mailer.route');
+const userRoute = require('./Server/controllers/user.routes');
+const electionRoute = require('./Server/controllers/elections.routes');
+require('./Server/controllers/index');
 const passport = require("passport");
 const logger = require("morgan");
 const User = require("./Server/models/User");
@@ -34,6 +38,9 @@ app.use(cors())
 
 app.use(apiRoutes);
 app.use(mailerRoute);
+app.use(userRoute);
+app.use(electionRoute);
+app.use(controllers);
 
 // if (process.env.NODE_ENV === "production") {
 app.use(express.static(__dirname + "/client/build"));

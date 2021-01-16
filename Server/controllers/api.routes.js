@@ -35,7 +35,6 @@ transporter.verify((error, success) => {
   }
 });
 
-
 router
   .get("/api/profile/:id", (req, res) => {
     User.findById(req.params.id)

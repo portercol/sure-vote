@@ -25,9 +25,9 @@ const VoteHistory = () => {
         .get('/api/vote/' + userId.id)
         .then((res) => {
             const getVote = res.data;
-            getData(getVote);
-            console.log(getData)
-            console.log(getVote)
+            // getData(getVote);
+            // console.log(getData)
+            // console.log(getVote)
         })
         .catch(err => {
           console.log(err);

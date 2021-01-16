@@ -57,9 +57,9 @@ const Ballot = () => {
     return (<Redirect to="/signin" />);
   }
 
-  if (!userId.signInFace) {
-    return (<Redirect to="/vote" />)
-  }
+  // if (!userId.signInFace) {
+  //   return (<Redirect to="/vote" />)
+  // }
 
   return (
     <>
