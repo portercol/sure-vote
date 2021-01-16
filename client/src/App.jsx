@@ -13,7 +13,6 @@ import AddPerson from './pages/Signupcamface.jsx'
 import SignIn2 from './pages/SignInFace.jsx'
 import Ballot from './pages/Ballot'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
-import { PrivateRoute } from './utils/privateRoute';
 
 
 function App() {
@@ -25,13 +24,13 @@ function App() {
             <Route exact path='/' component={Homepage} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/cam2' component={AddPerson} />
-            <PrivateRoute exact path='/profile' component={Profile} />
+            <Route exact path='/profile' component={Profile} />
             <Route exact path='/signin' component={SignIn} />
-            <PrivateRoute exact path='/election' component={Election} />
-            <PrivateRoute exact path='/cam3' component={SignIn2} />
-            <PrivateRoute exact path='/ballot' component={Ballot} />
-            <PrivateRoute exact path='/vote' component={Vote} />
-            <PrivateRoute exact path='/contact' component={Contact} />
+            <Route exact path='/election' component={Election} />
+            <Route exact path='/cam3' component={SignIn2} />
+            <Route exact path='/ballot' component={Ballot} />
+            <Route exact path='/vote' component={Vote} />
+            <Route exact path='/contact' component={Contact} />
           </Switch>
         </GlobalProviderAuthUser>
       </div>
