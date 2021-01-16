@@ -1,29 +1,19 @@
 // import Rreact, elements from React-Bootstrap, SignUp.css
 import React, { useState, useRef } from 'react';
-import { Button, ButtonGroup, Col, Container, Form, Jumbotron, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Jumbotron } from "react-bootstrap";
 import { submitToAgatha } from "../utils/submitApiImgP"
 import { newUserApi } from '../utils/newUserfaceApi';
-import { trainingStart } from '../utils/Training'
-// import ApiCalls from "../utils/ApiCalls";
-// import GroupPersons from './faceapi/Groups';
-// import Actions from './faceapi/Actions';
 import axios from "axios";
-// import { LoadingButton } from '../components/isloading'
 import "./Signupcamface.css";
-// import axios from 'axios';
 import { useGlobalContextAuthUser } from '../utils/GlobalContextAuthUser';
-import { Redirect } from "react-router-dom";
 
 
 // create functional component to hold cam2 page data
-
 const SignUp2 = () => {
     const [playing, setPlaying] = useState(false);
-    const [userId] = useGlobalContextAuthUser();
     const [disableValue, setDisableValue] = useState(true);
-
+    const [userId] = useGlobalContextAuthUser();
     console.log("Cam2 user: ", userId);
-    const [hide, show] = useState('')
     const vest = useRef(null);
     const videoRef = useRef(null);
 
@@ -74,23 +64,12 @@ const SignUp2 = () => {
         saveButton.addEventListener('click', () => save(canvas));
     };
 
-
     // save function 
     function save(vest) {
-        // const api = new ApiCalls();
         // props needs the GID and the PID
         const data = vest.toDataURL('image/png');
         console.log(data, 'click')
         return data
-        // submitToAgatha(newUserApi, () => { console.log("aj") })
-    }
-
-    // create function for submit button 'onclick'
-    const submitBtn = () => {
-        // if (Hidden === false)
-
-
-        console.log("submitted sign up form");
     }
 
     return (
@@ -104,8 +83,6 @@ const SignUp2 = () => {
                         id="video"
                         ref={videoRef}
                         height={HEIGHT}
-                        // width={WIDTH}
-                        // margins
                         muted
                         autoPlay
                         className="app__videoFeed">
@@ -118,8 +95,8 @@ const SignUp2 = () => {
                                     <button className="btn btn-dark" onClick={stopVideo}>
                                         Stop Camera</button>
                                 ) : (
-                                    <button className="btn btn-dark" onClick={startVideo}>
-                                        Start Camera</button>
+                                        <button className="btn btn-dark" onClick={startVideo}>
+                                            Start Camera</button>
                                     )}
                             </ButtonGroup>
 
@@ -152,27 +129,22 @@ const SignUp2 = () => {
                                                                     personId: currentPersonId
                                                                 })
                                                             .then(res => {
-                                                                console.log(res);
                                                                 console.log("Person id added to db", currentPersonId);
-                                                                // console.log(currentPersondId.length);
                                                                 setDisableValue(false);
-                                                                // alert("Your face has been mapped, you may complete your sign up now.");
                                                                 return true
                                                             })
                                                             .catch(err => {
-                                                                console.log(err, "err")
-                                                                // console.log(err);
+                                                                console.log(err)
                                                             })
                                                     }
                                                 })
                                             stopVideo()
                                         });
-
                                 }}>Take Picture</button>
 
                             </ButtonGroup>
                             <br />
-                            <h1>Used Photo</h1>     
+                            <h1>Used Photo</h1>
                             <canvas ref={vest} id="canvas" height={HEIGHT}></canvas>
                         </div>
                     </div>
@@ -188,5 +160,5 @@ const SignUp2 = () => {
     );
 };
 
-// export component from SignUp.jsx
+// export component from Signupcamface.jsx
 export default SignUp2;

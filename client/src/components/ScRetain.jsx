@@ -7,7 +7,6 @@ import {
   Row,
   Card,
 } from "react-bootstrap";
-import ScRetainData from '../seedData/scretainSeed';
 import axios from 'axios';
 import { useGlobalContextAuthUser } from "../utils/GlobalContextAuthUser.js";
 
@@ -38,8 +37,6 @@ const ScRetain = () => {
         // console.log(electionData)
       })
   }, []); 
-
-  const scJustice = ScRetainData[0].candidate;
 
   const submitVote = (event) => {
     event.preventDefault();

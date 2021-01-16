@@ -1,6 +1,6 @@
 // import necessary packages/modules, pages and components
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Homepage from './pages/Homepage'
 import SignUp from './pages/SignUp'
@@ -9,7 +9,7 @@ import Profile from './pages/Profile'
 import Election from './pages/Election'
 import Vote from './pages/Vote'
 import Contact from './pages/Contact'
-import AddPerson from './pages/Signupcamface.jsx'
+import SignIn1 from './pages/Signupcamface.jsx'
 import SignIn2 from './pages/SignInFace.jsx'
 import Ballot from './pages/Ballot'
 import GlobalProviderAuthUser from './utils/GlobalContextAuthUser';
