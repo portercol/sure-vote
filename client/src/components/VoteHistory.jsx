@@ -13,31 +13,31 @@ const VoteHistory = () => {
   const [data, getData] = useState();
   const [userId] = useGlobalContextAuthUser();
 
-// pulling data from back end to page
+  // pulling data from back end to page
   useEffect(() => {
-      voteData()
-      console.log(userId.id, "Vote History")
-    }, []);
-    
-    const voteData = () => {
-        
-      axios
-        .get('/api/vote/' + userId.id)
-        .then((res) => {
-            const getVote = res.data;
-            getData(getVote);
-            console.log(getData)
-            console.log(getVote)
-        })
-        .catch(err => {
-          console.log(err);
+    voteData()
+    console.log(userId.id, "Vote History")
+  }, []);
+
+  const voteData = () => {
+
+    axios
+      .get('/api/vote/' + userId.id)
+      .then((res) => {
+        const getVote = res.data;
+        getData(getVote);
+        console.log(getData)
+        console.log(getVote)
       })
-    }
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
 
-    if (!data) {
-        return (<> <h1>Loading ...</h1></>);
-      }
+  if (!data) {
+    return (<> <h5>No votes recorded</h5></>);
+  }
 
 
   return (
@@ -52,29 +52,29 @@ const VoteHistory = () => {
         <Row></Row>
 
         <Card style={{ width: '18rem' }}>
-            <Card.Body>
-                <Card.Title>2020</Card.Title>
-                <Card.Text>
-                </Card.Text>
-            </Card.Body>
-            <ListGroup variant="flush">
-              {data.map((election) => (
-                <ListGroupItem>
-                  <span className="span">
-                  {election.election.office}: 
+          <Card.Body>
+            <Card.Title>2020</Card.Title>
+            <Card.Text>
+            </Card.Text>
+          </Card.Body>
+          <ListGroup variant="flush">
+            {data.map((election) => (
+              <ListGroupItem>
+                <span className="span">
+                  {election.election.office}:
                   </span>
-                  {election.candidate.name}
-                  <br />
-                  {election.candidate.party}
-                </ListGroupItem>
-              )
-              )}
-                </ListGroup>
-            <Card.Body>
-                <Card.Link href="#">Previous Year</Card.Link>
-                <Card.Link href="#">Next Year</Card.Link>
-            </Card.Body>
-        </Card> 
+                {election.candidate.name}
+                <br />
+                {election.candidate.party}
+              </ListGroupItem>
+            )
+            )}
+          </ListGroup>
+          <Card.Body>
+            <Card.Link href="#">Previous Year</Card.Link>
+            <Card.Link href="#">Next Year</Card.Link>
+          </Card.Body>
+        </Card>
         <Modal.Footer>
           <Button variant="dark" onClick={handleClose}>
             Close
