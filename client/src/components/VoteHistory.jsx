@@ -15,32 +15,11 @@ const VoteHistory = () => {
 
   // pulling data from back end to page
   useEffect(() => {
-<<<<<<< HEAD
     voteData()
     console.log(userId.id, "Vote History")
   }, []);
 
   const voteData = () => {
-=======
-      voteData()
-      console.log(userId.id, "Vote History")
-    }, []);
-    
-    const voteData = () => {
-        
-      axios
-        .get('/api/vote/' + userId.id)
-        .then((res) => {
-            const getVote = res.data;
-            // getData(getVote);
-            // console.log(getData)
-            // console.log(getVote)
-        })
-        .catch(err => {
-          console.log(err);
-      })
-    }
->>>>>>> origin
 
     axios
       .get('/api/vote/' + userId.id)
