@@ -156,12 +156,12 @@ router
     console.log(req.body);
     res.end();
   })
-  .get("/api/vote", async (req, res) => {
-    console.log(req.body);
-    const getVote = await Vote.findOne({})
+  .get("/api/vote/:id", async (req, res) => {
+    const getVote = await Vote.find({ user: req.params.id })
       .populate("user")
       .populate("election")
       .populate("candidate");
+    console.log(getVote);
     res.json(getVote);
   })
 

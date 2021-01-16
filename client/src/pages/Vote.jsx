@@ -59,26 +59,25 @@ const Vote = () => {
         alert("First Name Incorrect");
       } else if (lastNameValue !== userData.lastName) {
         alert("Last Name Incorrect");
-      } if (streetAddress1Value !== userData.address1) {
+      } else if (streetAddress1Value !== userData.address1) {
         alert("Street Address Incorrect");
-      } if (cityValue !== userData.city) {
+      } else if (cityValue !== userData.city) {
         alert("City Incorrect");
-      } if (stateValue !== userData.state) {
+      } else if (stateValue !== userData.state) {
         alert("State Incorrect");
-      } if (zipCodeValue != userData.zipCode) {
+      } else if (zipCodeValue != userData.zipCode) {
         alert("Zip Code Incorrect");
+      } else if (uuidValue != userId.uuid) {
+        alert("UUID incorrect.  Please try again.");
       } else {
-        //validate UUID and send to facial recognition
-        if (uuidValue === userId.uuid) {
-          alert("All info verified! Proceeding to facial recognition.");
-          setRedirectRoute("/cam3");
-          redirectHandler()
-        } else {
-          alert("UUID incorrect.  Please try again.");
-        }
+        //send to facial recognition
+        alert("All info verified! Proceeding to facial recognition.");
+        setRedirectRoute("/cam3");
+        redirectHandler();
       }
     }
   }
+
 
   //reroute to signin if not authenticated
   if (!userId.id) {

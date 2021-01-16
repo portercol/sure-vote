@@ -22,8 +22,8 @@ const NavbarFixed = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <LinkContainer to="/election">
-                            <Nav.Link>Election Info</Nav.Link>
+                        <LinkContainer to="/ballot">
+                            <Nav.Link>Ballot</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="/vote">
                             <Nav.Link>Vote</Nav.Link>
