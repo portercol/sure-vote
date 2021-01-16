@@ -21,10 +21,13 @@ const Vote = () => {
   const [zipCodeValue, setZipCodeValue] = useState('');
   const [uuidValue, setUuidValue] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [redirectRoute, setRedirectRoute] = useState('');
 
   console.log("Vote user: ", userId);
   // create function for submit button 'onclick'
   const goBackBtn = () => {
+    setRedirectRoute("/profile");
+    redirectHandler();
   }
 
   // create function for vote button and if all required fields are not met throw alert error
@@ -38,6 +41,7 @@ const Vote = () => {
     console.log("uuid input: ", uuidValue);
     console.log("uuid db: ", userId.uuid);
     if (uuidValue === userId.uuid) {
+      setRedirectRoute("/cam3");
       redirectHandler()
       // alert("UUID Validated!! Proceeding to facial recognition.")
     } else {
@@ -53,12 +57,13 @@ const Vote = () => {
   }
 
   const redirectHandler = () => {
+
     setRedirect(true);
     console.log("redirect handler: ", redirect);
   }
 
   if (redirect) {
-    return <Redirect to="/cam3" />
+    return <Redirect to={redirectRoute} />
   }
 
   return (
